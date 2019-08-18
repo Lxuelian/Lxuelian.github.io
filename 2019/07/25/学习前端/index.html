@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>初识前端 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习前端**">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识前端">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/学习前端/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="学习前端**">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-18T14:44:39.558Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识前端">
+<meta name="twitter:description" content="学习前端**">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">John Doe</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-学习前端" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/07/25/学习前端/" class="article-date">
+      <time datetime="2019-07-25T14:44:30.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初识前端
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="学习前端"><a href="#学习前端" class="headerlink" title="学习前端**"></a>学习前端**</h1><a id="more"></a>
+
+<h2 id="为什么开发中会分为前后端"><a href="#为什么开发中会分为前后端" class="headerlink" title="为什么开发中会分为前后端?"></a><strong>为什么开发中会分为前后端?</strong></h2><h2 id="目前常见的应用程序结构分类"><a href="#目前常见的应用程序结构分类" class="headerlink" title="目前常见的应用程序结构分类?"></a><strong>目前常见的应用程序结构分类?</strong></h2><p>​    最早：C：客户端应用</p>
+<p>​    B/S:浏览器和服务器</p>
+<p>C/S：客户端与服务器</p>
+<p>Hybird-App:混合应用结构  B/S+C/S  C/S+B/S</p>
+<p>第三方的空窗地带：网络通信地带</p>
+<p>网络通信问题</p>
+<p>混合应用：多采用HCJ技术作为基础：google facebook tw </p>
+<p>dcloud (H5/H5+ wap2App mui[nui plus] uni-app:H5+app 小程序【微信/支付宝/百度/头条】) Alibaba()</p>
+<p>WebApp?</p>
+<p>Webapp=HybirdApp </p>
+<h2 id="HTML-安全"><a href="#HTML-安全" class="headerlink" title="HTML+**安全**"></a><strong>HTML+**</strong>安全**</h2><p><strong>Html**</strong>是什么？**</p>
+<p>  不是一门标准的编程语言。超文本标记语言，不是传统中定义的编成语言,又是一种标准化结构语言</p>
+<p>   HTML是构建我蛮一个标准网页语言，他定义一套严格标签、内容、方法等规范</p>
+<input name="’zhangsan’" id="’username’" value="’’" onchange="’javascript:;’/">
+
+<p>&lt;标签 属性名=‘属性值’ onclick onxxx=方法&gt;内容（元素）&lt;/标签&gt;</p>
+<p>Html发展了第五代。目前兼容或运行的Html（4-5），浏览器多为双核心浏览器（高速：webkit/兼容：IE/Edge）</p>
+<h2 id="一个标准的网页有哪几个部分组成？"><a href="#一个标准的网页有哪几个部分组成？" class="headerlink" title="一个标准的网页有哪几个部分组成？"></a><strong>一个标准的网页有哪几个部分组成？</strong></h2><p>优先级：html&gt;head&gt;body&gt;元素tags</p>
+<p>Html和head是系统级，不显现，head中的内容时刻对影响浏览器本身的，它具有对浏览器的控制权限</p>
+<p>只有body是显现的</p>
+<p>只有Head中的标签才有对浏览器有控制作用</p>
+<p><strong>Html:</strong>网页基础结构的顶级标签，必不可少，如果不写，浏览器在渲染时，自动给你补全</p>
+<p>该标签具有很高的优先级，因此多会跟浏览器本身的可是区域形成一种关联关系</p>
+<p><strong>Head</strong>:网页基础结构的组成标签，原则上不可少，有些浏览器不会自动不全该标签，该标签的优先级受限于html</p>
+<p><strong>Body</strong>:网页基础结构的组成标签，原则上可以不写，但一定会自动补全该标签，他的可视区域受限于htnl</p>
+<p><strong>在浏览器内部有两个基本组件</strong>：一个解释器（告诉浏览器标签的作用和级别） 一个渲染器（转换成UI界面）</p>
+<p>目前常见的浏览器支持的解释范围？</p>
+<p>解释范围，应先了解Html的版本？</p>
+<p>规范：html4.01/5   xhtml 1.0/5</p>
+<p>1.0</p>
+<p>Html版本/规范</p>
+<p>Html 1991</p>
+<p>Html+ 1993</p>
+<p>Html2.0</p>
+<p>Html3.0</p>
+<p>Html4.0(不存在)</p>
+<p>Html4.01 1999</p>
+<p>Xhtml 1.0 2000 微软</p>
+<p>Html5 2012</p>
+<p>Xhtml5 2013</p>
+<p>Java1995</p>
+<p>Python1989</p>
+<p><strong>如何识别html版本/规范？</strong></p>
+<!doctype><p>声明html版本/规范</p>
+<p>声明没有具体的大小写要求，可以全大写也可以全小写</p>
+<p><strong>Html5:</strong></p>
+<!doctype html>
+
+<!doctype HTML Pulic“-//w3c//DTD HTML 4.01 Transitional//EN” ”**html4/xxx.dtd”>
+
+<p>XHTML1.0</p>
+<!doctype HTML Pulic“-//w3c//DTD XHTML 1.0 Transitional//EN” ”**xhtml1/xxx.dtd”>
+
+
+
+<p><strong>***</strong>微软与w3c之争**：争的规范和话语权</p>
+<p>微软是在w3c基础上增加了自己的一些内容：自有标签库/方法库/属性库</p>
+<p>还增加了浏览器的解释和渲染的规范和话语权：ie5/6(html&lt;4.01) 7/8/9(html&gt;4.01&lt;5/xhtml)    10/11(html5/xhtml5)</p>
+<p>浏览器的份额发生变化导致微软的IE份额下滑最后是苹果和谷歌联合推动webkit内核胜利</p>
+<p><strong>Head**</strong>区域：**</p>
+<p>Meta:头部功能定义：编码/缩放比例</p>
+<p>Title 页面标题定义，也是唯一一个可以直观感受到HTML操作浏览器的例子</p>
+<p>Script 脚本 </p>
+<p>Style 样式</p>
+<p>Link 引用标签</p>
+<p><strong>Body**</strong>区域：**</p>
+<p>各类Tags</p>
+<p>按功能划分：</p>
+<p>1/容器标签 div p span <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2/内容标签 div p span input textarea video audio img</span><br></pre></td></tr></table></figure></p>
+<p>3/交互标签 input button a <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">**认识一下标签的套路（规则）**</span><br><span class="line"></span><br><span class="line">标准&lt;标签名 属性方法&gt;内容&lt;/标签名&gt;</span><br><span class="line"></span><br><span class="line">简易写法&lt;标签名 内容属性支持（比如value）/&gt;</span><br><span class="line"></span><br><span class="line">标签名：A-Z</span><br><span class="line"></span><br><span class="line">A：a article audio abbr area aside applet</span><br></pre></td></tr></table></figure></p>
+<p>B:b(加粗) br（换行）big(html5 不支持)  bdo button body<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">C:</span><br><span class="line"></span><br><span class="line">\</span><br></pre></td></tr></table></figure></p>
+<p>W:wbr</p>
+<p>作业一：完成标签的梳理，并形成标签库列表，含标签的说明</p>
+<p><strong>属性：</strong></p>
+<p>通用：id name style class width height data</p>
+<p>特有：arc rel value <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">自定义：多配合JS用 data-img=’http://ssss’</span><br><span class="line"></span><br><span class="line">**方法：**</span><br><span class="line"></span><br><span class="line">可以通过关键字this 来获得方法列表</span><br><span class="line"></span><br><span class="line">安全问题：有一些安全事件采用改变或拦截标签后给他赋予一些方法来获得内容</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">案例一</span><br><span class="line"></span><br><span class="line">钓鱼网站QQ邮箱</span><br><span class="line"></span><br><span class="line">1、 实现qq邮箱的界面及布局</span><br><span class="line"></span><br><span class="line">2、 实现用户输入信息，实时记录输入信息到后台</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">常见的界面布局：</span><br><span class="line"></span><br><span class="line">H/工</span><br><span class="line"></span><br><span class="line">​    ![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647d6ebz6j30al07v0u4.jpg)               ![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647dtxt3qj30ay06hq5k.jpg)                    </span><br><span class="line"></span><br><span class="line">I/i </span><br><span class="line"></span><br><span class="line"> ![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647ei7rbrj308y08pt9n.jpg)  </span><br><span class="line"></span><br><span class="line">T 口（自适应 有内容 内容无序） </span><br><span class="line"></span><br><span class="line">国（） </span><br><span class="line"></span><br><span class="line">![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647f4996ej30e405n3z9.jpg)</span><br><span class="line"></span><br><span class="line">框</span><br></pre></td></tr></table></figure></p>
+<p>原则：先布局再内容</p>
+<p>标签</p>
+<p>属性</p>
+<p>方法</p>
+<p>Css</p>
+<p>属性</p>
+<p>函数</p>
+<p>下午：demo </p>
+<p>快速构建一个自适应的界面</p>
+<p>JS </p>
+<p>对象</p>
+<p>基础DOM</p>
+<h1 id="标签及其含义"><a href="#标签及其含义" class="headerlink" title="标签及其含义"></a>标签及其含义</h1><p><strong>A</strong>:</p>
+<p><a>  定义锚。</a></p>
+<p><abbr>     定义缩写。</abbr></p>
+<p><acronym>定义只取首字母的缩写。</acronym></p>
+<address>定义文档作者或拥有者的联系信息。
+
+<p><applet>  不赞成使用。定义嵌入的 applet。</applet></p>
+<p><area>定义图像映射内部的区域。</p>
+<article>  定义文章。
+
+<aside>定义页面内容之外的内容。
+
+<p><audio>定义声音内容。</audio></p>
+<p>B:</p>
+<p><b>定义粗体字。</b></p>
+<base>定义页面中所有链接的默认地址或默认目标。
+
+<basefont>不赞成使用。定义页面中文本的默认字体、颜色或尺寸。
+
+<p><bdi>定义文本的文本方向，使其脱离其周围文本的方向设置。</bdi></p>
+<p><bdo>定义文字方向。</bdo></p>
+<p><big>定义大号文本</big></p>
+<blockquote>   定义长的引用。
+
+<body>定义文档的主体。
+
+<p><br> 定义简单的折行。</p>
+<p><button>  定义按钮</button></p>
+<p>C:</p>
+<p><canvas> 定义图形。</canvas></p>
+<caption>定义表格标题。
+
+<center>  不赞成使用。定义居中文本。
+
+<p><cite>定义引用(citation)。</cite></p>
+<p><code>定义计算机代码文本。</code></p>
+<col>定义表格中一个或多个列的属性值。
+
+<colgroup>定义表格中供格式化的列组。
+
+<p><command>定义命令按钮</p>
+<p>D:</p>
+<p><datalist> 定义下拉列表。</datalist></p>
+<dd>定义定义列表中项目的描述。
+
+<p><del>        定义被删除文本。</del></p>
+<details>  定义元素的细节。
+
+<dir>         不赞成使用。定义目录列表。
+
+<div>         定义文档中的节。
+
+<p><dfn>        定义定义项目。</dfn></p>
+<dialog>   定义对话框或窗口。
+
+<dl> 定义定义列表。
+
+<dt> 定义定义列表中的项目。
+
+<p>E:</p>
+<p><em>        定义强调文本。</em></p>
+<p><embed> 定义外部交互内容或插件。</p>
+<p>F:</p>
+<fieldset> 定义围绕表单中元素的边框。
+
+<figcaption>     定义 figure 元素的标题。
+
+<figure>   定义媒介内容的分组，以及它们的标题。
+
+<p><font>      不赞成使用。定义文字的字体、尺寸和颜色。</font></p>
+<footer>  定义 section 或 page 的页脚。
+
+<form>     定义供用户输入的 HTML 表单。
+
+<frame>   定义框架集的窗口或框架。
+
+<frameset>      定义框架集。
+
+<p>H:</p>
+<h1> to <h6>   定义 HTML 标题。
+
+<head><meta name="generator" content="Hexo 3.9.0">     定义关于文档的信息。
+
+<header> 定义 section 或 page 的页眉。
+
+<hr> 定义水平线。
+
+<html>     定义 HTML 文档。
+
+<p>I:</p>
+<p><i>    定义斜体字。</i></p>
+<iframe>  定义内联框架。
+
+<p><img>       定义图像。</p>
+<p><input>    定义输入控件。</p>
+<p><ins>         定义被插入文本。</ins></p>
+<p><isindex> 不赞成使用。定义与文档相关的可搜索索引。</p>
+<p>K:</p>
+<p><kbd>       定义键盘文本。</kbd></p>
+<p><keygen> 定义生成密钥。</p>
+<p>L:</p>
+<p><label>     定义 input 元素的标注。</label></p>
+<legend>  定义 fieldset 元素的标题。
+
+<li>   定义列表的项目。
+
+<link>        定义文档与外部资源的关系。
+
+<p>M:</p>
+<p><map>      定义图像映射。</map></p>
+<p><mark>    定义有记号的文本。</mark></p>
+<menu>   定义命令的列表或菜单。
+
+<menuitem>    定义用户可以从弹出菜单调用的命令/菜单项目。
+
+<meta>    定义关于 HTML 文档的元信息。
+
+<p><meter>  定义预定义范围内的度量。</meter></p>
+<p>N:</p>
+<nav>        定义导航链接。
+
+<noframes>      定义针对不支持框架的用户的替代内容。
+
+<p><noscript>        定义针对不支持客户端脚本的用户的替代内容。</noscript></p>
+<p>O:</p>
+<p><object>  定义内嵌对象。</object></p>
+<ol> 定义有序列表。
+
+<optgroup>      定义选择列表中相关选项的组合。
+
+<option>  定义选择列表中的选项。
+
+<p><output> 定义输出的一些类型。</output></p>
+<p>P:</p>
+<p>  定义段落。
+
+<param>  定义对象的参数。
+
+<pre>        定义预格式文本。
+
+<progress>       定义任何类型的任务的进度。
+
+Q:
+
+<q>  定义短的引用。
+
+R:
+
+<rp> 定义若浏览器不支持 ruby 元素显示的内容。
+
+<rt> 定义 ruby 注释的解释
+
+。<ruby> 定义 ruby 注释。
+
+S:
+
+<s>   不赞成使用。定义加删除线的文本。
+
+<samp>    定义计算机代码样本。
+
+<script>    定义客户端脚本。
+
+<section> 定义 section。
+
+<select>   定义选择列表（下拉列表）。
+
+<small>    定义小号文本。
+
+<source>  定义媒介源。
+
+<span>     定义文档中的节。
+
+<strike>    不赞成使用。定义加删除线文本。
+
+<strong>  定义强调文本。
+
+<style>     定义文档的样式信息。
+
+<sub>        定义下标文本。
+
+<summary>      为 <details> 元素定义可见的标题。
+
+<sup>        定义上标文本。
+
+T:
+
+<table>    定义表格。
+
+<tbody>   定义表格中的主体内容。
+
+<td> 定义表格中的单元。
+
+<textarea>       定义多行的文本输入控件。
+
+<tfoot>     定义表格中的表注内容（脚注）。
+
+<th> 定义表格中的表头单元格。
+
+<thead>   定义表格中的表头内容。
+
+<time>     定义日期/时间。
+
+<title>      定义文档的标题。
+
+<tr> 定义表格中的行。
+
+<track>    定义用在媒体播放器中的文本轨道。
+
+<tt>  定义打字机文本。
+
+U:
+
+<u>  不赞成使用。定义下划线文本。
+
+<ul> 定义无序列表。
+
+V:
+
+<var>        定义文本的变量部分。
+
+<video>    定义视频。
+
+W:
+
+<wbr>       定义可能的换行符。
+
+X:
+
+<xmp>      不赞成使用。定义预格式文本
+
+# 昨天的问题及标签的梳理
+
+昨天的问题
+
+1、 标签的不熟悉
+
+2、 布局用那个标签
+
+3、 样式？
+
+
+
+目标：
+
+标签的学习
+
+布局？position top left right bottom
+
+标签自带的方法：oninput onchange onclick
+
+
+
+高级标签的学习
+
+Video
+
+Audio
+
+Demo:小说阅读器
+
+用百度接口完成语音识别功能
+
+HTTP://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=6&text=
+
+
+
+一、HTML中的标签
+
+标签的特点：
+
+1、 成对出现<a></a>  <b></b>  <br/>(闭合标签 简写)
+
+2、 最大化写法：标签名 属性名方法名内容 <input class=”name” onclick=””>输入框</input>  (标签 属性 方法 内容)
+
+最小化写法：只有四大基本内容中的一个或多个 必须要有的是标签名<div>111</div>
+
+特殊的写法，不带尖括号：  ：before
+
+3、 标签在书写过程中 一般依赖body标签
+
+
+
+常用标签：
+
+<!-- 容器标签 -->
+
+              <div>
+
+​                     块级标签
+
+​                     1、独占一行
+
+​                     2、没有行高，没有内容时有效
+
+​                     3、没有边框
+
+​                     4、position :属性会重写
+
+​                     5、原点定位：左上角
+
+​              </div>
+
+              <div>独占一行</div>
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647jcci8yj301m021we9.jpg)
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647k2gjbuj302602ajr7.jpg)
+
+<!-- 表格标签 -->
+
+         <table border=""
+cellspacing="" cellpadding="">
+
+​                <tr><th>Header</th></tr>
+
+​                 <tr><th>Data</th></tr>
+
+​                 <tr><td>1</td><td>2</td><td>3</td></tr>
+
+​         </table>
+
+
+
+
+
+<div
+style="height: 100px;width: 100px;background-color: red;
+
+​        position: absolute;
+
+​        bottom: 0px;left: 0px;">
+
+​               <!-- 
+
+​               top:左上
+
+​                left:左上
+
+​                right:右上
+
+​                bottom:左下
+
+​                
+
+​                组合用？
+
+​                top+left:相对于参考原点右下角移动
+
+​                top+right:左下角移动
+
+​                bottom+left:右上角移动
+
+​                bottom+right:左上角移动
+
+​                
+
+​                top+bottom:上为主
+
+​                left+right：左为主
+
+​                -->
+
+​        </div>
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647khorrwj30fe05tmxe.jpg)
+
+​        <!-- 
+
+​         position:定位属性 相对（上一个同级容器 从上一级容器开始定位）
+
+​          绝对（body:最上边浏览器最左上角）
+
+​         -->
+
+<!-- 相对 参考同一级的坐标来定位 如果没有同一级参考坐标 则参考上一级容器的原点坐标
+
+​              绝对 参考body远点坐标 0 0
+
+​                 positon对top left right bottom的相互作用
+
+​                 只有当出现position相对时才起作用
+
+​          -->
+
+<span style="background-color: #F0F8FF;width: 100px;height: 100px;
+
+​          ">节标签1</span><span>节标签2</span>
+
+​          <!-- 
+
+​          特点
+
+​          将一行分为多个小节/小段 
+
+​          方向为横向分段
+
+​          短的长度默认为0
+
+​          长度可以有内容定义
+
+​          也可以由width定义:4.01以前可以 现在废弃-->
+
+​          
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647kzxo7cj30fe08n0vf.jpg)
+
+
+
+
+
+
+
+
+
+
+
+JS的基本作用
+
+Document:当前的文本对象，里面有当前访问页面所有的标签
+
+
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647lejchyj30dm08wabo.jpg)
+
+Base64 md5
+
+
+
+出现密码没有加密的情况：
+
+使用时或输入时开始加密
+
+加密方法：md5（）、MD5(md5())、md5(md5(“密码”)+“自定义密钥”)
+
+
+
+障眼法：可逆
+
+Base64
+
+EncodeURI()
+
+自定义加密算法
+
+
+
+
+
+
+
+
+
+任务一：
+
+Base加密，实现获得的密码数据进行实时加密
+
+任务二：
+
+语音阅读器，做一个界面，头部为标题：“知了文本阅读播放器”
+
+内容部分为屏幕的高的70%，宽为100%，且可以在手机上使用 apk
+
+为你的页面增加viewport,以适应手机界面等比缩放
+
+剩下的30%为功能区，除播放键外，还需要增加一个暂停按钮，可以暂停播放，再次点击播放按钮后可以继续实现播放
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647lrvf3mj30fe08ndjy.jpg)</script></samp></s></ruby></rt></rp></q></progress></pre></p></option></optgroup></ol></noframes></nav></menuitem></menu></li></legend></iframe></html></header></head></h6></h1></frameset></form></footer></figure></figcaption></fieldset></dt></dl></dialog></div></dir></details></dd></colgroup></center></caption></body></blockquote></aside></article></address>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/07/25/学习前端/">初识前端</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2019年07月25日 - 22时44分</p>
+        <p><span>最后更新:</span>2019年08月18日 - 22时44分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/25/学习前端/" title="初识前端">http://yoursite.com/2019/07/25/学习前端/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/07/25/学习前端/　　作者: John Doe" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/08/09/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习前端"><span class="toc-number">1.</span> <span class="toc-text">学习前端**</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么开发中会分为前后端"><span class="toc-number">1.1.</span> <span class="toc-text">为什么开发中会分为前后端?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目前常见的应用程序结构分类"><span class="toc-number">1.2.</span> <span class="toc-text">目前常见的应用程序结构分类?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML-安全"><span class="toc-number">1.3.</span> <span class="toc-text">HTML+**安全**</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个标准的网页有哪几个部分组成？"><span class="toc-number">1.4.</span> <span class="toc-text">一个标准的网页有哪几个部分组成？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标签及其含义"><span class="toc-number">2.</span> <span class="toc-text">标签及其含义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text"> to    定义 HTML 标题。
+
+     定义关于文档的信息。
+
+ 定义 section 或 page 的页眉。
+
+ 定义水平线。
+
+     定义 HTML 文档。
+
+I:
+    定义斜体字。
+  定义内联框架。
+
+       定义图像。
+    定义输入控件。
+         定义被插入文本。
+ 不赞成使用。定义与文档相关的可搜索索引。
+K:
+       定义键盘文本。
+ 定义生成密钥。
+L:
+     定义 input 元素的标注。
+  定义 fieldset 元素的标题。
+
+   定义列表的项目。
+
+        定义文档与外部资源的关系。
+
+M:
+      定义图像映射。
+    定义有记号的文本。
+   定义命令的列表或菜单。
+
+    定义用户可以从弹出菜单调用的命令/菜单项目。
+
+    定义关于 HTML 文档的元信息。
+
+  定义预定义范围内的度量。
+N:
+        定义导航链接。
+
+      定义针对不支持框架的用户的替代内容。
+
+        定义针对不支持客户端脚本的用户的替代内容。
+O:
+  定义内嵌对象。
+ 定义有序列表。
+
+      定义选择列表中相关选项的组合。
+
+  定义选择列表中的选项。
+
+ 定义输出的一些类型。
+P:
+  定义段落。
+
+  定义对象的参数。
+
+        定义预格式文本。
+
+       定义任何类型的任务的进度。
+
+Q:
+
+  定义短的引用。
+
+R:
+
+ 定义若浏览器不支持 ruby 元素显示的内容。
+
+ 定义 ruby 注释的解释
+
+。 定义 ruby 注释。
+
+S:
+
+   不赞成使用。定义加删除线的文本。
+
+    定义计算机代码样本。
+
+    定义客户端脚本。
+
+&lt;section&gt; 定义 section。
+
+&lt;select&gt;   定义选择列表（下拉列表）。
+
+&lt;small&gt;    定义小号文本。
+
+&lt;source&gt;  定义媒介源。
+
+&lt;span&gt;     定义文档中的节。
+
+&lt;strike&gt;    不赞成使用。定义加删除线文本。
+
+&lt;strong&gt;  定义强调文本。
+
+&lt;style&gt;     定义文档的样式信息。
+
+&lt;sub&gt;        定义下标文本。
+
+&lt;summary&gt;      为 &lt;details&gt; 元素定义可见的标题。
+
+&lt;sup&gt;        定义上标文本。
+
+T:
+
+&lt;table&gt;    定义表格。
+
+&lt;tbody&gt;   定义表格中的主体内容。
+
+&lt;td&gt; 定义表格中的单元。
+
+&lt;textarea&gt;       定义多行的文本输入控件。
+
+&lt;tfoot&gt;     定义表格中的表注内容（脚注）。
+
+&lt;th&gt; 定义表格中的表头单元格。
+
+&lt;thead&gt;   定义表格中的表头内容。
+
+&lt;time&gt;     定义日期/时间。
+
+&lt;title&gt;      定义文档的标题。
+
+&lt;tr&gt; 定义表格中的行。
+
+&lt;track&gt;    定义用在媒体播放器中的文本轨道。
+
+&lt;tt&gt;  定义打字机文本。
+
+U:
+
+&lt;u&gt;  不赞成使用。定义下划线文本。
+
+&lt;ul&gt; 定义无序列表。
+
+V:
+
+&lt;var&gt;        定义文本的变量部分。
+
+&lt;video&gt;    定义视频。
+
+W:
+
+&lt;wbr&gt;       定义可能的换行符。
+
+X:
+
+&lt;xmp&gt;      不赞成使用。定义预格式文本
+
+# 昨天的问题及标签的梳理
+
+昨天的问题
+
+1、 标签的不熟悉
+
+2、 布局用那个标签
+
+3、 样式？
+
+
+
+目标：
+
+标签的学习
+
+布局？position top left right bottom
+
+标签自带的方法：oninput onchange onclick
+
+
+
+高级标签的学习
+
+Video
+
+Audio
+
+Demo:小说阅读器
+
+用百度接口完成语音识别功能
+
+HTTP://tts.baidu.com/text2audio?lan=zh&amp;ie=UTF-8&amp;spd=6&amp;text=
+
+
+
+一、HTML中的标签
+
+标签的特点：
+
+1、 成对出现&lt;a&gt;&lt;/a&gt;  &lt;b&gt;&lt;/b&gt;  &lt;br/&gt;(闭合标签 简写)
+
+2、 最大化写法：标签名 属性名方法名内容 &lt;input class=”name” onclick=””&gt;输入框&lt;/input&gt;  (标签 属性 方法 内容)
+
+最小化写法：只有四大基本内容中的一个或多个 必须要有的是标签名&lt;div&gt;111&lt;/div&gt;
+
+特殊的写法，不带尖括号：  ：before
+
+3、 标签在书写过程中 一般依赖body标签
+
+
+
+常用标签：
+
+&lt;!-- 容器标签 --&gt;
+
+              &lt;div&gt;
+
+​                     块级标签
+
+​                     1、独占一行
+
+​                     2、没有行高，没有内容时有效
+
+​                     3、没有边框
+
+​                     4、position :属性会重写
+
+​                     5、原点定位：左上角
+
+​              &lt;/div&gt;
+
+              &lt;div&gt;独占一行&lt;/div&gt;
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647jcci8yj301m021we9.jpg)
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647k2gjbuj302602ajr7.jpg)
+
+&lt;!-- 表格标签 --&gt;
+
+         &lt;table border=&quot;&quot;
+cellspacing=&quot;&quot; cellpadding=&quot;&quot;&gt;
+
+​                &lt;tr&gt;&lt;th&gt;Header&lt;/th&gt;&lt;/tr&gt;
+
+​                 &lt;tr&gt;&lt;th&gt;Data&lt;/th&gt;&lt;/tr&gt;
+
+​                 &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;
+
+​         &lt;/table&gt;
+
+
+
+
+
+&lt;div
+style=&quot;height: 100px;width: 100px;background-color: red;
+
+​        position: absolute;
+
+​        bottom: 0px;left: 0px;&quot;&gt;
+
+​               &lt;!-- 
+
+​               top:左上
+
+​                left:左上
+
+​                right:右上
+
+​                bottom:左下
+
+​                
+
+​                组合用？
+
+​                top+left:相对于参考原点右下角移动
+
+​                top+right:左下角移动
+
+​                bottom+left:右上角移动
+
+​                bottom+right:左上角移动
+
+​                
+
+​                top+bottom:上为主
+
+​                left+right：左为主
+
+​                --&gt;
+
+​        &lt;/div&gt;
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647khorrwj30fe05tmxe.jpg)
+
+​        &lt;!-- 
+
+​         position:定位属性 相对（上一个同级容器 从上一级容器开始定位）
+
+​          绝对（body:最上边浏览器最左上角）
+
+​         --&gt;
+
+&lt;!-- 相对 参考同一级的坐标来定位 如果没有同一级参考坐标 则参考上一级容器的原点坐标
+
+​              绝对 参考body远点坐标 0 0
+
+​                 positon对top left right bottom的相互作用
+
+​                 只有当出现position相对时才起作用
+
+​          --&gt;
+
+&lt;span style=&quot;background-color: #F0F8FF;width: 100px;height: 100px;
+
+​          &quot;&gt;节标签1&lt;/span&gt;&lt;span&gt;节标签2&lt;/span&gt;
+
+​          &lt;!-- 
+
+​          特点
+
+​          将一行分为多个小节/小段 
+
+​          方向为横向分段
+
+​          短的长度默认为0
+
+​          长度可以有内容定义
+
+​          也可以由width定义:4.01以前可以 现在废弃--&gt;
+
+​          
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647kzxo7cj30fe08n0vf.jpg)
+
+
+
+
+
+
+
+
+
+
+
+JS的基本作用
+
+Document:当前的文本对象，里面有当前访问页面所有的标签
+
+
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647lejchyj30dm08wabo.jpg)
+
+Base64 md5
+
+
+
+出现密码没有加密的情况：
+
+使用时或输入时开始加密
+
+加密方法：md5（）、MD5(md5())、md5(md5(“密码”)+“自定义密钥”)
+
+
+
+障眼法：可逆
+
+Base64
+
+EncodeURI()
+
+自定义加密算法
+
+
+
+
+
+
+
+
+
+任务一：
+
+Base加密，实现获得的密码数据进行实时加密
+
+任务二：
+
+语音阅读器，做一个界面，头部为标题：“知了文本阅读播放器”
+
+内容部分为屏幕的高的70%，宽为100%，且可以在手机上使用 apk
+
+为你的页面增加viewport,以适应手机界面等比缩放
+
+剩下的30%为功能区，除播放键外，还需要增加一个暂停按钮，可以暂停播放，再次点击播放按钮后可以继续实现播放
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647lrvf3mj30fe08ndjy.jpg)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">3.0.0.0.0.1.</span> <span class="toc-text">   定义 HTML 标题。
+
+     定义关于文档的信息。
+
+ 定义 section 或 page 的页眉。
+
+ 定义水平线。
+
+     定义 HTML 文档。
+
+I:
+    定义斜体字。
+  定义内联框架。
+
+       定义图像。
+    定义输入控件。
+         定义被插入文本。
+ 不赞成使用。定义与文档相关的可搜索索引。
+K:
+       定义键盘文本。
+ 定义生成密钥。
+L:
+     定义 input 元素的标注。
+  定义 fieldset 元素的标题。
+
+   定义列表的项目。
+
+        定义文档与外部资源的关系。
+
+M:
+      定义图像映射。
+    定义有记号的文本。
+   定义命令的列表或菜单。
+
+    定义用户可以从弹出菜单调用的命令/菜单项目。
+
+    定义关于 HTML 文档的元信息。
+
+  定义预定义范围内的度量。
+N:
+        定义导航链接。
+
+      定义针对不支持框架的用户的替代内容。
+
+        定义针对不支持客户端脚本的用户的替代内容。
+O:
+  定义内嵌对象。
+ 定义有序列表。
+
+      定义选择列表中相关选项的组合。
+
+  定义选择列表中的选项。
+
+ 定义输出的一些类型。
+P:
+  定义段落。
+
+  定义对象的参数。
+
+        定义预格式文本。
+
+       定义任何类型的任务的进度。
+
+Q:
+
+  定义短的引用。
+
+R:
+
+ 定义若浏览器不支持 ruby 元素显示的内容。
+
+ 定义 ruby 注释的解释
+
+。 定义 ruby 注释。
+
+S:
+
+   不赞成使用。定义加删除线的文本。
+
+    定义计算机代码样本。
+
+    定义客户端脚本。
+
+&lt;section&gt; 定义 section。
+
+&lt;select&gt;   定义选择列表（下拉列表）。
+
+&lt;small&gt;    定义小号文本。
+
+&lt;source&gt;  定义媒介源。
+
+&lt;span&gt;     定义文档中的节。
+
+&lt;strike&gt;    不赞成使用。定义加删除线文本。
+
+&lt;strong&gt;  定义强调文本。
+
+&lt;style&gt;     定义文档的样式信息。
+
+&lt;sub&gt;        定义下标文本。
+
+&lt;summary&gt;      为 &lt;details&gt; 元素定义可见的标题。
+
+&lt;sup&gt;        定义上标文本。
+
+T:
+
+&lt;table&gt;    定义表格。
+
+&lt;tbody&gt;   定义表格中的主体内容。
+
+&lt;td&gt; 定义表格中的单元。
+
+&lt;textarea&gt;       定义多行的文本输入控件。
+
+&lt;tfoot&gt;     定义表格中的表注内容（脚注）。
+
+&lt;th&gt; 定义表格中的表头单元格。
+
+&lt;thead&gt;   定义表格中的表头内容。
+
+&lt;time&gt;     定义日期/时间。
+
+&lt;title&gt;      定义文档的标题。
+
+&lt;tr&gt; 定义表格中的行。
+
+&lt;track&gt;    定义用在媒体播放器中的文本轨道。
+
+&lt;tt&gt;  定义打字机文本。
+
+U:
+
+&lt;u&gt;  不赞成使用。定义下划线文本。
+
+&lt;ul&gt; 定义无序列表。
+
+V:
+
+&lt;var&gt;        定义文本的变量部分。
+
+&lt;video&gt;    定义视频。
+
+W:
+
+&lt;wbr&gt;       定义可能的换行符。
+
+X:
+
+&lt;xmp&gt;      不赞成使用。定义预格式文本
+
+# 昨天的问题及标签的梳理
+
+昨天的问题
+
+1、 标签的不熟悉
+
+2、 布局用那个标签
+
+3、 样式？
+
+
+
+目标：
+
+标签的学习
+
+布局？position top left right bottom
+
+标签自带的方法：oninput onchange onclick
+
+
+
+高级标签的学习
+
+Video
+
+Audio
+
+Demo:小说阅读器
+
+用百度接口完成语音识别功能
+
+HTTP://tts.baidu.com/text2audio?lan=zh&amp;ie=UTF-8&amp;spd=6&amp;text=
+
+
+
+一、HTML中的标签
+
+标签的特点：
+
+1、 成对出现&lt;a&gt;&lt;/a&gt;  &lt;b&gt;&lt;/b&gt;  &lt;br/&gt;(闭合标签 简写)
+
+2、 最大化写法：标签名 属性名方法名内容 &lt;input class=”name” onclick=””&gt;输入框&lt;/input&gt;  (标签 属性 方法 内容)
+
+最小化写法：只有四大基本内容中的一个或多个 必须要有的是标签名&lt;div&gt;111&lt;/div&gt;
+
+特殊的写法，不带尖括号：  ：before
+
+3、 标签在书写过程中 一般依赖body标签
+
+
+
+常用标签：
+
+&lt;!-- 容器标签 --&gt;
+
+              &lt;div&gt;
+
+​                     块级标签
+
+​                     1、独占一行
+
+​                     2、没有行高，没有内容时有效
+
+​                     3、没有边框
+
+​                     4、position :属性会重写
+
+​                     5、原点定位：左上角
+
+​              &lt;/div&gt;
+
+              &lt;div&gt;独占一行&lt;/div&gt;
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647jcci8yj301m021we9.jpg)
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647k2gjbuj302602ajr7.jpg)
+
+&lt;!-- 表格标签 --&gt;
+
+         &lt;table border=&quot;&quot;
+cellspacing=&quot;&quot; cellpadding=&quot;&quot;&gt;
+
+​                &lt;tr&gt;&lt;th&gt;Header&lt;/th&gt;&lt;/tr&gt;
+
+​                 &lt;tr&gt;&lt;th&gt;Data&lt;/th&gt;&lt;/tr&gt;
+
+​                 &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;
+
+​         &lt;/table&gt;
+
+
+
+
+
+&lt;div
+style=&quot;height: 100px;width: 100px;background-color: red;
+
+​        position: absolute;
+
+​        bottom: 0px;left: 0px;&quot;&gt;
+
+​               &lt;!-- 
+
+​               top:左上
+
+​                left:左上
+
+​                right:右上
+
+​                bottom:左下
+
+​                
+
+​                组合用？
+
+​                top+left:相对于参考原点右下角移动
+
+​                top+right:左下角移动
+
+​                bottom+left:右上角移动
+
+​                bottom+right:左上角移动
+
+​                
+
+​                top+bottom:上为主
+
+​                left+right：左为主
+
+​                --&gt;
+
+​        &lt;/div&gt;
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647khorrwj30fe05tmxe.jpg)
+
+​        &lt;!-- 
+
+​         position:定位属性 相对（上一个同级容器 从上一级容器开始定位）
+
+​          绝对（body:最上边浏览器最左上角）
+
+​         --&gt;
+
+&lt;!-- 相对 参考同一级的坐标来定位 如果没有同一级参考坐标 则参考上一级容器的原点坐标
+
+​              绝对 参考body远点坐标 0 0
+
+​                 positon对top left right bottom的相互作用
+
+​                 只有当出现position相对时才起作用
+
+​          --&gt;
+
+&lt;span style=&quot;background-color: #F0F8FF;width: 100px;height: 100px;
+
+​          &quot;&gt;节标签1&lt;/span&gt;&lt;span&gt;节标签2&lt;/span&gt;
+
+​          &lt;!-- 
+
+​          特点
+
+​          将一行分为多个小节/小段 
+
+​          方向为横向分段
+
+​          短的长度默认为0
+
+​          长度可以有内容定义
+
+​          也可以由width定义:4.01以前可以 现在废弃--&gt;
+
+​          
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647kzxo7cj30fe08n0vf.jpg)
+
+
+
+
+
+
+
+
+
+
+
+JS的基本作用
+
+Document:当前的文本对象，里面有当前访问页面所有的标签
+
+
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647lejchyj30dm08wabo.jpg)
+
+Base64 md5
+
+
+
+出现密码没有加密的情况：
+
+使用时或输入时开始加密
+
+加密方法：md5（）、MD5(md5())、md5(md5(“密码”)+“自定义密钥”)
+
+
+
+障眼法：可逆
+
+Base64
+
+EncodeURI()
+
+自定义加密算法
+
+
+
+
+
+
+
+
+
+任务一：
+
+Base加密，实现获得的密码数据进行实时加密
+
+任务二：
+
+语音阅读器，做一个界面，头部为标题：“知了文本阅读播放器”
+
+内容部分为屏幕的高的70%，宽为100%，且可以在手机上使用 apk
+
+为你的页面增加viewport,以适应手机界面等比缩放
+
+剩下的30%为功能区，除播放键外，还需要增加一个暂停按钮，可以暂停播放，再次点击播放按钮后可以继续实现播放
+
+![/img](http://ww1.sinaimg.cn/large/007ru3v0gy1g647lrvf3mj30fe08ndjy.jpg)</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/08/09/hello-world/" title="上一篇: Hello World">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/08/18/第二章 以太网的数据封装/">第二章 以太网的数据封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/09/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/25/学习前端/">初识前端</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
