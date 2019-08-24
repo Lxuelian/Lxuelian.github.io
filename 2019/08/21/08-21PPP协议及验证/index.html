@@ -7,11 +7,12 @@
   
   
   
-  <title>PPP协议及验证 | Hexo</title>
+  <title>PPP协议及验证、Qos | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、PPP协议及验证">
+<meta name="keywords" content="网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PPP协议及验证">
+<meta property="og:title" content="PPP协议及验证、Qos">
 <meta property="og:url" content="http://yoursite.com/2019/08/21/08-21PPP协议及验证/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一、PPP协议及验证">
@@ -38,15 +39,18 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g685jhepshj30eu07faa6.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g685jrur5aj30el07umxc.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g685k6gbh0j30g4065wek.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6auxdz551j30mx09sjsd.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g685kti57yj30lw0bl3z5.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g685lfiqslj30fv047t8r.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6auy3hy99j30mt035dg7.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g685lqstzrj30fd07qt94.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g685mbg34oj30d906q0su.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6auyjxzrqj30mt04vq3h.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g685mspbxnj30gh06f3yx.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g685n9w9rtj30dq07e3ym.jpg">
-<meta property="og:updated_time" content="2019-08-22T00:44:39.575Z">
+<meta property="og:updated_time" content="2019-08-24T08:41:48.957Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PPP协议及验证">
+<meta name="twitter:title" content="PPP协议及验证、Qos">
 <meta name="twitter:description" content="一、PPP协议及验证">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6859lzjipj30u009kad4.jpg">
   
@@ -224,7 +228,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        
+                        <a href="/tags/NAT-网络地址转换/" style="font-size: 10px;">NAT 网络地址转换</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a>
                     </div>
                 </section>
                 
@@ -319,7 +323,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PPP协议及验证
+      PPP协议及验证、Qos
     </h1>
   
 
@@ -330,6 +334,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -541,7 +549,17 @@
 <p>!</p>
 <p>access-list 1 permit 192.168.1.0 0.0.0.255</p>
 <p>access-list 1 permit any</p>
-<h1 id="三、配置QoS"><a href="#三、配置QoS" class="headerlink" title="三、配置QoS"></a>三、配置QoS</h1><h2 id="1、CBWFQ配置"><a href="#1、CBWFQ配置" class="headerlink" title="1、CBWFQ配置"></a>1、CBWFQ配置</h2><p>​      设置http和ftp的流量为512Kbit/s  </p>
+<h1 id="三、QoS"><a href="#三、QoS" class="headerlink" title="三、QoS"></a>三、QoS</h1><p>1、Qos技术</p>
+<p>ØQoS（服务质量）是网络的一种安全机制, 是一种用于解决网络延迟和阻塞等问题的技术，包括传输的带宽、传送的时延、数据的丢包率等。在网络中可以通过保证传输的带宽、降低传送的时延、降低数据的丢包率以及时延抖动等措施来提高服务质量。</p>
+<p>Ø正常情况下，假如网络只用于特定的无时间限制的应用系统，比如Web应用、FTP应用等，那么它不需要QoS。当网络过载或拥塞时，QoS 可以确保重要业务量不受延迟或丢弃，同时可以保证网络的高效运行。</p>
+<p>2、QoS配置的4个基本步骤：</p>
+<p>① 设置ACL匹配应用流量。</p>
+<p>② 设置class-map匹配相应ACL或者相应端口等。</p>
+<p>③ 设置policy-map匹配class-map，然后定义规则动作。</p>
+<p>④ 将policy-map绑定到相应的接口上。</p>
+<h2 id="1、CBWFQ配置"><a href="#1、CBWFQ配置" class="headerlink" title="1、CBWFQ配置"></a>1、CBWFQ配置</h2><p>CBWFQ：基本类型的加权公平排队。CBWFQ能根据用户定义识别出某种类流，并为该条流分配一定的权重</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6auxdz551j30mx09sjsd.jpg" alt="/img"></p>
+<p>​      设置http和ftp的流量为512Kbit/s  </p>
 <p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g685kti57yj30lw0bl3z5.jpg" alt="/img"></p>
 <p>注：路由器f0/0接口的IP就是两台PC机的网关</p>
 <h3 id="基础配置："><a href="#基础配置：" class="headerlink" title="基础配置："></a>基础配置：</h3><p>R1(config)#int f0/0</p>
@@ -571,7 +589,9 @@
 <p>​    Class class-default</p>
 <p>​      Flow based Fair Queueing</p>
 <p>​      Bandwidth 0 (kbps) Max Threshold 64 (packets)</p>
-<h2 id="2、PQ的配置"><a href="#2、PQ的配置" class="headerlink" title="2、PQ的配置"></a>2、PQ的配置</h2><p>​     使用PQ设置来保证web服务优先传输，ftp服务 优先级设置为最低 </p>
+<h2 id="2、PQ的配置"><a href="#2、PQ的配置" class="headerlink" title="2、PQ的配置"></a>2、PQ的配置</h2><p>PQ：优先权排队。可以配置高（High）、中（Middle）、普通（Normal）、低（Low）四种通信优先级，优先权级别高的通信总会比优先权级别低的通信提前得到服务。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6auy3hy99j30mt035dg7.jpg" alt="/img"></p>
+<p>​     使用PQ设置来保证web服务优先传输，ftp服务 优先级设置为最低 </p>
 <p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g685lqstzrj30fd07qt94.jpg" alt="/img"></p>
 <h3 id="基础配置：-1"><a href="#基础配置：-1" class="headerlink" title="基础配置："></a>基础配置：</h3><p>R1(config)#int f0/1</p>
 <p>R1(config-if)#ip add 10.1.1.1 255.255.255.0</p>
@@ -601,7 +621,9 @@
 <p>Current random-detect configuration:</p>
 <p>Current per-SID queue configuration:</p>
 <p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g685mbg34oj30d906q0su.jpg" alt="/img"></p>
-<h2 id="3、CQ的配置"><a href="#3、CQ的配置" class="headerlink" title="3、CQ的配置"></a>3、CQ的配置</h2><p>​    设置ftp服务的优先级发送在www服务前发送 </p>
+<h2 id="3、CQ的配置"><a href="#3、CQ的配置" class="headerlink" title="3、CQ的配置"></a>3、CQ的配置</h2><p>CQ：自定义排队。当在某个端口上配置CQ时，系统将会为这个端口维护17个输出队列，编号为0的队列是系统队列，用户可以指定队列1～16。系统在1～16队列之间循环，每个循环都从当前队列中取出预配置的字节总数，并在移动到下一队列前将这些数据包发送出去。CQ的缺点：CQ是静态配置的，不能自动适应网络情况的不断变化。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6auyjxzrqj30mt04vq3h.jpg" alt="/img"></p>
+<p>​    设置ftp服务的优先级发送在www服务前发送 </p>
 <p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g685mspbxnj30gh06f3yx.jpg" alt="/img"></p>
 <h3 id="基本配置：-1"><a href="#基本配置：-1" class="headerlink" title="基本配置："></a>基本配置：</h3><p>R1(config)#int f0/1</p>
 <p>R1(config-if)#ip add 10.1.1.1 255.255.255.0</p>
@@ -635,12 +657,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证</a></p>
+        <p><span>本文标题:</span><a  href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
         <p><span>发布时间:</span>2019年08月21日 - 16时32分</p>
-        <p><span>最后更新:</span>2019年08月22日 - 08时44分</p>
+        <p><span>最后更新:</span>2019年08月24日 - 16时41分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/08/21/08-21PPP协议及验证/" title="PPP协议及验证">http://yoursite.com/2019/08/21/08-21PPP协议及验证/</a>
+            <span>原始链接:</span><a class="post-url" href="/2019/08/21/08-21PPP协议及验证/" title="PPP协议及验证、Qos">http://yoursite.com/2019/08/21/08-21PPP协议及验证/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/08/21/08-21PPP协议及验证/　　作者: John Doe" title=""></span>
         </p>
         <p>
@@ -652,9 +674,18 @@
 
 <nav id="article-nav">
   
+    <a  href="/2019/08/23/VPN/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          VPN
+        
+      </div>
+    </a>
   
-    <a  href="/2019/08/18/第二章 以太网的数据封装/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">第二章 以太网的数据封装</div>
+  
+    <a  href="/2019/08/21/GNS3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">防火墙与VPN</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -666,7 +697,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、PPP协议及验证"><span class="toc-number">1.</span> <span class="toc-text">一、PPP协议及验证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、加模块"><span class="toc-number">1.1.</span> <span class="toc-text">1、加模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、配置地址"><span class="toc-number">1.2.</span> <span class="toc-text">2、配置地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、设置OSPF"><span class="toc-number">1.3.</span> <span class="toc-text">3、设置OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、pap"><span class="toc-number">1.4.</span> <span class="toc-text">4、pap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、chap"><span class="toc-number">1.5.</span> <span class="toc-text">5、chap</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、配置NAT"><span class="toc-number">2.</span> <span class="toc-text">二、配置NAT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本配置："><span class="toc-number">2.1.</span> <span class="toc-text">基本配置：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1、划分vlan"><span class="toc-number">2.2.</span> <span class="toc-text">1、划分vlan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、封装"><span class="toc-number">2.3.</span> <span class="toc-text">2、封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、OSPF"><span class="toc-number">2.4.</span> <span class="toc-text">3、OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、配置静态"><span class="toc-number">2.5.</span> <span class="toc-text">4、配置静态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、动态配置nat："><span class="toc-number">2.6.</span> <span class="toc-text">5、动态配置nat：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、配置QoS"><span class="toc-number">3.</span> <span class="toc-text">三、配置QoS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、CBWFQ配置"><span class="toc-number">3.1.</span> <span class="toc-text">1、CBWFQ配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础配置："><span class="toc-number">3.1.1.</span> <span class="toc-text">基础配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心配置："><span class="toc-number">3.1.2.</span> <span class="toc-text">核心配置：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、PQ的配置"><span class="toc-number">3.2.</span> <span class="toc-text">2、PQ的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础配置：-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">基础配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心配置：-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">核心配置：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、CQ的配置"><span class="toc-number">3.3.</span> <span class="toc-text">3、CQ的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本配置：-1"><span class="toc-number">3.3.1.</span> <span class="toc-text">基本配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心配置：-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">核心配置：</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、PPP协议及验证"><span class="toc-number">1.</span> <span class="toc-text">一、PPP协议及验证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、加模块"><span class="toc-number">1.1.</span> <span class="toc-text">1、加模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、配置地址"><span class="toc-number">1.2.</span> <span class="toc-text">2、配置地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、设置OSPF"><span class="toc-number">1.3.</span> <span class="toc-text">3、设置OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、pap"><span class="toc-number">1.4.</span> <span class="toc-text">4、pap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、chap"><span class="toc-number">1.5.</span> <span class="toc-text">5、chap</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、配置NAT"><span class="toc-number">2.</span> <span class="toc-text">二、配置NAT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本配置："><span class="toc-number">2.1.</span> <span class="toc-text">基本配置：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1、划分vlan"><span class="toc-number">2.2.</span> <span class="toc-text">1、划分vlan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、封装"><span class="toc-number">2.3.</span> <span class="toc-text">2、封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、OSPF"><span class="toc-number">2.4.</span> <span class="toc-text">3、OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、配置静态"><span class="toc-number">2.5.</span> <span class="toc-text">4、配置静态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、动态配置nat："><span class="toc-number">2.6.</span> <span class="toc-text">5、动态配置nat：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、QoS"><span class="toc-number">3.</span> <span class="toc-text">三、QoS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、CBWFQ配置"><span class="toc-number">3.1.</span> <span class="toc-text">1、CBWFQ配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础配置："><span class="toc-number">3.1.1.</span> <span class="toc-text">基础配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心配置："><span class="toc-number">3.1.2.</span> <span class="toc-text">核心配置：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、PQ的配置"><span class="toc-number">3.2.</span> <span class="toc-text">2、PQ的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础配置：-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">基础配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心配置：-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">核心配置：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、CQ的配置"><span class="toc-number">3.3.</span> <span class="toc-text">3、CQ的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本配置：-1"><span class="toc-number">3.3.1.</span> <span class="toc-text">基本配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心配置：-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">核心配置：</span></a></li></ol></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -739,16 +770,18 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a  href="/2019/08/23/VPN/" title="上一篇: VPN">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2019/08/18/第二章 以太网的数据封装/" title="下一篇: 第二章 以太网的数据封装">
+            <a  href="/2019/08/21/GNS3/" title="下一篇: 防火墙与VPN">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/18/第二章 以太网的数据封装/">第二章 以太网的数据封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/09/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/25/学习前端/">初识前端</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2025/08/20/网络地址转换NAT/">网络地址转换NAT</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/23/VPN/">VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/GNS3/">防火墙与VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/防火墙/">防火墙</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/09/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/30/CSRF/">CSRF漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/25/学习前端/">初识前端</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 

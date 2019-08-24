@@ -194,7 +194,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        
+                        <a href="/tags/NAT-网络地址转换/" style="font-size: 10px;">NAT 网络地址转换</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a>
                     </div>
                 </section>
                 
@@ -273,6 +273,318 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-网络地址转换NAT" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2025/08/20/网络地址转换NAT/" class="article-date">
+      <time datetime="2025-08-19T16:00:00.000Z" itemprop="datePublished">2025-08-20</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2025/08/20/网络地址转换NAT/">网络地址转换NAT</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<h2 id="网络地址转换（NAT）"><a href="#网络地址转换（NAT）" class="headerlink" title="网络地址转换（NAT）"></a>网络地址转换（NAT）</h2><h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间</p>
+<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg" alt="/img"></p>
+<p><strong>NAT适用于以下情况</strong>：</p>
+<p>1 需要连接到INTERNET，但主机没有全局唯一的IP地址；</p>
+<p>2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址；</p>
+<p>3 需要合并两个使用相同编址方案的内联网；</p>
+<p>且NAT通常用于边界路由器；</p>
+<h3 id="NAT的优缺点"><a href="#NAT的优缺点" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h3><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg" alt="/img"></p>
+<p>最明显的优点：能够节省合法的注册地址，这也是IPv4地址至今未耗尽的原因；将局域网隐藏在公用网络之中，增加网络的安全性；</p>
+<h3 id="网络地址转换类型"><a href="#网络地址转换类型" class="headerlink" title="网络地址转换类型"></a>网络地址转换类型</h3><h4 id="静态NAT"><a href="#静态NAT" class="headerlink" title="静态NAT"></a>静态NAT</h4><p>这种NAT能够在本地地址和全局地址之间进行一对一映射。即使用静态NAT时，必须为网络中的每台主机提供一个公有因特网IP地址。</p>
+<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g685q62wu8j30jw0e8dhh.jpg" alt="/img"></p>
+<h4 id="动态NAT"><a href="#动态NAT" class="headerlink" title="动态NAT"></a>动态NAT</h4><p>它能够将未注册的IP地址映射到注册IP地址池中的一个地址，无需配置静态路由器，使其将每个内部地址映射到一个外部地址，但必须有足够的公有因特网IP地址，让连接到因特网的主机都能够同时发送和接收分组。</p>
+<h4 id="NAT重载"><a href="#NAT重载" class="headerlink" title="NAT重载"></a>NAT重载</h4><p>也是动态NAT，它利用源端口将多个非注册的IP地址映射到一个注册IP地址，形成多对一。也被称为端口地址转换（PAT）。通过使用 PAT (NAT 重载)，只 使用一个全局 地址，就可将数千名用户连接到因特网，这是不是很酷?因特网 IP 地址之所以还未耗尽，真正的原因就在 使用了 NAT重载。</p>
+<h4 id="NAT术语"><a href="#NAT术语" class="headerlink" title="NAT术语"></a>NAT术语</h4><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yx0ca48j30l205amyl.jpg" alt="/img"></p>
+<p>对于用于 NAT 的地址，我们使用的术语很简单。 NAT 转换后的地址称为全局地址，这通常是因特网公有地址;但如果无需连接到因特网，则不需要公有地址。</p>
+<p>进行 NAT 转换前的地址称为本地地址。因此，内部本地地址是试图连接到因特网的主机的私有地址;而外部本地地址通常是与 ISP 相连的路由器接口的地址。后者通常是公有地址，主机发送的分组的源地址通常会转换为这种地址。</p>
+<p>内部本地地址将被转换为内部全局地址，而外部全局地址将成为目标地址。表 13-2 列出了各种 NAT术语。</p>
+<h3 id="静态NAT配置"><a href="#静态NAT配置" class="headerlink" title="静态NAT配置"></a>静态NAT配置</h3><p>示例图：<img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g673plhco0j30mq0bbdgy.jpg" alt="/img"></p>
+<p>实际拓扑图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g674wcg0htj30od0dhaag.jpg" alt="/img"></p>
+<p>静态NAT：</p>
+<p>基本配置：</p>
+<p>加模块：</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566558306805.png" alt="1566558306805"></p>
+<p>交换机配置：</p>
+<p>SW:</p>
+<p>SW1(config)#vlan 10</p>
+<p>SW1(config-vlan)#int vlan 10</p>
+<p>SW1(config-if)#exit</p>
+<p>SW1(config)#vlan 20</p>
+<p>SW1(config-vlan)#int vlan 20</p>
+<p>SW1(config-if)#exit</p>
+<p>把端口接入vlan </p>
+<p>SW1(config)#int f0/1</p>
+<p>SW1(config-if)#sw mo acc</p>
+<p>SW1(config-if)#sw acc vlan 10</p>
+<p>SW1(config-if)#no shutdown </p>
+<p>SW1(config-if)#exit</p>
+<p>SW1(config)#int f0/2</p>
+<p>SW1(config-if)#sw mo acc</p>
+<p>SW1(config-if)#sw acc vlan 20</p>
+<p>SW1(config-if)#no shutdown </p>
+<p>SW1(config)#int f0/3</p>
+<p>SW1(config-if)#sw mo trunk </p>
+<p>SW1(config-if)#no shutdown </p>
+<p>路由器配置:</p>
+<p>R1(config)#int f0/0.10</p>
+<p>R1(config-subif)#encapsulation dot1Q 10</p>
+<p>R1(config-subif)#ip add 192.168.0.254 255.255.255.0</p>
+<p>R1(config-subif)#no shutdown </p>
+<p>R1(config)#int f0/0.20</p>
+<p>R1(config-subif)#encapsulation dot1Q 20</p>
+<p>R1(config-subif)#ip add 192.168.1.254 255.255.255.0</p>
+<p>R1(config-subif)#no shutdown </p>
+<p>R1(config)#int f0/0</p>
+<p>R1(config-if)#no shutdown </p>
+<p>R1(config)#int s0/3/0</p>
+<p>R1(config-if)#ip add 61.1.1.1 255.255.255.0</p>
+<p>R1(config-if)#no shutdown </p>
+<p>R2(config)#int s0/3/0</p>
+<p>R2(config-if)#ip add 61.1.1.2 255.255.255.0 </p>
+<p>R2(config-if)#no shutdown </p>
+<p> R2(config)#int f0/0</p>
+<p>R2(config-if)#ip add 172.16.1.254 255.255.255.0</p>
+<p>R2(config-if)#no shutdown </p>
+<p>R1(config)#int f0/0.10<br>R1(config-subif)#ip nat inside<br>R1(config)#int f0/0.20<br>R1(config-subif)#ip nat inside </p>
+<p>R1(config)#ip route 172.16.1.0 255.255.255.0 61.1.1.2 //我在配置的时候就少了这句，然后找了好久好久才发现漏掉了这个，少了这句话服务器就找不到经过R2的下一跳路由，就ping不到PC2</p>
+<p>效果展示：</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566565998981.png" alt="1566565998981"></p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566018310.png" alt="1566566018310"></p>
+<p>R1#debug ip nat</p>
+<p>R1#show ip nat translations </p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566113573.png" alt="1566566113573"></p>
+<p>最终实现效果：服务器可以访问外部网络的PC机，而外部网络不可以访问内部服务器，如果要内部网络可以访问外部网络，就加上一条静态的：ip nat inside source static 192.168.1.1  61.1.1.1 </p>
+<p>动态NAT：</p>
+<p>为了方便，动态nat是在静态的基础上做的，把之前写的ip nat inside source static 192.168.0.1 61.1.1.1 删掉就可以了</p>
+<p>核心配置：</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567476212.png" alt="1566567476212"></p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567687190.png" alt="1566567687190"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NAT-网络地址转换/">NAT 网络地址转换</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-VPN" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/08/23/VPN/" class="article-date">
+      <time datetime="2019-08-23T10:45:50.000Z" itemprop="datePublished">2019-08-23</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/08/23/VPN/">VPN</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<h1 id="一、VPN"><a href="#一、VPN" class="headerlink" title="一、VPN"></a>一、VPN</h1><h2 id="1、L2TP-VPN"><a href="#1、L2TP-VPN" class="headerlink" title="1、L2TP VPN"></a>1、L2TP VPN</h2><p>2TP是一种工业标准的Internet隧道协议，功能大致和PPTP协议类似，比如同样可以对网络数据流进行加密。不过也有不同之处，比如PPTP要求网络为IP网络，L2TP要求面向数据包的点对点连接；PPTP使用单一隧道，L2TP使用多隧道；L2TP提供包头压缩、隧道验证，而PPTP不支持。</p>
+<h2 id="2、PPTP-VPN"><a href="#2、PPTP-VPN" class="headerlink" title="2、PPTP-VPN"></a>2、PPTP-VPN</h2><p>即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使远程用户通过拨入ISP、通过直接连接Internet或其他网络安全地访问企业网。</p>
+<h2 id="3、IPsec-VPN"><a href="#3、IPsec-VPN" class="headerlink" title="3、IPsec-VPN"></a>3、IPsec-VPN</h2><p>互联网安全协议（英语：Internet Protocol Security，缩写为IPsec），是一个协议包，通过对IP协议的分组进行加密和认证来保护IP协议的网络传输协议族（一些相互关联的协议的集合）。 [1]<br>IPsec主要由以下协议组成：</p>
+<p>一、认证头（AH），为IP数据报提供无连接数据完整性、消息认证以及防重放攻击保护；</p>
+<p>二、封装安全载荷（ESP），提供机密性、数据源认证、无连接完整性、防重放和有限的传输流（traffic-flow）机密性；</p>
+<p>三、安全关联（SA），提供算法和数据包，提供AH、ESP操作所需的参数。</p>
+<p>IPsec协议工作在OSI模型的第三层，使其在单独使用时适于保护基于TCP或UDP的协议（如安全套接子层（SSL）就不能保护UDP层的通信流）。这就意味着，与传输层或更高层的协议相比，IPsec协议必须处理可靠性和分片的问题，这同时也增加了它的复杂性和处理开销。相对而言，SSL/TLS依靠更高层的TCP（OSI的第四层）来管理可靠性和分片。</p>
+<h2 id="4、GRE-VPN"><a href="#4、GRE-VPN" class="headerlink" title="4、GRE VPN"></a>4、GRE VPN</h2><p>GRE是一种最传统的隧道协议，其根本功能就是要实现隧道功能，通过隧道连接的两<br>个远程网络就如同直连，GRE在两个远程网络之间模拟出直连链路,从而使网络间达到直<br>连的效果，为此，GRE需要完成多次封装,总共有3次</p>
+<p>（1）接收原始IP数据包当作乘客协议,原始IR数据包包头的IP地址为私有IP地址</p>
+<p>（2）将原始IP数据包封装进GRE协议, GRE协议称为封装协议(Encapsulation Protocol) ,封装的包头IP地址为虚拟直连链路两端的IP地址</p>
+<p>（3）将整个GRE数据包当作数据，在外层封装公网IP包头，也就是隧道的起源和终点，从而路由到隧道终点</p>
+<h1 id="实验一：配置VPN"><a href="#实验一：配置VPN" class="headerlink" title="实验一：配置VPN"></a>实验一：配置VPN</h1><h2 id="整体图："><a href="#整体图：" class="headerlink" title="整体图："></a>整体图：</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sppt013j30y109ajrp.jpg" alt="/img"></p>
+<h2 id="基本配置："><a href="#基本配置：" class="headerlink" title="基本配置："></a>基本配置：</h2><h3 id="PC1和PC2"><a href="#PC1和PC2" class="headerlink" title="PC1和PC2:"></a>PC1和PC2:</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sq76y5oj30co046web.jpg" alt="/img"></p>
+<h3 id="BJ"><a href="#BJ" class="headerlink" title="BJ:"></a>BJ:</h3><p>BJ(config)#int e0/0</p>
+<p>BJ(config-if)#ip add 192.168.1.1 255.255.255.0</p>
+<p>BJ(config-if)#no shutdown</p>
+<p>BJ(config)#int e0/1</p>
+<p>BJ(config-if)#ip add 61.1.1.1 255.255.255.0</p>
+<p>BJ(config-if)#no shutdown</p>
+<p>Internet:</p>
+<p>Internet(config)#int e0/0</p>
+<p>Internet(config-if)#ip add 61.1.1.2 255.255.255.0</p>
+<p>Internet(config-if)#no shutdown</p>
+<p>Internet(config)#int e0/1</p>
+<p>Internet(config-if)#ip add 181.1.1.2 255.255.255.0</p>
+<p>Internet(config-if)#no shutdown</p>
+<h3 id="CD"><a href="#CD" class="headerlink" title="CD:"></a>CD:</h3><p>CD(config)#int e0/0</p>
+<p>CD(config-if)#ip add 181.1.1.1 255.255.255.0</p>
+<p>CD(config-if)#no shutdown</p>
+<p>CD(config)#int e0/1</p>
+<p>CD(config-if)#ip add 172.16.1.2 255.255.255.0</p>
+<p>CD(config-if)#no shutdown</p>
+<h3 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF:"></a>OSPF:</h3><p>BJ(config)#router ospf 1</p>
+<p>BJ(config-router)#net</p>
+<p>BJ(config-router)#network 61.1.1.0 0.0.0.255 ar</p>
+<p>BJ(config-router)#network 61.1.1.0 0.0.0.255 area 0</p>
+<p>Internet(config)#router ospf 1</p>
+<p>Internet(config-router)#network 61.1.1.0 0.0.0.255 area 0</p>
+<p>Internet(config-router)#network 181.1.1.0 0.0.0.255 area 0</p>
+<p>CD(config)#router ospf 1</p>
+<p>CD(config-router)#network 181.1.1.0 0.0.0.255 area 0</p>
+<p>show i proute:</p>
+<h3 id="各路由器"><a href="#各路由器" class="headerlink" title="各路由器"></a>各路由器</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sqpx15uj30eu038749.jpg" alt="/img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sr0aekqj30d002ut8l.jpg" alt="/img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69srfu00rj30es03kweh.jpg" alt="/img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69srofqqzj3098033dfm.jpg" alt="/img"></p>
+<h3 id="VPN"><a href="#VPN" class="headerlink" title="VPN:"></a>VPN:</h3><p>BJ(config)#int tunnel 1</p>
+<p>BJ(config-if)#tunnel source 61.1.1.1</p>
+<p>BJ(config-if)#tunnel destination 181.1.1.1</p>
+<p>BJ(config-if)#ip add 10.0.0.1 255.255.255.252</p>
+<p>BJ(config)#ip route 172.16.1.0 255.255.255.0 tunnel 1 //不进入接口</p>
+<p>CD(config)#int tunnel 1</p>
+<p>CD(config-if)#tunnel source 181.1.1.1</p>
+<p>CD(config-if)#tunnel destination 61.1.1.1</p>
+<p>CD(config-if)#ip address 10.0.0.2 255.255.255.252</p>
+<p>CD(config)#ip route 192.168.1.0 255.255.255.0 tunnel 1</p>
+<h3 id="实验成果："><a href="#实验成果：" class="headerlink" title="实验成果："></a>实验成果：</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sseepiqj30ce082glo.jpg" alt="/img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69ssvidc0j310o0kw75m.jpg" alt="/img"></p>
+<p>最后说一下，本次实验其实很简单，代码没几行，但是过程要细致一点，比如我代码敲完了最后没Ping通，最后检查了好久，才发现是C2端的IP给错了，无话可说，但是这次是自己一个人独立操作完成的，也算是一次成长，自己写，自己检查，最后成功。</p>
+<h1 id="实验二：PPTP"><a href="#实验二：PPTP" class="headerlink" title="实验二：PPTP"></a>实验二：PPTP</h1><h2 id="PPTP介绍"><a href="#PPTP介绍" class="headerlink" title="PPTP介绍"></a>PPTP介绍</h2><p>PPTP（Point to Point Tunneling Protocol）,即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使用远程用户通过拨入ISP、通过直接连接Internet或者其他网络安全的访问企业网</p>
+<p>配置PPTP：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69st6vnt4j30xy0aj74n.jpg" alt="/img"></p>
+<h2 id="基本配置：-1"><a href="#基本配置：-1" class="headerlink" title="基本配置："></a>基本配置：</h2><p>jiudian(config)#int e0/1</p>
+<p>jiudian(config-if)#ip add 192.168.1.1 255.255.255.0</p>
+<p>jiudian(config-if)#no shutdown</p>
+<p>jiudian(config)#int e0/0</p>
+<p>jiudian(config-if)#ip add 61.1.1.1 255.255.255.0</p>
+<p>jiudian(config-if)#no shutdown</p>
+<p>Internet(config)#int e0/0</p>
+<p>Internet(config-if)#ip add 61.1.1.1 255.255.255.0</p>
+<p>Internet(config-if)#no shutdown</p>
+<p>Internet(config)#int e0/1</p>
+<p>Internet(config-if)#ip add 181.1.1.1 255.255.255.0</p>
+<p>Internet(config-if)#no shutdown</p>
+<p>Router(config)#int e0/0</p>
+<p>Router(config-if)#ip add 181.1.1.2 255.255.255.0</p>
+<p>Router(config-if)#no shutdown</p>
+<p>Router(config)#int e0/1</p>
+<p>Router(config-if)#ip add 172.16.1.1 255.255.255.0</p>
+<p>Router(config-if)#no shutdown</p>
+<p>此实验可以用eigrp</p>
+<p>jiudian(config)#router eigrp 10</p>
+<p>jiudian(config-router)#network 192.168.1.0 0.0.0.255 //真时网络中没有这一步的</p>
+<p>jiudian(config-router)#network 61.1.1.0 0.0.0.255</p>
+<p>jiudian(config-router)#no auto-summary</p>
+<p>Internet(config)#router eigrp 10</p>
+<p>Internet(config-router)#network 61.1.1.0 0.0.0.255</p>
+<p>Internet(config-router)#network 181.1.1.0 0.0.0.255</p>
+<p>Internet(config-router)#no auto-summary</p>
+<p>GS(config)#router eigrp 10</p>
+<p>GS(config-router)#network 181.1.1.0 0.0.0.255</p>
+<p>GS(config-router)#no auto-summary</p>
+<h2 id="PPTP"><a href="#PPTP" class="headerlink" title="PPTP:"></a>PPTP:</h2><p>GS(config)#vpdn enable  //开启vpdn服务</p>
+<p>GS(config)#vpdn-group pptp //创建一个VPDN组，命名为pptp</p>
+<p>GS(config-vpdn)#accept-dialin  //允许拨号</p>
+<p>GS(config-vpdn-acc-in)#protocol pptp  //协议为PPTP</p>
+<p>GS(config-vpdn-acc-in)#virtual-template 1   //引用虚拟模板</p>
+<p>GS(config-vpdn-acc-in)#exit</p>
+<p>GS(config)#username admin password ccie  //创建拨号账号和密码</p>
+<p>GS(config)#ip local pool vpn 1.1.1.100 1.1.1.110 //创建地址池</p>
+<p>GS(config)#int virtual-template 1 //创建虚拟模板1</p>
+<p>GS(config-if)#ppp authentication pap  //加密方式为PAP</p>
+<p>GS(config-if)#peer default ip add pool vpn  //对默认IP 从地址池租约</p>
+<p>GS(config-if)#ip unnumbered ethernet 0/1 //关联内网接口</p>
+<p>GS(config)#ip route 0.0.0.0 0.0.0.0 e0/0 //默认路由</p>
+<h2 id="虚拟机部分："><a href="#虚拟机部分：" class="headerlink" title="虚拟机部分："></a>虚拟机部分：</h2><p>实验效果：</p>
+<p>此实验未做成功</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-08-21PPP协议及验证" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -291,7 +603,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证</a>
+      <a  class="article-title" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a>
     </h1>
   
 
@@ -312,6 +624,10 @@
       
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+    </div>
+
       
         <p class="article-more-link">
           <a   href="/2019/08/21/08-21PPP协议及验证/#more">查看更多 >></a>
@@ -335,11 +651,11 @@
 
 
   
-    <article id="post-第二章 以太网的数据封装" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-GNS3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/08/18/第二章 以太网的数据封装/" class="article-date">
-      <time datetime="2019-08-18T09:56:20.000Z" itemprop="datePublished">2019-08-18</time>
+      <a  href="/2019/08/21/GNS3/" class="article-date">
+      <time datetime="2019-08-20T16:00:00.000Z" itemprop="datePublished">2019-08-21</time>
 </a>
 
     </div>
@@ -353,7 +669,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/18/第二章 以太网的数据封装/">第二章 以太网的数据封装</a>
+      <a  class="article-title" href="/2019/08/21/GNS3/">防火墙与VPN</a>
     </h1>
   
 
@@ -364,8 +680,66 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h1 id="第二章-以太网的数据封装"><a href="#第二章-以太网的数据封装" class="headerlink" title="第二章 以太网的数据封装"></a>第二章 以太网的数据封装</h1>
-          
+        <a id="more"></a>
+
+<h1 id="一、防火墙（Firewall）"><a href="#一、防火墙（Firewall）" class="headerlink" title="一、防火墙（Firewall）"></a>一、防火墙（Firewall）</h1><h2 id="1、什么是防火墙"><a href="#1、什么是防火墙" class="headerlink" title="1、什么是防火墙"></a>1、什么是防火墙</h2><p>防火墙是指设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间的一系列部件的组合。</p>
+<p>它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。 </p>
+<p>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部网络的安全。 </p>
+<h2 id="2、部署位置"><a href="#2、部署位置" class="headerlink" title="2、部署位置"></a>2、部署位置</h2><p>1、可信网络与不可信网络之间<br>2、不同安全级别网络之间<br>3、两个需要隔离的区域之间</p>
+<h2 id="3、部署方式"><a href="#3、部署方式" class="headerlink" title="3、部署方式"></a>3、部署方式</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
+<h2 id="4、功能"><a href="#4、功能" class="headerlink" title="4、功能"></a>4、功能</h2><p>1、入侵检测功能<br>2、网络地址转换功能<br>3、网络操作的审计监控功能<br>4、强化网络安全服务</p>
+<h1 id="二、VPN"><a href="#二、VPN" class="headerlink" title="二、VPN"></a>二、VPN</h1><h2 id="1、L2TP-VPN"><a href="#1、L2TP-VPN" class="headerlink" title="1、L2TP VPN"></a>1、L2TP VPN</h2><p>2TP是一种工业标准的Internet隧道协议，功能大致和PPTP协议类似，比如同样可以对网络数据流进行加密。不过也有不同之处，比如PPTP要求网络为IP网络，L2TP要求面向数据包的点对点连接；PPTP使用单一隧道，L2TP使用多隧道；L2TP提供包头压缩、隧道验证，而PPTP不支持。</p>
+<h2 id="2、PPTP-VPN"><a href="#2、PPTP-VPN" class="headerlink" title="2、PPTP-VPN"></a>2、PPTP-VPN</h2><p>即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使远程用户通过拨入ISP、通过直接连接Internet或其他网络安全地访问企业网。</p>
+<h2 id="3、IPsec-VPN"><a href="#3、IPsec-VPN" class="headerlink" title="3、IPsec-VPN"></a>3、IPsec-VPN</h2><p>互联网安全协议（英语：Internet Protocol Security，缩写为IPsec），是一个协议包，通过对IP协议的分组进行加密和认证来保护IP协议的网络传输协议族（一些相互关联的协议的集合）。 [1]<br>IPsec主要由以下协议组成：</p>
+<p>一、认证头（AH），为IP数据报提供无连接数据完整性、消息认证以及防重放攻击保护；</p>
+<p>二、封装安全载荷（ESP），提供机密性、数据源认证、无连接完整性、防重放和有限的传输流（traffic-flow）机密性；</p>
+<p>三、安全关联（SA），提供算法和数据包，提供AH、ESP操作所需的参数。</p>
+<p>IPsec协议工作在OSI模型的第三层，使其在单独使用时适于保护基于TCP或UDP的协议（如安全套接子层（SSL）就不能保护UDP层的通信流）。这就意味着，与传输层或更高层的协议相比，IPsec协议必须处理可靠性和分片的问题，这同时也增加了它的复杂性和处理开销。相对而言，SSL/TLS依靠更高层的TCP（OSI的第四层）来管理可靠性和分片。</p>
+<h2 id="4、GRE-VPN"><a href="#4、GRE-VPN" class="headerlink" title="4、GRE VPN"></a>4、GRE VPN</h2><p>GRE是一种最传统的隧道协议，其根本功能就是要实现隧道功能，通过隧道连接的两<br>个远程网络就如同直连，GRE在两个远程网络之间模拟出直连链路,从而使网络间达到直<br>连的效果，为此，GRE需要完成多次封装,总共有3次</p>
+<p>（1）接收原始IP数据包当作乘客协议,原始IR数据包包头的IP地址为私有IP地址</p>
+<p>（2）将原始IP数据包封装进GRE协议, GRE协议称为封装协议(Encapsulation Protocol) ,封装的包头IP地址为虚拟直连链路两端的IP地址</p>
+<p>（3）将整个GRE数据包当作数据，在外层封装公网IP包头，也就是隧道的起源和终点，从而路由到隧道终点</p>
+<h1 id="三、防火墙的配置"><a href="#三、防火墙的配置" class="headerlink" title="三、防火墙的配置"></a>三、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg" alt="/img"></p>
+<p>这里可以使用虚拟机 也可以Tools&gt;VPCS 但是注意序号的差别并且点进去之后不可以点击X 不然所作的配置失效</p>
+<p>虚拟机：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pch3ki4j30sn0lz77r.jpg" alt="/img"></p>
+<p>VPCS:</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pd1izjuj30cj07kdfp.jpg" alt="/img"></p>
+<p>基础配置</p>
+<p>R1：</p>
+<p>R1(config)#int e0/0<br>R1(config-if)#ip add 192.168.1.1 255.255.255.0<br>R1(config-if)#no shutdown</p>
+<p>R1(config-if)#int e0/1<br>R1(config-if)#ip add 10.0.0.2 255.255.255.252<br>R1(config-if)#no shutdown</p>
+<p>R1(config)#ip route 61.1.1.0 255.255.255.0 10.0.0.1</p>
+<p>R2：</p>
+<p>R2(config)#int e0/0<br>R2(config-if)#ip add 61.1.1.2 255.255.255.0<br>R2(config-if)#no shutdown<br>R2(config)#ip route 192.168.1.0 255.255.255.0 61.1.1.1</p>
+<p>防火墙配置：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pdjcayej30a103v745.jpg" alt="/img"></p>
+<p>密码可以不用管 默认密码为空值</p>
+<p>PIX(config-if)# nameif outside //将e1接口设置为外接口<br>INFO: Security level for “outside” set to 0 by default.<br>PIX(config-if)# security-level 0 //安全级别设置为零 其实是默认的 这一步可以不用写<br>PIX(config-if)# ip add 61.1.1.1 255.255.255.0  //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# int e0<br>PIX(config-if)# nameif inside  //将e0接口设置为内接口<br>PIX(config-if)# security-level 100 //安全级别设置为内接口<br>PIX(config-if)# ip add 10.0.0.1 255.255.255.252   //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# route inside 192.168.1.0 255.255.255.0 10.0.0.2</p>
+<p>//实现内部网络的路由，下一跳10.0.0.2，否则PIX不知道如何返回数据包<br>PIX(config)# route outside 0.0.0.0 0.0.0.0 61.1.1.2<br>PIX(config)# access-list 1 permit icmp any any<br>PIX(config)# nat (inside) 1 192.168.1.0 255.255.255.0<br> //只允许内部PC的192.168.1.0/24 网络流量<br>PIX(config)# global (outside) 1 interface  //使用地址池或者PAT</p>
+<p><strong>注：pix防火墙对于内部到外部的流量默认不能做ping，做其它服务必须使用NAT功能，对到未知网络还需配置路由。而且pix防火墙可以通过由内部向外发出的返回数据包，而且默认拒绝由外部向内部发出的主动连接数据包。为了防止前次的实验干扰，在实验之前建议使用clear xlate来清除pix的内存连接</strong></p>
+<p>结果：PC机能ping 同外部网络</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pe4xqbdj30br03zjr9.jpg" alt="/img"></p>
+<p>R1能ping通外部网络</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pelk6wwj30g9037weg.jpg" alt="/img"></p>
+<p>外部网络不能ping通内部网络</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pey4obwj30gv0380sp.jpg" alt="/img"></p>
+<p>实验成果图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
+<h2 id="2、透明式防火墙"><a href="#2、透明式防火墙" class="headerlink" title="2、透明式防火墙"></a>2、透明式防火墙</h2><p>![img](file:///C:\Users\19453\Documents\Tencent Files\1945384242\Image\Group\CRQX@G2L`DK%Q[VM~V]KVZG.png)</p>
+<p>做OSPF的时候no 掉了之前写的ip route xxxx.xxxx.   但是之前写的是ip route 0.0.0.0 0.0.0.0 +下一跳接口</p>
+<p>路由器R4</p>
+<p>hostname R4<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.2 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> ip address 192.168.1.2 255.255.255.0<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 192.168.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
+<p>防火墙</p>
+<dl><dt>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000<br>: end<br>pixfirewall# conf t<br>pixfirewall(config)# acc<br>pixfirewall(config)# access-l<br>pixfirewall(config)# access-list 101 pe<br>pixfirewall(config)# access-list 101 permit ic<br>pixfirewall(config)# access-list 101 permit icmp any any<br>pixfirewall(config)# end<br>pixfirewall#<br>pixfirewall# show run<br>pixfirewall# show running-config<br>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>access-list 101 extended permit icmp any any<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000</dt><dd>end</dd></dl><p>路由器R6</p>
+<p>Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP<br>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area<br>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2<br>       E1 - OSPF external type 1, E2 - OSPF external type 2<br>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2<br>       ia - IS-IS inter area, * - candidate default, U - per-user static route<br>       o - ODR, P - periodic downloaded static route</p>
+<p>Gateway of last resort is not set</p>
+<pre><code>10.0.0.0/29 is subnetted, 1 subnets</code></pre><p>C       10.0.0.0 is directly connected, Ethernet0/0<br>O    192.168.1.0/24 [110/20] via 10.0.0.2, 00:01:08, Ethernet0/0<br>     61.0.0.0/24 is subnetted, 1 subnets<br>C       61.1.1.0 is directly connected, Loopback0<br>R6#show run<br>R6#show running-config<br>Building configuration…</p>
+<p>Current configuration : 828 bytes<br>!<br>version 12.4<br>service timestamps debug datetime msec<br>service timestamps log datetime msec<br>no service password-encryption<br>!<br>hostname R6<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Loopback0<br> ip address 61.1.1.1 255.255.255.0<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.1 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 61.1.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
+<h2 id="3、混合式防火墙"><a href="#3、混合式防火墙" class="headerlink" title="3、混合式防火墙"></a>3、混合式防火墙</h2><p>作业：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pkavvllj30wu0igtam.jpg" alt="/img"></p>
+
       
     </div>
     
@@ -374,10 +748,119 @@
       
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+    </div>
+
       
-        <p class="article-more-link">
-          <a   href="/2019/08/18/第二章 以太网的数据封装/#more">查看更多 >></a>
-        </p>
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-防火墙" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/08/21/防火墙/" class="article-date">
+      <time datetime="2019-08-20T16:00:00.000Z" itemprop="datePublished">2019-08-21</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/08/21/防火墙/">防火墙</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<h1 id="一、防火墙（Firewall）"><a href="#一、防火墙（Firewall）" class="headerlink" title="一、防火墙（Firewall）"></a>一、防火墙（Firewall）</h1><h2 id="1、什么是防火墙"><a href="#1、什么是防火墙" class="headerlink" title="1、什么是防火墙"></a>1、什么是防火墙</h2><p>防火墙是指设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间的一系列部件的组合。</p>
+<p>它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。 </p>
+<p>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部网络的安全。 </p>
+<h2 id="2、部署位置"><a href="#2、部署位置" class="headerlink" title="2、部署位置"></a>2、部署位置</h2><p>1、可信网络与不可信网络之间<br>2、不同安全级别网络之间<br>3、两个需要隔离的区域之间</p>
+<h2 id="3、部署方式"><a href="#3、部署方式" class="headerlink" title="3、部署方式"></a>3、部署方式</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
+<h2 id="4、功能"><a href="#4、功能" class="headerlink" title="4、功能"></a>4、功能</h2><p>1、入侵检测功能<br>2、网络地址转换功能<br>3、网络操作的审计监控功能<br>4、强化网络安全服务</p>
+<h1 id="二、防火墙的配置"><a href="#二、防火墙的配置" class="headerlink" title="二、防火墙的配置"></a>二、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg" alt="/img"></p>
+<p>这里可以使用虚拟机 也可以Tools&gt;VPCS 但是注意序号的差别并且点进去之后不可以点击X 不然所作的配置失效</p>
+<p>虚拟机：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pch3ki4j30sn0lz77r.jpg" alt="/img"></p>
+<p>VPCS:</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pd1izjuj30cj07kdfp.jpg" alt="/img"></p>
+<p>基础配置</p>
+<p>R1：</p>
+<p>R1(config)#int e0/0<br>R1(config-if)#ip add 192.168.1.1 255.255.255.0<br>R1(config-if)#no shutdown</p>
+<p>R1(config-if)#int e0/1<br>R1(config-if)#ip add 10.0.0.2 255.255.255.252<br>R1(config-if)#no shutdown</p>
+<p>R1(config)#ip route 61.1.1.0 255.255.255.0 10.0.0.1</p>
+<p>R2：</p>
+<p>R2(config)#int e0/0<br>R2(config-if)#ip add 61.1.1.2 255.255.255.0<br>R2(config-if)#no shutdown<br>R2(config)#ip route 192.168.1.0 255.255.255.0 61.1.1.1</p>
+<p>防火墙配置：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pdjcayej30a103v745.jpg" alt="/img"></p>
+<p>密码可以不用管 默认密码为空值</p>
+<p>PIX(config-if)# nameif outside //将e1接口设置为外接口<br>INFO: Security level for “outside” set to 0 by default.<br>PIX(config-if)# security-level 0 //安全级别设置为零 其实是默认的 这一步可以不用写<br>PIX(config-if)# ip add 61.1.1.1 255.255.255.0  //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# int e0<br>PIX(config-if)# nameif inside  //将e0接口设置为内接口<br>PIX(config-if)# security-level 100 //安全级别设置为内接口<br>PIX(config-if)# ip add 10.0.0.1 255.255.255.252   //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# route inside 192.168.1.0 255.255.255.0 10.0.0.2</p>
+<p>//实现内部网络的路由，下一跳10.0.0.2，否则PIX不知道如何返回数据包<br>PIX(config)# route outside 0.0.0.0 0.0.0.0 61.1.1.2<br>PIX(config)# access-list 1 permit icmp any any<br>PIX(config)# nat (inside) 1 192.168.1.0 255.255.255.0<br> //只允许内部PC的192.168.1.0/24 网络流量<br>PIX(config)# global (outside) 1 interface  //使用地址池或者PAT</p>
+<p><strong>注：pix防火墙对于内部到外部的流量默认不能做ping，做其它服务必须使用NAT功能，对到未知网络还需配置路由。而且pix防火墙可以通过由内部向外发出的返回数据包，而且默认拒绝由外部向内部发出的主动连接数据包。为了防止前次的实验干扰，在实验之前建议使用clear xlate来清除pix的内存连接</strong></p>
+<p>结果：PC机能ping 同外部网络</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pe4xqbdj30br03zjr9.jpg" alt="/img"></p>
+<p>R1能ping通外部网络</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pelk6wwj30g9037weg.jpg" alt="/img"></p>
+<p>外部网络不能ping通内部网络</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pey4obwj30gv0380sp.jpg" alt="/img"></p>
+<p>实验成果图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
+<h2 id="2、透明式防火墙"><a href="#2、透明式防火墙" class="headerlink" title="2、透明式防火墙"></a>2、透明式防火墙</h2><p>![img](file:///C:\Users\19453\Documents\Tencent Files\1945384242\Image\Group\CRQX@G2L`DK%Q[VM~V]KVZG.png)</p>
+<p>做OSPF的时候no 掉了之前写的ip route xxxx.xxxx.   但是之前写的是ip route 0.0.0.0 0.0.0.0 +下一跳接口</p>
+<p>路由器R4</p>
+<p>hostname R4<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.2 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> ip address 192.168.1.2 255.255.255.0<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 192.168.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
+<p>防火墙</p>
+<dl><dt>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000<br>: end<br>pixfirewall# conf t<br>pixfirewall(config)# acc<br>pixfirewall(config)# access-l<br>pixfirewall(config)# access-list 101 pe<br>pixfirewall(config)# access-list 101 permit ic<br>pixfirewall(config)# access-list 101 permit icmp any any<br>pixfirewall(config)# end<br>pixfirewall#<br>pixfirewall# show run<br>pixfirewall# show running-config<br>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>access-list 101 extended permit icmp any any<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000</dt><dd>end</dd></dl><p>路由器R6</p>
+<p>Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP<br>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area<br>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2<br>       E1 - OSPF external type 1, E2 - OSPF external type 2<br>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2<br>       ia - IS-IS inter area, * - candidate default, U - per-user static route<br>       o - ODR, P - periodic downloaded static route</p>
+<p>Gateway of last resort is not set</p>
+<pre><code>10.0.0.0/29 is subnetted, 1 subnets</code></pre><p>C       10.0.0.0 is directly connected, Ethernet0/0<br>O    192.168.1.0/24 [110/20] via 10.0.0.2, 00:01:08, Ethernet0/0<br>     61.0.0.0/24 is subnetted, 1 subnets<br>C       61.1.1.0 is directly connected, Loopback0<br>R6#show run<br>R6#show running-config<br>Building configuration…</p>
+<p>Current configuration : 828 bytes<br>!<br>version 12.4<br>service timestamps debug datetime msec<br>service timestamps log datetime msec<br>no service password-encryption<br>!<br>hostname R6<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Loopback0<br> ip address 61.1.1.1 255.255.255.0<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.1 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 61.1.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
+<h2 id="3、混合式防火墙"><a href="#3、混合式防火墙" class="headerlink" title="3、混合式防火墙"></a>3、混合式防火墙</h2><p>作业：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pkavvllj30wu0igtam.jpg" alt="/img"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+    </div>
+
       
       <div class="clearfix"></div>
     </div>
@@ -440,6 +923,474 @@
         <p class="article-more-link">
           <a   href="/2019/08/09/hello-world/#more">查看更多 >></a>
         </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-IPv4编址方案" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/08/05/IPv4编址方案/" class="article-date">
+      <time datetime="2019-08-04T16:00:00.000Z" itemprop="datePublished">2019-08-05</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>第二讲 IP地址介绍及VLSM**</p>
+<h2 id="一、-IPv4-编址方案"><a href="#一、-IPv4-编址方案" class="headerlink" title="一、**IPv4**编址方案"></a><strong>一、**</strong>IPv4<strong>**编址方案</strong></h2><p>IP地址由32位二进制数组成，这些位被划分为4组，中间用“.”号隔开，每组8位，以十进制数形式表示。分为<strong>网络地址</strong>和<strong>主机地址</strong>两个部分。</p>
+<h3 id="1、-IP-地址分类"><a href="#1、-IP-地址分类" class="headerlink" title="1、**IP**地址分类"></a><strong>1、**</strong>IP<strong>**地址分类</strong></h3><h4 id="A-类网络地址范围"><a href="#A-类网络地址范围" class="headerlink" title="A**类网络地址范围**"></a><strong>A**</strong>类网络地址范围**</h4><p>​    第一个字节的第一位必须为0，第一个字节的取值为<strong>0**</strong>－127**</p>
+<p>​        即：0xxxxxxx    取值范围是：<strong>0</strong>0000000－<strong>0</strong>1111111  （0－127）</p>
+<p><strong>1.1.1.1/8</strong>   <strong>网络号：8**</strong>位   255.0.0.0**</p>
+<p>网络地址：1.0.0.0</p>
+<p>广播地址：1.255.255.255</p>
+<p>在这网络中有多少个地址呢？2^24</p>
+<p>有效地址：2^24-2</p>
+<h4 id="B-类网络地址范围"><a href="#B-类网络地址范围" class="headerlink" title="B**类网络地址范围**"></a><strong>B**</strong>类网络地址范围**</h4><p>第一个字节的第一位必须是1，且第二位必须是0，第一个字节的取值为<strong>128**</strong>－191**</p>
+<p>​       即：<strong>1</strong>0000000   取值范围是：<strong>10</strong>000000－<strong>10</strong>111111   （128－191）</p>
+<p>181.1.1.1/16   255.255.0.0</p>
+<p>网络地址：181.1.0.0</p>
+<p>广播地址：181.1.255.255</p>
+<p>有效地址：2^16-2</p>
+<h4 id="C-类网络的地址范围"><a href="#C-类网络的地址范围" class="headerlink" title="C**类网络的地址范围**"></a><strong>C**</strong>类网络的地址范围**</h4><p>​    第一个字节的前两位必须是1，且第三位必须是0，第一个字节的取值为<strong>192**</strong>－223**</p>
+<p>​       即：<strong>110</strong>00000   取值范围是：<strong>110</strong>00000－11011111   （192－223）</p>
+<p>192.168.1.1/24  255.255.255.0</p>
+<p>网络地址：192.168.1.0</p>
+<p>广播地址：192.168.1.255</p>
+<p>有效地址：2^8-2  254</p>
+<p><strong>D**</strong>类网络的地址范围：第一个字节为224–239<strong>**，用作组播地址。</strong></p>
+<p><strong>E**</strong>类网络的地址范围：第一个字节为240–255<strong>**，用于科学用途。</strong></p>
+<h3 id="2-、保留的IP地址"><a href="#2-、保留的IP地址" class="headerlink" title="2**、保留的IP地址**"></a><strong>2**</strong>、保留的<strong><strong>IP</strong></strong>地址**</h3><p>   <img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ascnwblgj30fj003064.jpg" alt="/img">   <strong>地</strong>  <strong>址</strong>                     <strong>功</strong>     <strong>能</strong></p>
+<p>网络地址全为0           表示当前网络或网段</p>
+<p>网络地址全为1           表示所有网络</p>
+<p>地址127.0.0.1            保留用于环回测试</p>
+<p>节点地址全为0           表示网络地址或指定网络中的任何主机</p>
+<p>节点地址全为1           表示指定网络中的所有节点</p>
+<p>整个IP地址全为0         思科路由器用它来指定默认路由，也可能表示任何网络</p>
+<p>整个IP地址全为1         到当前网络中所有节点的广播，有时称为“全1广播”或限定</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ascnwblgj30fj003064.jpg" alt="/img">                         广播即：255.255.255.255</p>
+<h3 id="3-、各类网络地址中网络数和主机数"><a href="#3-、各类网络地址中网络数和主机数" class="headerlink" title="3**、各类网络地址中网络数和主机数**"></a><strong>3**</strong>、各类网络地址中网络数和主机数**</h3><p>　　A 类网络地址：</p>
+<p>　　　　　　实际可用的A类网络地址数为：2^7=128</p>
+<p>​                         合法的主机数为：2 ^24－2＝16777214</p>
+<p>　　B类网络地址：</p>
+<p>　　　　　　实际可用的B类网络地址数为：2^14=16384</p>
+<p>​                        合法的主机数为：2^16-2=65534</p>
+<p>　　C类网络地址：</p>
+<p>　　　　　　实际可用的C类网络地址数为：2^21=2097152</p>
+<p>​                        合法的主机数为：2^8-2=254</p>
+<h3 id="4-、私有IP地址范围-在公网中是不能路由的，必须经过地址转换。"><a href="#4-、私有IP地址范围-在公网中是不能路由的，必须经过地址转换。" class="headerlink" title="4**、私有IP地址范围** 在公网中是不能路由的，必须经过地址转换。"></a><strong>4**</strong>、私有<strong><strong>IP</strong></strong>地址范围** <strong>在公网中是不能路由的，必须经过地址转换。</strong></h3><p>　　　A类　　　10.0.0.0~10.255.255.255</p>
+<p>​      B类      172.16.0.0~172.31.255.255</p>
+<p>​      C类      192.168.0.0~192.168.255.255</p>
+<p><strong>子网划分：将大的网络划分成若干个小网络，尽量减少广播风暴，提高网络效率。</strong></p>
+<p>C类IP地址： <strong>192.168.1</strong>.0 /24  255.255.255.0  有效地址：254个</p>
+<p><strong>请问**</strong>192.168.1.201/27<strong>**在哪个网络？网络号是多少？广播号是多少？有效地址范围是多少？</strong></p>
+<p>B类IP地址：181.1.0.0/17   255.255.128.0</p>
+<p>181.1.0.0</p>
+<p>181.1.0.1  -  181.1.127.254</p>
+<p>181.1.128.0</p>
+<h3 id="5-、如何创建子网？"><a href="#5-、如何创建子网？" class="headerlink" title="5**、如何创建子网？**"></a><strong>5**</strong>、如何创建子网？**</h3><p>   要创建子网，我们可以采用如下步骤：</p>
+<p>​     （1）确定需要的网络ID数</p>
+<p>​           ■ 每个LAN子网一个</p>
+<p>​           ■ 每条广域网连接一个        </p>
+<p>​     （2）确定每个子网所需的主机ID数</p>
+<p>​           ■每个TCP/IP主机一个</p>
+<p>​           ■每个路由器接口一个</p>
+<p>​    （3）根据上述需要，确定如下内容：</p>
+<p>​           ■一个用于整个网络的子网掩码</p>
+<p>​           ■每个物理网段的唯一子网ID</p>
+<p>​           ■每个子网的主机ID范围</p>
+<p><strong>5、**</strong>C<strong>**类网络的子网划分</strong></p>
+<p><strong>C**</strong>类网络的快速子网划分**</p>
+<p>给网络选择子网掩码后，需要计算该子网掩码提供的子网数以及每个子网的合法主机地址和广播地址。为此，你只需要回答下面5个问题：</p>
+<p><strong>（1）**</strong>选定的子网掩码将创建多少个子网？**</p>
+<p>​         <strong>192.168.1.0 /26</strong></p>
+<p><strong>11111111.11111111.11111111.11000000</strong></p>
+<p>​                          <strong>128+64=192</strong></p>
+<p>​       <strong>子网掩码值：255.255.255.192</strong></p>
+<p>​     2^2个，向主机位借位（取值为1）的位数。例：11000000，子网数为：2^2（4个）</p>
+<p><strong>（2**</strong>）每个子网可包含多少台主机？**</p>
+<p>​     2y个，y为被遮盖（取值为0）的位数。例：11000000，每个子网包含的主机数</p>
+<p>​     为：2^6－2（62个）</p>
+<p><strong>（3**</strong>）有哪些合法的子网？**</p>
+<p>​     块大小（增量）为<strong>256**</strong>－子网掩码**。如：256－192＝64，即子网掩码为192时，</p>
+<p> 块大小为64。从0开始不断增加64，直到达到子网掩码值，中间的值就是子网，即：</p>
+<p>192.168.1.0–63</p>
+<p>网络号：192.168.1.0</p>
+<p>广播号：192.168.1.63</p>
+<p>有效地址范围：192.168.1.1–192.168.1.62</p>
+<p>192.168.1.64-127</p>
+<p>网络号：192.168.1.64</p>
+<p>广播号：192.168.1.127</p>
+<p>有效地址范围：192.168.1.65-192.168.126</p>
+<p>192.168.128-191</p>
+<p>192.168.128</p>
+<p>192.168.1.192-255</p>
+<p>192.168.4.0  255.255.255.0  划分8个子网</p>
+<p><strong>11111111.11111111.11111111.11100000</strong></p>
+<p>​                          <strong>128+64+32=224</strong></p>
+<p>192.168.4.0/27   255.255.255.224</p>
+<p>2^3=8</p>
+<p>块大小：256-224=32</p>
+<p>地址范围：</p>
+<p>192.168.4.0–192.168.4.31</p>
+<p>网络号：</p>
+<p>广播号：</p>
+<p>有效地址：</p>
+<p>4.0–31</p>
+<p>192.168.4.32–192.168.4.63</p>
+<p>192.168.4.64–192.168.4.95</p>
+<p>96–127</p>
+<p>128–159</p>
+<p>160–191</p>
+<p>192–223</p>
+<p>224–255</p>
+<p>192.168.4.200请问这个地址是属于哪个网络</p>
+<p><strong>练习：</strong></p>
+<p><strong>例1</strong>：255.255.255.128 （/25）</p>
+<p>​       网络地址：192.168.10.0</p>
+<p>​       子网掩码：255.255.255.128</p>
+<p><strong>例2</strong>：255.255.255.224（/27）</p>
+<p>  网络地址：192.168.10.0</p>
+<p>  子网掩码：255.255.255.224</p>
+<p><strong>多少个子网？</strong></p>
+<p><strong>每个子网多少台主机？</strong></p>
+<p><strong>有哪些合法的子网？</strong></p>
+<p><strong>每个子网的广播地址是多少？</strong></p>
+<p><strong>每个子网包含哪些合法主机地址？</strong></p>
+<p><strong>3、**</strong>网络地址：192.168.10.33** <strong>，子网掩码：255.255.255.224**</strong>，有哪些网络？分别有哪些**</p>
+<p><strong>4**</strong>、假设主机地址为：192.168.10.174<strong><strong>，子网掩码为255.255.255.240</strong></strong>。合法的主**</p>
+<p>   <strong>机地址范围是多少呢？</strong></p>
+<p> <strong>5**</strong>、如果节点地址为：192.168.10.17<strong><strong>，子网掩码为：255.255.255.252</strong></strong>。该IP<strong>**地址属于哪个子网？该子网的广播地址是什么？</strong></p>
+<p><strong>B**</strong>类地址的子网划分**</p>
+<p><strong>举例１：172.16.0.0/16       255.255.0.0</strong></p>
+<p>​                          <strong>11111111.11111111.10000000.00000000</strong></p>
+<p><strong>划分为两个网络：2^1=2</strong></p>
+<p>　　　<strong>子网掩码是多少？255.255.128.0</strong></p>
+<p><strong>块大小是多少？256-128=128</strong></p>
+<p>　　　<strong>有哪些合法的子网？</strong></p>
+<p>​         <strong>172.16.0.0</strong></p>
+<p>​         <strong>172.16.128.0</strong></p>
+<p>　<strong>每个子网多少台主机？2^15-2=32766</strong></p>
+<p>　　　<strong>每个子网包含哪些合法主机地址？</strong></p>
+<p>​          <strong>子网                 0.0             128.0</strong></p>
+<p>​          <strong>第一个主机地址      172.16.0.1        172.16.128.1</strong></p>
+<p>​          <strong>最后一个主机地址    172.16.0.254      172.16.128.254</strong></p>
+<p>​          <strong>广播地址            172.16.0.255      172.16.128.255</strong></p>
+<p>　</p>
+<p><strong>举例2**</strong>：172.16.0.0/24**</p>
+<p>有多少个网络?</p>
+<p>子网掩码是多少？</p>
+<p>块大小是多少？</p>
+<p>练习：</p>
+<p>\1.  172.16.10.33/27属于哪个网络？该子网的广播地址是多少？</p>
+<p>\2.  172.16.66.10  255.255.192.0 属于哪个子网？该子网的广播地址是多少？</p>
+<p>\3.   172.16.50.10  255.255.224.0  属于哪个子网？该子网的广播地址是多少？</p>
+<p>\4.  172.16.45.14  255.255.255.252  属于哪个子网？该子网的广播地址是多少？ </p>
+<p>\5.  172.16.88.255/20 属于哪个子网？该子网的广播地址是多少？   </p>
+<p><strong>A**</strong>类网络的子网划分**</p>
+<p>​    A类网络的子网划分和C类网强没有什么不同，但需要处理的是24位，而B类和C类网络需要处理的分别是16位和8位。 </p>
+<p>  <strong>举例1**</strong>：**10.0.0.0/16</p>
+<p>​    多少个子网？2^8=256</p>
+<p>​    每个子网的主机数？2^16-2=65534</p>
+<p>​    有哪些合法子网？需要考虑的是第几个字节？只有第二个字节。256-255=1因此子</p>
+<p>网为10.1.0.0   10.2.0.0   10.3.0.0 …….10.255.0.0</p>
+<p>​        每个子网的广播地址是什么？</p>
+<p>​        合法的主机地址是什么？</p>
+<p>举例2：10.0.0.0/20</p>
+<p><strong>CIDR**</strong>（classless inter-domain routing,<strong>**无类域间选择）</strong></p>
+<p>   它是ISP用来将大量地址分配给客户的一种方法。</p>
+<p><strong>CIDR**</strong>值表：**</p>
+<p>255.0.0.0                /8        255.128.0.0              /9     255.192.0.0              /10</p>
+<p>255.224.0.0              /11     255.240.0.0              /12   255.248.0.0              /13</p>
+<p>255.252.0.0              /14     255.254.0.0              /15    255.255.0.0              /16    </p>
+<p>255.255.128.0            /17   255.255.192.0            /18    255.255.224.0            /19</p>
+<p>255.255.240.0           /20    255.255.248.0           /21    255.255.252.0           /22</p>
+<p>255.255.254.0           /23     255.255.255.0           /24    255.255.255.128         /25</p>
+<p>255.255.255.192         /26    255.255.255.224         /27    255.255.255.240         /28</p>
+<p>255.255.255.248         /29    255.255.255.252         /30</p>
+<h2 id="二、变长子网掩码："><a href="#二、变长子网掩码：" class="headerlink" title="二、变长子网掩码："></a><strong>二、变长子网掩码：</strong></h2><p>  <strong>使用长度不同的子网掩码将网络划分成多个子网，适用于不同类型的网络设计，称为VLSM**</strong>组网。**</p>
+<p>   <strong>分类路由选择：RIP1  IGRP**</strong>协议**</p>
+<p>   <strong>无类路由选择：RIP2</strong>　<strong>EIGRP</strong>　　<strong>OSPF**</strong>等协议**</p>
+<p><strong>有类路由</strong>：汇总以后地址是标准的A B C类地址掩码 即 255.0.0.0 255.255.0.0 255.255.255.0 (<a href="https://www.baidu.com/s?wd=有类路由&from=1012015a&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Y3rHTzm1c3uW6zuhmdm1bz0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnWRsnHn1nWnd" target="_blank" rel="noopener">有类路由</a>里 大类网络中 子网码必须一致 这样叫做有类路由 因为有类路由协议不传递子网码信息)<br> 　　<strong>无类路由</strong>：汇总以后地址是无类的比如 172.16.12.0/16 - 172.16.15.0/16 汇总以后的地址是 172.16.12.0/20 子码 不属于 A B C 3个类别(无类路由是相反的 他传递子网信息所有大类网络中可以使用不同的子网码)</p>
+<h3 id="１、典型的分类网络设计"><a href="#１、典型的分类网络设计" class="headerlink" title="１、典型的分类网络设计"></a><strong>１、典型的分类网络设计</strong></h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asdj1c06j30aq066weh.jpg" alt="/img"></p>
+<h3 id="2-、无类网络设计"><a href="#2-、无类网络设计" class="headerlink" title="2**、无类网络设计**"></a><strong>2**</strong>、无类网络设计**</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ase4rv7oj30am064aa2.jpg" alt="/img"></p>
+<h3 id="3、-变长子网掩码工作表"><a href="#3、-变长子网掩码工作表" class="headerlink" title="3、**变长子网掩码工作表**"></a><strong>3、**</strong>变长子网掩码工作表**</h3><h2 id="三、地址汇总"><a href="#三、地址汇总" class="headerlink" title="三、地址汇总"></a><strong>三、地址汇总</strong></h2><p><strong>汇总：也叫路由聚合，让路由选择协议能够用一个地址通告众多网络</strong>。<strong>旨在缩小路由器中路由选择表的规模，以节省内存，并缩短**</strong>IP<strong>**对路由选择表进行分析以找出前往远程网络的所需时间。</strong>图中说明了在互联网络的使用的汇总地址。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asefuaq4j30fk03mweg.jpg" alt="/img"></p>
+<p><strong>举例1**</strong>：**</p>
+<p>192.168.16.0—192.168.31.0  第三个字节：块大小16   240  /20   255.255.240.0</p>
+<p>192.168.16.0/20   255.255.240.0   </p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asez68mzj30fd03v74r.jpg" alt="/img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asfx80c6j30fd02rq31.jpg" alt="/img"></p>
+<p><strong>思考？</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asfi30wdj30fd06i3yi.jpg" alt="/img"></p>
+<p>变化的字节在哪里？第二字节</p>
+<p><strong>块大小？  16</strong></p>
+<p>掩码值：256-16=240</p>
+<p>255.240.0.0  /12  </p>
+<p>172.0.0.0</p>
+<p>172.16.0.0  32 48 64 80 96 112 128 144 160</p>
+<p>172.144.0.0/12</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asgsrii1j30dw03nwer.jpg" alt="/img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ash917wvj30fe03gglp.jpg" alt="/img"></p>
+<h2 id="四、-Cisco-Packet-Tracer介绍与思科设备的基本配置"><a href="#四、-Cisco-Packet-Tracer介绍与思科设备的基本配置" class="headerlink" title="四、 Cisco Packet Tracer介绍与思科设备的基本配置**"></a><strong>四、 <strong>Cisco Packet Tracer</strong></strong>介绍与思科设备的基本配置**</h2><h2 id="五、-PT-介绍及思科的基本操作命令"><a href="#五、-PT-介绍及思科的基本操作命令" class="headerlink" title="五、**PT**介绍及思科的基本操作命令"></a><strong>五、**</strong>PT<strong>**介绍及思科的基本操作命令</strong></h2><h3 id="1、PT介绍（界面、路由器、交换机、线缆、工具…-）"><a href="#1、PT介绍（界面、路由器、交换机、线缆、工具…-）" class="headerlink" title="1、PT介绍（界面、路由器、交换机、线缆、工具…..）"></a>1、PT介绍（界面、路由器、交换机、线缆、工具…..）</h3><p>双绞线：直通线、交叉线、全反线（CONSOLE线）</p>
+<p>线序标准：</p>
+<p>​        T568B：橙白 橙  绿白 蓝 蓝白 绿 棕白 棕</p>
+<p>​        T568A：绿白 绿  橙白 蓝 蓝白 橙 棕白 棕</p>
+<p>直通线：T568B-T568B    T568A-T568A</p>
+<p><strong>不同种设备</strong>相连（模拟器不支持自适应）</p>
+<p>​           交换机–路由器  路由器–集线器  交换机–PC机</p>
+<p>​    交叉线：568A–568B 同种设备相连</p>
+<p>​           交换机–交换机  路由器–路由器 交换机–集线器</p>
+<p>全反线：（CONSOLE线）</p>
+<h3 id="2、设备的连接"><a href="#2、设备的连接" class="headerlink" title="2、设备的连接"></a>2、设备的连接</h3><h3 id="3、路由器的开机过程："><a href="#3、路由器的开机过程：" class="headerlink" title="3、路由器的开机过程："></a>3、路由器的开机过程：</h3><p>开机过程：加电自检–从flash查找和装载IOS–从NVROM（非易失性                      </p>
+<p>存储器）里加载启动配置文件—是否进入配置向导–</p>
+<p>​                            直接进入配置模式</p>
+<p>配置文件：startupconfig   runningconfig</p>
+<p>启动配置文件   运行配置文件</p>
+<h3 id="4、基本命令操作："><a href="#4、基本命令操作：" class="headerlink" title="4、基本命令操作："></a>4、基本命令操作：</h3><h3 id="5、"><a href="#5、" class="headerlink" title="5、"></a>5、</h3><p>（1）、模式：</p>
+<p>​      Router&gt;用户模式</p>
+<p>​      Router&gt;enable</p>
+<p>​      Router#特权模式</p>
+<p>​      Router#configure terminal </p>
+<p>​      Router(config)#全局配置模式</p>
+<p>​      Router(config)#hostname R1  （配置路由器的名称）</p>
+<p>​      R1(config)#interface FastEthernet 0/0</p>
+<p>​      R1(config-if)#接口模式</p>
+<p>​      R1(config-if)#ip address 192.168.1.1 255.255.255.0 （配置IP地址）</p>
+<p>​      R1(config-if)#no shutdown （开启端口）</p>
+<p>​      两台路由器相连，测试连通性</p>
+<p>​       Router&gt;用户模式</p>
+<p>​       Router&gt;enable</p>
+<p>​       Router#特权模式</p>
+<p>​       Router#configure terminal </p>
+<p>​       Router(config)#全局配置模式</p>
+<p>​       Router(config)#hostname R2  （配置路由器的名称）</p>
+<p>​       R2(config)#interface FastEthernet 0/0</p>
+<p>​       R2(config-if)#接口模式</p>
+<p>​       R2(config-if)#ip address 192.168.1.2 255.255.255.0 （配置IP地址）</p>
+<p>​       R2(config-if)#no shutdown （开启端口）</p>
+<p>​       使用ping命令测试通信：如果通信用!!!表示，不通用…表示</p>
+<p>​           R1(config-if)#接口模式</p>
+<p>​           R1(config-if)#exit  退出当前模式，返回上一级模式</p>
+<p>​           R1(config)#全局配置模式</p>
+<p>​           R1(config)#exit</p>
+<p>​           R1#特权模式</p>
+<p>​           R1#ping 192.168.1.1 </p>
+<p>​        –输入end（或ctrl+c或ctrl+z）直接返回到特权模式—————–</p>
+<p>​            R1(config-if)#end</p>
+<p>​            R1#特权模式</p>
+<p>​        -——————————————</p>
+<p>   （2）命令支持简写</p>
+<p>   （3）帮助功能</p>
+<p>   （4）tab补全命令</p>
+<p>   （5）给设备配置密码：防止别人非法更改我设备的配置</p>
+<p>​       </p>
+<p>​      为特权模式配置明文密码</p>
+<p>​       R1(config)#enable password 123456   明文密码</p>
+<p>​       R1(config)#show running-config   可以查看密码</p>
+<p>​       Current configuration : 565 bytes  配置文件大小可以判断是否更改设备配置</p>
+<p>​      为特权模式配置密文密码</p>
+<p>​       R1(config)#enable secret 123456   明文密码</p>
+<p>​       R1(config)#show running-config   可以查看密码</p>
+<p>​       两个密码同时配置时，加密的密码生效。</p>
+<p>   （6）保存配置文件</p>
+<p>​       R1#copy <strong>running-config</strong> startup-config  </p>
+<p>​       或  R1#write</p>
+<p>​              </p>
+<p>   （7）查看命令</p>
+<p>​        R1#show ip interface brief  查看接口摘要信息</p>
+<p>​        R1#show running-config      查年当前的运行配置文件</p>
+<p>​        R1#show startup-config      查看启动配置文件</p>
+<p>Running-config本来和startup-config 一样 但是running-config如果不保存的话，就不会和startup-config一样了</p>
+<p>   （8）重启设备：</p>
+<p>​        R1#reload</p>
+<p>​     </p>
+<p>模式：</p>
+<p>enable (en)  configure terminal(config t)   interface fastEthernet 0/1(int f0/1)</p>
+<p>Show</p>
+<p>running-config    startup-config</p>
+<p>copy runing-config startup-config 或 write(w)</p>
+<p>Ip add 192.168.10.1 255.255.255.0</p>
+<p>no shutdown</p>
+<p>reload</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-CSRF" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/07/30/CSRF/" class="article-date">
+      <time datetime="2019-07-29T16:00:00.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/07/30/CSRF/">CSRF漏洞</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h1><p><a href="https://www.cnblogs.com/shikyoh/p/4959678.html" target="_blank" rel="noopener">https://www.cnblogs.com/shikyoh/p/4959678.html</a></p>
+<p><a href="https://www.freebuf.com/column/155800.html" target="_blank" rel="noopener">https://www.freebuf.com/column/155800.html</a></p>
+<h2 id="CSRF漏洞简介"><a href="#CSRF漏洞简介" class="headerlink" title="CSRF漏洞简介"></a>CSRF漏洞简介</h2><p> CSRF（Cross-Site Request Forgery，跨站点伪造请求）是一种网络攻击方式，该攻击可以在受害者毫不知情的情况下以受害者名义伪造请求发送给受攻击站点，从而在未授权的情况下执行在权限保护之下的操作，具有很大的危害性。具体来讲，可以这样理解CSRF攻击：攻击者盗用了你的身份，以你的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以你的名义发送邮件、发消息，盗取你的账号，添加系统管理员，甚至于购买商品、虚拟货币转账等。</p>
+<p>CSRF攻击方式并不为大家所熟知，实际上很多网站都存在CSRF的安全漏洞。早在2000年，CSRF这种攻击方式已经由国外的安全人员提出，但在国内，直到2006年才开始被关注。2008年，国内外多个大型社区和交互网站先后爆出CSRF漏洞，如：百度HI、NYTimes.com（纽约时报）、Metafilter（一个大型的BLOG网站）和YouTube等。但直到现在，互联网上的许多站点仍对此毫无防备，以至于安全业界称CSRF为“沉睡的巨人”，其威胁程度由此“美誉”便可见一斑。</p>
+<h2 id="CSRF攻击原理及实例"><a href="#CSRF攻击原理及实例" class="headerlink" title="CSRF攻击原理及实例"></a>CSRF攻击原理及实例</h2><p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59sd4j9g4j30t80gharw.jpg" alt></p>
+<p> CSRF攻击原理比较简单，如图1所示。其中Web A为存在CSRF漏洞的网站，Web B为攻击者构建的恶意网站，User C为Web A网站的合法用户。 </p>
+<p>1 用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；</p>
+<p>2 在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功，可以正常发送请求到网站A；</p>
+<p>3 用户未退出网站A之前，在同一浏览器中，打开一个TAB页访问网站B；</p>
+<p>4 网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A；<br> <strong>(**</strong>网站B对网站A发出一个请求的同时，浏览器也会把网站A产生Cookie信息带上)–相当于浏览器访问网站A—这是user信息被盗用的关键**</p>
+<p>5 浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。</p>
+<h2 id="CSRF攻击分类"><a href="#CSRF攻击分类" class="headerlink" title="CSRF攻击分类"></a>CSRF攻击分类</h2><p>CSRF漏洞一般分为站外和站内两种类型。</p>
+<p>CSRF站外类型的漏洞本质上就是传统意义上的外部提交数据问题。通常程序员会考虑给一些留言或者评论的表单加上水印以防止SPAM问题（这里，SPAM可以简单的理解为垃圾留言、垃圾评论，或者是带有站外链接的恶意回复），但是有时为了提高用户的体验性，可能没有对一些操作做任何限制，所以攻击者可以事先预测并设置请求的参数，在站外的Web页面里编写脚本伪造文件请求，或者和自动提交的表单一起使用来实现GET、POST请求，当用户在会话状态下点击链接访问站外Web页面，客户端就被强迫发起请求。</p>
+<p>CSRF站内类型的漏洞在一定程度上是由于程序员滥用类变量造成的。在一些敏感的操作中（如修改密码、添加用户等），本来要求用户从表单提交发起请求传递参数给程序，但是由于使用了REQUEST类变量造成的。在一些敏感的操作中（如修改密码、添加用户等），本来要求用户从表单提交发起POST请求传递参数给程序，但是由于使用了_REQUEST等变量，程序除支持接收POST请求传递的参数外也支持接收GET请求传递的参数，这样就会为攻击者使用CSRF攻击创造条件。一般攻击者只要把预测的请求参数放在站内一个贴子或者留言的图片链接里，受害者浏览了这样的页面就会被强迫发起这些请求。</p>
+<h2 id="CSRF攻击实例"><a href="#CSRF攻击实例" class="headerlink" title="CSRF攻击实例"></a>CSRF攻击实例</h2><p>下面以Axous 1.1.1 CSRF Add Admin Vulnerability（漏洞CVE编号：CVE-2012-2629）为例，介绍CSRF攻击具体实施过程。</p>
+<p>Axous是一款网上商店应用软件。Axous 1.1.1以及更低版本在实现上存在一个CSRF漏洞，远程攻击者可以通过构造特制的网页，诱使该软件管理员访问，成功利用此漏洞的攻击者可以添加系统管理员。利用此漏洞主要包含以下三个过程：</p>
+<ol>
+<li>攻击者构造恶意网页。在实施攻击前，攻击者需要构造一个与正常添加管理员用户基本一样的网页，在该恶意网页中对必要的参数项进行赋值，并将该网页的action指向正常添加管理员用户时访问的URL，核心代码如图2所示；</li>
+<li>攻击者利用社会工程学诱使Axous系统管理员访问其构造的恶意网页；</li>
+<li>执行恶意代码。当系统管理员访问恶意网页时，恶意代码在管理员不知情的情况下以系统管理员的合法权限被执行，攻击者伪造的管理员账户添加成功。 </li>
+</ol>
+<h2 id="CSRF漏洞防御"><a href="#CSRF漏洞防御" class="headerlink" title="CSRF漏洞防御"></a>CSRF漏洞防御</h2><p> CSRF漏洞防御主要可以从三个层面进行，即服务端的防御、用户端的防御和安全设备的防御。</p>
+<p>服务端的防御<br> 目前业界服务器端防御CSRF攻击主要有三种策略：验证HTTP Referer字段，在请求地址中添加token并验证，在HTTP头中自定义属性并验证。下面分别对这三种策略进行简要介绍。</p>
+<p>1 验证HTTP Referer字段</p>
+<p>根据HTTP协议，在HTTP头中有一个字段叫Referer，它记录了该HTTP请求的来源地址。在通常情况下，访问一个安全受限页面的请求必须来自于同一个网站。比如某银行的转账是通过用户访问<a href="http://bank.test/test?page=10&amp;userID=101&amp;money=10000页面完成，用户必须先登录bank" target="_blank" rel="noopener">http://bank.test/test?page=10&amp;userID=101&amp;money=10000页面完成，用户必须先登录bank</a>. test，然后通过点击页面上的按钮来触发转账事件。当用户提交请求时，该转账请求的Referer值就会是转账按钮所在页面的URL（本例中，通常是以bank. test域名开头的地址）。而如果攻击者要对银行网站实施CSRF攻击，他只能在自己的网站构造请求，当用户通过攻击者的网站发送请求到银行时，该请求的Referer是指向攻击者的网站。因此，要防御CSRF攻击，银行网站只需要对于每一个转账请求验证其Referer值，如果是以bank. test开头的域名，则说明该请求是来自银行网站自己的请求，是合法的。如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。<br> java获取HTTP Referer代码：</p>
+<p>​        // 获取请求是从哪里来的  </p>
+<p>​        String referer = request.getHeader(“referer”);  </p>
+<p>​        // 如果是直接输入的地址，或者不是从本网站访问的重定向到本网站的首页  </p>
+<p>​        if (referer == null || !referer.startsWith(“<a href="http://localhost&quot;" target="_blank" rel="noopener">http://localhost&quot;</a>)) {  </p>
+<p>​            response.sendRedirect(“/day06/index.jsp”);  </p>
+<p>​            // 然后return，不要输出后面的内容了  </p>
+<p>​            return;  </p>
+<p>​        }  </p>
+<p>2 在请求地址中添加token并验证</p>
+<p>CSRF攻击之所以能够成功，是因为攻击者可以伪造用户的请求，该请求中所有的用户验证信息都存在于Cookie中，因此攻击者可以在不知道这些验证信息的情况下直接利用用户自己的Cookie来通过安全验证。由此可知，抵御CSRF攻击的关键在于：在请求中放入攻击者所不能伪造的信息，并且该信息不存在于Cookie之中。鉴于此，系统开发者可以在HTTP请求中以参数的形式加入一个随机产生的token，并在服务器端建立一个拦截器来验证这个token，如果请求中没有token或者token内容不正确，则认为可能是CSRF攻击而拒绝该请求。</p>
+<p>3 在HTTP头中自定义属性并验证</p>
+<p>自定义属性的方法也是使用token并进行验证，和前一种方法不同的是，这里并不是把token以参数的形式置于HTTP请求之中，而是把它放到HTTP头中自定义的属性里。通过XMLHttpRequest这个类，可以一次性给所有该类请求加上csrftoken这个HTTP头属性，并把token值放入其中。这样解决了前一种方法在请求中加入token的不便，同时，通过这个类请求的地址不会被记录到浏览器的地址栏，也不用担心token会通过Referer泄露到其他网站。</p>
+<p>4 用户端的防御<br> 对于普通用户来说，都学习并具备网络安全知识以防御网络攻击是不现实的。但若用户养成良好的上网习惯，则能够很大程度上减少CSRF攻击的危害。例如，用户上网时，不要轻易点击网络论坛、聊天室、即时通讯工具或电子邮件中出现的链接或者图片；及时退出长时间不使用的已登录账户，尤其是系统管理员，应尽量在登出系统的情况下点击未知链接和图片。除此之外，用户还需要在连接互联网的计算机上安装合适的安全防护软件，并及时更新软件厂商发布的特征库，以保持安全软件对最新攻击的实时跟踪。</p>
+<h2 id="漏洞利用演示"><a href="#漏洞利用演示" class="headerlink" title="漏洞利用演示"></a>漏洞利用演示</h2><p><strong>DVWA-CSRF</strong> </p>
+<h3 id="Low等级"><a href="#Low等级" class="headerlink" title="Low等级"></a>Low等级</h3><p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rj7imbaj309d04h3yg.jpg" alt></p>
+<p><strong>抓包</strong></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rjjuze9j30jb08a0tk.jpg" alt></p>
+<p><strong>正常跳转</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rjwbolhj30cr092t99.jpg" alt></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rkaznc7j30m509xta1.jpg" alt></p>
+<p><strong>在这里我们把密码改为qwer</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rl0tz7ij30k50bpwfm.jpg" alt></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rlblovyj30h80ak3zr.jpg" alt></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rlnu3npj30eh08haa5.jpg" alt></p>
+<p> <img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563863977602.png" alt="1563863977602"></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rmc4dwcj30lp09b74c.jpg" alt></p>
+<p><strong>成功进入了DVWA</strong></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rmmq1hcj30my0czdiu.jpg" alt></p>
+<h3 id="CSRF-Medium等级"><a href="#CSRF-Medium等级" class="headerlink" title="CSRF Medium等级"></a>CSRF Medium等级</h3><p>开始，抓包</p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rn0qgarj30e2067t8y.jpg" alt></p>
+<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rnbnvsjj31080bvack.jpg" alt></p>
+<p><strong>很显然，网站对referer做了验证，绕过referer验证有以下几种方法：</strong></p>
+<p><strong>1**</strong>）空Referer绕过：**</p>
+<p>在referer字段后添加：http:// https:// ftp:// file://,在发送，看是否可以绕过referer验证。</p>
+<p><strong>2**</strong>）判断referer是否存在某个关键词。**</p>
+<p><strong>在本示例中用第二种方法绕过referer验证：</strong></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rnt5t3xj310b0a3jti.jpg" alt></p>
+<p><strong>构造csrf poc：</strong></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59ro5r8guj30jt0b1dgy.jpg" alt></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59royz8alj30hd08174o.jpg" alt></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rp9mkq6j30kr08caaa.jpg" alt></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rpmyq2nj30ga07raa8.jpg" alt></p>
+<h3 id="CSRF-High等级"><a href="#CSRF-High等级" class="headerlink" title="CSRF High等级"></a>CSRF High等级</h3><p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rq3c9u8j30od08pgmj.jpg" alt></p>
+<p><strong>所以像medium和low等级那样的方法是不能用的了，但是我们可以利用burp的插件CSRF　Token　Tracker绕过token验证：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rqctd4cj30pc0fyadn.jpg" alt></p>
+<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rzieiw4j30uu04lt99.jpg" alt></p>
+<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rzujnl4j30wb0aw0u0.jpg" alt></p>
+<p><strong>然后来到repeater选项下：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59s05noxxj30yc096ju1.jpg" alt></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
       
       <div class="clearfix"></div>
     </div>

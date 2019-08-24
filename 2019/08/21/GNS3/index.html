@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>防火墙与VPN | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、防火墙（Firewall）1、什么是防火墙防火墙是指设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间的一系列部件的组合。 它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。  在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部">
+<meta name="keywords" content="网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="防火墙与VPN">
+<meta property="og:url" content="http://yoursite.com/2019/08/21/GNS3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、防火墙（Firewall）1、什么是防火墙防火墙是指设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间的一系列部件的组合。 它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。  在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pch3ki4j30sn0lz77r.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pd1izjuj30cj07kdfp.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pdjcayej30a103v745.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pe4xqbdj30br03zjr9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pelk6wwj30g9037weg.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pey4obwj30gv0380sp.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pkavvllj30wu0igtam.jpg">
+<meta property="og:updated_time" content="2019-08-24T08:41:58.303Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="防火墙与VPN">
+<meta name="twitter:description" content="一、防火墙（Firewall）1、什么是防火墙防火墙是指设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间的一系列部件的组合。 它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。  在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">John Doe</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/NAT-网络地址转换/" style="font-size: 10px;">NAT 网络地址转换</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-GNS3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/08/21/GNS3/" class="article-date">
+      <time datetime="2019-08-20T16:00:00.000Z" itemprop="datePublished">2019-08-21</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      防火墙与VPN
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<h1 id="一、防火墙（Firewall）"><a href="#一、防火墙（Firewall）" class="headerlink" title="一、防火墙（Firewall）"></a>一、防火墙（Firewall）</h1><h2 id="1、什么是防火墙"><a href="#1、什么是防火墙" class="headerlink" title="1、什么是防火墙"></a>1、什么是防火墙</h2><p>防火墙是指设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间的一系列部件的组合。</p>
+<p>它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。 </p>
+<p>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部网络的安全。 </p>
+<h2 id="2、部署位置"><a href="#2、部署位置" class="headerlink" title="2、部署位置"></a>2、部署位置</h2><p>1、可信网络与不可信网络之间<br>2、不同安全级别网络之间<br>3、两个需要隔离的区域之间</p>
+<h2 id="3、部署方式"><a href="#3、部署方式" class="headerlink" title="3、部署方式"></a>3、部署方式</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
+<h2 id="4、功能"><a href="#4、功能" class="headerlink" title="4、功能"></a>4、功能</h2><p>1、入侵检测功能<br>2、网络地址转换功能<br>3、网络操作的审计监控功能<br>4、强化网络安全服务</p>
+<h1 id="二、VPN"><a href="#二、VPN" class="headerlink" title="二、VPN"></a>二、VPN</h1><h2 id="1、L2TP-VPN"><a href="#1、L2TP-VPN" class="headerlink" title="1、L2TP VPN"></a>1、L2TP VPN</h2><p>2TP是一种工业标准的Internet隧道协议，功能大致和PPTP协议类似，比如同样可以对网络数据流进行加密。不过也有不同之处，比如PPTP要求网络为IP网络，L2TP要求面向数据包的点对点连接；PPTP使用单一隧道，L2TP使用多隧道；L2TP提供包头压缩、隧道验证，而PPTP不支持。</p>
+<h2 id="2、PPTP-VPN"><a href="#2、PPTP-VPN" class="headerlink" title="2、PPTP-VPN"></a>2、PPTP-VPN</h2><p>即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使远程用户通过拨入ISP、通过直接连接Internet或其他网络安全地访问企业网。</p>
+<h2 id="3、IPsec-VPN"><a href="#3、IPsec-VPN" class="headerlink" title="3、IPsec-VPN"></a>3、IPsec-VPN</h2><p>互联网安全协议（英语：Internet Protocol Security，缩写为IPsec），是一个协议包，通过对IP协议的分组进行加密和认证来保护IP协议的网络传输协议族（一些相互关联的协议的集合）。 [1]<br>IPsec主要由以下协议组成：</p>
+<p>一、认证头（AH），为IP数据报提供无连接数据完整性、消息认证以及防重放攻击保护；</p>
+<p>二、封装安全载荷（ESP），提供机密性、数据源认证、无连接完整性、防重放和有限的传输流（traffic-flow）机密性；</p>
+<p>三、安全关联（SA），提供算法和数据包，提供AH、ESP操作所需的参数。</p>
+<p>IPsec协议工作在OSI模型的第三层，使其在单独使用时适于保护基于TCP或UDP的协议（如安全套接子层（SSL）就不能保护UDP层的通信流）。这就意味着，与传输层或更高层的协议相比，IPsec协议必须处理可靠性和分片的问题，这同时也增加了它的复杂性和处理开销。相对而言，SSL/TLS依靠更高层的TCP（OSI的第四层）来管理可靠性和分片。</p>
+<h2 id="4、GRE-VPN"><a href="#4、GRE-VPN" class="headerlink" title="4、GRE VPN"></a>4、GRE VPN</h2><p>GRE是一种最传统的隧道协议，其根本功能就是要实现隧道功能，通过隧道连接的两<br>个远程网络就如同直连，GRE在两个远程网络之间模拟出直连链路,从而使网络间达到直<br>连的效果，为此，GRE需要完成多次封装,总共有3次</p>
+<p>（1）接收原始IP数据包当作乘客协议,原始IR数据包包头的IP地址为私有IP地址</p>
+<p>（2）将原始IP数据包封装进GRE协议, GRE协议称为封装协议(Encapsulation Protocol) ,封装的包头IP地址为虚拟直连链路两端的IP地址</p>
+<p>（3）将整个GRE数据包当作数据，在外层封装公网IP包头，也就是隧道的起源和终点，从而路由到隧道终点</p>
+<h1 id="三、防火墙的配置"><a href="#三、防火墙的配置" class="headerlink" title="三、防火墙的配置"></a>三、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg" alt="/img"></p>
+<p>这里可以使用虚拟机 也可以Tools&gt;VPCS 但是注意序号的差别并且点进去之后不可以点击X 不然所作的配置失效</p>
+<p>虚拟机：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pch3ki4j30sn0lz77r.jpg" alt="/img"></p>
+<p>VPCS:</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pd1izjuj30cj07kdfp.jpg" alt="/img"></p>
+<p>基础配置</p>
+<p>R1：</p>
+<p>R1(config)#int e0/0<br>R1(config-if)#ip add 192.168.1.1 255.255.255.0<br>R1(config-if)#no shutdown</p>
+<p>R1(config-if)#int e0/1<br>R1(config-if)#ip add 10.0.0.2 255.255.255.252<br>R1(config-if)#no shutdown</p>
+<p>R1(config)#ip route 61.1.1.0 255.255.255.0 10.0.0.1</p>
+<p>R2：</p>
+<p>R2(config)#int e0/0<br>R2(config-if)#ip add 61.1.1.2 255.255.255.0<br>R2(config-if)#no shutdown<br>R2(config)#ip route 192.168.1.0 255.255.255.0 61.1.1.1</p>
+<p>防火墙配置：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pdjcayej30a103v745.jpg" alt="/img"></p>
+<p>密码可以不用管 默认密码为空值</p>
+<p>PIX(config-if)# nameif outside //将e1接口设置为外接口<br>INFO: Security level for “outside” set to 0 by default.<br>PIX(config-if)# security-level 0 //安全级别设置为零 其实是默认的 这一步可以不用写<br>PIX(config-if)# ip add 61.1.1.1 255.255.255.0  //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# int e0<br>PIX(config-if)# nameif inside  //将e0接口设置为内接口<br>PIX(config-if)# security-level 100 //安全级别设置为内接口<br>PIX(config-if)# ip add 10.0.0.1 255.255.255.252   //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# route inside 192.168.1.0 255.255.255.0 10.0.0.2</p>
+<p>//实现内部网络的路由，下一跳10.0.0.2，否则PIX不知道如何返回数据包<br>PIX(config)# route outside 0.0.0.0 0.0.0.0 61.1.1.2<br>PIX(config)# access-list 1 permit icmp any any<br>PIX(config)# nat (inside) 1 192.168.1.0 255.255.255.0<br> //只允许内部PC的192.168.1.0/24 网络流量<br>PIX(config)# global (outside) 1 interface  //使用地址池或者PAT</p>
+<p><strong>注：pix防火墙对于内部到外部的流量默认不能做ping，做其它服务必须使用NAT功能，对到未知网络还需配置路由。而且pix防火墙可以通过由内部向外发出的返回数据包，而且默认拒绝由外部向内部发出的主动连接数据包。为了防止前次的实验干扰，在实验之前建议使用clear xlate来清除pix的内存连接</strong></p>
+<p>结果：PC机能ping 同外部网络</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pe4xqbdj30br03zjr9.jpg" alt="/img"></p>
+<p>R1能ping通外部网络</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pelk6wwj30g9037weg.jpg" alt="/img"></p>
+<p>外部网络不能ping通内部网络</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pey4obwj30gv0380sp.jpg" alt="/img"></p>
+<p>实验成果图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
+<h2 id="2、透明式防火墙"><a href="#2、透明式防火墙" class="headerlink" title="2、透明式防火墙"></a>2、透明式防火墙</h2><p>![img](file:///C:\Users\19453\Documents\Tencent Files\1945384242\Image\Group\CRQX@G2L`DK%Q[VM~V]KVZG.png)</p>
+<p>做OSPF的时候no 掉了之前写的ip route xxxx.xxxx.   但是之前写的是ip route 0.0.0.0 0.0.0.0 +下一跳接口</p>
+<p>路由器R4</p>
+<p>hostname R4<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.2 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> ip address 192.168.1.2 255.255.255.0<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 192.168.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
+<p>防火墙</p>
+<dl><dt>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000<br>: end<br>pixfirewall# conf t<br>pixfirewall(config)# acc<br>pixfirewall(config)# access-l<br>pixfirewall(config)# access-list 101 pe<br>pixfirewall(config)# access-list 101 permit ic<br>pixfirewall(config)# access-list 101 permit icmp any any<br>pixfirewall(config)# end<br>pixfirewall#<br>pixfirewall# show run<br>pixfirewall# show running-config<br>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>access-list 101 extended permit icmp any any<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000</dt><dd>end</dd></dl><p>路由器R6</p>
+<p>Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP<br>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area<br>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2<br>       E1 - OSPF external type 1, E2 - OSPF external type 2<br>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2<br>       ia - IS-IS inter area, * - candidate default, U - per-user static route<br>       o - ODR, P - periodic downloaded static route</p>
+<p>Gateway of last resort is not set</p>
+<pre><code>10.0.0.0/29 is subnetted, 1 subnets</code></pre><p>C       10.0.0.0 is directly connected, Ethernet0/0<br>O    192.168.1.0/24 [110/20] via 10.0.0.2, 00:01:08, Ethernet0/0<br>     61.0.0.0/24 is subnetted, 1 subnets<br>C       61.1.1.0 is directly connected, Loopback0<br>R6#show run<br>R6#show running-config<br>Building configuration…</p>
+<p>Current configuration : 828 bytes<br>!<br>version 12.4<br>service timestamps debug datetime msec<br>service timestamps log datetime msec<br>no service password-encryption<br>!<br>hostname R6<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Loopback0<br> ip address 61.1.1.1 255.255.255.0<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.1 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 61.1.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
+<h2 id="3、混合式防火墙"><a href="#3、混合式防火墙" class="headerlink" title="3、混合式防火墙"></a>3、混合式防火墙</h2><p>作业：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pkavvllj30wu0igtam.jpg" alt="/img"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/08/21/GNS3/">防火墙与VPN</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2019年08月21日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年08月24日 - 16时41分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/08/21/GNS3/" title="防火墙与VPN">http://yoursite.com/2019/08/21/GNS3/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/08/21/GNS3/　　作者: John Doe" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/08/21/08-21PPP协议及验证/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          PPP协议及验证、Qos
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2019/08/21/防火墙/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">防火墙</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、防火墙（Firewall）"><span class="toc-number">1.</span> <span class="toc-text">一、防火墙（Firewall）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、什么是防火墙"><span class="toc-number">1.1.</span> <span class="toc-text">1、什么是防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、部署位置"><span class="toc-number">1.2.</span> <span class="toc-text">2、部署位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、部署方式"><span class="toc-number">1.3.</span> <span class="toc-text">3、部署方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、功能"><span class="toc-number">1.4.</span> <span class="toc-text">4、功能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、VPN"><span class="toc-number">2.</span> <span class="toc-text">二、VPN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、L2TP-VPN"><span class="toc-number">2.1.</span> <span class="toc-text">1、L2TP VPN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、PPTP-VPN"><span class="toc-number">2.2.</span> <span class="toc-text">2、PPTP-VPN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、IPsec-VPN"><span class="toc-number">2.3.</span> <span class="toc-text">3、IPsec-VPN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、GRE-VPN"><span class="toc-number">2.4.</span> <span class="toc-text">4、GRE VPN</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、防火墙的配置"><span class="toc-number">3.</span> <span class="toc-text">三、防火墙的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、路由模式防火墙配置"><span class="toc-number">3.1.</span> <span class="toc-text">1、路由模式防火墙配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、透明式防火墙"><span class="toc-number">3.2.</span> <span class="toc-text">2、透明式防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、混合式防火墙"><span class="toc-number">3.3.</span> <span class="toc-text">3、混合式防火墙</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/08/21/08-21PPP协议及验证/" title="上一篇: PPP协议及验证、Qos">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2019/08/21/防火墙/" title="下一篇: 防火墙">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2025/08/20/网络地址转换NAT/">网络地址转换NAT</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/23/VPN/">VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/GNS3/">防火墙与VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/防火墙/">防火墙</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/09/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/30/CSRF/">CSRF漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/25/学习前端/">初识前端</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
