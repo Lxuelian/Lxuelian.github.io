@@ -9,13 +9,13 @@
   
   <title>网络地址转换NAT | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="网络地址转换（NAT）工作原理  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间  NAT适用于以下情况： 1 需要连接到INTERNET，但主机没有全局唯一的IP地址； 2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址； 3 需要合并两个使用相同编址方案的内联网； 且N">
+  <meta name="description" content="网络地址转换（NAT）什么是NAT一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。 NAT技术设计初衷 增加私有组织的可用地址空间 解决现有私有网络接入的IP地址编号问题 NAT的优缺点优点 管理方便并且节约IP地址资源 隐藏内部 IP 地址信息 可用于实现网络负载均衡 缺点 外部应用程序却不能方便地与 NAT 网关后面的应">
 <meta name="keywords" content="NAT 网络地址转换">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络地址转换NAT">
 <meta property="og:url" content="http://yoursite.com/2025/08/20/网络地址转换NAT/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="网络地址转换（NAT）工作原理  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间  NAT适用于以下情况： 1 需要连接到INTERNET，但主机没有全局唯一的IP地址； 2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址； 3 需要合并两个使用相同编址方案的内联网； 且N">
+<meta property="og:description" content="网络地址转换（NAT）什么是NAT一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。 NAT技术设计初衷 增加私有组织的可用地址空间 解决现有私有网络接入的IP地址编号问题 NAT的优缺点优点 管理方便并且节约IP地址资源 隐藏内部 IP 地址信息 可用于实现网络负载均衡 缺点 外部应用程序却不能方便地与 NAT 网关后面的应">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg">
@@ -29,10 +29,10 @@
 <meta property="og:image" content="c:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566113573.png">
 <meta property="og:image" content="c:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567476212.png">
 <meta property="og:image" content="c:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567687190.png">
-<meta property="og:updated_time" content="2019-08-24T08:32:54.874Z">
+<meta property="og:updated_time" content="2019-08-24T08:58:12.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络地址转换NAT">
-<meta name="twitter:description" content="网络地址转换（NAT）工作原理  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间  NAT适用于以下情况： 1 需要连接到INTERNET，但主机没有全局唯一的IP地址； 2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址； 3 需要合并两个使用相同编址方案的内联网； 且N">
+<meta name="twitter:description" content="网络地址转换（NAT）什么是NAT一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。 NAT技术设计初衷 增加私有组织的可用地址空间 解决现有私有网络接入的IP地址编号问题 NAT的优缺点优点 管理方便并且节约IP地址资源 隐藏内部 IP 地址信息 可用于实现网络负载均衡 缺点 外部应用程序却不能方便地与 NAT 网关后面的应">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -328,14 +328,24 @@
           
         <a id="more"></a>
 
-<h2 id="网络地址转换（NAT）"><a href="#网络地址转换（NAT）" class="headerlink" title="网络地址转换（NAT）"></a>网络地址转换（NAT）</h2><h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间</p>
+<h2 id="网络地址转换（NAT）"><a href="#网络地址转换（NAT）" class="headerlink" title="网络地址转换（NAT）"></a>网络地址转换（NAT）</h2><h4 id="什么是NAT"><a href="#什么是NAT" class="headerlink" title="什么是NAT"></a>什么是NAT</h4><p>一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。</p>
+<p>NAT技术设计初衷</p>
+<p>增加私有组织的可用地址空间</p>
+<p>解决现有私有网络接入的IP地址编号问题</p>
+<h4 id="NAT的优缺点"><a href="#NAT的优缺点" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h4><p>优点</p>
+<p>管理方便并且节约IP地址资源</p>
+<p>隐藏内部 IP 地址信息</p>
+<p>可用于实现网络负载均衡</p>
+<p>缺点</p>
+<p>外部应用程序却不能方便地与 NAT 网关后面的应用程序联系。 </p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间</p>
 <p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg" alt="/img"></p>
 <p><strong>NAT适用于以下情况</strong>：</p>
 <p>1 需要连接到INTERNET，但主机没有全局唯一的IP地址；</p>
 <p>2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址；</p>
 <p>3 需要合并两个使用相同编址方案的内联网；</p>
 <p>且NAT通常用于边界路由器；</p>
-<h3 id="NAT的优缺点"><a href="#NAT的优缺点" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h3><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg" alt="/img"></p>
+<h3 id="NAT的优缺点-1"><a href="#NAT的优缺点-1" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h3><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg" alt="/img"></p>
 <p>最明显的优点：能够节省合法的注册地址，这也是IPv4地址至今未耗尽的原因；将局域网隐藏在公用网络之中，增加网络的安全性；</p>
 <h3 id="网络地址转换类型"><a href="#网络地址转换类型" class="headerlink" title="网络地址转换类型"></a>网络地址转换类型</h3><h4 id="静态NAT"><a href="#静态NAT" class="headerlink" title="静态NAT"></a>静态NAT</h4><p>这种NAT能够在本地地址和全局地址之间进行一对一映射。即使用静态NAT时，必须为网络中的每台主机提供一个公有因特网IP地址。</p>
 <p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g685q62wu8j30jw0e8dhh.jpg" alt="/img"></p>
@@ -418,7 +428,7 @@
         <p><span>本文标题:</span><a  href="/2025/08/20/网络地址转换NAT/">网络地址转换NAT</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
         <p><span>发布时间:</span>2025年08月20日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年08月24日 - 16时32分</p>
+        <p><span>最后更新:</span>2019年08月24日 - 16时58分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2025/08/20/网络地址转换NAT/" title="网络地址转换NAT">http://yoursite.com/2025/08/20/网络地址转换NAT/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2025/08/20/网络地址转换NAT/　　作者: John Doe" title=""></span>
@@ -446,7 +456,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网络地址转换（NAT）"><span class="toc-number">1.</span> <span class="toc-text">网络地址转换（NAT）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#工作原理"><span class="toc-number">1.0.1.</span> <span class="toc-text">工作原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAT的优缺点"><span class="toc-number">1.1.</span> <span class="toc-text">NAT的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络地址转换类型"><span class="toc-number">1.2.</span> <span class="toc-text">网络地址转换类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#静态NAT"><span class="toc-number">1.2.1.</span> <span class="toc-text">静态NAT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态NAT"><span class="toc-number">1.2.2.</span> <span class="toc-text">动态NAT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT重载"><span class="toc-number">1.2.3.</span> <span class="toc-text">NAT重载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT术语"><span class="toc-number">1.2.4.</span> <span class="toc-text">NAT术语</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态NAT配置"><span class="toc-number">1.3.</span> <span class="toc-text">静态NAT配置</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网络地址转换（NAT）"><span class="toc-number">1.</span> <span class="toc-text">网络地址转换（NAT）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是NAT"><span class="toc-number">1.0.1.</span> <span class="toc-text">什么是NAT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT的优缺点"><span class="toc-number">1.0.2.</span> <span class="toc-text">NAT的优缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工作原理"><span class="toc-number">1.0.3.</span> <span class="toc-text">工作原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAT的优缺点-1"><span class="toc-number">1.1.</span> <span class="toc-text">NAT的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络地址转换类型"><span class="toc-number">1.2.</span> <span class="toc-text">网络地址转换类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#静态NAT"><span class="toc-number">1.2.1.</span> <span class="toc-text">静态NAT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态NAT"><span class="toc-number">1.2.2.</span> <span class="toc-text">动态NAT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT重载"><span class="toc-number">1.2.3.</span> <span class="toc-text">NAT重载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT术语"><span class="toc-number">1.2.4.</span> <span class="toc-text">NAT术语</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态NAT配置"><span class="toc-number">1.3.</span> <span class="toc-text">静态NAT配置</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {

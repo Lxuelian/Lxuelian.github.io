@@ -304,14 +304,24 @@
           
         <a id="more"></a>
 
-<h2 id="网络地址转换（NAT）"><a href="#网络地址转换（NAT）" class="headerlink" title="网络地址转换（NAT）"></a>网络地址转换（NAT）</h2><h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间</p>
+<h2 id="网络地址转换（NAT）"><a href="#网络地址转换（NAT）" class="headerlink" title="网络地址转换（NAT）"></a>网络地址转换（NAT）</h2><h4 id="什么是NAT"><a href="#什么是NAT" class="headerlink" title="什么是NAT"></a>什么是NAT</h4><p>一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。</p>
+<p>NAT技术设计初衷</p>
+<p>增加私有组织的可用地址空间</p>
+<p>解决现有私有网络接入的IP地址编号问题</p>
+<h4 id="NAT的优缺点"><a href="#NAT的优缺点" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h4><p>优点</p>
+<p>管理方便并且节约IP地址资源</p>
+<p>隐藏内部 IP 地址信息</p>
+<p>可用于实现网络负载均衡</p>
+<p>缺点</p>
+<p>外部应用程序却不能方便地与 NAT 网关后面的应用程序联系。 </p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间</p>
 <p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg" alt="/img"></p>
 <p><strong>NAT适用于以下情况</strong>：</p>
 <p>1 需要连接到INTERNET，但主机没有全局唯一的IP地址；</p>
 <p>2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址；</p>
 <p>3 需要合并两个使用相同编址方案的内联网；</p>
 <p>且NAT通常用于边界路由器；</p>
-<h3 id="NAT的优缺点"><a href="#NAT的优缺点" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h3><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg" alt="/img"></p>
+<h3 id="NAT的优缺点-1"><a href="#NAT的优缺点-1" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h3><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg" alt="/img"></p>
 <p>最明显的优点：能够节省合法的注册地址，这也是IPv4地址至今未耗尽的原因；将局域网隐藏在公用网络之中，增加网络的安全性；</p>
 <h3 id="网络地址转换类型"><a href="#网络地址转换类型" class="headerlink" title="网络地址转换类型"></a>网络地址转换类型</h3><h4 id="静态NAT"><a href="#静态NAT" class="headerlink" title="静态NAT"></a>静态NAT</h4><p>这种NAT能够在本地地址和全局地址之间进行一对一映射。即使用静态NAT时，必须为网络中的每台主机提供一个公有因特网IP地址。</p>
 <p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g685q62wu8j30jw0e8dhh.jpg" alt="/img"></p>
@@ -806,9 +816,16 @@
 <p>它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。 </p>
 <p>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部网络的安全。 </p>
 <h2 id="2、部署位置"><a href="#2、部署位置" class="headerlink" title="2、部署位置"></a>2、部署位置</h2><p>1、可信网络与不可信网络之间<br>2、不同安全级别网络之间<br>3、两个需要隔离的区域之间</p>
-<h2 id="3、部署方式"><a href="#3、部署方式" class="headerlink" title="3、部署方式"></a>3、部署方式</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
+<h2 id="3、部署方式（1）"><a href="#3、部署方式（1）" class="headerlink" title="3、部署方式（1）"></a>3、部署方式（1）</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
+<h2 id="3、部署方式（2）"><a href="#3、部署方式（2）" class="headerlink" title="3、部署方式（2）"></a>3、部署方式（2）</h2><p>路由模式</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ave2hxubj30n109zq47.jpg" alt="/img"></p>
+<p>透明模式</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6aveg0nycj30md09p3zs.jpg" alt="/img"></p>
+<p>混合模式</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6avestho2j30mx0dh40h.jpg" alt="/img"></p>
 <h2 id="4、功能"><a href="#4、功能" class="headerlink" title="4、功能"></a>4、功能</h2><p>1、入侵检测功能<br>2、网络地址转换功能<br>3、网络操作的审计监控功能<br>4、强化网络安全服务</p>
-<h1 id="二、防火墙的配置"><a href="#二、防火墙的配置" class="headerlink" title="二、防火墙的配置"></a>二、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
+<h1 id="二、防火墙的配置"><a href="#二、防火墙的配置" class="headerlink" title="二、防火墙的配置"></a>二、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p>形式：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
 <p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg" alt="/img"></p>
 <p>这里可以使用虚拟机 也可以Tools&gt;VPCS 但是注意序号的差别并且点进去之后不可以点击X 不然所作的配置失效</p>
 <p>虚拟机：</p>
