@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>组策略与安全设置 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="组策略与安全设置 组策略是一个能够让系统管理员控制管理用户工作环境的技术，包含计算机配置与用户配置两部份。其中计算机配置只对计算机环境有影响，而用户配置只对用户工作环境有影响。可以通过以下两种途径来设置组策略： 本地计算机策略：用来设置某一计算机的策略，这个策略的计算机配置只会被应用到这台计算机，而用户配置会被应用到在此计算机登录的所有用户。 域内的策略：在域内可以针对站点、域或组织单元来设置">
+<meta name="keywords" content="系统安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组策略与安全设置">
+<meta property="og:url" content="http://yoursite.com/2019/08/28/系统安全/本地计算机策略配置案例/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="组策略与安全设置 组策略是一个能够让系统管理员控制管理用户工作环境的技术，包含计算机配置与用户配置两部份。其中计算机配置只对计算机环境有影响，而用户配置只对用户工作环境有影响。可以通过以下两种途径来设置组策略： 本地计算机策略：用来设置某一计算机的策略，这个策略的计算机配置只会被应用到这台计算机，而用户配置会被应用到在此计算机登录的所有用户。 域内的策略：在域内可以针对站点、域或组织单元来设置">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft84lxctj30c90b1t96.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft8hrs72j30da076t8w.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft8qgknkj30fe06fdge.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft990u70j30ii03gaaa.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft9h894dj30c403twem.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft9o9op6j30c803bt8n.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftauhjk5j308207hq33.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftc3c4p6j30fd03wwem.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftccxe5jj30980630su.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftcqox63j308v05zwel.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftd36quij30fe04u74c.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftd9v4l5j30fe05idfy.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftdhdx55j30bx050dfy.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftdrjnyjj30a7056weq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fsy8npdqj30bu07mq38.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fsyfxwvjj30c20cft98.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fsz8l4e9j308q08ydg2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fszfakevj309t076jrg.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fszrhv6kj30a507h0sy.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft06i3xnj30be06sjro.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft10xym5j308c08it91.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft186u3bj30b305xjrf.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft1h3oh8j30a805vmx9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft1umo7zj308o08qwer.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft20vq8kj30b808o0t1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft2jd3b1j30m204umxf.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft2ryvs8j30e00640sv.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft2ybo28j30af04eq2s.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft377vpdj30b208pwew.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft3ep884j30h004sq31.jpg">
+<meta property="og:updated_time" content="2019-08-28T15:39:33.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="组策略与安全设置">
+<meta name="twitter:description" content="组策略与安全设置 组策略是一个能够让系统管理员控制管理用户工作环境的技术，包含计算机配置与用户配置两部份。其中计算机配置只对计算机环境有影响，而用户配置只对用户工作环境有影响。可以通过以下两种途径来设置组策略： 本地计算机策略：用来设置某一计算机的策略，这个策略的计算机配置只会被应用到这台计算机，而用户配置会被应用到在此计算机登录的所有用户。 域内的策略：在域内可以针对站点、域或组织单元来设置">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft84lxctj30c90b1t96.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">John Doe</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/系统安全/" style="font-size: 15px;">系统安全</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-系统安全/本地计算机策略配置案例" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/08/28/系统安全/本地计算机策略配置案例/" class="article-date">
+      <time datetime="2019-08-27T16:00:00.000Z" itemprop="datePublished">2019-08-28</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      组策略与安全设置
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<p><strong>组策略与安全设置</strong></p>
+<p>组策略是一个能够让系统管理员控制管理用户工作环境的技术，包含计算机配置与用户配置两部份。其中计算机配置只对计算机环境有影响，而用户配置只对用户工作环境有影响。可以通过以下两种途径来设置组策略：</p>
+<p><strong>本地计算机策略：</strong>用来设置某一计算机的策略，这个策略的计算机配置只会被应用到这台计算机，而用户配置会被应用到在此计算机登录的所有用户。</p>
+<p><strong>域内的策略：</strong>在域内可以针对站点、域或组织单元来设置组策略，其中的域组策略内的设置会被应用到域内所有计算机与用户，而组织单元的组策略会被应用到该组织单元内的所有计算机与用户。</p>
+<p><strong>对于加入到域的计算机来说，如果两者有冲突，以域或组织单元组策略的设置优先，本地策略无效。</strong></p>
+<h1 id="一、-本地计算机策略配置案例"><a href="#一、-本地计算机策略配置案例" class="headerlink" title="一、**本地计算机策略配置案例**"></a><strong>一、**</strong>本地计算机策略配置案例**</h1><h2 id="1-、计算机配置"><a href="#1-、计算机配置" class="headerlink" title="1**、计算机配置**"></a><strong>1**</strong>、计算机配置**</h2><h3 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a><strong>案例1</strong></h3><p>****当要将windows server 2008计算机关机时，系统会要求提供关机理由。通过本地策略设置关闭提供关机理由。在开机时不显示管理您的服务器页</p>
+<p><strong>操作流程：</strong>开始—运行—gpedit.msc （本地组策略编辑器）—-计算机配置—管理模板—-系统—</p>
+<p>显示关闭事件跟踪程序—已禁用</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft84lxctj30c90b1t96.jpg" alt="\img"></p>
+<p>开机之后显示的：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft8hrs72j30da076t8w.jpg" alt="\img"></p>
+<h3 id="案例2：开机不显示三键"><a href="#案例2：开机不显示三键" class="headerlink" title="案例2：开机不显示三键"></a><strong>案例2：</strong>开机不显示三键</h3><p><strong>操作流程：</strong>计算机配置–&gt;Windows设置–&gt;安全设置–&gt;本地策略，这时在本地策略下面可见到有“安全选项”，点击“安全选项”在右侧的框内找到“交互式登录:无须按CTRL+ALT+DEL”</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft8qgknkj30fe06fdge.jpg" alt="\img"> </p>
+<h2 id="2、-用户配置"><a href="#2、-用户配置" class="headerlink" title="2、**用户配置**"></a><strong>2、**</strong>用户配置**</h2><h3 id="案例1：删除开始菜单中的关机、重启、睡眠、休眠"><a href="#案例1：删除开始菜单中的关机、重启、睡眠、休眠" class="headerlink" title="案例1：删除开始菜单中的关机、重启、睡眠、休眠"></a><strong>案例1：</strong>删除开始菜单中的关机、重启、睡眠、休眠</h3><p><strong>操作流程：</strong>用户配置–管理模板–开始菜单和工具栏–双击右边的删除并阻止访问关机、重启、睡眠、休眠—选择已启用</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft990u70j30ii03gaaa.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft9h894dj30c403twem.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft9o9op6j30c803bt8n.jpg" alt="\img"></p>
+<h3 id="案例2：删除IE因特网选项的安全与连接选项卡"><a href="#案例2：删除IE因特网选项的安全与连接选项卡" class="headerlink" title="案例2：删除IE因特网选项的安全与连接选项卡"></a><strong>案例2：</strong>删除IE因特网选项的安全与连接选项卡</h3><p><strong>操作流程：</strong>用户配置–管理模板–windows组件–IE–internet控制面板–</p>
+<p>​          分别双击禁用连接页与禁用安全页—已启用</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftauhjk5j308207hq33.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftc3c4p6j30fd03wwem.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftccxe5jj30980630su.jpg" alt="\img"></p>
+<p>​                    <img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftcqox63j308v05zwel.jpg" alt="\img">少了安全和连接</p>
+<h3 id="案例3：隐藏windows-防火墙"><a href="#案例3：隐藏windows-防火墙" class="headerlink" title="案例3：隐藏windows 防火墙"></a><strong>案例3：</strong>隐藏windows 防火墙</h3><p><strong>操作流程：</strong>用户配置–管理模板–控制面板–隐藏指定的控制面板–已启用–显示–添加–输入：windows 防火墙–单击三次确定</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftd36quij30fe04u74c.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftd9v4l5j30fe05idfy.jpg" alt="\img"></p>
+<h1 id="二、-域组策略配置案例"><a href="#二、-域组策略配置案例" class="headerlink" title="二、**域组策略配置案例**"></a><strong>二、**</strong>域组策略配置案例**</h1><h1 id="三、"><a href="#三、" class="headerlink" title="三、"></a><strong>三、</strong><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftdhdx55j30bx050dfy.jpg" alt="\img"></h1><h2 id="案例1：禁止生产部用户运行IE浏览器，生产部经理除外。"><a href="#案例1：禁止生产部用户运行IE浏览器，生产部经理除外。" class="headerlink" title="案例1：禁止生产部用户运行IE浏览器，生产部经理除外。"></a><strong>案例1：</strong>禁止生产部用户运行IE浏览器，生产部经理除外。</h2><p><strong>操作流程：</strong>用户配置–管理模板–系统–不要运行指定的windows应用程序–已启用–显示–添加–输入：iexplore.exe–单击3次确定</p>
+<p>​          <strong>注意：**</strong>阻止继承与强制**</p>
+<p>​          组策略例外排除：委派–高级–添加用户–拒绝读取、应用策略</p>
+<h1 id="四、-本地安全策略配置案例"><a href="#四、-本地安全策略配置案例" class="headerlink" title="四、**本地安全策略配置案例**"></a><strong>四、**</strong>本地安全策略配置案例**</h1><p>   <strong>开始–管理工具–本地安全策略</strong></p>
+<h2 id="1-、帐户策略的设置-：密码策略、帐户锁定策略"><a href="#1-、帐户策略的设置-：密码策略、帐户锁定策略" class="headerlink" title="1**、帐户策略的设置**：密码策略、帐户锁定策略"></a><strong>1**</strong>、帐户策略的设置**：密码策略、帐户锁定策略</h2><h2 id="2-、本地策略："><a href="#2-、本地策略：" class="headerlink" title="2**、本地策略：**"></a><strong>2**</strong>、本地策略：**</h2><p><strong>（1）用户权限分配：</strong>允许本地登录、拒绝本地登录、允许用户直接在本台计算机上按ctrl+alt+del键、</p>
+<p>将工作站添加到域、关闭系统、更改系统时间…..</p>
+<p>（2）<strong>安全选项：</strong>交互登录：无须按ctrl+alt+del键、不显示最后的用户名、提示用户密码过期前更改密码、试图登录的用户的消息文本、试图登录的用户的消息标题…..</p>
+<h1 id="五、-域与域控制器安全策略"><a href="#五、-域与域控制器安全策略" class="headerlink" title="五、**域与域控制器安全策略**"></a><strong>五、**</strong>域与域控制器安全策略**</h1><p><strong>开始–管理工具–组策略管理</strong></p>
+<h2 id="1-、域安全策略的设置"><a href="#1-、域安全策略的设置" class="headerlink" title="1**、域安全策略的设置**"></a><strong>1**</strong>、域安全策略的设置**</h2><p>（1）本地安全策略与域安全策略有冲突，以域安全策略优先，本地设置无效。</p>
+<p>（2）本地计算机何时才会应用在域策略内有变动的设置呢？</p>
+<p>本地安全策略有变动时；</p>
+<p>本地计算机重启时；</p>
+<p>DC每5分钟自动应用；</p>
+<p>不是DC每隔90-120分钟会自动应用；</p>
+<p>所有计算机每隔16小时强制应用，即使无更改。</p>
+<p>手动应用域策略：gpupdate或gpupdate /force</p>
+<h2 id="2-、域控制器安全策略的设置"><a href="#2-、域控制器安全策略的设置" class="headerlink" title="2**、域控制器安全策略的设置**"></a><strong>2**</strong>、域控制器安全策略的设置**</h2><p>只影响到位于Domain Controllers内的域控制器，不影响其他组织单元或容器内的计算机和用户</p>
+<p>所有位于Domain Controllers内的DC都会受域控制器安全策略的影响。</p>
+<p>域安全策略与域控制器安全策略冲突时，对于DC来说域控制器安全策略优先，域安全策略无效。</p>
+<p>域控制器安全策略的设置必须要应用到域控制器后，对DC才生效。</p>
+<h1 id="六、-组策略首选项"><a href="#六、-组策略首选项" class="headerlink" title="六、**组策略首选项**"></a><strong>六、**</strong>组策略首选项**</h1><p>​                            组策略内的设置分为，策略与首选项，区别是：</p>
+<p>​     只有域内的组策略才有首选项功能，本地计算机策略无此功能。</p>
+<p>​     首选项非强制性，客户端可更改设置，策略设置是强制性，客户端无法更改。</p>
+<p>​     策略设置若要在客户端发生作用，客户计算机的操作系统或应用程序必须支持组策略，首选项不需要。</p>
+<p>​     若要筛选策略设置，必须针对整个GPO来筛选，而首选项可以针对单一设置项目来设置。</p>
+<h2 id="案例1-1"><a href="#案例1-1" class="headerlink" title="案例1"></a><strong>案例1</strong></h2><p>业务部所有用户登录时，其磁盘Z：会自动连接到\server\tools共享文件夹；另外还要使用筛选功能来设置只有业务部的用户paul登录时，其磁盘Y:会连接到\server\database共享文件夹，而业务部的其他用户登录时不会Y：磁盘。</p>
+<p><strong>操作流程：</strong>组策略–用户配置–首选项–windows设置–右击驱动器映射–新建驱动器映射–操作：更新–位置：共享文件夹的路径–重新连接：打钩–驱动器号：Z—公用—在登录用户的安全上下文件中运行（用户策略选项）</p>
+<p>​           组策略–用户配置–首选项–windows设置–右击驱动器映射–新建驱动器映射–操作：更瓣–位置：共享文件夹的路径–重新连接：打钩–驱动器号：Y—公用—在登录用户的安全上下文件中运行（用户策略选项）,项目级别目标—目标—新建项目–用户</p>
+<h2 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a><strong>案例2</strong></h2><p>让业务部用户登录时会自动连接网络打印机</p>
+<p><strong>操作流程：</strong>用户配置–首选项–控制面板设置–右击打印机–新建–共享打印机    </p>
+<h1 id="七、-审核资源的使用"><a href="#七、-审核资源的使用" class="headerlink" title="七、**审核资源的使用**"></a><strong>七、**</strong>审核资源的使用**</h1><p>通过审核（auditing)可以让系统管理员来跟踪是否有用户访问计算机内的资源、跟踪计算机运行情况等。审核工作通常需要经过以下两个步骤：</p>
+<p><strong>启用审核策略：</strong>Administrators成员才有权限</p>
+<p><strong>设置将要审核的资源：</strong>必须有管理审核及安全日志权限的用户才可以审核资源，默认是 Administrators成员才有此权限。</p>
+<p><strong>审核策略的设置：</strong>本地安全策略–安全设置–本地策略–审核策略</p>
+<p><strong>查看安全日志文件：</strong>管理工具–事件查看器–windows日志–安全</p>
+<p>​                           <strong>案例1：审核登录事件</strong></p>
+<p><strong>案例2：审核文件的访问行为</strong></p>
+<p><strong>案例3：审核打印机的访问行为</strong></p>
+<p><strong>案例4：审核目录访问行为</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ftdrjnyjj30a7056weq.jpg" alt="\img"></p>
+<h1 id="八、-任务"><a href="#八、-任务" class="headerlink" title="八、 任务"></a>八、 任务</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
+<li><p>域用户登录桌面后自动加入本地administrators管理员组</p>
+</li>
+<li><p>域用户登录桌面后自动禁用本地guest来宾用户</p>
+</li>
+<li><p>域用户登录桌面后控制面板隐藏用户账户</p>
+</li>
+<li><p>域用户登录桌面后自动创建公司共享快捷方式</p>
+</li>
+<li><p>域用户登录桌面后自动创建百度网页快捷方式URL</p>
+</li>
+<li><p>域用户登录桌面后自动创建驱动器映射公司共享</p>
+</li>
+<li><p>域用户登录桌面后禁用计算管理的本地用户和组</p>
+</li>
+<li><p>域用户登录桌面后自动推送批处理安装压缩包软件</p>
+</li>
+<li><p>域用户登录桌面后提示组策略限制安装QQ软件</p>
+</li>
+</ol>
+<h2 id="参考答案："><a href="#参考答案：" class="headerlink" title="参考答案："></a><strong>参考答案：</strong></h2><p>1、域用户登录桌面后自动加入本地administrators管理员组</p>
+<p>编辑组策略–用户配置–首选项–控制面板设置–本地用户和组–新建–本地组。</p>
+<p>   本地组–操作选择更新–组名选择Administrators(内置)–选择添加当前用户–确定</p>
+<p>域控服务器运行输入 gpupdate /force刷新服务器组策略，客户端需要注销系统后使用域用户登录</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fsy8npdqj30bu07mq38.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fsyfxwvjj30c20cft98.jpg" alt="\img"></p>
+<p>2、域用户登录桌面后自动禁用本地guest来宾用户</p>
+<p>编辑组策略– 用户配置–首选项–控制面板设置–本地用户和组–新建 –本地用户</p>
+<p>本地用户 –操作选择更新 –用户名选择guest(内置) –选择账户已禁用 –确定。</p>
+<p>域控服务器运行输入 gpupdate /force刷新服务器组策略，客户端需要注销系统后使用域用户登录</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fsz8l4e9j308q08ydg2.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fszfakevj309t076jrg.jpg" alt="\img"></p>
+<p>3、 域用户登录桌面后控制面板隐藏用户账户</p>
+<p>编辑组策略 —- 用户配置 —- 管理模板 —- 控制面板 —- 双击打开 隐藏的指定的“控制面板”项。</p>
+<p>选择已启用 —- 显示 —- 输入 Microsoft.UserAccounts —- 确定 —- 确定。</p>
+<p>域控服务器运行输入 gpupdate /force刷新服务器组策略，客户端需要注销系统后使用域用户登录</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6fszrhv6kj30a507h0sy.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft06i3xnj30be06sjro.jpg" alt="\img"></p>
+<p>4、域用户登录桌面后自动创建公司共享快捷方式</p>
+<p> 编辑组策略 —- 用户配置 —- Windows 设置 —- 快捷方式 —– 新建 —– 快捷方式。</p>
+<p>在域控服务器创建一个共享文件夹2345，目标路径填写\192.168.10.30\2345 域控服务器的共享文件夹。</p>
+<p>域控服务器运行输入 gpupdate /force刷新服务器组策略，客户端需要注销系统后使用域用户登录</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft10xym5j308c08it91.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft186u3bj30b305xjrf.jpg" alt="\img"></p>
+<p>5、域用户登录桌面后自动创建百度网页快捷方式URL</p>
+<p>编辑组策略 —- 用户配置 —-  首选项 —- Windows 设置 —- 快捷方式 —- 新建  —- 快捷方式。</p>
+<p>操作选择创建–名称自定义–目标类型选择URL–位置桌面 –目标URL输入<a href="http://www.baidu.com/" target="_blank" rel="noopener">www.baidu.com</a> –图标文件路径自定义选择–确定。</p>
+<p>域控服务器运行输入 gpupdate /force刷新服务器组策略，客户端需要注销系统后使用域用户登录</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft1h3oh8j30a805vmx9.jpg" alt="\img"></p>
+<p>6、域用户登录桌面后自动创建驱动器映射公司共享</p>
+<p>编辑组策略 —- 用户配置 —-  首选项 —- Windows 设置 —- 驱动器映射 —- 新建 —- 映射驱动器</p>
+<p>常规 —- 操作选择创建  —- 位置输入公司共享服务器地址 <a href="file://192.168.10.30/2345" target="_blank" rel="noopener">\192.168.10.30\2345</a>  驱动器号自定义 —- 隐藏/显示此驱动器选择显示此驱动器 —- 确定。</p>
+<p>域控服务器运行输入 gpupdate /force刷新服务器组策略，客户端需要注销系统后使用域用户登录</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft1umo7zj308o08qwer.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft20vq8kj30b808o0t1.jpg" alt="\img"></p>
+<p>7、域用户登录桌面后禁用计算管理的本地用户和组</p>
+<p>域用户登录桌面后禁用计算管理的本地用户和组编辑组策略 —- 用户配置 —- 策略 —- 管理模板 —- Windows 组件 —- Microsoft管理控制台 — 受限的/许可</p>
+<p>的管理单元 —- 本地用户和组。</p>
+<p>选择已禁用 —- 确定</p>
+<p>域控服务器运行输入 gpupdate /force刷新服务器组策略，客户端需要注销系统后使用域用户登录</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft2jd3b1j30m204umxf.jpg" alt="\img"></p>
+<p>8、域用户登录桌面后自动推送批处理安装压缩包软件</p>
+<p>编辑组策略 —- 选择用户配置—策略 —- Windows设置 — 脚本(登录/注销) —- 双击打开登录</p>
+<p>点击显示文件 —- 把桌面编辑好的test.bat批处理复制到组组策略脚本指定的文件夹里面。(test.bat批处理 start <a href="file://192.168.10.30/2345/360压缩包.exe" target="_blank" rel="noopener">\192.168.10.30\2345\360压缩包.exe)</a>)</p>
+<p>域控服务器运行输入 gpupdate /force刷新服务器组策略，客户端需要注销系统后使用域用户登录，实现功能如下图所示。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft2ryvs8j30e00640sv.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft2ybo28j30af04eq2s.jpg" alt="\img"></p>
+<p>9、域用户登录桌面后提示组策略限制安装QQ软件</p>
+<p>编辑策略– 用户配置– –策略–Windows 设置– 安全设置–软件限制策略—右键其它规则–选择新建哈希规则 。</p>
+<p>选择浏览 — 选择要限制的软件 —- 打开 —- 安全级别选择：不允许 —– 确定。</p>
+<p>域控服务器运行输入 gpupdate /force刷新服务器组策略，客户端需要注销系统后使用域用户登录</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft377vpdj30b208pwew.jpg" alt="\img"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ft3ep884j30h004sq31.jpg" alt="\img"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/08/28/系统安全/本地计算机策略配置案例/">组策略与安全设置</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2019年08月28日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年08月28日 - 23时39分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/08/28/系统安全/本地计算机策略配置案例/" title="组策略与安全设置">http://yoursite.com/2019/08/28/系统安全/本地计算机策略配置案例/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/08/28/系统安全/本地计算机策略配置案例/　　作者: John Doe" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a  href="/2019/08/26/windows服务器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Windows服务器</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、-本地计算机策略配置案例"><span class="toc-number">1.</span> <span class="toc-text">一、**本地计算机策略配置案例**</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-、计算机配置"><span class="toc-number">1.1.</span> <span class="toc-text">1**、计算机配置**</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#案例1"><span class="toc-number">1.1.1.</span> <span class="toc-text">案例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例2：开机不显示三键"><span class="toc-number">1.1.2.</span> <span class="toc-text">案例2：开机不显示三键</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、-用户配置"><span class="toc-number">1.2.</span> <span class="toc-text">2、**用户配置**</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#案例1：删除开始菜单中的关机、重启、睡眠、休眠"><span class="toc-number">1.2.1.</span> <span class="toc-text">案例1：删除开始菜单中的关机、重启、睡眠、休眠</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例2：删除IE因特网选项的安全与连接选项卡"><span class="toc-number">1.2.2.</span> <span class="toc-text">案例2：删除IE因特网选项的安全与连接选项卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例3：隐藏windows-防火墙"><span class="toc-number">1.2.3.</span> <span class="toc-text">案例3：隐藏windows 防火墙</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、-域组策略配置案例"><span class="toc-number">2.</span> <span class="toc-text">二、**域组策略配置案例**</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、"><span class="toc-number">3.</span> <span class="toc-text">三、</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#案例1：禁止生产部用户运行IE浏览器，生产部经理除外。"><span class="toc-number">3.1.</span> <span class="toc-text">案例1：禁止生产部用户运行IE浏览器，生产部经理除外。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、-本地安全策略配置案例"><span class="toc-number">4.</span> <span class="toc-text">四、**本地安全策略配置案例**</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-、帐户策略的设置-：密码策略、帐户锁定策略"><span class="toc-number">4.1.</span> <span class="toc-text">1**、帐户策略的设置**：密码策略、帐户锁定策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-、本地策略："><span class="toc-number">4.2.</span> <span class="toc-text">2**、本地策略：**</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、-域与域控制器安全策略"><span class="toc-number">5.</span> <span class="toc-text">五、**域与域控制器安全策略**</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-、域安全策略的设置"><span class="toc-number">5.1.</span> <span class="toc-text">1**、域安全策略的设置**</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-、域控制器安全策略的设置"><span class="toc-number">5.2.</span> <span class="toc-text">2**、域控制器安全策略的设置**</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、-组策略首选项"><span class="toc-number">6.</span> <span class="toc-text">六、**组策略首选项**</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#案例1-1"><span class="toc-number">6.1.</span> <span class="toc-text">案例1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例2"><span class="toc-number">6.2.</span> <span class="toc-text">案例2</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、-审核资源的使用"><span class="toc-number">7.</span> <span class="toc-text">七、**审核资源的使用**</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、-任务"><span class="toc-number">8.</span> <span class="toc-text">八、 任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">8.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考答案："><span class="toc-number">8.2.</span> <span class="toc-text">参考答案：</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2019/08/26/windows服务器/" title="下一篇: Windows服务器">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/08/28/系统安全/本地计算机策略配置案例/">组策略与安全设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/26/windows服务器/">Windows服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/23/VPN/">VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/GNS3/">防火墙与VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/防火墙/">防火墙</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/20/网络地址转换NAT/">网络地址转换NAT</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/30/CSRF/">CSRF漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/25/学习前端/">初识前端</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
