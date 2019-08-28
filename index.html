@@ -273,158 +273,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-网络地址转换NAT" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2025/08/20/网络地址转换NAT/" class="article-date">
-      <time datetime="2025-08-19T16:00:00.000Z" itemprop="datePublished">2025-08-20</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2025/08/20/网络地址转换NAT/">网络地址转换NAT</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <a id="more"></a>
-
-<h2 id="网络地址转换（NAT）"><a href="#网络地址转换（NAT）" class="headerlink" title="网络地址转换（NAT）"></a>网络地址转换（NAT）</h2><h4 id="什么是NAT"><a href="#什么是NAT" class="headerlink" title="什么是NAT"></a>什么是NAT</h4><p>一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。</p>
-<p>NAT技术设计初衷</p>
-<p>增加私有组织的可用地址空间</p>
-<p>解决现有私有网络接入的IP地址编号问题</p>
-<h4 id="NAT的优缺点"><a href="#NAT的优缺点" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h4><p>优点</p>
-<p>管理方便并且节约IP地址资源</p>
-<p>隐藏内部 IP 地址信息</p>
-<p>可用于实现网络负载均衡</p>
-<p>缺点</p>
-<p>外部应用程序却不能方便地与 NAT 网关后面的应用程序联系。 </p>
-<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间</p>
-<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg" alt="/img"></p>
-<p><strong>NAT适用于以下情况</strong>：</p>
-<p>1 需要连接到INTERNET，但主机没有全局唯一的IP地址；</p>
-<p>2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址；</p>
-<p>3 需要合并两个使用相同编址方案的内联网；</p>
-<p>且NAT通常用于边界路由器；</p>
-<h3 id="NAT的优缺点-1"><a href="#NAT的优缺点-1" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h3><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg" alt="/img"></p>
-<p>最明显的优点：能够节省合法的注册地址，这也是IPv4地址至今未耗尽的原因；将局域网隐藏在公用网络之中，增加网络的安全性；</p>
-<h3 id="网络地址转换类型"><a href="#网络地址转换类型" class="headerlink" title="网络地址转换类型"></a>网络地址转换类型</h3><h4 id="静态NAT"><a href="#静态NAT" class="headerlink" title="静态NAT"></a>静态NAT</h4><p>这种NAT能够在本地地址和全局地址之间进行一对一映射。即使用静态NAT时，必须为网络中的每台主机提供一个公有因特网IP地址。</p>
-<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g685q62wu8j30jw0e8dhh.jpg" alt="/img"></p>
-<h4 id="动态NAT"><a href="#动态NAT" class="headerlink" title="动态NAT"></a>动态NAT</h4><p>它能够将未注册的IP地址映射到注册IP地址池中的一个地址，无需配置静态路由器，使其将每个内部地址映射到一个外部地址，但必须有足够的公有因特网IP地址，让连接到因特网的主机都能够同时发送和接收分组。</p>
-<h4 id="NAT重载"><a href="#NAT重载" class="headerlink" title="NAT重载"></a>NAT重载</h4><p>也是动态NAT，它利用源端口将多个非注册的IP地址映射到一个注册IP地址，形成多对一。也被称为端口地址转换（PAT）。通过使用 PAT (NAT 重载)，只 使用一个全局 地址，就可将数千名用户连接到因特网，这是不是很酷?因特网 IP 地址之所以还未耗尽，真正的原因就在 使用了 NAT重载。</p>
-<h4 id="NAT术语"><a href="#NAT术语" class="headerlink" title="NAT术语"></a>NAT术语</h4><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yx0ca48j30l205amyl.jpg" alt="/img"></p>
-<p>对于用于 NAT 的地址，我们使用的术语很简单。 NAT 转换后的地址称为全局地址，这通常是因特网公有地址;但如果无需连接到因特网，则不需要公有地址。</p>
-<p>进行 NAT 转换前的地址称为本地地址。因此，内部本地地址是试图连接到因特网的主机的私有地址;而外部本地地址通常是与 ISP 相连的路由器接口的地址。后者通常是公有地址，主机发送的分组的源地址通常会转换为这种地址。</p>
-<p>内部本地地址将被转换为内部全局地址，而外部全局地址将成为目标地址。表 13-2 列出了各种 NAT术语。</p>
-<h3 id="静态NAT配置"><a href="#静态NAT配置" class="headerlink" title="静态NAT配置"></a>静态NAT配置</h3><p>示例图：<img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g673plhco0j30mq0bbdgy.jpg" alt="/img"></p>
-<p>实际拓扑图：</p>
-<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g674wcg0htj30od0dhaag.jpg" alt="/img"></p>
-<p>静态NAT：</p>
-<p>基本配置：</p>
-<p>加模块：</p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566558306805.png" alt="1566558306805"></p>
-<p>交换机配置：</p>
-<p>SW:</p>
-<p>SW1(config)#vlan 10</p>
-<p>SW1(config-vlan)#int vlan 10</p>
-<p>SW1(config-if)#exit</p>
-<p>SW1(config)#vlan 20</p>
-<p>SW1(config-vlan)#int vlan 20</p>
-<p>SW1(config-if)#exit</p>
-<p>把端口接入vlan </p>
-<p>SW1(config)#int f0/1</p>
-<p>SW1(config-if)#sw mo acc</p>
-<p>SW1(config-if)#sw acc vlan 10</p>
-<p>SW1(config-if)#no shutdown </p>
-<p>SW1(config-if)#exit</p>
-<p>SW1(config)#int f0/2</p>
-<p>SW1(config-if)#sw mo acc</p>
-<p>SW1(config-if)#sw acc vlan 20</p>
-<p>SW1(config-if)#no shutdown </p>
-<p>SW1(config)#int f0/3</p>
-<p>SW1(config-if)#sw mo trunk </p>
-<p>SW1(config-if)#no shutdown </p>
-<p>路由器配置:</p>
-<p>R1(config)#int f0/0.10</p>
-<p>R1(config-subif)#encapsulation dot1Q 10</p>
-<p>R1(config-subif)#ip add 192.168.0.254 255.255.255.0</p>
-<p>R1(config-subif)#no shutdown </p>
-<p>R1(config)#int f0/0.20</p>
-<p>R1(config-subif)#encapsulation dot1Q 20</p>
-<p>R1(config-subif)#ip add 192.168.1.254 255.255.255.0</p>
-<p>R1(config-subif)#no shutdown </p>
-<p>R1(config)#int f0/0</p>
-<p>R1(config-if)#no shutdown </p>
-<p>R1(config)#int s0/3/0</p>
-<p>R1(config-if)#ip add 61.1.1.1 255.255.255.0</p>
-<p>R1(config-if)#no shutdown </p>
-<p>R2(config)#int s0/3/0</p>
-<p>R2(config-if)#ip add 61.1.1.2 255.255.255.0 </p>
-<p>R2(config-if)#no shutdown </p>
-<p> R2(config)#int f0/0</p>
-<p>R2(config-if)#ip add 172.16.1.254 255.255.255.0</p>
-<p>R2(config-if)#no shutdown </p>
-<p>R1(config)#int f0/0.10<br>R1(config-subif)#ip nat inside<br>R1(config)#int f0/0.20<br>R1(config-subif)#ip nat inside </p>
-<p>R1(config)#ip route 172.16.1.0 255.255.255.0 61.1.1.2 //我在配置的时候就少了这句，然后找了好久好久才发现漏掉了这个，少了这句话服务器就找不到经过R2的下一跳路由，就ping不到PC2</p>
-<p>效果展示：</p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566565998981.png" alt="1566565998981"></p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566018310.png" alt="1566566018310"></p>
-<p>R1#debug ip nat</p>
-<p>R1#show ip nat translations </p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566113573.png" alt="1566566113573"></p>
-<p>最终实现效果：服务器可以访问外部网络的PC机，而外部网络不可以访问内部服务器，如果要内部网络可以访问外部网络，就加上一条静态的：ip nat inside source static 192.168.1.1  61.1.1.1 </p>
-<p>动态NAT：</p>
-<p>为了方便，动态nat是在静态的基础上做的，把之前写的ip nat inside source static 192.168.0.1 61.1.1.1 删掉就可以了</p>
-<p>核心配置：</p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567476212.png" alt="1566567476212"></p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567687190.png" alt="1566567687190"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NAT-网络地址转换/">NAT 网络地址转换</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-windows服务器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -942,6 +790,158 @@
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-网络地址转换NAT" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/08/20/网络地址转换NAT/" class="article-date">
+      <time datetime="2019-08-19T16:00:00.000Z" itemprop="datePublished">2019-08-20</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/08/20/网络地址转换NAT/">网络地址转换NAT</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<h2 id="网络地址转换（NAT）"><a href="#网络地址转换（NAT）" class="headerlink" title="网络地址转换（NAT）"></a>网络地址转换（NAT）</h2><h4 id="什么是NAT"><a href="#什么是NAT" class="headerlink" title="什么是NAT"></a>什么是NAT</h4><p>一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。</p>
+<p>NAT技术设计初衷</p>
+<p>增加私有组织的可用地址空间</p>
+<p>解决现有私有网络接入的IP地址编号问题</p>
+<h4 id="NAT的优缺点"><a href="#NAT的优缺点" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h4><p>优点</p>
+<p>管理方便并且节约IP地址资源</p>
+<p>隐藏内部 IP 地址信息</p>
+<p>可用于实现网络负载均衡</p>
+<p>缺点</p>
+<p>外部应用程序却不能方便地与 NAT 网关后面的应用程序联系。 </p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间</p>
+<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg" alt="/img"></p>
+<p><strong>NAT适用于以下情况</strong>：</p>
+<p>1 需要连接到INTERNET，但主机没有全局唯一的IP地址；</p>
+<p>2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址；</p>
+<p>3 需要合并两个使用相同编址方案的内联网；</p>
+<p>且NAT通常用于边界路由器；</p>
+<h3 id="NAT的优缺点-1"><a href="#NAT的优缺点-1" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h3><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg" alt="/img"></p>
+<p>最明显的优点：能够节省合法的注册地址，这也是IPv4地址至今未耗尽的原因；将局域网隐藏在公用网络之中，增加网络的安全性；</p>
+<h3 id="网络地址转换类型"><a href="#网络地址转换类型" class="headerlink" title="网络地址转换类型"></a>网络地址转换类型</h3><h4 id="静态NAT"><a href="#静态NAT" class="headerlink" title="静态NAT"></a>静态NAT</h4><p>这种NAT能够在本地地址和全局地址之间进行一对一映射。即使用静态NAT时，必须为网络中的每台主机提供一个公有因特网IP地址。</p>
+<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g685q62wu8j30jw0e8dhh.jpg" alt="/img"></p>
+<h4 id="动态NAT"><a href="#动态NAT" class="headerlink" title="动态NAT"></a>动态NAT</h4><p>它能够将未注册的IP地址映射到注册IP地址池中的一个地址，无需配置静态路由器，使其将每个内部地址映射到一个外部地址，但必须有足够的公有因特网IP地址，让连接到因特网的主机都能够同时发送和接收分组。</p>
+<h4 id="NAT重载"><a href="#NAT重载" class="headerlink" title="NAT重载"></a>NAT重载</h4><p>也是动态NAT，它利用源端口将多个非注册的IP地址映射到一个注册IP地址，形成多对一。也被称为端口地址转换（PAT）。通过使用 PAT (NAT 重载)，只 使用一个全局 地址，就可将数千名用户连接到因特网，这是不是很酷?因特网 IP 地址之所以还未耗尽，真正的原因就在 使用了 NAT重载。</p>
+<h4 id="NAT术语"><a href="#NAT术语" class="headerlink" title="NAT术语"></a>NAT术语</h4><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yx0ca48j30l205amyl.jpg" alt="/img"></p>
+<p>对于用于 NAT 的地址，我们使用的术语很简单。 NAT 转换后的地址称为全局地址，这通常是因特网公有地址;但如果无需连接到因特网，则不需要公有地址。</p>
+<p>进行 NAT 转换前的地址称为本地地址。因此，内部本地地址是试图连接到因特网的主机的私有地址;而外部本地地址通常是与 ISP 相连的路由器接口的地址。后者通常是公有地址，主机发送的分组的源地址通常会转换为这种地址。</p>
+<p>内部本地地址将被转换为内部全局地址，而外部全局地址将成为目标地址。表 13-2 列出了各种 NAT术语。</p>
+<h3 id="静态NAT配置"><a href="#静态NAT配置" class="headerlink" title="静态NAT配置"></a>静态NAT配置</h3><p>示例图：<img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g673plhco0j30mq0bbdgy.jpg" alt="/img"></p>
+<p>实际拓扑图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g674wcg0htj30od0dhaag.jpg" alt="/img"></p>
+<p>静态NAT：</p>
+<p>基本配置：</p>
+<p>加模块：</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566558306805.png" alt="1566558306805"></p>
+<p>交换机配置：</p>
+<p>SW:</p>
+<p>SW1(config)#vlan 10</p>
+<p>SW1(config-vlan)#int vlan 10</p>
+<p>SW1(config-if)#exit</p>
+<p>SW1(config)#vlan 20</p>
+<p>SW1(config-vlan)#int vlan 20</p>
+<p>SW1(config-if)#exit</p>
+<p>把端口接入vlan </p>
+<p>SW1(config)#int f0/1</p>
+<p>SW1(config-if)#sw mo acc</p>
+<p>SW1(config-if)#sw acc vlan 10</p>
+<p>SW1(config-if)#no shutdown </p>
+<p>SW1(config-if)#exit</p>
+<p>SW1(config)#int f0/2</p>
+<p>SW1(config-if)#sw mo acc</p>
+<p>SW1(config-if)#sw acc vlan 20</p>
+<p>SW1(config-if)#no shutdown </p>
+<p>SW1(config)#int f0/3</p>
+<p>SW1(config-if)#sw mo trunk </p>
+<p>SW1(config-if)#no shutdown </p>
+<p>路由器配置:</p>
+<p>R1(config)#int f0/0.10</p>
+<p>R1(config-subif)#encapsulation dot1Q 10</p>
+<p>R1(config-subif)#ip add 192.168.0.254 255.255.255.0</p>
+<p>R1(config-subif)#no shutdown </p>
+<p>R1(config)#int f0/0.20</p>
+<p>R1(config-subif)#encapsulation dot1Q 20</p>
+<p>R1(config-subif)#ip add 192.168.1.254 255.255.255.0</p>
+<p>R1(config-subif)#no shutdown </p>
+<p>R1(config)#int f0/0</p>
+<p>R1(config-if)#no shutdown </p>
+<p>R1(config)#int s0/3/0</p>
+<p>R1(config-if)#ip add 61.1.1.1 255.255.255.0</p>
+<p>R1(config-if)#no shutdown </p>
+<p>R2(config)#int s0/3/0</p>
+<p>R2(config-if)#ip add 61.1.1.2 255.255.255.0 </p>
+<p>R2(config-if)#no shutdown </p>
+<p> R2(config)#int f0/0</p>
+<p>R2(config-if)#ip add 172.16.1.254 255.255.255.0</p>
+<p>R2(config-if)#no shutdown </p>
+<p>R1(config)#int f0/0.10<br>R1(config-subif)#ip nat inside<br>R1(config)#int f0/0.20<br>R1(config-subif)#ip nat inside </p>
+<p>R1(config)#ip route 172.16.1.0 255.255.255.0 61.1.1.2 //我在配置的时候就少了这句，然后找了好久好久才发现漏掉了这个，少了这句话服务器就找不到经过R2的下一跳路由，就ping不到PC2</p>
+<p>效果展示：</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566565998981.png" alt="1566565998981"></p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566018310.png" alt="1566566018310"></p>
+<p>R1#debug ip nat</p>
+<p>R1#show ip nat translations </p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566113573.png" alt="1566566113573"></p>
+<p>最终实现效果：服务器可以访问外部网络的PC机，而外部网络不可以访问内部服务器，如果要内部网络可以访问外部网络，就加上一条静态的：ip nat inside source static 192.168.1.1  61.1.1.1 </p>
+<p>动态NAT：</p>
+<p>为了方便，动态nat是在静态的基础上做的，把之前写的ip nat inside source static 192.168.0.1 61.1.1.1 删掉就可以了</p>
+<p>核心配置：</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567476212.png" alt="1566567476212"></p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567687190.png" alt="1566567687190"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NAT-网络地址转换/">NAT 网络地址转换</a></li></ul>
     </div>
 
       

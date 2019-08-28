@@ -7,43 +7,33 @@
   
   
   
-  <title>CSRF漏洞 | Hexo</title>
+  <title>网络地址转换NAT | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CSRF漏洞https://www.cnblogs.com/shikyoh/p/4959678.html https://www.freebuf.com/column/155800.html CSRF漏洞简介 CSRF（Cross-Site Request Forgery，跨站点伪造请求）是一种网络攻击方式，该攻击可以在受害者毫不知情的情况下以受害者名义伪造请求发送给受攻击站点，从而在未授权的情况">
+  <meta name="description" content="网络地址转换（NAT）什么是NAT一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。 NAT技术设计初衷 增加私有组织的可用地址空间 解决现有私有网络接入的IP地址编号问题 NAT的优缺点优点 管理方便并且节约IP地址资源 隐藏内部 IP 地址信息 可用于实现网络负载均衡 缺点 外部应用程序却不能方便地与 NAT 网关后面的应">
+<meta name="keywords" content="NAT 网络地址转换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSRF漏洞">
-<meta property="og:url" content="http://yoursite.com/2019/07/30/CSRF/index.html">
+<meta property="og:title" content="网络地址转换NAT">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/网络地址转换NAT/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="CSRF漏洞https://www.cnblogs.com/shikyoh/p/4959678.html https://www.freebuf.com/column/155800.html CSRF漏洞简介 CSRF（Cross-Site Request Forgery，跨站点伪造请求）是一种网络攻击方式，该攻击可以在受害者毫不知情的情况下以受害者名义伪造请求发送给受攻击站点，从而在未授权的情况">
+<meta property="og:description" content="网络地址转换（NAT）什么是NAT一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。 NAT技术设计初衷 增加私有组织的可用地址空间 解决现有私有网络接入的IP地址编号问题 NAT的优缺点优点 管理方便并且节约IP地址资源 隐藏内部 IP 地址信息 可用于实现网络负载均衡 缺点 外部应用程序却不能方便地与 NAT 网关后面的应">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59sd4j9g4j30t80gharw.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rj7imbaj309d04h3yg.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rjjuze9j30jb08a0tk.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rjwbolhj30cr092t99.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rkaznc7j30m509xta1.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rl0tz7ij30k50bpwfm.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rlblovyj30h80ak3zr.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rlnu3npj30eh08haa5.jpg">
-<meta property="og:image" content="c:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563863977602.png">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rmc4dwcj30lp09b74c.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rmmq1hcj30my0czdiu.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rn0qgarj30e2067t8y.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rnbnvsjj31080bvack.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rnt5t3xj310b0a3jti.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59ro5r8guj30jt0b1dgy.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59royz8alj30hd08174o.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rp9mkq6j30kr08caaa.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rpmyq2nj30ga07raa8.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rq3c9u8j30od08pgmj.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rqctd4cj30pc0fyadn.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rzieiw4j30uu04lt99.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rzujnl4j30wb0aw0u0.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59s05noxxj30yc096ju1.jpg">
-<meta property="og:updated_time" content="2019-08-24T08:32:24.405Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g685q62wu8j30jw0e8dhh.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yx0ca48j30l205amyl.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g673plhco0j30mq0bbdgy.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g674wcg0htj30od0dhaag.jpg">
+<meta property="og:image" content="c:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566558306805.png">
+<meta property="og:image" content="c:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566565998981.png">
+<meta property="og:image" content="c:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566018310.png">
+<meta property="og:image" content="c:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566113573.png">
+<meta property="og:image" content="c:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567476212.png">
+<meta property="og:image" content="c:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567687190.png">
+<meta property="og:updated_time" content="2019-08-28T14:47:19.887Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSRF漏洞">
-<meta name="twitter:description" content="CSRF漏洞https://www.cnblogs.com/shikyoh/p/4959678.html https://www.freebuf.com/column/155800.html CSRF漏洞简介 CSRF（Cross-Site Request Forgery，跨站点伪造请求）是一种网络攻击方式，该攻击可以在受害者毫不知情的情况下以受害者名义伪造请求发送给受攻击站点，从而在未授权的情况">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007bHQE8gy1g59sd4j9g4j30t80gharw.jpg">
+<meta name="twitter:title" content="网络地址转换NAT">
+<meta name="twitter:description" content="网络地址转换（NAT）什么是NAT一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。 NAT技术设计初衷 增加私有组织的可用地址空间 解决现有私有网络接入的IP地址编号问题 NAT的优缺点优点 管理方便并且节约IP地址资源 隐藏内部 IP 地址信息 可用于实现网络负载均衡 缺点 外部应用程序却不能方便地与 NAT 网关后面的应">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -296,11 +286,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-CSRF" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-网络地址转换NAT" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/07/30/CSRF/" class="article-date">
-      <time datetime="2019-07-29T16:00:00.000Z" itemprop="datePublished">2019-07-30</time>
+      <a  href="/2019/08/20/网络地址转换NAT/" class="article-date">
+      <time datetime="2019-08-19T16:00:00.000Z" itemprop="datePublished">2019-08-20</time>
 </a>
 
     </div>
@@ -314,7 +304,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CSRF漏洞
+      网络地址转换NAT
     </h1>
   
 
@@ -325,6 +315,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NAT-网络地址转换/">NAT 网络地址转换</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -332,80 +326,97 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h1><p><a href="https://www.cnblogs.com/shikyoh/p/4959678.html" target="_blank" rel="noopener">https://www.cnblogs.com/shikyoh/p/4959678.html</a></p>
-<p><a href="https://www.freebuf.com/column/155800.html" target="_blank" rel="noopener">https://www.freebuf.com/column/155800.html</a></p>
-<h2 id="CSRF漏洞简介"><a href="#CSRF漏洞简介" class="headerlink" title="CSRF漏洞简介"></a>CSRF漏洞简介</h2><p> CSRF（Cross-Site Request Forgery，跨站点伪造请求）是一种网络攻击方式，该攻击可以在受害者毫不知情的情况下以受害者名义伪造请求发送给受攻击站点，从而在未授权的情况下执行在权限保护之下的操作，具有很大的危害性。具体来讲，可以这样理解CSRF攻击：攻击者盗用了你的身份，以你的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以你的名义发送邮件、发消息，盗取你的账号，添加系统管理员，甚至于购买商品、虚拟货币转账等。</p>
-<p>CSRF攻击方式并不为大家所熟知，实际上很多网站都存在CSRF的安全漏洞。早在2000年，CSRF这种攻击方式已经由国外的安全人员提出，但在国内，直到2006年才开始被关注。2008年，国内外多个大型社区和交互网站先后爆出CSRF漏洞，如：百度HI、NYTimes.com（纽约时报）、Metafilter（一个大型的BLOG网站）和YouTube等。但直到现在，互联网上的许多站点仍对此毫无防备，以至于安全业界称CSRF为“沉睡的巨人”，其威胁程度由此“美誉”便可见一斑。</p>
-<h2 id="CSRF攻击原理及实例"><a href="#CSRF攻击原理及实例" class="headerlink" title="CSRF攻击原理及实例"></a>CSRF攻击原理及实例</h2><p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59sd4j9g4j30t80gharw.jpg" alt></p>
-<p> CSRF攻击原理比较简单，如图1所示。其中Web A为存在CSRF漏洞的网站，Web B为攻击者构建的恶意网站，User C为Web A网站的合法用户。 </p>
-<p>1 用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；</p>
-<p>2 在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功，可以正常发送请求到网站A；</p>
-<p>3 用户未退出网站A之前，在同一浏览器中，打开一个TAB页访问网站B；</p>
-<p>4 网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A；<br> <strong>(**</strong>网站B对网站A发出一个请求的同时，浏览器也会把网站A产生Cookie信息带上)–相当于浏览器访问网站A—这是user信息被盗用的关键**</p>
-<p>5 浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。</p>
-<h2 id="CSRF攻击分类"><a href="#CSRF攻击分类" class="headerlink" title="CSRF攻击分类"></a>CSRF攻击分类</h2><p>CSRF漏洞一般分为站外和站内两种类型。</p>
-<p>CSRF站外类型的漏洞本质上就是传统意义上的外部提交数据问题。通常程序员会考虑给一些留言或者评论的表单加上水印以防止SPAM问题（这里，SPAM可以简单的理解为垃圾留言、垃圾评论，或者是带有站外链接的恶意回复），但是有时为了提高用户的体验性，可能没有对一些操作做任何限制，所以攻击者可以事先预测并设置请求的参数，在站外的Web页面里编写脚本伪造文件请求，或者和自动提交的表单一起使用来实现GET、POST请求，当用户在会话状态下点击链接访问站外Web页面，客户端就被强迫发起请求。</p>
-<p>CSRF站内类型的漏洞在一定程度上是由于程序员滥用类变量造成的。在一些敏感的操作中（如修改密码、添加用户等），本来要求用户从表单提交发起请求传递参数给程序，但是由于使用了REQUEST类变量造成的。在一些敏感的操作中（如修改密码、添加用户等），本来要求用户从表单提交发起POST请求传递参数给程序，但是由于使用了_REQUEST等变量，程序除支持接收POST请求传递的参数外也支持接收GET请求传递的参数，这样就会为攻击者使用CSRF攻击创造条件。一般攻击者只要把预测的请求参数放在站内一个贴子或者留言的图片链接里，受害者浏览了这样的页面就会被强迫发起这些请求。</p>
-<h2 id="CSRF攻击实例"><a href="#CSRF攻击实例" class="headerlink" title="CSRF攻击实例"></a>CSRF攻击实例</h2><p>下面以Axous 1.1.1 CSRF Add Admin Vulnerability（漏洞CVE编号：CVE-2012-2629）为例，介绍CSRF攻击具体实施过程。</p>
-<p>Axous是一款网上商店应用软件。Axous 1.1.1以及更低版本在实现上存在一个CSRF漏洞，远程攻击者可以通过构造特制的网页，诱使该软件管理员访问，成功利用此漏洞的攻击者可以添加系统管理员。利用此漏洞主要包含以下三个过程：</p>
-<ol>
-<li>攻击者构造恶意网页。在实施攻击前，攻击者需要构造一个与正常添加管理员用户基本一样的网页，在该恶意网页中对必要的参数项进行赋值，并将该网页的action指向正常添加管理员用户时访问的URL，核心代码如图2所示；</li>
-<li>攻击者利用社会工程学诱使Axous系统管理员访问其构造的恶意网页；</li>
-<li>执行恶意代码。当系统管理员访问恶意网页时，恶意代码在管理员不知情的情况下以系统管理员的合法权限被执行，攻击者伪造的管理员账户添加成功。 </li>
-</ol>
-<h2 id="CSRF漏洞防御"><a href="#CSRF漏洞防御" class="headerlink" title="CSRF漏洞防御"></a>CSRF漏洞防御</h2><p> CSRF漏洞防御主要可以从三个层面进行，即服务端的防御、用户端的防御和安全设备的防御。</p>
-<p>服务端的防御<br> 目前业界服务器端防御CSRF攻击主要有三种策略：验证HTTP Referer字段，在请求地址中添加token并验证，在HTTP头中自定义属性并验证。下面分别对这三种策略进行简要介绍。</p>
-<p>1 验证HTTP Referer字段</p>
-<p>根据HTTP协议，在HTTP头中有一个字段叫Referer，它记录了该HTTP请求的来源地址。在通常情况下，访问一个安全受限页面的请求必须来自于同一个网站。比如某银行的转账是通过用户访问<a href="http://bank.test/test?page=10&amp;userID=101&amp;money=10000页面完成，用户必须先登录bank" target="_blank" rel="noopener">http://bank.test/test?page=10&amp;userID=101&amp;money=10000页面完成，用户必须先登录bank</a>. test，然后通过点击页面上的按钮来触发转账事件。当用户提交请求时，该转账请求的Referer值就会是转账按钮所在页面的URL（本例中，通常是以bank. test域名开头的地址）。而如果攻击者要对银行网站实施CSRF攻击，他只能在自己的网站构造请求，当用户通过攻击者的网站发送请求到银行时，该请求的Referer是指向攻击者的网站。因此，要防御CSRF攻击，银行网站只需要对于每一个转账请求验证其Referer值，如果是以bank. test开头的域名，则说明该请求是来自银行网站自己的请求，是合法的。如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。<br> java获取HTTP Referer代码：</p>
-<p>​        // 获取请求是从哪里来的  </p>
-<p>​        String referer = request.getHeader(“referer”);  </p>
-<p>​        // 如果是直接输入的地址，或者不是从本网站访问的重定向到本网站的首页  </p>
-<p>​        if (referer == null || !referer.startsWith(“<a href="http://localhost&quot;" target="_blank" rel="noopener">http://localhost&quot;</a>)) {  </p>
-<p>​            response.sendRedirect(“/day06/index.jsp”);  </p>
-<p>​            // 然后return，不要输出后面的内容了  </p>
-<p>​            return;  </p>
-<p>​        }  </p>
-<p>2 在请求地址中添加token并验证</p>
-<p>CSRF攻击之所以能够成功，是因为攻击者可以伪造用户的请求，该请求中所有的用户验证信息都存在于Cookie中，因此攻击者可以在不知道这些验证信息的情况下直接利用用户自己的Cookie来通过安全验证。由此可知，抵御CSRF攻击的关键在于：在请求中放入攻击者所不能伪造的信息，并且该信息不存在于Cookie之中。鉴于此，系统开发者可以在HTTP请求中以参数的形式加入一个随机产生的token，并在服务器端建立一个拦截器来验证这个token，如果请求中没有token或者token内容不正确，则认为可能是CSRF攻击而拒绝该请求。</p>
-<p>3 在HTTP头中自定义属性并验证</p>
-<p>自定义属性的方法也是使用token并进行验证，和前一种方法不同的是，这里并不是把token以参数的形式置于HTTP请求之中，而是把它放到HTTP头中自定义的属性里。通过XMLHttpRequest这个类，可以一次性给所有该类请求加上csrftoken这个HTTP头属性，并把token值放入其中。这样解决了前一种方法在请求中加入token的不便，同时，通过这个类请求的地址不会被记录到浏览器的地址栏，也不用担心token会通过Referer泄露到其他网站。</p>
-<p>4 用户端的防御<br> 对于普通用户来说，都学习并具备网络安全知识以防御网络攻击是不现实的。但若用户养成良好的上网习惯，则能够很大程度上减少CSRF攻击的危害。例如，用户上网时，不要轻易点击网络论坛、聊天室、即时通讯工具或电子邮件中出现的链接或者图片；及时退出长时间不使用的已登录账户，尤其是系统管理员，应尽量在登出系统的情况下点击未知链接和图片。除此之外，用户还需要在连接互联网的计算机上安装合适的安全防护软件，并及时更新软件厂商发布的特征库，以保持安全软件对最新攻击的实时跟踪。</p>
-<h2 id="漏洞利用演示"><a href="#漏洞利用演示" class="headerlink" title="漏洞利用演示"></a>漏洞利用演示</h2><p><strong>DVWA-CSRF</strong> </p>
-<h3 id="Low等级"><a href="#Low等级" class="headerlink" title="Low等级"></a>Low等级</h3><p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rj7imbaj309d04h3yg.jpg" alt></p>
-<p><strong>抓包</strong></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rjjuze9j30jb08a0tk.jpg" alt></p>
-<p><strong>正常跳转</strong></p>
-<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rjwbolhj30cr092t99.jpg" alt></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rkaznc7j30m509xta1.jpg" alt></p>
-<p><strong>在这里我们把密码改为qwer</strong></p>
-<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rl0tz7ij30k50bpwfm.jpg" alt></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rlblovyj30h80ak3zr.jpg" alt></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rlnu3npj30eh08haa5.jpg" alt></p>
-<p> <img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563863977602.png" alt="1563863977602"></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rmc4dwcj30lp09b74c.jpg" alt></p>
-<p><strong>成功进入了DVWA</strong></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rmmq1hcj30my0czdiu.jpg" alt></p>
-<h3 id="CSRF-Medium等级"><a href="#CSRF-Medium等级" class="headerlink" title="CSRF Medium等级"></a>CSRF Medium等级</h3><p>开始，抓包</p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rn0qgarj30e2067t8y.jpg" alt></p>
-<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rnbnvsjj31080bvack.jpg" alt></p>
-<p><strong>很显然，网站对referer做了验证，绕过referer验证有以下几种方法：</strong></p>
-<p><strong>1**</strong>）空Referer绕过：**</p>
-<p>在referer字段后添加：http:// https:// ftp:// file://,在发送，看是否可以绕过referer验证。</p>
-<p><strong>2**</strong>）判断referer是否存在某个关键词。**</p>
-<p><strong>在本示例中用第二种方法绕过referer验证：</strong></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rnt5t3xj310b0a3jti.jpg" alt></p>
-<p><strong>构造csrf poc：</strong></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59ro5r8guj30jt0b1dgy.jpg" alt></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59royz8alj30hd08174o.jpg" alt></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rp9mkq6j30kr08caaa.jpg" alt></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rpmyq2nj30ga07raa8.jpg" alt></p>
-<h3 id="CSRF-High等级"><a href="#CSRF-High等级" class="headerlink" title="CSRF High等级"></a>CSRF High等级</h3><p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rq3c9u8j30od08pgmj.jpg" alt></p>
-<p><strong>所以像medium和low等级那样的方法是不能用的了，但是我们可以利用burp的插件CSRF　Token　Tracker绕过token验证：</strong></p>
-<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rqctd4cj30pc0fyadn.jpg" alt></p>
-<p> <img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rzieiw4j30uu04lt99.jpg" alt></p>
-<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59rzujnl4j30wb0aw0u0.jpg" alt></p>
-<p><strong>然后来到repeater选项下：</strong></p>
-<p><img src="http://ww1.sinaimg.cn/large/007bHQE8gy1g59s05noxxj30yc096ju1.jpg" alt></p>
+        <a id="more"></a>
+
+<h2 id="网络地址转换（NAT）"><a href="#网络地址转换（NAT）" class="headerlink" title="网络地址转换（NAT）"></a>网络地址转换（NAT）</h2><h4 id="什么是NAT"><a href="#什么是NAT" class="headerlink" title="什么是NAT"></a>什么是NAT</h4><p>一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。</p>
+<p>NAT技术设计初衷</p>
+<p>增加私有组织的可用地址空间</p>
+<p>解决现有私有网络接入的IP地址编号问题</p>
+<h4 id="NAT的优缺点"><a href="#NAT的优缺点" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h4><p>优点</p>
+<p>管理方便并且节约IP地址资源</p>
+<p>隐藏内部 IP 地址信息</p>
+<p>可用于实现网络负载均衡</p>
+<p>缺点</p>
+<p>外部应用程序却不能方便地与 NAT 网关后面的应用程序联系。 </p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间</p>
+<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg" alt="/img"></p>
+<p><strong>NAT适用于以下情况</strong>：</p>
+<p>1 需要连接到INTERNET，但主机没有全局唯一的IP地址；</p>
+<p>2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址；</p>
+<p>3 需要合并两个使用相同编址方案的内联网；</p>
+<p>且NAT通常用于边界路由器；</p>
+<h3 id="NAT的优缺点-1"><a href="#NAT的优缺点-1" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h3><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg" alt="/img"></p>
+<p>最明显的优点：能够节省合法的注册地址，这也是IPv4地址至今未耗尽的原因；将局域网隐藏在公用网络之中，增加网络的安全性；</p>
+<h3 id="网络地址转换类型"><a href="#网络地址转换类型" class="headerlink" title="网络地址转换类型"></a>网络地址转换类型</h3><h4 id="静态NAT"><a href="#静态NAT" class="headerlink" title="静态NAT"></a>静态NAT</h4><p>这种NAT能够在本地地址和全局地址之间进行一对一映射。即使用静态NAT时，必须为网络中的每台主机提供一个公有因特网IP地址。</p>
+<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g685q62wu8j30jw0e8dhh.jpg" alt="/img"></p>
+<h4 id="动态NAT"><a href="#动态NAT" class="headerlink" title="动态NAT"></a>动态NAT</h4><p>它能够将未注册的IP地址映射到注册IP地址池中的一个地址，无需配置静态路由器，使其将每个内部地址映射到一个外部地址，但必须有足够的公有因特网IP地址，让连接到因特网的主机都能够同时发送和接收分组。</p>
+<h4 id="NAT重载"><a href="#NAT重载" class="headerlink" title="NAT重载"></a>NAT重载</h4><p>也是动态NAT，它利用源端口将多个非注册的IP地址映射到一个注册IP地址，形成多对一。也被称为端口地址转换（PAT）。通过使用 PAT (NAT 重载)，只 使用一个全局 地址，就可将数千名用户连接到因特网，这是不是很酷?因特网 IP 地址之所以还未耗尽，真正的原因就在 使用了 NAT重载。</p>
+<h4 id="NAT术语"><a href="#NAT术语" class="headerlink" title="NAT术语"></a>NAT术语</h4><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yx0ca48j30l205amyl.jpg" alt="/img"></p>
+<p>对于用于 NAT 的地址，我们使用的术语很简单。 NAT 转换后的地址称为全局地址，这通常是因特网公有地址;但如果无需连接到因特网，则不需要公有地址。</p>
+<p>进行 NAT 转换前的地址称为本地地址。因此，内部本地地址是试图连接到因特网的主机的私有地址;而外部本地地址通常是与 ISP 相连的路由器接口的地址。后者通常是公有地址，主机发送的分组的源地址通常会转换为这种地址。</p>
+<p>内部本地地址将被转换为内部全局地址，而外部全局地址将成为目标地址。表 13-2 列出了各种 NAT术语。</p>
+<h3 id="静态NAT配置"><a href="#静态NAT配置" class="headerlink" title="静态NAT配置"></a>静态NAT配置</h3><p>示例图：<img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g673plhco0j30mq0bbdgy.jpg" alt="/img"></p>
+<p>实际拓扑图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g674wcg0htj30od0dhaag.jpg" alt="/img"></p>
+<p>静态NAT：</p>
+<p>基本配置：</p>
+<p>加模块：</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566558306805.png" alt="1566558306805"></p>
+<p>交换机配置：</p>
+<p>SW:</p>
+<p>SW1(config)#vlan 10</p>
+<p>SW1(config-vlan)#int vlan 10</p>
+<p>SW1(config-if)#exit</p>
+<p>SW1(config)#vlan 20</p>
+<p>SW1(config-vlan)#int vlan 20</p>
+<p>SW1(config-if)#exit</p>
+<p>把端口接入vlan </p>
+<p>SW1(config)#int f0/1</p>
+<p>SW1(config-if)#sw mo acc</p>
+<p>SW1(config-if)#sw acc vlan 10</p>
+<p>SW1(config-if)#no shutdown </p>
+<p>SW1(config-if)#exit</p>
+<p>SW1(config)#int f0/2</p>
+<p>SW1(config-if)#sw mo acc</p>
+<p>SW1(config-if)#sw acc vlan 20</p>
+<p>SW1(config-if)#no shutdown </p>
+<p>SW1(config)#int f0/3</p>
+<p>SW1(config-if)#sw mo trunk </p>
+<p>SW1(config-if)#no shutdown </p>
+<p>路由器配置:</p>
+<p>R1(config)#int f0/0.10</p>
+<p>R1(config-subif)#encapsulation dot1Q 10</p>
+<p>R1(config-subif)#ip add 192.168.0.254 255.255.255.0</p>
+<p>R1(config-subif)#no shutdown </p>
+<p>R1(config)#int f0/0.20</p>
+<p>R1(config-subif)#encapsulation dot1Q 20</p>
+<p>R1(config-subif)#ip add 192.168.1.254 255.255.255.0</p>
+<p>R1(config-subif)#no shutdown </p>
+<p>R1(config)#int f0/0</p>
+<p>R1(config-if)#no shutdown </p>
+<p>R1(config)#int s0/3/0</p>
+<p>R1(config-if)#ip add 61.1.1.1 255.255.255.0</p>
+<p>R1(config-if)#no shutdown </p>
+<p>R2(config)#int s0/3/0</p>
+<p>R2(config-if)#ip add 61.1.1.2 255.255.255.0 </p>
+<p>R2(config-if)#no shutdown </p>
+<p> R2(config)#int f0/0</p>
+<p>R2(config-if)#ip add 172.16.1.254 255.255.255.0</p>
+<p>R2(config-if)#no shutdown </p>
+<p>R1(config)#int f0/0.10<br>R1(config-subif)#ip nat inside<br>R1(config)#int f0/0.20<br>R1(config-subif)#ip nat inside </p>
+<p>R1(config)#ip route 172.16.1.0 255.255.255.0 61.1.1.2 //我在配置的时候就少了这句，然后找了好久好久才发现漏掉了这个，少了这句话服务器就找不到经过R2的下一跳路由，就ping不到PC2</p>
+<p>效果展示：</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566565998981.png" alt="1566565998981"></p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566018310.png" alt="1566566018310"></p>
+<p>R1#debug ip nat</p>
+<p>R1#show ip nat translations </p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566113573.png" alt="1566566113573"></p>
+<p>最终实现效果：服务器可以访问外部网络的PC机，而外部网络不可以访问内部服务器，如果要内部网络可以访问外部网络，就加上一条静态的：ip nat inside source static 192.168.1.1  61.1.1.1 </p>
+<p>动态NAT：</p>
+<p>为了方便，动态nat是在静态的基础上做的，把之前写的ip nat inside source static 192.168.0.1 61.1.1.1 删掉就可以了</p>
+<p>核心配置：</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567476212.png" alt="1566567476212"></p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567687190.png" alt="1566567687190"></p>
 
       
     </div>
@@ -414,13 +425,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2019/07/30/CSRF/">CSRF漏洞</a></p>
+        <p><span>本文标题:</span><a  href="/2019/08/20/网络地址转换NAT/">网络地址转换NAT</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
-        <p><span>发布时间:</span>2019年07月30日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年08月24日 - 16时32分</p>
+        <p><span>发布时间:</span>2019年08月20日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年08月28日 - 22时47分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/07/30/CSRF/" title="CSRF漏洞">http://yoursite.com/2019/07/30/CSRF/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/07/30/CSRF/　　作者: John Doe" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/08/20/网络地址转换NAT/" title="网络地址转换NAT">http://yoursite.com/2019/08/20/网络地址转换NAT/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/08/20/网络地址转换NAT/　　作者: John Doe" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -431,18 +442,18 @@
 
 <nav id="article-nav">
   
-    <a  href="/2019/08/05/IPv4编址方案/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2019/08/21/防火墙/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          IP地址介绍、VLSM、初识思科
+          防火墙
         
       </div>
     </a>
   
   
-    <a  href="/2019/07/25/学习前端/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">初识前端</div>
+    <a  href="/2019/08/09/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -454,7 +465,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF漏洞"><span class="toc-number">1.</span> <span class="toc-text">CSRF漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF漏洞简介"><span class="toc-number">1.1.</span> <span class="toc-text">CSRF漏洞简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF攻击原理及实例"><span class="toc-number">1.2.</span> <span class="toc-text">CSRF攻击原理及实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF攻击分类"><span class="toc-number">1.3.</span> <span class="toc-text">CSRF攻击分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF攻击实例"><span class="toc-number">1.4.</span> <span class="toc-text">CSRF攻击实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF漏洞防御"><span class="toc-number">1.5.</span> <span class="toc-text">CSRF漏洞防御</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞利用演示"><span class="toc-number">1.6.</span> <span class="toc-text">漏洞利用演示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Low等级"><span class="toc-number">1.6.1.</span> <span class="toc-text">Low等级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-Medium等级"><span class="toc-number">1.6.2.</span> <span class="toc-text">CSRF Medium等级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF-High等级"><span class="toc-number">1.6.3.</span> <span class="toc-text">CSRF High等级</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网络地址转换（NAT）"><span class="toc-number">1.</span> <span class="toc-text">网络地址转换（NAT）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是NAT"><span class="toc-number">1.0.1.</span> <span class="toc-text">什么是NAT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT的优缺点"><span class="toc-number">1.0.2.</span> <span class="toc-text">NAT的优缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工作原理"><span class="toc-number">1.0.3.</span> <span class="toc-text">工作原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAT的优缺点-1"><span class="toc-number">1.1.</span> <span class="toc-text">NAT的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络地址转换类型"><span class="toc-number">1.2.</span> <span class="toc-text">网络地址转换类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#静态NAT"><span class="toc-number">1.2.1.</span> <span class="toc-text">静态NAT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态NAT"><span class="toc-number">1.2.2.</span> <span class="toc-text">动态NAT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT重载"><span class="toc-number">1.2.3.</span> <span class="toc-text">NAT重载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT术语"><span class="toc-number">1.2.4.</span> <span class="toc-text">NAT术语</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态NAT配置"><span class="toc-number">1.3.</span> <span class="toc-text">静态NAT配置</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -527,13 +538,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2019/08/05/IPv4编址方案/" title="上一篇: IP地址介绍、VLSM、初识思科">
+            <a  href="/2019/08/21/防火墙/" title="上一篇: 防火墙">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2019/07/25/学习前端/" title="下一篇: 初识前端">
+            <a  href="/2019/08/09/hello-world/" title="下一篇: Hello World">
                 <i class="fa fa-angle-right"></i>
             </a>
         
