@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>用户与组的管理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.用户与用户组概念Linux 是一个多用户、多任务的服务器操作系统。Linux 用户是根据角色定义的，具体分 为三种角色：  超级用户：拥有对系统的最高管理权限，默认是 root 用户。  普通用户：只能对自己目录下的文件进行访问和修改，具有登录系统的权限。  虚拟用户：也叫“伪”用户，这类用户最大的特点是不能登录系统，它们的存在主要是 方便系统管理，满足相应的系统进程对文件属主的要求。主要">
+<meta name="keywords" content="系统安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户与组的管理">
+<meta property="og:url" content="http://yoursite.com/2019/09/04/09-08用户与组的管理/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.用户与用户组概念Linux 是一个多用户、多任务的服务器操作系统。Linux 用户是根据角色定义的，具体分 为三种角色：  超级用户：拥有对系统的最高管理权限，默认是 root 用户。  普通用户：只能对自己目录下的文件进行访问和修改，具有登录系统的权限。  虚拟用户：也叫“伪”用户，这类用户最大的特点是不能登录系统，它们的存在主要是 方便系统管理，满足相应的系统进程对文件属主的要求。主要">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007ru3v0gy1g6r3l3x5t7j30cj039dfq.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sij3v125j30c603yglk.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijkzxmkj30b901y746.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijrlaesj30c201ka9y.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijxq6emj30bj014dfo.jpg">
+<meta property="og:updated_time" content="2019-09-09T00:17:09.553Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用户与组的管理">
+<meta name="twitter:description" content="1.用户与用户组概念Linux 是一个多用户、多任务的服务器操作系统。Linux 用户是根据角色定义的，具体分 为三种角色：  超级用户：拥有对系统的最高管理权限，默认是 root 用户。  普通用户：只能对自己目录下的文件进行访问和修改，具有登录系统的权限。  虚拟用户：也叫“伪”用户，这类用户最大的特点是不能登录系统，它们的存在主要是 方便系统管理，满足相应的系统进程对文件属主的要求。主要">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/007ru3v0gy1g6r3l3x5t7j30cj039dfq.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">John Doe</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/系统安全/" style="font-size: 20px;">系统安全</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-09-08用户与组的管理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/04/09-08用户与组的管理/" class="article-date">
+      <time datetime="2019-09-04T09:18:20.000Z" itemprop="datePublished">2019-09-04</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用户与组的管理
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<h1 id="1-用户与用户组概念"><a href="#1-用户与用户组概念" class="headerlink" title="1.用户与用户组概念"></a>1.用户与用户组概念</h1><p>Linux 是一个多用户、多任务的服务器操作系统。Linux 用户是根据角色定义的，具体分 为三种角色：</p>
+<p> 超级用户：拥有对系统的最高管理权限，默认是 root 用户。</p>
+<p> 普通用户：只能对自己目录下的文件进行访问和修改，具有登录系统的权限。 </p>
+<p>虚拟用户：也叫“伪”用户，这类用户最大的特点是不能登录系统，它们的存在主要是 方便系统管理，满足相应的系统进程对文件属主的要求。<br>主要组（主组）：每个用户有且只有一个主要组，创建用户时默认创建。</p>
+<p> 附属组（补充组）：用户可以是零个或多个附属组成员。一般用于帮助确保用户具有对 系统中文件及其他资源的访问权限</p>
+<h1 id="2、用户配置文件"><a href="#2、用户配置文件" class="headerlink" title="2、用户配置文件"></a>2、用户配置文件</h1><p>（1）用户配置文件/etc/passwd，在 passwd 配置文件中，从左到右各个字段的含义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用户名：用户登录系统时使用的用户名。</span><br><span class="line">口令：存放加密的口令，被/etc/shadow 文件保护。 </span><br><span class="line">用户标识号(UID)：系统内部用它来标识用户，每个用户的 UID 都是唯一的。 </span><br><span class="line">用户组标识号(GID)：系统内部用它来标识用户所属的组，这里的 GID 是主组 GID。 </span><br><span class="line">注释性描述：为了方便管理和记忆该用户而添加的信息。 用户主目录：也称家目录，用户登录系统后所进入的目录。</span><br><span class="line">命令解释器：指示该用户使用的 Shell，CentOS Linux 7 默认的是 bash。如果指定 Shell 为/sbin/nologin，则代表用户无法登录系统。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/passwd</span><br><span class="line">host:x:1000:1000:root:/home/host:/bin/bash</span><br><span class="line">student:x:1001:1001::/home/student:/bin/bash</span><br><span class="line">stu2:x:1002:1002::/home/stu2:/bin/bash</span><br><span class="line">stu3:x:1003:1003::/home/stu3:/bin/bash</span><br><span class="line">stu4:x:1004:1004::/home/stu4:/bin/bash</span><br><span class="line">stu5:x:1005:1005::/home/stu5:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6r3l3x5t7j30cj039dfq.jpg" alt="\img"></p>
+<p>（2）用户密码配置文件/etc/shadow</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用户名：用户账户名。 </span><br><span class="line">密码：用户的加密密码。</span><br><span class="line">最后一次修改的时间：从 1970 年 1 月 1 日起，到用户最后一次更改密码的天数。</span><br><span class="line">最小时间间隔：从 1970 年 1 月 1 日起，到用户可以更改密码的天数，(0 表示随时可以变更)。 </span><br><span class="line">最大时间间隔：从 1970 年 1 月 1 日起，到必须更改密码的天数，否则密码将过期，(99999 表示永远不 过期)。 警告时间：在密码过期之前多少天提醒用户更新，默认值是 7 天。 不活动时间：在用户密码过期之后到禁用账户的天数。</span><br><span class="line">失效时间：从 1970 年 1 月 1 日起，到账户被禁用的天数。 标志：保留位。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/shadow</span><br><span class="line">root:$6$JU.c5THlJ2kmlzRx$9H/TrK2wGfsWYUuQWc0iIuLXw4qP5Kv05nKDJ0PN73cf9E/lupRWZvijHKBinbQQrMGalsEioejlqIlpCsoW91::0:99999:7:::</span><br><span class="line">bin:*:17834:0:99999:7:::</span><br><span class="line">daemon:*:17834:0:99999:7:::</span><br><span class="line">adm:*:17834:0:99999:7:::</span><br><span class="line">lp:*:17834:0:99999:7:::</span><br><span class="line">sync:*:17834:0:99999:7:::</span><br><span class="line">shutdown:*:17834:0:99999:7:::</span><br><span class="line">halt:*:17834:0:99999:7:::</span><br><span class="line">mail:*:17834:0:99999:7:::</span><br><span class="line">...</span><br><span class="line">host:$6$FR0ZFhAfSy12p0.X$KpDrpp1xfoJvan0Dee6Lhl2HqMOTqckqHEy33F6otLnAXfZovhsqcKQDUrhAiSxYxWtSqsxKWBqqYwaJoMkLH0:18142:0:99999:7:::</span><br><span class="line">student:!!:18143:0:99999:7:::</span><br><span class="line">stu2:!!:18143:0:99999:7:::</span><br><span class="line">stu3:!!:18143:0:99999:7:::</span><br><span class="line">stu4:!!:18143:0:99999:7:::</span><br><span class="line">stu5:!!:18143:0:99999:7:::</span><br></pre></td></tr></table></figure>
+
+<h1 id="3、用户组配置文件"><a href="#3、用户组配置文件" class="headerlink" title="3、用户组配置文件"></a>3、用户组配置文件</h1><p>（1）用户组配置文件/etc/group，文件中各字段的含义从左到右分别是： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">组名：组的名称。 </span><br><span class="line">组口令：用户组的口令，用 x 表示口令是被/etc/gshadow 文件保护的。 </span><br><span class="line">组标识号(GID)：系统内部用它来标识用户组，每个用户组的 GID 都是唯一的。 </span><br><span class="line">组成员：该组的成员。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/group</span><br><span class="line">root:x:0:</span><br><span class="line">bin:x:1:</span><br><span class="line">daemon:x:2:</span><br><span class="line">sys:x:3:</span><br><span class="line">adm:x:4:</span><br><span class="line">tty:x:5:</span><br><span class="line">disk:x:6:</span><br><span class="line">...</span><br><span class="line">host:x:1000:</span><br><span class="line">student:x:1001:</span><br><span class="line">stu2:x:1002:</span><br><span class="line">stu3:x:1003:</span><br><span class="line">stu4:x:1004:</span><br><span class="line">stu5:x:1005:</span><br></pre></td></tr></table></figure>
+
+<p>（2）用户组密码配置文件/etc/gshadow，文件中各字段的含义从左到右分别是：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">组名：组的名称。 </span><br><span class="line">组口令：用户组的口令，保存已加密的口令。 </span><br><span class="line">组的管理员帐号：组的管理员帐号，管理员有权对该组添加、删除帐号。 </span><br><span class="line">组成员：该组的成员，多个用户用“，”分开</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/gshadow</span><br><span class="line">root:::</span><br><span class="line">bin:::</span><br><span class="line">daemon:::</span><br><span class="line">sys:::</span><br><span class="line">adm:::</span><br><span class="line">tty:::</span><br><span class="line">disk:::</span><br><span class="line">...</span><br><span class="line">host:!::</span><br><span class="line">student:!::</span><br><span class="line">stu2:!::</span><br><span class="line">stu3:!::</span><br><span class="line">stu4:!::</span><br><span class="line">stu5:!::</span><br><span class="line">[root@loca</span><br></pre></td></tr></table></figure>
+
+<h1 id="4、用户管理"><a href="#4、用户管理" class="headerlink" title="4、用户管理"></a>4、用户管理</h1><p>（1）用 useradd 命令创建用户 命令格式：useradd [选项] 用户名<br>选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-d 指定用户主目录</span><br><span class="line">-g 指定用户组</span><br><span class="line">-m 若主目录不存在，则创建</span><br><span class="line">-M 不创建主目录</span><br><span class="line">-s 指定登录时使用的 Shell 类型，默认为/bin/bash，如果为 /bin/nologin 就是虚拟用户</span><br><span class="line">-c 设置对该账号的注释说明文字</span><br><span class="line">-r 创建系统账号(用户 ID 小于 1000， 从 999 起按照递减的顺序创建)， 默认不创建对应的主目录</span><br><span class="line">-u 手工指定新用户的 ID 值，该值必须唯一，且大于 999。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# useradd -u 500 stu5</span><br><span class="line">useradd：用户“stu5”已存在</span><br><span class="line">[root@localhost ~]# useradd -u 500 student2</span><br><span class="line">[root@localhost ~]# cat /etc/passwd</span><br><span class="line">student2:x:500:1009::/home/student2:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>#useradd stu1 分为三步</p>
+<p> 新建一个名为 stu1 的用户 </p>
+<p>创建 stu1 的基本组为 stu1 </p>
+<p>创建主目录：/home/stu1</p>
+<p>（3）用 passwd 命令管理用户登录密码 root 用户可以为任何用户设置密码，普通用户默认情况下只能为自己设置密码。 命令格式：passwd [选项] [用户名称] 选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-l 锁定用户密码</span><br><span class="line">-u 解锁用户密码</span><br><span class="line">-S 查询用户密码状态</span><br><span class="line">-d 删除用户密码</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# passwd -S stu5</span><br><span class="line">stu5 LK 2019-09-04 0 99999 7 -1 (密码已被锁定。)</span><br><span class="line">[root@localhost ~]# passwd -u stu5</span><br><span class="line">解锁用户 stu5 的密码。</span><br><span class="line">passwd: 警告：未锁定的密码将是空的。</span><br><span class="line">passwd: 不安全的操作(使用 -f 参数强制进行该操作)</span><br><span class="line">[root@localhost ~]# passwd -u -f stu5</span><br><span class="line">解锁用户 stu5 的密码。</span><br><span class="line">passwd: 操作成功</span><br><span class="line">[root@localhost ~]# passwd -l stu5</span><br><span class="line">锁定用户 stu5 的密码 。</span><br><span class="line">passwd: 操作成功</span><br><span class="line">[root@localhost ~]# passwd -d stu5</span><br><span class="line">清除用户的密码 stu5。</span><br><span class="line">passwd: 操作成功</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
+
+<p>【举例 1】创建用户 zhangsan,指定登录类型为/bin/bash;用户 lisi，登录类型为 /sbin/nologin,并分别设置密码为：123456。并测试两个用户能否登录系统。 #useradd -s /bin/bash zhangsan #useradd -s /bin/nologin lisi </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd -s /bin/bash zhangsan</span><br><span class="line">[root@localhost ~]# useradd -s /bin/nologin lisi</span><br><span class="line">[root@localhost ~]# su zhangsan</span><br><span class="line">[zhangsan@localhost root]$ su lisi</span><br><span class="line">密码：</span><br><span class="line">12345su: 鉴定故障</span><br><span class="line">[zhangsan@localhost root]$ 123456</span><br><span class="line">bash: 123456: 未找到命令...</span><br><span class="line">[zhangsan@localhost root]$</span><br></pre></td></tr></table></figure>
+
+<p>【举例 2】创建用户 tom，并设置 tom 的真实姓名为:tom-sing,家庭电话：13911202319，公 司地址：tf5jie,公司电话：028-85699999 #useradd -c “tom-sing 13911202319 tf5jie 028-85699999” tom</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd -c &quot;tom-sing 139112022319 tf5jie 028-85699999&quot; tom</span><br><span class="line">[root@localhost ~]# cat /etc/passwd</span><br><span class="line">tom:x:1010:1010:tom-sing 139112022319 tf5jie 028-85699999:/home/tom:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>删除用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# userdel tom</span><br><span class="line">[root@localhost ~]# userdel lisi</span><br><span class="line">[root@localhost ~]# userdelstudent1</span><br><span class="line">bash: userdelstudent1: 未找到命令...</span><br><span class="line">[root@localhost ~]# userdel student1</span><br><span class="line">[root@localhost ~]# userdel zhangsan</span><br><span class="line">userdel: user zhangsan is currently used by process 38864</span><br><span class="line">[root@localhost ~]# userdel -r zhangsan</span><br><span class="line">userdel: user zhangsan is currently used by process 38864</span><br><span class="line">[root@localhost ~]# exit</span><br><span class="line">exit</span><br><span class="line">[zhangsan@localhost root]$ exit</span><br><span class="line">exit</span><br><span class="line">[root@localhost ~]# userdel zhangsan</span><br><span class="line">[root@localhost ~]# cat /etc/shadow</span><br><span class="line">student:!!:18143:0:99999:7:::</span><br><span class="line">stu2:!!:18143:0:99999:7:::</span><br><span class="line">stu3:!!:18143:0:99999:7:::</span><br><span class="line">stu4:!!:18143:0:99999:7:::</span><br><span class="line">stu5::18143:0:99999:7:::</span><br><span class="line">student2:!!:18143:0:99999:7:::</span><br><span class="line">student3:!!:18143:0:99999:7:::</span><br></pre></td></tr></table></figure>
+
+<p>【举例 3】# usermod -s /bin/nologin jack</p>
+<p>（4）用 userdel 命令删除用户 命令格式：userdel [-r] 用户名</p>
+<p> #userdel stu8 只删除用户，但不删除主目录 </p>
+<p>#userdel -r stu8 连同主目录一起删除<br>（5）用于修改用户口令有效期限的 chage 命令 命令格式：chage [选项] 用户名 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">选项 功能说明</span><br><span class="line">-m 密码可更改的最小天数。为零时代表任何时候都可以更改密码</span><br><span class="line">-W 用户密码到期前，提前收到警告信息的天数</span><br><span class="line">-M 密码保持有效的最大天数</span><br><span class="line">-E 账号到期的日期。过了这天，此账号将不可用</span><br><span class="line">-d 上一次更改的日期</span><br><span class="line">-I 停滞时期。如果一个密码已过期这些天，那么此账号将不可用</span><br><span class="line">-l 列出当前的设置。由非特权用户来确定他们的密码或账号何时过期</span><br></pre></td></tr></table></figure>
+
+<p>【举例】设置 jack 用户的密码最大有效期为 30 天，提前 9 天警告，失效时间 40 天。</p>
+<p> #chage -M 18054 -W 9 -E 18064</p>
+<p>（6）修改用户注释信息的 chfn 命令 命令格式：chfn [选项] [用户名]<br>选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-f 设置真实姓名。</span><br><span class="line">-h 设置家中的电话号码。</span><br><span class="line">-o 设置办公室的地址。</span><br><span class="line">-p 设置办公室的电话号码。</span><br></pre></td></tr></table></figure>
+
+<p>（7）修改用户 Shell 类型的 chsh 命令 命令格式：chsh [-s] [用户名]</p>
+<h1 id="5、用户组管理"><a href="#5、用户组管理" class="headerlink" title="5、用户组管理"></a>5、用户组管理</h1><p>（1）用 groupadd 命令创建用户组</p>
+<p> 命令格式：groupadd  [r]  用户组名称<br>（2）用 groupmod 命令修改用户组属性 命令格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupmod 选项 组名 选项 功能说明</span><br><span class="line">-n 修改组名</span><br><span class="line">-g 修改组标识号 GID</span><br></pre></td></tr></table></figure>
+
+<p>（4）用 groupdel 命令删除用户组</p>
+<p>​    命令格式：groupdel  组名<br>（4）用 gpasswd 命令维护组中成员 </p>
+<p>命令格式：gpasswd 选项 用户名 组名 </p>
+<p>#gpasswd stu1 为 stu1 组设置密码 选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-a 添加用户到组。</span><br><span class="line">-d 将用户从组中删除。</span><br><span class="line">-A 设置用户为组管理员。</span><br></pre></td></tr></table></figure>
+
+<p>【举例】新建 yanyan、yuanyuan、lili 三个用户和 teacher 组将 lili 设置为 teacher 组的管理员，那么 lili 就具有向该组添加用户和移除用户的权限。也可以为该 组设置密码，其他用户就可以通过 newgrp 命令切换成该组的成员身份，否则只 有本组成员才能使用该组身份。</p>
+<p> #useradd yanyan</p>
+<p> #useradd yuanyuan </p>
+<p>#useradd lili </p>
+<p>#gpasswd -a lili teacher</p>
+<p>6、扩展知识<br>（1）查看用户信息的 id 命令 </p>
+<p>（2）输出指定用户所在组 groups 命令 #groups stu1 </p>
+<p>（3）查看当前登录用户 who am i 命令<br>（4）查看当前用户 w 命令 </p>
+<p>（5）查看登录用户 who 命令 </p>
+<p>（6）查看登录用户历史 last 命令<br>课程小结：<br>1、用户与用户组概念 超级用户 普通用户 虚拟用户 主组 附加组 </p>
+<p>2、用户与组的相关配置文件 </p>
+<p>用户配置文件：/etc/passwd /etc/shadow </p>
+<p>用户组配置文件：/etc/group /etc/gshadow </p>
+<p>3、用户与组的管理 </p>
+<p>useradd passwd usermod userdel groupadd gpasswd groupmod groupdel</p>
+<h1 id="6、补充"><a href="#6、补充" class="headerlink" title="6、补充"></a>6、补充</h1><h2 id="1、Centos7基本操作"><a href="#1、Centos7基本操作" class="headerlink" title="1、Centos7基本操作"></a>1、Centos7基本操作</h2><p><strong>Linux**</strong>系统是一个多用户多任务的操作系统**</p>
+<p><strong>开源免费的，更安全，兼容性更好</strong></p>
+<p><strong>[root@localhost ~]#</strong>   <strong>表示当前登录的用户是**</strong>root**</p>
+<p><strong>当前登录的用户名</strong></p>
+<p><strong>主机名</strong></p>
+<p><strong>当前所在的目录</strong></p>
+<p><strong>student@localhost root]$</strong>   <strong>当前登录的用户是普通用户</strong> </p>
+<p><strong>~</strong> <strong>主目录（每个用户的用户配置文件夹）</strong></p>
+<p>   <strong>root</strong> <strong>用户的主目录是**</strong>/root**</p>
+<p>   <strong>普通用户的主目录是**</strong>/home/<strong>**用户名</strong></p>
+<p><strong>pwd</strong>  <strong>查看当前所在的具体目录位置</strong></p>
+<p><strong>[student@localhost /]$ ls</strong></p>
+<p><strong>查看当前目录下的文件有哪些</strong></p>
+<p><strong>dr-xr-xr-x.</strong>   <strong>5 root root 4096 7**</strong>月**   <strong>8 2019</strong> <strong>boot</strong></p>
+<p><strong>文件的类型和权限</strong></p>
+<p>   <strong>第一个字符代表文件的类型：**</strong>d - l** </p>
+<p>   <strong>后面的字符代表文件的权限</strong></p>
+<p><strong>代表的是所有都权限</strong></p>
+<p><strong>代表的是所属组的权限</strong></p>
+<p><strong>代表的是其他用户的权限</strong></p>
+<p> <strong>r</strong> <strong>读</strong>   <strong>w</strong> <strong>写</strong>  <strong>x</strong> <strong>执行</strong>  <strong>-</strong>  <strong>没有权限</strong></p>
+<p><strong>改变文件的权限：</strong></p>
+<p><strong>字母方式：</strong> <strong>chmod</strong> </p>
+<p><strong>mkdir test</strong>   <strong>新建文件，名为</strong> <strong>test</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# chmod u-x test</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# chmod g=rwx test</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# chmod a=rx test</span><br></pre></td></tr></table></figure>
+
+<p><strong>数字方式修改：</strong></p>
+<p><strong>[root@localhost ~]# chmod 755 test</strong></p>
+<p><strong>修改所有者与属组</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**[root@localhost ~]# chown student test**</span><br><span class="line"></span><br><span class="line">**[root@localhost ~]# chown :student test**</span><br><span class="line"></span><br><span class="line">**[root@localhost ~]# chown root:root test**</span><br></pre></td></tr></table></figure>
+
+<p><strong>连接文件的数量</strong></p>
+<p><strong>文件的所有者（属主）</strong></p>
+<p><strong>文件的所属组（属组）</strong></p>
+<p><strong>文件的大小（默认单位字节）</strong></p>
+<p><strong>文件创建或修改的时间</strong></p>
+<p><strong>文件的名字</strong> </p>
+<p><strong>cd   ls  -l -a  ll  -lh</strong>  </p>
+<p><strong>mkdir</strong>  </p>
+<p><strong>touch</strong></p>
+<p><strong>rmdir</strong>  <strong>删除空文件夹</strong></p>
+<p><strong>rm</strong>  <strong>默认删除文件，不是删除目录</strong></p>
+<p><strong># rm -rf c</strong></p>
+<p><strong>mv</strong>  <strong>剪切或重命名</strong></p>
+<p><strong>cp</strong> <strong>默认是复制文件不是目录</strong> </p>
+<p><strong># cp -R /mnt/public/zz /mnt</strong></p>
+<p><strong>查看文件内容：</strong></p>
+<p>  <strong>cat</strong> </p>
+<p>  <strong>more</strong> <strong>分页显示，自动退出</strong></p>
+<p><strong>less</strong> <strong>分页显示，</strong> <strong>q</strong> <strong>退出</strong></p>
+<p>  <strong>head</strong>  <strong>查看前十行</strong>  <strong>head -3 +**</strong>路径：前三行**</p>
+<p>  <strong>tail</strong>      <strong>查看后十行</strong></p>
+<p><strong>帮助命令</strong></p>
+<p>  <strong>ls –help</strong></p>
+<p><strong>man</strong></p>
+<p><strong>4、**</strong>查找命令**</p>
+<p>  <strong>find</strong>  <strong>相当于</strong> <strong>windows</strong>  <strong>里面的搜索文件</strong> <strong>find+</strong> <strong>查找范围</strong> <strong>+</strong> <strong>查找条件</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sij3v125j30c603yglk.jpg" alt="\img"></p>
+<p><strong>查找**</strong>3M<strong>**以上的文件</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijkzxmkj30b901y746.jpg" alt="\img"></p>
+<p>  <strong>grep</strong> <strong>查找内容</strong></p>
+<p><strong>包含**</strong>root**</p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijrlaesj30c201ka9y.jpg" alt="\img"></p>
+<p>以root开头</p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijxq6emj30bj014dfo.jpg" alt="\img"></p>
+<p>文件权限：</p>
+<p> R:读  4</p>
+<p> W:写  2</p>
+<p>X:执行  1</p>
+<p>-：无权限  0</p>
+<p>Rwx r-x r-x.</p>
+<p>属主权限u 属组权限g <strong>其他用户**</strong>0**  <strong>所有**</strong>a**</p>
+<p><strong>.**</strong>代表有没有<strong>**ACL</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd xuelian</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ls</span><br><span class="line"></span><br><span class="line">11.txt  22.txt  33.txt  44.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ll</span><br></pre></td></tr></table></figure>
+
+<p>总用量 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x. 4 root root 52 9月   4 07:50 11.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 22.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 33.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:29 44.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# chmod a+wrx 11.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ll</span><br></pre></td></tr></table></figure>
+
+<p>总用量 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drwxrwxrwx. 4 root root 52 9月   4 07:50 11.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 22.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 33.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:29 44.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# chmod 770 11.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ll</span><br></pre></td></tr></table></figure>
+
+<p>总用量 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drwxrwx---. 4 root root 52 9月   4 07:50 11.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 22.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 33.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:29 44.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-、用户与组的管理"><a href="#2-、用户与组的管理" class="headerlink" title="2**、用户与组的管理**"></a><strong>2**</strong>、用户与组的管理**</h2><p><strong>（1）用户的管理</strong></p>
+<p>useradd命令创建用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\#useradd stu1</span><br><span class="line"></span><br><span class="line">\#useradd -s /bin/nologin stu1</span><br><span class="line"></span><br><span class="line">**# usermod -s /bin/nologin stu1**</span><br></pre></td></tr></table></figure>
+
+<p><strong>-s:**</strong>指定登录类型。**</p>
+<p><strong>为用户设置密码：**</strong>passwd** </p>
+<p>   <strong>如果是**</strong>root<strong>**用户操作，那么它可以设置任何用户的密码。</strong></p>
+<p>   <strong>如果是普通用户呢？如果是一个组的管理员，它可以设置本组用户的密码</strong></p>
+<p>​                     <strong>如果是普通用户，只能设置自己的密码</strong></p>
+<p><strong>如果从**</strong>root<strong>**用户切换到普通用户，是不需要输入密码的。</strong></p>
+<p><strong>如果是普通用户切换到其他用户是需要输入密码的。</strong></p>
+<p><strong>sbit:**</strong>粘滞位权限**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">**[root@localhost xuelian]# su stu2**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost xuelian]$ cd sbit**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost sbit]$ touch 1.txt**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost sbit]$ touch 2.txt**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost sbit]$ exit**</span><br><span class="line"></span><br><span class="line">**[root@localhost xuelian]# su stu3**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost xuelian]$ cd sbit**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ touch stu3.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ ll**</span><br><span class="line"></span><br><span class="line">**总用量** **0**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu2 stu2 0 9****月**   **4 19:16 1.txt**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu2 stu2 0 9****月**   **4 19:16 2.txt**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu3 stu3 0 9****月**   **4 19:17 stu3.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$**</span><br><span class="line"></span><br><span class="line"> **[stu3@localhost sbit]$ rm -rf 1.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ ll**</span><br><span class="line"></span><br><span class="line">**总用量** **0**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu2 stu2 0 9****月**   **4 19:16 2.txt**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu3 stu3 0 9****月**   **4 19:17 stu3.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ chmod 0+t sbit/**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ chmod o+t sbit/**</span><br><span class="line"></span><br><span class="line">**chmod:** **无法访问****&quot;sbit/&quot;:** **没有那个文件或目录**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ chmod o+t sbit**</span><br><span class="line"></span><br><span class="line">**chmod:** **无法访问****&quot;sbit&quot;:** **没有那个文件或目录**   **//****加权限必须是****ROOT****下**</span><br><span class="line"></span><br><span class="line">**[root@localhost xuelian]# chmod o+t sbit**</span><br><span class="line"></span><br><span class="line">**[root@localhost xuelian]# ll**</span><br><span class="line"></span><br><span class="line">**总用量** **0**</span><br><span class="line"></span><br><span class="line">**drwxrwx---. 4 root root 52 9****月**   **4 07:50 11.txt**</span><br><span class="line"></span><br><span class="line">**drwxr-xr-x. 2 root root  6 9****月**   **4 07:28 22.txt**</span><br><span class="line"></span><br><span class="line">**drwxr-xr-x. 2 root root  6 9****月**   **4 07:28 33.txt**</span><br><span class="line"></span><br><span class="line">**drwxr-xr-x. 2 root root  6 9****月**   **4 07:29 44.txt**</span><br><span class="line"></span><br><span class="line">**drwxrwxrwt. 2 root root 35 9****月**   **4 19:18 sbit //****多了个****t** **如果原来有****x****权限，加的就是****t,****如果没有，就是加****T**</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除用户：</strong> userdel [-r] 用户名</p>
+<p><strong>修改用户：</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**usermod -l**  **修改用户名**</span><br><span class="line"></span><br><span class="line">​          **usermod -L** **锁定用户**</span><br><span class="line"></span><br><span class="line">​           **usermod -U** **解锁用户**</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）用户组的管理</strong> </p>
+<p>新建用户组：groupadd</p>
+<p>组用户管理：gpasswd</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>添加用户到组。</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>将用户从组中删除。</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>设置用户为组管理员。</td>
+</tr>
+</tbody></table>
+<p>为用户组设置密码：gpasswd </p>
+<p>普通用户临时加入到组，并享有组的权限：newgroup</p>
+<p>人事部有两个员工（rs1 rs2),其中rs1为组rsb的管理员，rsb组的密码是：123456</p>
+<p>/mnt/rsb文件 drwxr-x— rs1 rsb</p>
+<p>现在有一个员工：zjl  想有临时权限查看rsb目录中的文件？</p>
+<p><strong>3**</strong>、特殊权限**</p>
+<p><strong>ACL:**</strong>是针对其他用户当中的个别或部份用户设置的权限**</p>
+<p><strong>setfacl -m</strong>   <strong>创建</strong></p>
+<p><strong>setfacl -x</strong>    <strong>删除一条</strong></p>
+<p><strong>stfacl -b</strong>    <strong>删除所有</strong></p>
+<p><strong>getfacl</strong>     <strong>查看</strong></p>
+<p><strong>SBIT**</strong>：<strong>**chmod  o+t</strong></p>
+<p><strong>SGID**</strong>：<strong>**chmod g+s</strong></p>
+<p><strong>4**</strong>、今日任务** </p>
+<p><strong>项目一组：</strong></p>
+<p><strong>用户组：**</strong>xm1z**</p>
+<p><strong>用户：**</strong>xm11 (<strong><strong>组管理员</strong></strong>) xm12**</p>
+<p><strong>文件：**</strong>/mnt/xm1z**</p>
+<p><strong>项目二组：</strong></p>
+<p><strong>用户组：**</strong>xm2z**</p>
+<p><strong>用户：**</strong>xm21 (<strong><strong>组管理员</strong></strong>) xm22**</p>
+<p><strong>文件：**</strong>/mnt/xm2z**</p>
+<p><strong>管理团队用户：</strong></p>
+<p><strong>用户组：**</strong>glz**</p>
+<p><strong>用户：**</strong>xmjl<strong>**（项目经理）</strong>  <strong>rsjl**</strong>（人事经理）**  <strong>xmzl**</strong>（经理助理）**</p>
+<p><strong>文件：**</strong>/mnt/wan19**</p>
+<p><strong>要求：</strong></p>
+<p><strong>每组的文件夹只允许本组的同学访问，并可以读写文件，并且建立的文件所属组为员工所在的组，但只能删除自己的文件，不能删除别人的文件。其他组的同学对本组的文件没有任何权限。其中管理团队的**</strong>xmjl<strong>**对各组文件具有读写执行的权限。</strong></p>
+<p><strong>每组的管理员可以管理本组员工的帐号。</strong></p>
+<p><strong>请每位同学按照功能实现，并将实现步骤截图整理成文档，保存为自己的名字，发给组长，由组长打包发送至班组群里。</strong></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/09/04/09-08用户与组的管理/">用户与组的管理</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2019年09月04日 - 17时18分</p>
+        <p><span>最后更新:</span>2019年09月09日 - 08时17分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/09/04/09-08用户与组的管理/" title="用户与组的管理">http://yoursite.com/2019/09/04/09-08用户与组的管理/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/09/04/09-08用户与组的管理/　　作者: John Doe" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/09/08/应急响应笔记大纲/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2019/09/04/08-24第1篇：Window入侵排查/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">window入侵排查</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-用户与用户组概念"><span class="toc-number">1.</span> <span class="toc-text">1.用户与用户组概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、用户配置文件"><span class="toc-number">2.</span> <span class="toc-text">2、用户配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、用户组配置文件"><span class="toc-number">3.</span> <span class="toc-text">3、用户组配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、用户管理"><span class="toc-number">4.</span> <span class="toc-text">4、用户管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、用户组管理"><span class="toc-number">5.</span> <span class="toc-text">5、用户组管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、补充"><span class="toc-number">6.</span> <span class="toc-text">6、补充</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Centos7基本操作"><span class="toc-number">6.1.</span> <span class="toc-text">1、Centos7基本操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-、用户与组的管理"><span class="toc-number">6.2.</span> <span class="toc-text">2**、用户与组的管理**</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/09/08/应急响应笔记大纲/" title="上一篇: ">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2019/09/04/08-24第1篇：Window入侵排查/" title="下一篇: window入侵排查">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/08-09网络连接/">网络连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/应急响应笔记大纲/">应急响应笔记大纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/09-08用户与组的管理/">用户与组的管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/08-24第1篇：Window入侵排查/">window入侵排查</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/28/本地计算机策略配置案例/">组策略与安全设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/26/windows服务器/">Windows服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/25/第2篇：Linux入侵排查/">linux入侵排查</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/23/VPN/">VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/GNS3/">防火墙与VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/防火墙/">防火墙</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/20/网络地址转换NAT/">网络地址转换NAT</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/30/CSRF/">CSRF漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/25/学习前端/">初识前端</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
