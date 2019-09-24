@@ -7,25 +7,20 @@
   
   
   
-  <title>window入侵排查 | Hexo</title>
+  <title>初识python | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第1篇：window入侵排查0x00 前言当企业发生黑客入侵、系统崩溃或其它影响业务正常运行的安全事件时，急需第一时间进行处理，使企业的网络信息系统在最短时间内恢复正常工作，进一步查找入侵来源，还原入侵事故过程，同时给出解决方案与防范措施，为企业挽回或减少经济损失。   常见的应急响应事件分类： web入侵：网页挂马、主页篡改、Webshell 系统入侵：病毒木马、勒索软件、远控后门 网络攻击">
-<meta name="keywords" content="系统安全">
+  <meta name="description" content="浅谈python">
+<meta name="keywords" content="web安全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="window入侵排查">
-<meta property="og:url" content="http://yoursite.com/2019/09/04/08-24第1篇：Window入侵排查/index.html">
+<meta property="og:title" content="初识python">
+<meta property="og:url" content="http://yoursite.com/2019/09/24/09-24第一章爬虫/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="第1篇：window入侵排查0x00 前言当企业发生黑客入侵、系统崩溃或其它影响业务正常运行的安全事件时，急需第一时间进行处理，使企业的网络信息系统在最短时间内恢复正常工作，进一步查找入侵来源，还原入侵事故过程，同时给出解决方案与防范措施，为企业挽回或减少经济损失。   常见的应急响应事件分类： web入侵：网页挂马、主页篡改、Webshell 系统入侵：病毒木马、勒索软件、远控后门 网络攻击">
+<meta property="og:description" content="浅谈python">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/09/04/08-24第1篇：Window入侵排查/image/sum-1-1.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/04/08-24第1篇：Window入侵排查/image/sum-1-2.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/04/08-24第1篇：Window入侵排查/image/sum-1-3.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/04/08-24第1篇：Window入侵排查/image/sum-1-4.png">
-<meta property="og:updated_time" content="2019-09-08T07:59:42.825Z">
+<meta property="og:updated_time" content="2019-09-24T14:04:49.822Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="window入侵排查">
-<meta name="twitter:description" content="第1篇：window入侵排查0x00 前言当企业发生黑客入侵、系统崩溃或其它影响业务正常运行的安全事件时，急需第一时间进行处理，使企业的网络信息系统在最短时间内恢复正常工作，进一步查找入侵来源，还原入侵事故过程，同时给出解决方案与防范措施，为企业挽回或减少经济损失。   常见的应急响应事件分类： web入侵：网页挂马、主页篡改、Webshell 系统入侵：病毒木马、勒索软件、远控后门 网络攻击">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/04/08-24第1篇：Window入侵排查/image/sum-1-1.png">
+<meta name="twitter:title" content="初识python">
+<meta name="twitter:description" content="浅谈python">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -278,11 +273,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-08-24第1篇：Window入侵排查" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-09-24第一章爬虫" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/09/04/08-24第1篇：Window入侵排查/" class="article-date">
-      <time datetime="2019-09-04T01:09:51.645Z" itemprop="datePublished">2019-09-04</time>
+      <a  href="/2019/09/24/09-24第一章爬虫/" class="article-date">
+      <time datetime="2019-09-23T16:00:00.000Z" itemprop="datePublished">2019-09-24</time>
 </a>
 
     </div>
@@ -296,7 +291,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      window入侵排查
+      初识python
     </h1>
   
 
@@ -308,7 +303,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web安全/">web安全</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -318,158 +313,55 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <a id="more"></a>
+        <p>浅谈python</p>
+<a id="more"></a>
 
-<h2 id="第1篇：window入侵排查"><a href="#第1篇：window入侵排查" class="headerlink" title="第1篇：window入侵排查"></a>第1篇：window入侵排查</h2><h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h3><p>当企业发生黑客入侵、系统崩溃或其它影响业务正常运行的安全事件时，急需第一时间进行处理，使企业的网络信息系统在最短时间内恢复正常工作，进一步查找入侵来源，还原入侵事故过程，同时给出解决方案与防范措施，为企业挽回或减少经济损失。  </p>
-<p>常见的应急响应事件分类：</p>
-<p>web入侵：网页挂马、主页篡改、Webshell</p>
-<p>系统入侵：病毒木马、勒索软件、远控后门</p>
-<p>网络攻击：DDOS攻击、DNS劫持、ARP欺骗</p>
-<p>针对常见的攻击事件，结合工作中应急响应事件分析和解决的方法，总结了一些Window服务器入侵排查的思路。</p>
-<h3 id="0x01-入侵排查思路"><a href="#0x01-入侵排查思路" class="headerlink" title="0x01 入侵排查思路"></a>0x01 入侵排查思路</h3><h4 id="1-1-检查系统账号安全"><a href="#1-1-检查系统账号安全" class="headerlink" title="1.1 检查系统账号安全"></a>1.1 检查系统账号安全</h4><p>1、查看服务器是否有弱口令，远程管理端口是否对公网开放。</p>
-<ul>
-<li>检查方法：据实际情况咨询相关服务器管理员。</li>
-</ul>
-<p>2、查看服务器是否存在可疑账号、新增账号。</p>
-<ul>
-<li>检查方法：打开 cmd 窗口，输入<code>lusrmgr.msc</code>命令，查看是否有新增/可疑的账号，如有管理员群组的（Administrators）里的新增账户，如有，请立即禁用或删除掉。 </li>
-</ul>
-<p>3、查看服务器是否存在隐藏账号、克隆账号。</p>
-<ul>
-<li><p>检查方法：</p>
-<p>a、打开注册表 ，查看管理员对应键值。</p>
-<p>b、使用D盾_web查杀工具，集成了对克隆账号检测的功能。</p>
-</li>
-</ul>
-<p><img src="./image/sum-1-1.png" alt></p>
-<p>4、结合日志，查看管理员登录时间、用户名是否存在异常。</p>
-<ul>
-<li><p>检查方法：</p>
-<p>a、Win+R打开运行，输入“eventvwr.msc”，回车运行，打开“事件查看器”。</p>
-<p>b、导出Windows日志–安全，利用Log Parser进行分析。</p>
-</li>
-</ul>
-<p><img src="./image/sum-1-2.png" alt></p>
-<h4 id="1-2-检查异常端口、进程"><a href="#1-2-检查异常端口、进程" class="headerlink" title="1.2 检查异常端口、进程"></a>1.2 检查异常端口、进程</h4><p>1、检查端口连接情况，是否有远程连接、可疑连接。</p>
-<ul>
-<li><p>检查方法：</p>
-<p>a、netstat -ano 查看目前的网络连接，定位可疑的ESTABLISHED </p>
-<p>b、根据netstat 定位出的pid，再通过tasklist命令进行进程定位 tasklist  | findstr “PID”</p>
-</li>
-</ul>
-<p><img src="./image/sum-1-3.png" alt></p>
-<p>2、进程</p>
-<ul>
-<li><p>检查方法：</p>
-<p>a、开始–运行–输入msinfo32，依次点击“软件环境→正在运行任务”就可以查看到进程的详细信息，比如进程路径、进程ID、文件创建日期、启动时间等。</p>
-<p>b、打开D盾_web查杀工具，进程查看，关注没有签名信息的进程。</p>
-<p>c、通过微软官方提供的 Process Explorer 等工具进行排查 。</p>
-<p>d、查看可疑的进程及其子进程。可以通过观察以下内容：</p>
-<pre><code>没有签名验证信息的进程
-没有描述信息的进程
-进程的属主
-进程的路径是否合法
-CPU或内存资源占用长时间过高的进程</code></pre></li>
-</ul>
-<p>3、小技巧：</p>
-<p>​    a、查看端口对应的PID： netstat -ano | findstr “port”</p>
-<p>​    b、查看进程对应的PID：任务管理器–查看–选择列–PID 或者  tasklist  | findstr “PID”</p>
-<p>​    c、查看进程对应的程序位置：</p>
-<p>​        任务管理器–选择对应进程–右键打开文件位置</p>
-<p>​        运行输入 wmic，cmd界面 输入  process</p>
-<p>​    d、tasklist /svc   进程–PID–服务</p>
-<p>​    e、查看Windows服务所对应的端口：<br>​        %system%/system32/drivers/etc/services（一般%system%就是C:\Windows）</p>
-<h4 id="1-3-检查启动项、计划任务、服务"><a href="#1-3-检查启动项、计划任务、服务" class="headerlink" title="1.3 检查启动项、计划任务、服务"></a>1.3 检查启动项、计划任务、服务</h4><p>1、检查服务器是否有异常的启动项。</p>
-<ul>
-<li><p>检查方法：</p>
-<p>a、登录服务器，单击【开始】&gt;【所有程序】&gt;【启动】，默认情况下此目录在是一个空目录，确认是否有非业务程序在该目录下。<br>b、单击开始菜单 &gt;【运行】，输入 msconfig，查看是否存在命名异常的启动项目，是则取消勾选命名异常的启动项目，并到命令中显示的路径删除文件。<br>c、单击【开始】&gt;【运行】，输入 regedit，打开注册表，查看开机启动项是否正常，特别注意如下三个注册表项：<br>HKEY_CURRENT_USER\software\micorsoft\windows\currentversion\run<br>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run<br>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Runonce<br>检查右侧是否有启动异常的项目，如有请删除，并建议安装杀毒软件进行病毒查杀，清除残留病毒或木马。</p>
-<p>d、利用安全软件查看启动项、开机时间管理等。</p>
-<p>e、组策略，运行gpedit.msc。</p>
-</li>
-</ul>
-<p><img src="./image/sum-1-4.png" alt></p>
-<p>2、检查计划任务</p>
-<ul>
-<li><p>检查方法：</p>
-<p>a、单击【开始】&gt;【设置】&gt;【控制面板】&gt;【任务计划】，查看计划任务属性，便可以发现木马文件的路径。</p>
-<p>b、单击【开始】&gt;【运行】；输入 cmd，然后输入at，检查计算机与网络上的其它计算机之间的会话或计划任务，如有，则确认是否为正常连接。</p>
-</li>
-</ul>
-<p>3、服务自启动</p>
-<ul>
-<li>检查方法：单击【开始】&gt;【运行】，输入services.msc，注意服务状态和启动类型，检查是否有异常服务。</li>
-</ul>
-<h4 id="1-4-检查系统相关信息"><a href="#1-4-检查系统相关信息" class="headerlink" title="1.4 检查系统相关信息"></a>1.4 检查系统相关信息</h4><p>1、查看系统版本以及补丁信息</p>
-<ul>
-<li>检查方法：单击【开始】&gt;【运行】，输入systeminfo，查看系统信息</li>
-</ul>
-<p>2、查找可疑目录及文件</p>
-<ul>
-<li><p>检查方法：</p>
-<p>a、 查看用户目录，新建账号会在这个目录生成一个用户目录，查看是否有新建用户目录。</p>
-<p>​    Window 2003  C:\Documents and Settings</p>
-<p>​    Window 2008R2  C:\Users\</p>
-<p>b、单击【开始】&gt;【运行】，输入%UserProfile%\Recent，分析最近打开分析可疑文件。</p>
-<p>c、在服务器各个目录，可根据文件夹内文件列表时间进行排序，查找可疑文件。</p>
-<p>d、回收站、浏览器下载目录、浏览器历史记录</p>
-<p>e、修改时间在创建时间之前的为可疑文件</p>
-</li>
-</ul>
-<p>3、得到发现WEBSHELL、远控木马的创建时间，如何找出同一时间范围内创建的文件？</p>
-<p>​    a、利用 Registry Workshop  注册表编辑器的搜索功能，可以找到最后写入时间区间的文件。</p>
-<p>​    b、利用计算机自带文件搜索功能，指定修改时间进行搜索。</p>
-<h4 id="1-5-自动化查杀"><a href="#1-5-自动化查杀" class="headerlink" title="1.5 自动化查杀"></a>1.5 自动化查杀</h4><ul>
-<li><p>病毒查杀</p>
-<ul>
-<li>检查方法：下载安全软件，更新最新病毒库，进行全盘扫描。</li>
-</ul>
-</li>
-<li><p>webshell查杀</p>
-<ul>
-<li>检查方法：选择具体站点路径进行webshell查杀，建议使用两款webshell查杀工具同时查杀，可相互补充规则库的不足。</li>
-</ul>
-</li>
-</ul>
-<h4 id="1-6-日志分析"><a href="#1-6-日志分析" class="headerlink" title="1.6 日志分析"></a>1.6 日志分析</h4><p>系统日志</p>
-<ul>
-<li><p>分析方法：</p>
-<p>a、前提：开启审核策略，若日后系统出现故障、安全事故则可以查看系统的日志文件，排除故障，追查入侵者的信息等。</p>
-<p>b、Win+R打开运行，输入“eventvwr.msc”，回车运行，打开“事件查看器”。</p>
-<p>C、导出应用程序日志、安全日志、系统日志，利用Log Parser进行分析。</p>
-</li>
-</ul>
-<p>WEB访问日志</p>
-<ul>
-<li><p>分析方法：</p>
-<p>a、找到中间件的web日志，打包到本地方便进行分析。</p>
-<p>b、推荐工具：Window下，推荐用 EmEditor 进行日志分析，支持大文本，搜索效率还不错。</p>
-<p>​                 Linux下，使用Shell命令组合查询分析</p>
-</li>
-</ul>
-<h3 id="0x02-工具篇"><a href="#0x02-工具篇" class="headerlink" title="0x02 工具篇"></a>0x02 工具篇</h3><h4 id="2-1-病毒分析"><a href="#2-1-病毒分析" class="headerlink" title="2.1 病毒分析"></a>2.1 病毒分析</h4><p>PCHunter：<a href="http://www.xuetr.com" target="_blank" rel="noopener">http://www.xuetr.com</a></p>
-<p>火绒剑：<a href="https://www.huorong.cn" target="_blank" rel="noopener">https://www.huorong.cn</a></p>
-<p>Process Explorer：<a href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/process-explorer" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/sysinternals/downloads/process-explorer</a></p>
-<p>processhacker：<a href="https://processhacker.sourceforge.io/downloads.php" target="_blank" rel="noopener">https://processhacker.sourceforge.io/downloads.php</a></p>
-<p>autoruns：<a href="https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns</a></p>
-<p>OTL：<a href="https://www.bleepingcomputer.com/download/otl/" target="_blank" rel="noopener">https://www.bleepingcomputer.com/download/otl/</a></p>
-<p>SysInspector：<a href="http://download.eset.com.cn/download/detail/?product=sysinspector" target="_blank" rel="noopener">http://download.eset.com.cn/download/detail/?product=sysinspector</a></p>
-<h4 id="2-2-病毒查杀"><a href="#2-2-病毒查杀" class="headerlink" title="2.2 病毒查杀"></a>2.2 病毒查杀</h4><p>卡巴斯基：<a href="http://devbuilds.kaspersky-labs.com/devbuilds/KVRT/latest/full/KVRT.exe" target="_blank" rel="noopener">http://devbuilds.kaspersky-labs.com/devbuilds/KVRT/latest/full/KVRT.exe</a>   （推荐理由：绿色版、最新病毒库）</p>
-<p>大蜘蛛：<a href="http://free.drweb.ru/download+cureit+free（推荐理由：扫描快、一次下载只能用1周，更新病毒库）" target="_blank" rel="noopener">http://free.drweb.ru/download+cureit+free（推荐理由：扫描快、一次下载只能用1周，更新病毒库）</a></p>
-<p>火绒安全软件：<a href="https://www.huorong.cn" target="_blank" rel="noopener">https://www.huorong.cn</a></p>
-<p>360杀毒：<a href="http://sd.360.cn/download_center.html" target="_blank" rel="noopener">http://sd.360.cn/download_center.html</a></p>
-<h4 id="2-3-病毒动态"><a href="#2-3-病毒动态" class="headerlink" title="2.3 病毒动态"></a>2.3 病毒动态</h4><p>CVERC-国家计算机病毒应急处理中心：<a href="http://www.cverc.org.cn" target="_blank" rel="noopener">http://www.cverc.org.cn</a></p>
-<p>微步在线威胁情报社区：<a href="https://x.threatbook.cn" target="_blank" rel="noopener">https://x.threatbook.cn</a></p>
-<p>火绒安全论坛：<a href="http://bbs.huorong.cn/forum-59-1.html" target="_blank" rel="noopener">http://bbs.huorong.cn/forum-59-1.html</a></p>
-<p>爱毒霸社区：<a href="http://bbs.duba.net" target="_blank" rel="noopener">http://bbs.duba.net</a></p>
-<p>腾讯电脑管家：<a href="http://bbs.guanjia.qq.com/forum-2-1.html" target="_blank" rel="noopener">http://bbs.guanjia.qq.com/forum-2-1.html</a></p>
-<h4 id="2-4-在线病毒扫描网站"><a href="#2-4-在线病毒扫描网站" class="headerlink" title="2.4 在线病毒扫描网站"></a>2.4 在线病毒扫描网站</h4><p><a href="http://www.virscan.org" target="_blank" rel="noopener">http://www.virscan.org</a>         //多引擎在线病毒扫描网 v1.02，当前支持 41 款杀毒引擎     </p>
-<p><a href="https://habo.qq.com" target="_blank" rel="noopener">https://habo.qq.com</a>             //腾讯哈勃分析系统</p>
-<p><a href="https://virusscan.jotti.org" target="_blank" rel="noopener">https://virusscan.jotti.org</a>      //Jotti恶意软件扫描系统</p>
-<p><a href="http://www.scanvir.com" target="_blank" rel="noopener">http://www.scanvir.com</a>        //针对计算机病毒、手机病毒、可疑文件等进行检测分析</p>
-<h4 id="2-5-webshell查杀"><a href="#2-5-webshell查杀" class="headerlink" title="2.5 webshell查杀"></a>2.5 webshell查杀</h4><p>D盾_Web查杀：<a href="http://www.d99net.net/index.asp" target="_blank" rel="noopener">http://www.d99net.net/index.asp</a></p>
-<p>河马webshell查杀：<a href="http://www.shellpub.com" target="_blank" rel="noopener">http://www.shellpub.com</a></p>
-<p>深信服Webshell网站后门检测工具：<a href="http://edr.sangfor.com.cn/backdoor_detection.html" target="_blank" rel="noopener">http://edr.sangfor.com.cn/backdoor_detection.html</a></p>
-<p>Safe3：<a href="http://www.uusec.com/webshell.zip" target="_blank" rel="noopener">http://www.uusec.com/webshell.zip</a></p>
+<h1 id="第一章爬虫"><a href="#第一章爬虫" class="headerlink" title="第一章爬虫"></a>第一章爬虫</h1><h2 id="1-1什么是爬虫"><a href="#1-1什么是爬虫" class="headerlink" title="1.1什么是爬虫"></a>1.1什么是爬虫</h2><p>实质是一种计算机程序，通过计算机语言开发而来，他的行为看起来就一只蜘蛛在网上爬行工作一样，蜘蛛的英文单词：spider-爬虫的别名</p>
+<p>百度蜘蛛，google蜘蛛实质就是一个或一套爬虫程序</p>
+<p>爬虫就是进行数据爬取，并进行简单的数据处理（数据清理）操作的特殊应用程序。</p>
+<p>爬虫的来源：一般通过互联网展开而来</p>
+<h2 id="1-2爬虫可以做什么"><a href="#1-2爬虫可以做什么" class="headerlink" title="1.2爬虫可以做什么"></a>1.2爬虫可以做什么</h2><p>（1）收集数据  最直接最常用的使用方法</p>
+<p>（2）尽职调查 是否在尽职工作 有水分可以通过数据来查看 通过“爬虫”来对发生的数据进行获取，并最终形成结果，以验证过程是否与数据所言</p>
+<p>（3）刷流量和秒杀</p>
+<h2 id="1-3-爬虫的开发技术"><a href="#1-3-爬虫的开发技术" class="headerlink" title="1.3 爬虫的开发技术"></a>1.3 爬虫的开发技术</h2><p>（1）”技“ 通过各种语言和框架的使用来完成这个功能，这个层面更像是软件文档，目前市面上的教程大多停留在这个只教你如何让通过技术来实现爬虫</p>
+<p>（2）”术” 方法 遇到反爬虫的问题，遇到一些特殊情况时，技只是实现功能的基础，而术就是提供解决问题的思路，所以更强调思想，流程调度。</p>
+<p>目前实现爬虫的语言很多 java,php,c#,python……都能实现爬虫，其中python多采用？语法相对于其他语言简单，相对于其他语言够直接，偏脚本，语法简单，入门容易，书写方式接近英语，易看懂，有强大的库支持。</p>
+<h2 id="1-4使用两个库"><a href="#1-4使用两个库" class="headerlink" title="1.4使用两个库"></a>1.4使用两个库</h2><p>（1）requests :请求</p>
+<p>（2）scray :框架</p>
+<h1 id="第二章-python-基础"><a href="#第二章-python-基础" class="headerlink" title="第二章 python 基础"></a>第二章 python 基础</h1><h2 id="2-1-python的安装与运行"><a href="#2-1-python的安装与运行" class="headerlink" title="2.1  python的安装与运行"></a>2.1  python的安装与运行</h2><p>由于历史原因，目前市面上流通的python有两个版本 python2.x python3.x  区别 代码是还是3写的 比如                            print(“);//python3                                                                     </p>
+<p> print”；     //python2</p>
+<h3 id="2-1-1为什么要区分两个版本"><a href="#2-1-1为什么要区分两个版本" class="headerlink" title="2.1.1为什么要区分两个版本"></a>2.1.1为什么要区分两个版本</h3><p>因为两个版本之间相互不兼容 python官方宣布，在为俩python发展主要以3为主，python会新增的功能，而2主要修复，不会新增新的功能</p>
+<h3 id="2-1-2安装"><a href="#2-1-2安装" class="headerlink" title="2.1.2安装"></a>2.1.2安装</h3><p>Python 3.7.1 (也可以在官网上下载新的版本，差异不大)</p>
+<p>windows  对应安装 </p>
+<p>mac os homebre安装：brew install tython3 在macos中已经内置python2 如果无法完成honmebre安装可以直接到官网对应的pkg安装包进行安装</p>
+<p>linux</p>
+<p>python-version 查看当前系统的版本 ，如果运行版本低或没有安装，或通过一下命令完成<br> sudo apt-update<br> sudo apt-get install python3.7 python3-dev python3-pip libxslt-dev zlib1g-dev libffi-devv libssl-dev</p>
+<h3 id="2-1-3-python开发工具"><a href="#2-1-3-python开发工具" class="headerlink" title="2.1.3 python开发工具"></a>2.1.3 python开发工具</h3><p>作为脚本开发语言，由于程序组成比较简单，因此编辑工具也比较简单 面向脚本的开发工具就比较多 ，比如：文本类的编辑工具都可以用于开发python，包括记事本cmd </p>
+<p>专业工具：PyCharm:有两个版本可选，社区版（针对个人免费）和专业版<br>SublimeText3:本身付费，但是网上的“学习版”，网上可以下载使用                     本例中 64</p>
+<h2 id="2-3-pyhton-的数据结构和控制结构"><a href="#2-3-pyhton-的数据结构和控制结构" class="headerlink" title="2.3 pyhton 的数据结构和控制结构"></a>2.3 pyhton 的数据结构和控制结构</h2><h3 id="2-3-1-两个内置的函数"><a href="#2-3-1-两个内置的函数" class="headerlink" title="2.3.1 两个内置的函数"></a>2.3.1 两个内置的函数</h3><p>print();//用于输出结果或信息，多用于在控制台输出内容</p>
+<p>input();//用于用户输入内容</p>
+<h3 id="2-3-2整数、浮点、变量"><a href="#2-3-2整数、浮点、变量" class="headerlink" title="2.3.2整数、浮点、变量"></a>2.3.2整数、浮点、变量</h3><h4 id="（1）整数和浮点"><a href="#（1）整数和浮点" class="headerlink" title="（1）整数和浮点"></a>（1）整数和浮点</h4><p>python中的整数和数学里定义的整数是一样的，python定义的浮点和数学中定义的小数一样。在python中，我们可以通过print打印一个整数或浮点数，如 print(12345)  //返回的就是整形的1234  整数的加减乘除运算可以在print中直接进行，同时还支持括号哦的方式来改变运算的优先级<br>在python中做除法，会得到浮点结果  在浮点运算中 0.3+0.4结果不是0.4，而是很长的一段浮点数，这不是Python问题，这是由于浮点数书的存储机制导致的。<br>注： 不应该直接使用python进行精确计算，但是进行日常精度不高的四则运算是没有问题的。</p>
+<h4 id="（2）变量"><a href="#（2）变量" class="headerlink" title="（2）变量"></a>（2）变量</h4><p>盒子，减少重复输入<br>一个合法的变量为等号左边为变量名，右边为变量名，其中等于就是赋值的意思<br>name=”zhiliaotang”<br>一是就是变量名为name<br>值为“zhiliangtang”<br>变量的类型完全由赋值的结果来确定，结果是整形，则为整形，结果为字符串则为字符串</p>
+<p><strong>补充</strong>：cmd下直接运行python脚本的方法<br>如脚本名为abc.py<br>cmd&gt;&gt; python abc.py</p>
+<p><strong>作业</strong>：完成一个简单的计算器小程序，实现简单的四则运算。要求用户输入值，程序收到值后在进行简单计算并打印结果</p>
+<h3 id="2-3-3字符串、列表、元组"><a href="#2-3-3字符串、列表、元组" class="headerlink" title="2.3.3字符串、列表、元组"></a>2.3.3字符串、列表、元组</h3><h4 id="（1）字符串"><a href="#（1）字符串" class="headerlink" title="（1）字符串"></a>（1）字符串</h4><p>在python中字符串是一种比较常见的数据类型，任何被单引号或括号括起来的内容，都可以被认定为字符串。字符串可以赋值给变量<br>如：string_1=’我是字符串1’#字符串可以接收中文、英文或其他语言的字符内容<br>sring_2=”” #空字符串<br>string_3=’ ‘ #空格字符串<br>string_4=’a’#只有一个字母<br>string_5=’123’<br>string_6=””#采用双引号的字符串定义<br>字符串的内容可以说中文、英文、数字、空格以及其他字符组成。<br>字符串形式的数字和普通的数字是不一样的如：<br>int=123<br>string=”123”  #以上变量的结果是不样的。</p>
+<h4 id="（2）列表（list）"><a href="#（2）列表（list）" class="headerlink" title="（2）列表（list）"></a>（2）列表（list）</h4><p>数据类型的表现形式为：list=[]<br>列表在python中是一种容器类型，由方括号和方括号括起来的数据组成，里面的数据可以是整数、浮点数、字符串，也可以是另一个列表或其他数据结构<br>列表中的每一项叫做列表的一个元素，每个元素之间使用英文逗号隔开如：<br>list_1=[1,2,3,4]#列表中由4个元素，全是数字<br>list_1=[‘abc’,’x’,’知了堂’]<br>list_3=[]#空列表<br>list_4=[‘123’,[‘123’,’123’]]</p>
+<h4 id="（3）元组（tuple）"><a href="#（3）元组（tuple）" class="headerlink" title="（3）元组（tuple）"></a>（3）元组（tuple）</h4><p>数据类型的表现形式为：tuple=()<br>元组也是python中一种容器类型，由小括号和小括号括起来的数据构成，外形和列表非常像，只不过列表为方括号，元组为小括号，”元组“中的”元“和”二元一次方程“中的元是一个意思。”组“就是组合的意思<br>tuple_1=(1,2,3,4,5)#6个全为数字的元素<br>tuple_2=(“123”,’雷雪莲’)<br>tuple_3=()#空元组<br>tuple_4=(‘123,’123,1.23,[1,2,3],[1,2,3])<br>以上元组的定义都是对的 其中可以发现元组支持类型&gt;列表&gt;字符串&gt;整数</p>
+<p><strong>元组和列表的区别</strong></p>
+<p>列表生成后，还可以往里面继续添加数据，也可以从里面添加数据<br>元组生成后，就不能修改一下集中类型的数据：整数、浮点数、字符，两一个元组，里面是列表除外。</p>
+<h3 id="2-3-4-数据的读取"><a href="#2-3-4-数据的读取" class="headerlink" title="2.3.4 数据的读取"></a>2.3.4 数据的读取</h3><p>字符串、元组、列表三种的数据的读取完全一样</p>
+<h4 id="（1）指定下标"><a href="#（1）指定下标" class="headerlink" title="（1）指定下标"></a>（1）指定下标</h4><p>在大多数的编成语言里面，下标都是从0开始的 python也不例外，也是从第0个元素开始，，第0个指的是元素最左边的那个。<br>string name=’雷雪莲’<br>在字符串中，第0个字符就是’雷’，第一个是’雪’ 以此类推<br>list=[‘知’，’了’,’堂’]<br>在列表中，第0个原申诉是”知“ 以此类推<br>tuple=(1,2,3)<br>在元组中，第0个元素是1，第二个元素是’2’<br>变量名[下标]<br>来获取下标的内容</p>
+<p>下标：范围:<br>0-字符长度-1，如字符串的长度为八个字符，则范围为0-7<br>实际上我们的取值范围为-7 -0-7<br>下标中，如果为正值，则是正向取值，如：<br>name=’我是知了堂’<br>name[0]=&gt;’我’<br>name[1]=&gt;’是’<br>name=[-1]=&gt;’堂’</p>
+<h4 id="（2）切片操作"><a href="#（2）切片操作" class="headerlink" title="（2）切片操作"></a>（2）切片操作</h4><p>字符通过切片以后，结果还是字符串，列表切片以后还是列表，元组切片以后还是元组<br>为什么要切片，需要获取某个范围的内容时，需要用到切片操作<br>切片的格式为：<br>变量名[开始时位置的下标:结束位置的下标:步长]<br>其中开始位置的下标，结束位置的下标，步长，都可以部分省略<br>这三个参数对应的都是数字</p>
+<p>范围：<br>开始位置的下标从零开始<br>结束位置的下标从0-字符串长度的-1位,不包括下标结束的内容<br>name=’知了堂’<br>name=[1:3]<br>name=[:3]#读取下标3以前的内容<br>name=[2:]#读取下标2以后的内容<br>步长：<br>1-字符串长度的-1位，或-1（-1为倒序）<br>步长：正值为从左到右 负值为从右到左<br>以上阵地字符串的且片用法，也同样适用于列表和元组</p>
+<h4 id="（3）-拼接和修改"><a href="#（3）-拼接和修改" class="headerlink" title="（3） 拼接和修改"></a>（3） 拼接和修改</h4><p>字符串的拼接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string_1=&apos;123&apos;</span><br><span class="line">string_2=&apos;456&apos;</span><br><span class="line">string_3=string_1+string_2</span><br><span class="line">string_3=&apos;123456&apos;</span><br></pre></td></tr></table></figure>
+
+<p>元组与元组之间也是可以拼接的，相加标识两个列表拼接在一起<br>以上的拼接原理三个数据类型都是一样的，掌握一个，其他通用</p>
+<p>修改内容：<br>字符串的额修改<br>字符串重新赋值即可修改<br>元组和列表的修改<br>变量名[下标]=新的值<br>list=[1,2,3]<br>list[1]=4<br>元组是不可变容器，列表为可变容器，所以append()智能作用域可变容器</p>
+<h3 id="2-3-5-字典与集合"><a href="#2-3-5-字典与集合" class="headerlink" title="2.3.5 字典与集合"></a>2.3.5 字典与集合</h3><h4 id="（1）字典"><a href="#（1）字典" class="headerlink" title="（1）字典"></a>（1）字典</h4><p>字典就是用大括号括起来的键（key）值{value}对，每个键值对之间是用英文逗号隔开，每个key-value之间使用英文冒号隔开如：<br>dict={‘name’:’雷雪莲’,’work’:java EG}<br>key:中文、英文、或数据，但是是不能修改<br>value:可以是任意的字符串、数字、列表、元组、或另一个字典、value可以重复</p>
+<p>字典的取值：<br>变量名[key]<br>变量名.get(key)</p>
+<h5 id="（2）集合"><a href="#（2）集合" class="headerlink" title="（2）集合"></a>（2）集合</h5><p>集合就是没有key的右大括号括起来的内容，而内容可以是不同的数据类型如：<br>set={‘1’,’2’,’3’,’c’}<br>集合里面的元素就不能重复的，集合也表现出了无序的特征。<br>集合最大的应用就是去重操作，例如，把一个带有重复元素的列表先转为集合，再转回列表，那么重复的内容元素就只会保留一个，吧列表转换为集合需要使用set()函数，把集合转换为列表用list()函数<br>list=[1,2,3,4,5,1,2]<br>uniue=list(set(list))<br>print(uniue)</p>
 
       
     </div>
@@ -478,13 +370,13 @@ CPU或内存资源占用长时间过高的进程</code></pre></li>
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2019/09/04/08-24第1篇：Window入侵排查/">window入侵排查</a></p>
+        <p><span>本文标题:</span><a  href="/2019/09/24/09-24第一章爬虫/">初识python</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
-        <p><span>发布时间:</span>2019年09月04日 - 09时09分</p>
-        <p><span>最后更新:</span>2019年09月08日 - 15时59分</p>
+        <p><span>发布时间:</span>2019年09月24日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年09月24日 - 22时04分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/09/04/08-24第1篇：Window入侵排查/" title="window入侵排查">http://yoursite.com/2019/09/04/08-24第1篇：Window入侵排查/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/09/04/08-24第1篇：Window入侵排查/　　作者: John Doe" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/09/24/09-24第一章爬虫/" title="初识python">http://yoursite.com/2019/09/24/09-24第一章爬虫/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/09/24/09-24第一章爬虫/　　作者: John Doe" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -495,18 +387,18 @@ CPU或内存资源占用长时间过高的进程</code></pre></li>
 
 <nav id="article-nav">
   
-    <a  href="/2019/09/04/09-08用户与组的管理/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2019/09/24/09-18linux shell脚本/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          用户与组的管理
+          (no title)
         
       </div>
     </a>
   
   
-    <a  href="/2019/08/28/本地计算机策略配置案例/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">组策略与安全设置</div>
+    <a  href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">磁盘分区与挂载</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -518,7 +410,7 @@ CPU或内存资源占用长时间过高的进程</code></pre></li>
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1篇：window入侵排查"><span class="toc-number">1.</span> <span class="toc-text">第1篇：window入侵排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-入侵排查思路"><span class="toc-number">1.2.</span> <span class="toc-text">0x01 入侵排查思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-检查系统账号安全"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.1 检查系统账号安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-检查异常端口、进程"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2 检查异常端口、进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-检查启动项、计划任务、服务"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.3 检查启动项、计划任务、服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-检查系统相关信息"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.4 检查系统相关信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-自动化查杀"><span class="toc-number">1.2.5.</span> <span class="toc-text">1.5 自动化查杀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-日志分析"><span class="toc-number">1.2.6.</span> <span class="toc-text">1.6 日志分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-工具篇"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 工具篇</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-病毒分析"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 病毒分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-病毒查杀"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.2 病毒查杀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-病毒动态"><span class="toc-number">1.3.3.</span> <span class="toc-text">2.3 病毒动态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-在线病毒扫描网站"><span class="toc-number">1.3.4.</span> <span class="toc-text">2.4 在线病毒扫描网站</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-webshell查杀"><span class="toc-number">1.3.5.</span> <span class="toc-text">2.5 webshell查杀</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章爬虫"><span class="toc-number">1.</span> <span class="toc-text">第一章爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1什么是爬虫"><span class="toc-number">1.1.</span> <span class="toc-text">1.1什么是爬虫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2爬虫可以做什么"><span class="toc-number">1.2.</span> <span class="toc-text">1.2爬虫可以做什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-爬虫的开发技术"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 爬虫的开发技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4使用两个库"><span class="toc-number">1.4.</span> <span class="toc-text">1.4使用两个库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-python-基础"><span class="toc-number">2.</span> <span class="toc-text">第二章 python 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-python的安装与运行"><span class="toc-number">2.1.</span> <span class="toc-text">2.1  python的安装与运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1为什么要区分两个版本"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1为什么要区分两个版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2安装"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-python开发工具"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3 python开发工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-pyhton-的数据结构和控制结构"><span class="toc-number">2.2.</span> <span class="toc-text">2.3 pyhton 的数据结构和控制结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-两个内置的函数"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.3.1 两个内置的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2整数、浮点、变量"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.3.2整数、浮点、变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）整数和浮点"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">（1）整数和浮点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）变量"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">（2）变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3字符串、列表、元组"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.3.3字符串、列表、元组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）字符串"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">（1）字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）列表（list）"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">（2）列表（list）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（3）元组（tuple）"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">（3）元组（tuple）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4-数据的读取"><span class="toc-number">2.2.4.</span> <span class="toc-text">2.3.4 数据的读取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）指定下标"><span class="toc-number">2.2.4.1.</span> <span class="toc-text">（1）指定下标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）切片操作"><span class="toc-number">2.2.4.2.</span> <span class="toc-text">（2）切片操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（3）-拼接和修改"><span class="toc-number">2.2.4.3.</span> <span class="toc-text">（3） 拼接和修改</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-5-字典与集合"><span class="toc-number">2.2.5.</span> <span class="toc-text">2.3.5 字典与集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）字典"><span class="toc-number">2.2.5.1.</span> <span class="toc-text">（1）字典</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#（2）集合"><span class="toc-number">2.2.5.1.1.</span> <span class="toc-text">（2）集合</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -591,13 +483,13 @@ CPU或内存资源占用长时间过高的进程</code></pre></li>
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2019/09/04/09-08用户与组的管理/" title="上一篇: 用户与组的管理">
+            <a  href="/2019/09/24/09-18linux shell脚本/" title="上一篇: ">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2019/08/28/本地计算机策略配置案例/" title="下一篇: 组策略与安全设置">
+            <a  href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/" title="下一篇: 磁盘分区与挂载">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -194,7 +194,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/系统安全/" style="font-size: 20px;">系统安全</a> <a href="/tags/网络/" style="font-size: 20px;">网络</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+                        <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/系统安全/" style="font-size: 20px;">系统安全</a> <a href="/tags/网络/" style="font-size: 15px;">网络</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
                     </div>
                 </section>
                 
@@ -272,6 +272,478 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-09-18linux shell脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/24/09-18linux shell脚本/" class="article-date">
+      <time datetime="2019-09-24T14:07:30.328Z" itemprop="datePublished">2019-09-24</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>linux shell脚本</p>
+<p>shell脚本与Windows/Dos下的批处理相似，也就是用各类命令预先放入到一个文件中，方便一次性执行的一个程序文件，<br>主要是方便管理员进行设置或者管理用的。相对于Perl、Python等脚本语言优势在于它能处理底层业务，<br>因为有大量Linux命令作为支撑，“自动安装”等用shell脚本写就会非常简单。</p>
+<p>Linux下的shell脚本默认为bash ，sh其实是bash的一个链接。</p>
+<p>1）查看默认shell的两种方法:<br>1）echo $SHELL<br>/bin/bash</p>
+<p>2）grep root /etc/passwd<br>root:x:0:0:root:/root:/bin/bash</p>
+<p>（2）样例脚本：<br>基于这个脚本来学习一下简单的shell脚本。</p>
+<p>#!bin/bash</p>
+<p>#变量定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ETC_DIR=/etc/sysconfig/network-scripts</span><br><span class="line">NET_DIR=/etc/sysconfig</span><br><span class="line">ROOT_UID=0</span><br></pre></td></tr></table></figure>
+
+<p>#if条件判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$UID&quot; -ne &quot;$ROOT_UID&quot; ]  #判断是否为root权限</span><br><span class="line">then</span><br><span class="line">   echo &quot;Must be root to run this script&quot;</span><br><span class="line">   exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">cd $ETC_DIR || &#123;</span><br><span class="line">    echo &quot;Cannot change to necessary directory,&quot;&gt;&amp;2</span><br><span class="line">    exit 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>#清除原来的网卡配置文件</p>
+<p>cat /dev/null  &gt;ifcfg-eth0 &amp;&amp; echo “clean ifcfg-eth0 ok!”</p>
+<p>#写入eth0配置：init_ip是先编辑好的网卡配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat /root/init_ip &gt;ifcfg-eth0 &amp;&amp; echo &quot;write eth0 sucessfully&quot;</span><br><span class="line">cd $NET_DIR || &#123;</span><br><span class="line">    echo &quot;Cannot change to necessary directory,&quot;&gt;&amp;2</span><br><span class="line">    exit 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>service network restart   #重启网络命令<br>exit 0  #返回成功</p>
+<p>（2）UID说明<br>UID是一个系统变量，当前是root权限 UID=0，当前非root权限UID不等于0<br>所以我们在这设置了一个变量ROOT_UID=0,来判断当前是否为root状态，因为我们对系统的配置文件进行修改必须使用root权限。所以执行的时候必须加sudo。</p>
+<p>脚本执行时候会先调用环境变量，去找相关变量，有的变量是系统已经定义可直接使用，如上文用到的UID。<br>1）cat /etc/profile     （全局）<br>2）cat /etc/profile.d   （全局）可以把变量放在这里面就可以直接用<br>3）.bashrc：用户环境变量<br>4）.bash_profile：用户环境变量</p>
+<p>（3）清空文件的三种方法：<br>清空日志的三种方法：<br>1、echo “”&gt;test.log<br>2、echo  &gt;test.log<br>3、cat /dev/null &gt;test.log</p>
+<p>/dev/null称之为黑洞<br>在代码中用的是第三种方法：cat /dev/null &gt;network</p>
+<p>（4）&amp;&amp;与||的使用：<br>cat /dev/null  &gt;ifcfg-eth0 &amp;&amp; echo “clean ifcfg-eth0 ok!”</p>
+<p><a href>1.&amp;&amp;表示只有当前面的命令执行成功以后才执行后面的命令。<br>2.||表示前面执行不成功就执行后面命令。</a><br>在这两个符号后面，用大括号，可以写入多条命令<br>cd $NET_DIR || {<br>    echo “Cannot change to necessary directory,”&gt;&amp;2<br>    exit 1<br>}</p>
+<p>如果不能够进入到该目录下，就打印错误信息。<br>1）&amp;0表示标准输入。<br>2）&amp;1表示标准输出。<br>3）&amp;2表示标准出错，</p>
+<p>（5）脚本执行的三种方法：<br>1）bash或sh + 脚本名     （文件无可执行权限，或者没指定解释器）<br>2）绝对路径/脚本名     （需要可执行权限）或者./（和第一种方法类似，不过需要可执行权限）<br>3）source +脚本名 或者. 脚本名</p>
+<p>bash或sh 指定的bash执行脚本，然后启动子shell去执行,比如，没有在脚本第一行指定使用哪一种脚本命令，就要在执行时指定解释器。<br>一般脚本都会在第一行写上‘#!/bin/bash’,且只能放在第一行，放在其他行就作注释处理，则需要用使用第一种方法。但是在Linux系统默认是bash，所以无需指定也可以，但是在其他系统就不行了。</p>
+<p>（6）source xxx.sh<br>source和.命令是Shell的内建命令，这种方式也不会创建子Shell,直接在当前的shell中执行，并且调用系统默认的shell去执行脚本，不管脚本中是不是指定shell命令解析器。<br>source和.命令不启动子shell，所以会直接执行子shell里的语句，并把变量传给父shell。脚本里面所有新建、改变变量的语句都会保存在当前shell里面。</p>
+<p>一、常见变量</p>
+<p>不同于其它语言需要先声明变量，shell的变量直接使用，eg:a=15   echo $a （该命令可提出出a的值）<br>调用变量的话 $a 或者 ${a}。 ${a} 可实现字符串拼接</p>
+<p>​       </p>
+<pre><code>$?    #判断上一条命令执行的是否成功，执行成功返回0，失败返回1
+
+$0    #返回脚本的文件名称
+
+$1-$9 #返回对应的参数值
+
+$* #返回所有的参数值是什么
+
+$# #返回参数的个数和</code></pre><p>编写脚本如下：</p>
+<pre><code>#test
+#!/bin/bash
+#by xuhan 2019-3
+#test
+echo &quot;this is my first shell&quot;
+
+echo &quot;脚本名称：$0&quot;
+echo &quot;第一个参数：$1&quot;
+echo &quot;第二个参数：$2&quot;
+echo “所有的参数值：$* ”
+echo &quot;参数的个数和：$#&quot;
+~</code></pre><p>添加测试用例结果如下：</p>
+<p>二、常见的几个符号</p>
+<blockquote>
+<p>#会覆盖原有的内容</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>#不会覆盖原有的内容</p>
+</blockquote>
+</blockquote>
+<p>;    #执行多条命令</p>
+<p>|    #管道符</p>
+<p>&amp;&amp; #前面的命令执行成功，后面的才可以执行</p>
+<p>|| #前面的命令执行失败，后面的才可以执行</p>
+<p> “” #会输出变量值</p>
+<p> ‘’ #输出本身</p>
+<p>`` #输出命令结果 eg:a=<code>date</code>;echo $a</p>
+<p>2&gt;/dev/null  #错误输出到无底洞</p>
+<p>1&gt;/dev/null  #正确输出到无底洞</p>
+<p>​              </p>
+<p><a href="https://www.jb51.net/article/134292.htm" target="_blank" rel="noopener">https://www.jb51.net/article/134292.htm</a></p>
+<p>1、单行注释：#</p>
+<p>2、多行注释</p>
+<p>方法一（这是比较稳妥的作法）：可以采用 HERE DOCUMENT 特性，实现多行注释，比如</p>
+<pre><code>&lt;&lt;&apos;COMMENT&apos;
+...
+
+COMMENT</code></pre><p>举例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">echo &quot;Say Something&quot;</span><br><span class="line">&lt;&lt;COMMENT</span><br><span class="line">    your comment 1</span><br><span class="line">    comment 2</span><br><span class="line">    blah</span><br><span class="line">COMMENT</span><br><span class="line">echo &quot;Do something else&quot;</span><br></pre></td></tr></table></figure>
+
+<p>方法二 </p>
+<p>直接采用 : 这个命令的特殊作用，但这种做法有很多局限性，而且会影响性能，下面会介绍它的原理及性能分析。</p>
+<p>如下是最简单的使用方法:</p>
+<pre><code>: &apos;
+COMMENT1
+COMMENT2
+&apos;</code></pre><p>即 : + 空格 + 单引号。</p>
+<p>解释如下：</p>
+<p>首先要知道 : 在 shell 中的特殊作用，它是内置的命令，先看一下它的帮助说明：</p>
+<pre><code>$ help :
+:: :
+Null command.
+No effect; the command does nothing.
+Exit Status:
+Always succeeds.</code></pre><p>即，:  它也是一个命令，既然是命令就会可以给它传参数，但因它会过滤掉这些参数，而单引号括起来的是普通的代码部分表示字符串，所以我们刚好可将来用来代表注释，表示在 : 后的 单引号括起来的部分在程序执行的时候忽略。</p>
+<p>另外如果不好理解，直接把它当作汇编中的 NOP， python 中的 pass ，它只是一个占位，每次返回都是真，即 $? 的话，结果会是 0 。</p>
+<p>如此一来，此方法是不是很绝妙？ 但事实上里面潜藏着很多问题：</p>
+<pre><code>它不会注释 shell 脚本中本身带有单引号的语句部分，除非你将程序中的单引号全部换成双引号，这样不爽。
+还是就是，虽然 : 会忽视后面的参数，但其实参数部分还是可能会被执行些操作，比如替换操作，文件截取操作等。所以这样会影响到代码的执行效率。
+例如：
+: &gt; file 会截取 file 。
+: $(dangerous command) 这个替换操作照样会执行。</code></pre><p>所以第二种方法，只能临时用用。</p>
+<p>第三种方法，即：采用 : + &lt;&lt; ‘COMMENT’ 的方式。</p>
+<pre><code>#!/bin/bash
+echo &quot;Say Something&quot;
+: &lt;&lt;&apos;COMMENT&apos;
+    your comment 1
+    comment 2
+    blah
+COMMENT
+echo &quot;Do something else&quot;</code></pre><p>注意：要加上单引号部分，有时候虽然不加不会有什么问题，但还是要加，以防出现莫名其妙的意外发生，比如发生字符扩展，命令替换等。</p>
+<p>但最保险的方法还是每行前加上 #</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-09-24第一章爬虫" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/24/09-24第一章爬虫/" class="article-date">
+      <time datetime="2019-09-23T16:00:00.000Z" itemprop="datePublished">2019-09-24</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/09/24/09-24第一章爬虫/">初识python</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>浅谈python</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web安全/">web安全</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2019/09/24/09-24第一章爬虫/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-09-09Linux下的磁盘分区和逻辑卷" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/" class="article-date">
+      <time datetime="2019-09-09T04:34:30.000Z" itemprop="datePublished">2019-09-09</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/">磁盘分区与挂载</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<p>Linux下的磁盘分区和逻辑卷 </p>
+<h2 id="一、硬盘接口类型"><a href="#一、硬盘接口类型" class="headerlink" title="一、硬盘接口类型"></a><strong>一、硬盘接口类型</strong></h2><p>　　硬盘的接口主要有IDE、SATA、SCSI  、SAS和光纤通道等五种类型。其中IDE和SATA接口硬盘多用于家用产品中，也有部分应用于服务器，SATA是一种新生的硬盘接口类型，已经取代了大部分IDE接口应用。SCSI   、SAS主要应用于服务器上，普通家用设备一般不支持SCSI和SAS接口。SAS也是是一种新生的硬盘接口类型，可以和SATA以及部分SCSI设备无缝结合。光纤通道最初设计也不是为了硬盘设计开发的接口，是专门为网络系统设计的，但随着存储系统对速度的需求，才逐渐应用到硬盘系统中，并且其只应用在高端服务器上价格昂贵。</p>
+<h2 id="二、硬盘和分区"><a href="#二、硬盘和分区" class="headerlink" title="二、硬盘和分区"></a><strong>二、硬盘和分区</strong></h2><p> 　　Linux中主要有两种分区类型，分别为MBR（Master Boot Record）和GPT（GUID Partition  Table），是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。</p>
+<p>　　在Linux中会把设备映射成为一个/dev目录下的系统文件，IDE接口类型的硬盘设备映射的文件名称前缀为“hd”，SCSI、SATA、SAS等接口的硬盘设备映射的文件名称前缀为“sd”（部分虚拟机或者云主机的名称可能是其他的，比如“vd”），后面拼接从“a”开始一直到“z”用来区分不同的硬盘设备，在硬盘名称后面拼接数字形式的分区号用来区分不同的分区。</p>
+<h3 id="1、MBR分区"><a href="#1、MBR分区" class="headerlink" title="1、MBR分区"></a><strong>1、MBR分区</strong></h3><p>　　MBR的意思是“主引导记录”，它是存在于驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统的启动加载器和驱动器的逻辑分区信息。MBR支持最大2TB磁盘，它无法处理大于2TB容量的磁盘。MBR格式的磁盘分区主要分为<strong>基本分区</strong>（primary partion）和<strong>扩展分区</strong>（extension partion）两种<strong>主分区</strong>和扩展分区下的<strong>逻辑分区</strong>。主分区总数不能大于4个，其中最多只能有一个扩展分区。且基本分区可以马上被挂载使用但不能再分区，扩展分区必须再进行二次分区后才能挂载。扩展分区下的二次分区被称之为逻辑分区，逻辑分区数量限制视磁盘类型而定。</p>
+<p>　　MBR的主分区号为1-4，逻辑分区号为从5开始累加的数字。比如设备主板上装了4块硬盘，分别为2块IDE接口硬盘，1块SCSI接口硬盘和一块SATA接口硬盘。其中2块IDE接口硬盘的分区策略为2个主分区和2个逻辑分区，SCSI分区策略为3个主分区和3个逻辑分区，SATA分区策略为4个主分区。硬盘文件和分区名称如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>硬盘</th>
+<th>主分区1</th>
+<th>主分区2</th>
+<th>主分区3</th>
+<th>主分区4</th>
+<th>逻辑分区1</th>
+<th>逻辑分区2</th>
+<th>逻辑分区3</th>
+<th>……</th>
+<th>逻辑分区n</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IDE1</td>
+<td>/dev/hda</td>
+<td>/dev/hda1(p)</td>
+<td>/dev/hda2(p)</td>
+<td>/dev/hda3(e)</td>
+<td>/</td>
+<td>/dev/hda5(l)</td>
+<td>/dev/hda6(l)</td>
+<td>/</td>
+<td>……</td>
+<td>/</td>
+</tr>
+<tr>
+<td>IDE2</td>
+<td>/dev/hdb</td>
+<td>/dev/hdb1(p)</td>
+<td>/dev/hdb2(p)</td>
+<td>/dev/hdb3(e)</td>
+<td>/</td>
+<td>/dev/hdb5(l)</td>
+<td>/dev/hdb6(l)</td>
+<td>/</td>
+<td>……</td>
+<td>/</td>
+</tr>
+<tr>
+<td>SCSI</td>
+<td>/dev/sda</td>
+<td>/dev/sda1(p)</td>
+<td>/dev/sda2(p)</td>
+<td>/dev/sda3(p)</td>
+<td>/dev/sda4(e)</td>
+<td>/dev/sda5(l)</td>
+<td>/dev/sda6(l)</td>
+<td>/dev/sda7(l)</td>
+<td>……</td>
+<td>/</td>
+</tr>
+<tr>
+<td>SATA</td>
+<td>/dev/sdb</td>
+<td>/dev/sdb1(p)</td>
+<td>/dev/sdb2(p)</td>
+<td>/dev/sdb3(p)</td>
+<td>/dev/sdb4(p)</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>……</td>
+<td>/</td>
+</tr>
+</tbody></table>
+<p>其中分区名称后面的（p）代表基本分区，（e）代表扩展分区，（l）代表逻辑分区。需要注意的是，如果分区策略中存在逻辑分区，则说明一定会有扩展分区，那么基本分区数则最多只能有3个，扩展分区数最多只能是1个，如果没有扩展分区则可以创建4个基本分区。想要创建逻辑分区，则必须先将唯一的扩展分区创建出来，并且如果删除了扩展分区，那么它下面的所有逻辑分区也会被自动删除。</p>
+<p>　　如果是SCSI接口硬盘则最多只能有15（其中扩展分区不能直接使用所以不计算）个分区，其中主分区最多4个，逻辑分区最多12个。IDE接口硬盘最多只能有63（其中扩展分区不能直接使用所以不计算）个分区，其中主分区最多4个，逻辑分区最多60个。</p>
+<h3 id="2、GPT分区"><a href="#2、GPT分区" class="headerlink" title="2、GPT分区"></a><strong>2、GPT分区</strong></h3><p>　　GPT意为GUID分区表，驱动器上的每个分区都有一个全局唯一的标识符（globally unique  identifier，GUID）。支持的最大磁盘可达18EB，它没有主分区和逻辑分区之分，每个硬盘最多可以有128个分区，具有更强的健壮性与更大的兼容性，并且将逐步取代MBR分区方式。GPT分区的命名和MBR类似，只不过没有主分区、扩展分区和逻辑分区之分，分区号直接从1开始累加一直到128。</p>
+<h2 id="三、逻辑卷"><a href="#三、逻辑卷" class="headerlink" title="三、逻辑卷"></a><strong>三、逻辑卷</strong></h2><p> 　　LVM（逻辑卷）的产生是因为传统的分区一旦分区好后就无法在线扩充空间，也存在一些工具能实现在线扩充空间但是还是会面临数据损坏的风险；传统的分区当分区空间不足时，一般的解决办法是再创建一个更大的分区将原分区卸载然后将数据拷贝到新分区，但是在企业的生产系统往往不允许停机或者允许停机的时间很短，LVM就能很好的解决在线扩充空间的问题，而且不会对数据造成影响，LVM还能通过快照在备份的过程中保证日志文件和表空间文件在同一时间点的一致性。</p>
+<p>　　在LVM中PE(Physical  Extend)是卷的最小单位，默认4M大小，就像我们的数据是以页的形式存储一样，卷就是以PE的形式存储。PV(Physical  Volume)是物理卷，如果要使用逻辑卷，首先第一步操作就是将物理磁盘或者物理分区格式化成PV，格式化之后PV就可以为逻辑卷提供PE了。VG(Volume   Group)是卷组，VG就是将很多PE组合在一起生成一个卷组，当然这里的PE是可以跨磁盘的，如果当前服务器磁盘空间不足就可以增加一个新磁盘对当前系统不会产生任何影响。LV(Logical  Volume)是逻辑卷，逻辑卷最终是给用户使用的，前面几个都是为创建逻辑卷做的准备，创建逻辑卷的大小只要不超过VG剩余空间就可以。</p>
+<h2 id="四、文件系统"><a href="#四、文件系统" class="headerlink" title="四、文件系统"></a><strong>四、文件系统</strong></h2><p>　　当硬盘分区被创建完成之后，还并不能直接挂载到目录上存储文件，需要选择合适的文件系统进行格式化。常见的分区类型有FAT32、FAT16、NTFS、HP-UX等，而专供Linux使用的主流的一些分区有ext2/3/4、physical  volume (LVM) 、softwareRAID、swap、vfat、xfs等。其中：</p>
+<p>　　1、ext2/3/4：是适合Linux的文件系统类型，由于ext3文件系统多了日志记录功能，因此系统恢复起来更加快速，ext4是ext3的升级，效率更加高，因此建议使用默认类型ext4类型，而不要使用ext2/3；</p>
+<p>　　2、physical volume (LVM)：这是一种弹性调整文件系统大小的机制，即可以让文件系统变大或变小，而不改变原文件数据的内容，功能不错，但性能不佳。</p>
+<p>　　3、softwareRAID：利用Linux系统的特性，用软件仿真出磁盘阵列功能。</p>
+<p>　　4、swap：就是内存交换空间。由于swap并不会使用到目录树的挂载，因此用swap就不需要指定挂载点。</p>
+<p>　　5、vfat：同时被Linux与windows所支持的文件系统类型。如果主机硬盘同事存在windows和linux两种操作系统，为了进行数据交换，可以使用该文件系统。</p>
+<p>　　6、xfs：也是一个文件系统类型，在centos7中将被作为默认的文件系统类型，替换ext4。</p>
+<p><a href="https://www.cnblogs.com/lbole/p/8904298.html" target="_blank" rel="noopener">https://www.cnblogs.com/lbole/p/8904298.html</a></p>
+<h2 id="五、使用fdisk操作分区"><a href="#五、使用fdisk操作分区" class="headerlink" title="五、使用fdisk操作分区"></a><strong>五、使用fdisk操作分区</strong></h2><p>　　本文主要以CentOS 7发行版的Linux作为实验，我们使用Fdisk工具来操作分区，Fdisk 是各种 Linux 发行版本中最常用的分区工具。</p>
+<p>　　首先输入 fdisk -h 命令查看帮助信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# fdisk -h</span><br><span class="line">用法：</span><br><span class="line">fdisk [选项] &lt;磁盘&gt; 更改分区表</span><br><span class="line">fdisk [选项] -l &lt;磁盘&gt; 列出分区表</span><br><span class="line">fdisk -s &lt;分区&gt; 给出分区大小(块数)</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line">-b &lt;大小&gt; 扇区大小(512、1024、2048或4096)</span><br><span class="line">-c[=&lt;模式&gt;] 兼容模式：“dos”或“nondos”(默认)</span><br><span class="line">-h 打印此帮助文本</span><br><span class="line">-u[=&lt;单位&gt;] 显示单位：“cylinders”(柱面)或“sectors”(扇区，默认)</span><br><span class="line">-v 打印程序版本</span><br><span class="line">-C &lt;数字&gt; 指定柱面数</span><br><span class="line">-H &lt;数字&gt; 指定磁头数</span><br><span class="line">-S &lt;数字&gt; 指定每个磁道的扇区数</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从中我们可以看出，使用 fdisk -l 命令可查看分区表信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# fdisk -l</span><br><span class="line"></span><br><span class="line">磁盘 /dev/sda：32.2 GB, 32212254720 字节，62914560 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0x000b1bc3</span><br><span class="line"></span><br><span class="line">   设备 Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sda1   *        2048     2099199     1048576   83  Linux</span><br><span class="line">/dev/sda2         2099200    62914559    30407680   8e  Linux LVM</span><br><span class="line"></span><br><span class="line">磁盘 /dev/sdb：53.7 GB, 53687091200 字节，104857600 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/cl-root：29.0 GB, 28982640640 字节，56606720 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/cl-swap：2147 MB, 2147483648 字节，4194304 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从中我们可以看出，有4个设备，分别为/dev/sda、/dev/sdb、/dev/mapper/cl-root、/dev/mapper/cl-swap。其中/dev/sda硬盘已经有2个分区分区为：/dev/sda1和/dev/sda2。/dev/mapper/cl-root和/dev/mapper/cl-swap两个设备是/dev/sda2分区创建的逻辑卷。这里的/dev/sdb硬盘设备并没有被分区，我们则是需要来操作这个硬盘，至于如何操作逻辑卷后面会讲到。</p>
+<p>　　输入 fdisk /dev/sdb 命令，对/dev/sda硬盘的分区表进行操作：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# fdisk /dev/sdb</span><br><span class="line">欢迎使用 fdisk (util-linux 2.23.2)。</span><br><span class="line"></span><br><span class="line">更改将停留在内存中，直到您决定将更改写入磁盘。</span><br><span class="line">使用写入命令前请三思。</span><br><span class="line"></span><br><span class="line">Device does not contain a recognized partition table</span><br><span class="line">使用磁盘标识符 0xc72a6f6a 创建新的 DOS 磁盘标签。</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　我们输入”m”选项可以查看到帮助信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：m</span><br><span class="line">命令操作</span><br><span class="line">   a   toggle a bootable flag 切换可引导标志</span><br><span class="line">   b   edit bsd disklabel 编辑BSD磁盘标签</span><br><span class="line">   c   toggle the dos compatibility flag 切换DOS兼容性标志</span><br><span class="line">   d   delete a partition 删除分区</span><br><span class="line">   g   create a new empty GPT partition table 创建一个新的空GPT分区表</span><br><span class="line">   G   create an IRIX (SGI) partition table 创建一个ILIX（SGI）分区表</span><br><span class="line">   l   list known partition types 列出已知分区类型</span><br><span class="line">   m   print this menu 打印此菜单</span><br><span class="line">   n   add a new partition 添加新分区</span><br><span class="line">   o   create a new empty DOS partition table 创建一个新的空DOS分区表</span><br><span class="line">   p   print the partition table 打印分区表</span><br><span class="line">   q   quit without saving changes 不保存更改退出</span><br><span class="line">   s   create a new empty Sun disklabel 创建一个新的空太阳标签</span><br><span class="line">   t   change a partition&apos;s system id 更改分区的系统ID</span><br><span class="line">   u   change display/entry units 更改显示/输入单元</span><br><span class="line">   v   verify the partition table 验证分区表</span><br><span class="line">   w   write table to disk and exit 将表写入磁盘并退出</span><br><span class="line">   x   extra functionality (experts only) 额外功能（仅专家）命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从上面的帮助信息中，可以得知一些选项的用途。这里主要注意”d”、”n”、”q”、”g”、”w”等选项。首先要明确分区格式，fdisk默认的分区格式是msdos（mbr），在此可输入”g”选项，将分区格式修改为GPT，不过在修改完保存退出之后，在输入 fdisk /dev/sdb 命令进入分区模式，会出现 WARNING: fdisk GPT support is currently new, and therefore in an experimental phase. Use at your own discretion. 信息，提示fdisk gpt分区是新的功能，目前还在实验阶段。所以如果要进行GPT分区，那么推荐使用 parted 命令，后面会介绍到。</p>
+<p>　　那么首先输入”n”选项来开始创建分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：n</span><br><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p):</span><br></pre></td></tr></table></figure>
+
+<p>　　可以看到交互界面打印的信息，提示需要选择一个分区类型，”p”:为基本分区（默认）；”e”：为扩展分区。在此我们选择”p”，创建一个基本分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Partition type:p primary (1 primary, 0 extended, 3 free)e extendedSelect (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示需要选择一个分区号，范围为2-4。由于已经存在了一个基本分区，所以只可选择2、3、4（默认2，顺序累加）。在此我们输入2：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>Partition type:<br>   p   primary (1 primary, 0 extended, 3 free)<br>   e   extended<br>Select (default p): p<br>分区号 (2-4，默认 2)：2<br>起始 扇区 (2099200-314572799，默认为 2099200)：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　可以看到交互界面提示序号选择其实扇区，默认为剩余未被分配的最小扇区，推荐选择默认（直接点击回车）；</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示，要输入需要分配的截止扇区，默认为未被分配的最小扇区，此处推荐默认（直接点击回车）：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br><span class="line">将使用默认值 314572799</span><br><span class="line">分区 2 已设置为 Linux 类型，大小设为 149 GiB</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　可以看到又回到了最初的交互界面，这表示分区表已经设置成功，输入选项q表示要放弃本次分区表的修改并退出，w选项表示保存本次分区表的修改并退出，此处选择w表示将分区信息写入到磁盘，此次分区完成；</p>
+<p>　　回到最初操作分区表的地方，选择”d”选项，删除分区的功能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：d</span><br><span class="line">分区号 (1,2，默认 2)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示输入要删除的分区的分区号，此处选择2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：d</span><br><span class="line">分区号 (1,2，默认 2)：2</span><br><span class="line">分区 2 已删除</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示本次分区表操作成功，输入选项”w”，表示将分区信息写入到磁盘，此次删除分区完成。回到最初选择分区类型的地方，选择”e”，创建扩展分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示要输入扩展分区的分区号，可选范围为2-4，此处选择2：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示输入要分配给扩展分区的起始扇区，此处选择默认：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示输入要分配给扩展分区的截止扇区，此处选择默认：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br><span class="line">将使用默认值 314572799</span><br><span class="line">分区 2 已设置为 Extended 类型，大小设为 149 GiB</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示本次对分区表的操作已完成，输入”w”选项，保存本次对分区表的操作；当再次创建分区的时候，交互界面就会将扩展分区的选项”e”替换成为逻辑分区的选项”l”：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 1 extended, 2 free)</span><br><span class="line">   l   logical (numbered from 5)</span><br><span class="line">Select (default p):</span><br></pre></td></tr></table></figure>
+
+<p>　　之后再要创建逻辑分区和之前创建分区的步骤一直，分区完成。至此CentOS中的分区操作已完成；接下来我们需要将物理分区格式化成某一个文件系统，我们使用mkds进行分区格式化操作，输入 mkfs -h 命令获取帮助信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkfs -h</span><br><span class="line">用法：</span><br><span class="line"> mkfs [选项] [-t &lt;类型&gt;] [文件系统选项] &lt;设备&gt; [&lt;大小&gt;]</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line"> -t, --type=&lt;类型&gt;  文件系统类型；</span><br><span class="line">     fs-options     实际文件系统构建程序的参数</span><br><span class="line">     &lt;设备&gt;         要使用设备的路径</span><br><span class="line">     &lt;大小&gt;         要使用设备上的块数</span><br><span class="line"> -V, --verbose      解释正在进行的操作；</span><br><span class="line">                      多次指定 -V 将导致空运行(dry-run)</span><br><span class="line"> -V, --version      显示版本信息并退出</span><br><span class="line">                      将 -V 作为 --version 选项时必须是惟一选项</span><br><span class="line"> -h, --help         显示此帮助并退出</span><br><span class="line"></span><br><span class="line">更多信息请参阅 mkfs(8)。</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从帮助信息中我们可以看到，可以使用mkfs -t xfs /dev/sdb1 进行格式化分区：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# mkfs -t xfs /dev/sda2 </span><br><span class="line">meta-data=/dev/sdb1              isize=512    agcount=4, agsize=624936 blks</span><br><span class="line">         =                       sectsz=512   attr=2, projid32bit=1</span><br><span class="line">         =                       crc=1        finobt=0, sparse=0</span><br><span class="line">data     =                       bsize=4096   blocks=2499744, imaxpct=25</span><br><span class="line">         =                       sunit=0      swidth=0 blks</span><br><span class="line">naming   =version 2              bsize=4096   ascii-ci=0 ftype=1</span><br><span class="line">log      =internal log           bsize=4096   blocks=2560, version=2</span><br><span class="line">         =                       sectsz=512   sunit=0 blks, lazy-count=1</span><br><span class="line">realtime =none                   extsz=4096   blocks=0, rtextents=0</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　格式化成xfs时，若提示分区已存在文件系统，则需要在分区前面加上-f选项强行覆盖，例如： mkfs -t xfs -f /dev/sda2 。被格式化的设备既可以是分区，也可以是逻辑卷。要查看所有分区的文件系统格式则可以使用 df -Th 命令。至此格式化分区完成。分区格式化完成之后则可以将分区挂载到某一个目录下面，正式开始使用改分区，我们在系统中创建一个用户挂载分区的目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir /data</span><br></pre></td></tr></table></figure>
+
+<p>　　将分区挂载到目录上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sda2 /data/</span><br></pre></td></tr></table></figure>
+
+<p>　　设置开机自动挂载分区到挂载点，编辑 vim /etc/fstab :</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># /etc/fstab</span><br><span class="line"># Created by anaconda on Sun Jun 25 07:16:25 2017</span><br><span class="line">#</span><br><span class="line"># Accessible filesystems, by reference, are maintained under &apos;/dev/disk&apos;</span><br><span class="line"># See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info</span><br><span class="line">#</span><br><span class="line">UUID=eb697457-a097-4263-8bbf-a75aa632d27c /                       ext4    defaults        1 1</span><br><span class="line"></span><br><span class="line">/dev/sda2                               /data                   xfs    defaults        0 0</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　如果想要卸载挂载点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# umount /dev/sda2</span><br></pre></td></tr></table></figure>
+
+<p>　　至此挂载分区已完成；</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-08-09网络连接" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1239,10 +1711,10 @@ CPU或内存资源占用长时间过高的进程</code></pre></li>
 
 
   
-    <article id="post-windows服务器" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-08-28windows服务器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/08/26/windows服务器/" class="article-date">
+      <a  href="/2019/08/26/08-28windows服务器/" class="article-date">
       <time datetime="2019-08-25T16:00:00.000Z" itemprop="datePublished">2019-08-26</time>
 </a>
 
@@ -1257,7 +1729,7 @@ CPU或内存资源占用长时间过高的进程</code></pre></li>
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/26/windows服务器/">Windows服务器</a>
+      <a  class="article-title" href="/2019/08/26/08-28windows服务器/">Windows服务器</a>
     </h1>
   
 
@@ -1284,7 +1756,7 @@ CPU或内存资源占用长时间过高的进程</code></pre></li>
 
       
         <p class="article-more-link">
-          <a   href="/2019/08/26/windows服务器/#more">查看更多 >></a>
+          <a   href="/2019/08/26/08-28windows服务器/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -1560,362 +2032,6 @@ service httpd start
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-VPN" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/23/VPN/" class="article-date">
-      <time datetime="2019-08-23T10:45:50.000Z" itemprop="datePublished">2019-08-23</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/23/VPN/">VPN</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <a id="more"></a>
-
-<h1 id="一、VPN"><a href="#一、VPN" class="headerlink" title="一、VPN"></a>一、VPN</h1><h2 id="1、L2TP-VPN"><a href="#1、L2TP-VPN" class="headerlink" title="1、L2TP VPN"></a>1、L2TP VPN</h2><p>2TP是一种工业标准的Internet隧道协议，功能大致和PPTP协议类似，比如同样可以对网络数据流进行加密。不过也有不同之处，比如PPTP要求网络为IP网络，L2TP要求面向数据包的点对点连接；PPTP使用单一隧道，L2TP使用多隧道；L2TP提供包头压缩、隧道验证，而PPTP不支持。</p>
-<h2 id="2、PPTP-VPN"><a href="#2、PPTP-VPN" class="headerlink" title="2、PPTP-VPN"></a>2、PPTP-VPN</h2><p>即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使远程用户通过拨入ISP、通过直接连接Internet或其他网络安全地访问企业网。</p>
-<h2 id="3、IPsec-VPN"><a href="#3、IPsec-VPN" class="headerlink" title="3、IPsec-VPN"></a>3、IPsec-VPN</h2><p>互联网安全协议（英语：Internet Protocol Security，缩写为IPsec），是一个协议包，通过对IP协议的分组进行加密和认证来保护IP协议的网络传输协议族（一些相互关联的协议的集合）。 [1]<br>IPsec主要由以下协议组成：</p>
-<p>一、认证头（AH），为IP数据报提供无连接数据完整性、消息认证以及防重放攻击保护；</p>
-<p>二、封装安全载荷（ESP），提供机密性、数据源认证、无连接完整性、防重放和有限的传输流（traffic-flow）机密性；</p>
-<p>三、安全关联（SA），提供算法和数据包，提供AH、ESP操作所需的参数。</p>
-<p>IPsec协议工作在OSI模型的第三层，使其在单独使用时适于保护基于TCP或UDP的协议（如安全套接子层（SSL）就不能保护UDP层的通信流）。这就意味着，与传输层或更高层的协议相比，IPsec协议必须处理可靠性和分片的问题，这同时也增加了它的复杂性和处理开销。相对而言，SSL/TLS依靠更高层的TCP（OSI的第四层）来管理可靠性和分片。</p>
-<h2 id="4、GRE-VPN"><a href="#4、GRE-VPN" class="headerlink" title="4、GRE VPN"></a>4、GRE VPN</h2><p>GRE是一种最传统的隧道协议，其根本功能就是要实现隧道功能，通过隧道连接的两<br>个远程网络就如同直连，GRE在两个远程网络之间模拟出直连链路,从而使网络间达到直<br>连的效果，为此，GRE需要完成多次封装,总共有3次</p>
-<p>（1）接收原始IP数据包当作乘客协议,原始IR数据包包头的IP地址为私有IP地址</p>
-<p>（2）将原始IP数据包封装进GRE协议, GRE协议称为封装协议(Encapsulation Protocol) ,封装的包头IP地址为虚拟直连链路两端的IP地址</p>
-<p>（3）将整个GRE数据包当作数据，在外层封装公网IP包头，也就是隧道的起源和终点，从而路由到隧道终点</p>
-<h1 id="实验一：配置VPN"><a href="#实验一：配置VPN" class="headerlink" title="实验一：配置VPN"></a>实验一：配置VPN</h1><h2 id="整体图："><a href="#整体图：" class="headerlink" title="整体图："></a>整体图：</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sppt013j30y109ajrp.jpg" alt="/img"></p>
-<h2 id="基本配置："><a href="#基本配置：" class="headerlink" title="基本配置："></a>基本配置：</h2><h3 id="PC1和PC2"><a href="#PC1和PC2" class="headerlink" title="PC1和PC2:"></a>PC1和PC2:</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sq76y5oj30co046web.jpg" alt="/img"></p>
-<h3 id="BJ"><a href="#BJ" class="headerlink" title="BJ:"></a>BJ:</h3><p>BJ(config)#int e0/0</p>
-<p>BJ(config-if)#ip add 192.168.1.1 255.255.255.0</p>
-<p>BJ(config-if)#no shutdown</p>
-<p>BJ(config)#int e0/1</p>
-<p>BJ(config-if)#ip add 61.1.1.1 255.255.255.0</p>
-<p>BJ(config-if)#no shutdown</p>
-<p>Internet:</p>
-<p>Internet(config)#int e0/0</p>
-<p>Internet(config-if)#ip add 61.1.1.2 255.255.255.0</p>
-<p>Internet(config-if)#no shutdown</p>
-<p>Internet(config)#int e0/1</p>
-<p>Internet(config-if)#ip add 181.1.1.2 255.255.255.0</p>
-<p>Internet(config-if)#no shutdown</p>
-<h3 id="CD"><a href="#CD" class="headerlink" title="CD:"></a>CD:</h3><p>CD(config)#int e0/0</p>
-<p>CD(config-if)#ip add 181.1.1.1 255.255.255.0</p>
-<p>CD(config-if)#no shutdown</p>
-<p>CD(config)#int e0/1</p>
-<p>CD(config-if)#ip add 172.16.1.2 255.255.255.0</p>
-<p>CD(config-if)#no shutdown</p>
-<h3 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF:"></a>OSPF:</h3><p>BJ(config)#router ospf 1</p>
-<p>BJ(config-router)#net</p>
-<p>BJ(config-router)#network 61.1.1.0 0.0.0.255 ar</p>
-<p>BJ(config-router)#network 61.1.1.0 0.0.0.255 area 0</p>
-<p>Internet(config)#router ospf 1</p>
-<p>Internet(config-router)#network 61.1.1.0 0.0.0.255 area 0</p>
-<p>Internet(config-router)#network 181.1.1.0 0.0.0.255 area 0</p>
-<p>CD(config)#router ospf 1</p>
-<p>CD(config-router)#network 181.1.1.0 0.0.0.255 area 0</p>
-<p>show i proute:</p>
-<h3 id="各路由器"><a href="#各路由器" class="headerlink" title="各路由器"></a>各路由器</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sqpx15uj30eu038749.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sr0aekqj30d002ut8l.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69srfu00rj30es03kweh.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69srofqqzj3098033dfm.jpg" alt="/img"></p>
-<h3 id="VPN"><a href="#VPN" class="headerlink" title="VPN:"></a>VPN:</h3><p>BJ(config)#int tunnel 1</p>
-<p>BJ(config-if)#tunnel source 61.1.1.1</p>
-<p>BJ(config-if)#tunnel destination 181.1.1.1</p>
-<p>BJ(config-if)#ip add 10.0.0.1 255.255.255.252</p>
-<p>BJ(config)#ip route 172.16.1.0 255.255.255.0 tunnel 1 //不进入接口</p>
-<p>CD(config)#int tunnel 1</p>
-<p>CD(config-if)#tunnel source 181.1.1.1</p>
-<p>CD(config-if)#tunnel destination 61.1.1.1</p>
-<p>CD(config-if)#ip address 10.0.0.2 255.255.255.252</p>
-<p>CD(config)#ip route 192.168.1.0 255.255.255.0 tunnel 1</p>
-<h3 id="实验成果："><a href="#实验成果：" class="headerlink" title="实验成果："></a>实验成果：</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sseepiqj30ce082glo.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69ssvidc0j310o0kw75m.jpg" alt="/img"></p>
-<p>最后说一下，本次实验其实很简单，代码没几行，但是过程要细致一点，比如我代码敲完了最后没Ping通，最后检查了好久，才发现是C2端的IP给错了，无话可说，但是这次是自己一个人独立操作完成的，也算是一次成长，自己写，自己检查，最后成功。</p>
-<h1 id="实验二：PPTP"><a href="#实验二：PPTP" class="headerlink" title="实验二：PPTP"></a>实验二：PPTP</h1><h2 id="PPTP介绍"><a href="#PPTP介绍" class="headerlink" title="PPTP介绍"></a>PPTP介绍</h2><p>PPTP（Point to Point Tunneling Protocol）,即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使用远程用户通过拨入ISP、通过直接连接Internet或者其他网络安全的访问企业网</p>
-<p>配置PPTP：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69st6vnt4j30xy0aj74n.jpg" alt="/img"></p>
-<h2 id="基本配置：-1"><a href="#基本配置：-1" class="headerlink" title="基本配置："></a>基本配置：</h2><p>jiudian(config)#int e0/1</p>
-<p>jiudian(config-if)#ip add 192.168.1.1 255.255.255.0</p>
-<p>jiudian(config-if)#no shutdown</p>
-<p>jiudian(config)#int e0/0</p>
-<p>jiudian(config-if)#ip add 61.1.1.1 255.255.255.0</p>
-<p>jiudian(config-if)#no shutdown</p>
-<p>Internet(config)#int e0/0</p>
-<p>Internet(config-if)#ip add 61.1.1.1 255.255.255.0</p>
-<p>Internet(config-if)#no shutdown</p>
-<p>Internet(config)#int e0/1</p>
-<p>Internet(config-if)#ip add 181.1.1.1 255.255.255.0</p>
-<p>Internet(config-if)#no shutdown</p>
-<p>Router(config)#int e0/0</p>
-<p>Router(config-if)#ip add 181.1.1.2 255.255.255.0</p>
-<p>Router(config-if)#no shutdown</p>
-<p>Router(config)#int e0/1</p>
-<p>Router(config-if)#ip add 172.16.1.1 255.255.255.0</p>
-<p>Router(config-if)#no shutdown</p>
-<p>此实验可以用eigrp</p>
-<p>jiudian(config)#router eigrp 10</p>
-<p>jiudian(config-router)#network 192.168.1.0 0.0.0.255 //真时网络中没有这一步的</p>
-<p>jiudian(config-router)#network 61.1.1.0 0.0.0.255</p>
-<p>jiudian(config-router)#no auto-summary</p>
-<p>Internet(config)#router eigrp 10</p>
-<p>Internet(config-router)#network 61.1.1.0 0.0.0.255</p>
-<p>Internet(config-router)#network 181.1.1.0 0.0.0.255</p>
-<p>Internet(config-router)#no auto-summary</p>
-<p>GS(config)#router eigrp 10</p>
-<p>GS(config-router)#network 181.1.1.0 0.0.0.255</p>
-<p>GS(config-router)#no auto-summary</p>
-<h2 id="PPTP"><a href="#PPTP" class="headerlink" title="PPTP:"></a>PPTP:</h2><p>GS(config)#vpdn enable  //开启vpdn服务</p>
-<p>GS(config)#vpdn-group pptp //创建一个VPDN组，命名为pptp</p>
-<p>GS(config-vpdn)#accept-dialin  //允许拨号</p>
-<p>GS(config-vpdn-acc-in)#protocol pptp  //协议为PPTP</p>
-<p>GS(config-vpdn-acc-in)#virtual-template 1   //引用虚拟模板</p>
-<p>GS(config-vpdn-acc-in)#exit</p>
-<p>GS(config)#username admin password ccie  //创建拨号账号和密码</p>
-<p>GS(config)#ip local pool vpn 1.1.1.100 1.1.1.110 //创建地址池</p>
-<p>GS(config)#int virtual-template 1 //创建虚拟模板1</p>
-<p>GS(config-if)#ppp authentication pap  //加密方式为PAP</p>
-<p>GS(config-if)#peer default ip add pool vpn  //对默认IP 从地址池租约</p>
-<p>GS(config-if)#ip unnumbered ethernet 0/1 //关联内网接口</p>
-<p>GS(config)#ip route 0.0.0.0 0.0.0.0 e0/0 //默认路由</p>
-<h2 id="虚拟机部分："><a href="#虚拟机部分：" class="headerlink" title="虚拟机部分："></a>虚拟机部分：</h2><p>实验效果：</p>
-<p>此实验未做成功</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-08-21PPP协议及验证" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/21/08-21PPP协议及验证/" class="article-date">
-      <time datetime="2019-08-21T08:32:50.000Z" itemprop="datePublished">2019-08-21</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="一、PPP协议及验证"><a href="#一、PPP协议及验证" class="headerlink" title="一、PPP协议及验证"></a>一、PPP协议及验证</h1>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2019/08/21/08-21PPP协议及验证/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-GNS3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/21/GNS3/" class="article-date">
-      <time datetime="2019-08-20T16:00:00.000Z" itemprop="datePublished">2019-08-21</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/21/GNS3/">防火墙与VPN</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <a id="more"></a>
-
-<h1 id="一、防火墙（Firewall）"><a href="#一、防火墙（Firewall）" class="headerlink" title="一、防火墙（Firewall）"></a>一、防火墙（Firewall）</h1><h2 id="1、什么是防火墙"><a href="#1、什么是防火墙" class="headerlink" title="1、什么是防火墙"></a>1、什么是防火墙</h2><p>防火墙是指设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间的一系列部件的组合。</p>
-<p>它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。 </p>
-<p>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部网络的安全。 </p>
-<h2 id="2、部署位置"><a href="#2、部署位置" class="headerlink" title="2、部署位置"></a>2、部署位置</h2><p>1、可信网络与不可信网络之间<br>2、不同安全级别网络之间<br>3、两个需要隔离的区域之间</p>
-<h2 id="3、部署方式"><a href="#3、部署方式" class="headerlink" title="3、部署方式"></a>3、部署方式</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
-<h2 id="4、功能"><a href="#4、功能" class="headerlink" title="4、功能"></a>4、功能</h2><p>1、入侵检测功能<br>2、网络地址转换功能<br>3、网络操作的审计监控功能<br>4、强化网络安全服务</p>
-<h1 id="二、VPN"><a href="#二、VPN" class="headerlink" title="二、VPN"></a>二、VPN</h1><h2 id="1、L2TP-VPN"><a href="#1、L2TP-VPN" class="headerlink" title="1、L2TP VPN"></a>1、L2TP VPN</h2><p>2TP是一种工业标准的Internet隧道协议，功能大致和PPTP协议类似，比如同样可以对网络数据流进行加密。不过也有不同之处，比如PPTP要求网络为IP网络，L2TP要求面向数据包的点对点连接；PPTP使用单一隧道，L2TP使用多隧道；L2TP提供包头压缩、隧道验证，而PPTP不支持。</p>
-<h2 id="2、PPTP-VPN"><a href="#2、PPTP-VPN" class="headerlink" title="2、PPTP-VPN"></a>2、PPTP-VPN</h2><p>即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使远程用户通过拨入ISP、通过直接连接Internet或其他网络安全地访问企业网。</p>
-<h2 id="3、IPsec-VPN"><a href="#3、IPsec-VPN" class="headerlink" title="3、IPsec-VPN"></a>3、IPsec-VPN</h2><p>互联网安全协议（英语：Internet Protocol Security，缩写为IPsec），是一个协议包，通过对IP协议的分组进行加密和认证来保护IP协议的网络传输协议族（一些相互关联的协议的集合）。 [1]<br>IPsec主要由以下协议组成：</p>
-<p>一、认证头（AH），为IP数据报提供无连接数据完整性、消息认证以及防重放攻击保护；</p>
-<p>二、封装安全载荷（ESP），提供机密性、数据源认证、无连接完整性、防重放和有限的传输流（traffic-flow）机密性；</p>
-<p>三、安全关联（SA），提供算法和数据包，提供AH、ESP操作所需的参数。</p>
-<p>IPsec协议工作在OSI模型的第三层，使其在单独使用时适于保护基于TCP或UDP的协议（如安全套接子层（SSL）就不能保护UDP层的通信流）。这就意味着，与传输层或更高层的协议相比，IPsec协议必须处理可靠性和分片的问题，这同时也增加了它的复杂性和处理开销。相对而言，SSL/TLS依靠更高层的TCP（OSI的第四层）来管理可靠性和分片。</p>
-<h2 id="4、GRE-VPN"><a href="#4、GRE-VPN" class="headerlink" title="4、GRE VPN"></a>4、GRE VPN</h2><p>GRE是一种最传统的隧道协议，其根本功能就是要实现隧道功能，通过隧道连接的两<br>个远程网络就如同直连，GRE在两个远程网络之间模拟出直连链路,从而使网络间达到直<br>连的效果，为此，GRE需要完成多次封装,总共有3次</p>
-<p>（1）接收原始IP数据包当作乘客协议,原始IR数据包包头的IP地址为私有IP地址</p>
-<p>（2）将原始IP数据包封装进GRE协议, GRE协议称为封装协议(Encapsulation Protocol) ,封装的包头IP地址为虚拟直连链路两端的IP地址</p>
-<p>（3）将整个GRE数据包当作数据，在外层封装公网IP包头，也就是隧道的起源和终点，从而路由到隧道终点</p>
-<h1 id="三、防火墙的配置"><a href="#三、防火墙的配置" class="headerlink" title="三、防火墙的配置"></a>三、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg" alt="/img"></p>
-<p>这里可以使用虚拟机 也可以Tools&gt;VPCS 但是注意序号的差别并且点进去之后不可以点击X 不然所作的配置失效</p>
-<p>虚拟机：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pch3ki4j30sn0lz77r.jpg" alt="/img"></p>
-<p>VPCS:</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pd1izjuj30cj07kdfp.jpg" alt="/img"></p>
-<p>基础配置</p>
-<p>R1：</p>
-<p>R1(config)#int e0/0<br>R1(config-if)#ip add 192.168.1.1 255.255.255.0<br>R1(config-if)#no shutdown</p>
-<p>R1(config-if)#int e0/1<br>R1(config-if)#ip add 10.0.0.2 255.255.255.252<br>R1(config-if)#no shutdown</p>
-<p>R1(config)#ip route 61.1.1.0 255.255.255.0 10.0.0.1</p>
-<p>R2：</p>
-<p>R2(config)#int e0/0<br>R2(config-if)#ip add 61.1.1.2 255.255.255.0<br>R2(config-if)#no shutdown<br>R2(config)#ip route 192.168.1.0 255.255.255.0 61.1.1.1</p>
-<p>防火墙配置：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pdjcayej30a103v745.jpg" alt="/img"></p>
-<p>密码可以不用管 默认密码为空值</p>
-<p>PIX(config-if)# nameif outside //将e1接口设置为外接口<br>INFO: Security level for “outside” set to 0 by default.<br>PIX(config-if)# security-level 0 //安全级别设置为零 其实是默认的 这一步可以不用写<br>PIX(config-if)# ip add 61.1.1.1 255.255.255.0  //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# int e0<br>PIX(config-if)# nameif inside  //将e0接口设置为内接口<br>PIX(config-if)# security-level 100 //安全级别设置为内接口<br>PIX(config-if)# ip add 10.0.0.1 255.255.255.252   //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# route inside 192.168.1.0 255.255.255.0 10.0.0.2</p>
-<p>//实现内部网络的路由，下一跳10.0.0.2，否则PIX不知道如何返回数据包<br>PIX(config)# route outside 0.0.0.0 0.0.0.0 61.1.1.2<br>PIX(config)# access-list 1 permit icmp any any<br>PIX(config)# nat (inside) 1 192.168.1.0 255.255.255.0<br> //只允许内部PC的192.168.1.0/24 网络流量<br>PIX(config)# global (outside) 1 interface  //使用地址池或者PAT</p>
-<p><strong>注：pix防火墙对于内部到外部的流量默认不能做ping，做其它服务必须使用NAT功能，对到未知网络还需配置路由。而且pix防火墙可以通过由内部向外发出的返回数据包，而且默认拒绝由外部向内部发出的主动连接数据包。为了防止前次的实验干扰，在实验之前建议使用clear xlate来清除pix的内存连接</strong></p>
-<p>结果：PC机能ping 同外部网络</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pe4xqbdj30br03zjr9.jpg" alt="/img"></p>
-<p>R1能ping通外部网络</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pelk6wwj30g9037weg.jpg" alt="/img"></p>
-<p>外部网络不能ping通内部网络</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pey4obwj30gv0380sp.jpg" alt="/img"></p>
-<p>实验成果图：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
-<h2 id="2、透明式防火墙"><a href="#2、透明式防火墙" class="headerlink" title="2、透明式防火墙"></a>2、透明式防火墙</h2><p>![img](file:///C:\Users\19453\Documents\Tencent Files\1945384242\Image\Group\CRQX@G2L`DK%Q[VM~V]KVZG.png)</p>
-<p>做OSPF的时候no 掉了之前写的ip route xxxx.xxxx.   但是之前写的是ip route 0.0.0.0 0.0.0.0 +下一跳接口</p>
-<p>路由器R4</p>
-<p>hostname R4<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.2 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> ip address 192.168.1.2 255.255.255.0<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 192.168.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
-<p>防火墙</p>
-<dl><dt>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000<br>: end<br>pixfirewall# conf t<br>pixfirewall(config)# acc<br>pixfirewall(config)# access-l<br>pixfirewall(config)# access-list 101 pe<br>pixfirewall(config)# access-list 101 permit ic<br>pixfirewall(config)# access-list 101 permit icmp any any<br>pixfirewall(config)# end<br>pixfirewall#<br>pixfirewall# show run<br>pixfirewall# show running-config<br>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>access-list 101 extended permit icmp any any<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000</dt><dd>end</dd></dl><p>路由器R6</p>
-<p>Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP<br>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area<br>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2<br>       E1 - OSPF external type 1, E2 - OSPF external type 2<br>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2<br>       ia - IS-IS inter area, * - candidate default, U - per-user static route<br>       o - ODR, P - periodic downloaded static route</p>
-<p>Gateway of last resort is not set</p>
-<pre><code>10.0.0.0/29 is subnetted, 1 subnets</code></pre><p>C       10.0.0.0 is directly connected, Ethernet0/0<br>O    192.168.1.0/24 [110/20] via 10.0.0.2, 00:01:08, Ethernet0/0<br>     61.0.0.0/24 is subnetted, 1 subnets<br>C       61.1.1.0 is directly connected, Loopback0<br>R6#show run<br>R6#show running-config<br>Building configuration…</p>
-<p>Current configuration : 828 bytes<br>!<br>version 12.4<br>service timestamps debug datetime msec<br>service timestamps log datetime msec<br>no service password-encryption<br>!<br>hostname R6<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Loopback0<br> ip address 61.1.1.1 255.255.255.0<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.1 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 61.1.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
-<h2 id="3、混合式防火墙"><a href="#3、混合式防火墙" class="headerlink" title="3、混合式防火墙"></a>3、混合式防火墙</h2><p>作业：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pkavvllj30wu0igtam.jpg" alt="/img"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
     </div>
 
       

@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>磁盘分区与挂载 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux下的磁盘分区和逻辑卷  一、硬盘接口类型　　硬盘的接口主要有IDE、SATA、SCSI  、SAS和光纤通道等五种类型。其中IDE和SATA接口硬盘多用于家用产品中，也有部分应用于服务器，SATA是一种新生的硬盘接口类型，已经取代了大部分IDE接口应用。SCSI   、SAS主要应用于服务器上，普通家用设备一般不支持SCSI和SAS接口。SAS也是是一种新生的硬盘接口类型，可以和SA">
+<meta name="keywords" content="系统安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="磁盘分区与挂载">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Linux下的磁盘分区和逻辑卷  一、硬盘接口类型　　硬盘的接口主要有IDE、SATA、SCSI  、SAS和光纤通道等五种类型。其中IDE和SATA接口硬盘多用于家用产品中，也有部分应用于服务器，SATA是一种新生的硬盘接口类型，已经取代了大部分IDE接口应用。SCSI   、SAS主要应用于服务器上，普通家用设备一般不支持SCSI和SAS接口。SAS也是是一种新生的硬盘接口类型，可以和SA">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://common.cnblogs.com/images/copycode.gif">
+<meta property="og:updated_time" content="2019-09-09T07:16:10.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="磁盘分区与挂载">
+<meta name="twitter:description" content="Linux下的磁盘分区和逻辑卷  一、硬盘接口类型　　硬盘的接口主要有IDE、SATA、SCSI  、SAS和光纤通道等五种类型。其中IDE和SATA接口硬盘多用于家用产品中，也有部分应用于服务器，SATA是一种新生的硬盘接口类型，已经取代了大部分IDE接口应用。SCSI   、SAS主要应用于服务器上，普通家用设备一般不支持SCSI和SAS接口。SAS也是是一种新生的硬盘接口类型，可以和SA">
+<meta name="twitter:image" content="https://common.cnblogs.com/images/copycode.gif">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">John Doe</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/系统安全/" style="font-size: 20px;">系统安全</a> <a href="/tags/网络/" style="font-size: 15px;">网络</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-09-09Linux下的磁盘分区和逻辑卷" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/" class="article-date">
+      <time datetime="2019-09-09T04:34:30.000Z" itemprop="datePublished">2019-09-09</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      磁盘分区与挂载
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<p>Linux下的磁盘分区和逻辑卷 </p>
+<h2 id="一、硬盘接口类型"><a href="#一、硬盘接口类型" class="headerlink" title="一、硬盘接口类型"></a><strong>一、硬盘接口类型</strong></h2><p>　　硬盘的接口主要有IDE、SATA、SCSI  、SAS和光纤通道等五种类型。其中IDE和SATA接口硬盘多用于家用产品中，也有部分应用于服务器，SATA是一种新生的硬盘接口类型，已经取代了大部分IDE接口应用。SCSI   、SAS主要应用于服务器上，普通家用设备一般不支持SCSI和SAS接口。SAS也是是一种新生的硬盘接口类型，可以和SATA以及部分SCSI设备无缝结合。光纤通道最初设计也不是为了硬盘设计开发的接口，是专门为网络系统设计的，但随着存储系统对速度的需求，才逐渐应用到硬盘系统中，并且其只应用在高端服务器上价格昂贵。</p>
+<h2 id="二、硬盘和分区"><a href="#二、硬盘和分区" class="headerlink" title="二、硬盘和分区"></a><strong>二、硬盘和分区</strong></h2><p> 　　Linux中主要有两种分区类型，分别为MBR（Master Boot Record）和GPT（GUID Partition  Table），是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。</p>
+<p>　　在Linux中会把设备映射成为一个/dev目录下的系统文件，IDE接口类型的硬盘设备映射的文件名称前缀为“hd”，SCSI、SATA、SAS等接口的硬盘设备映射的文件名称前缀为“sd”（部分虚拟机或者云主机的名称可能是其他的，比如“vd”），后面拼接从“a”开始一直到“z”用来区分不同的硬盘设备，在硬盘名称后面拼接数字形式的分区号用来区分不同的分区。</p>
+<h3 id="1、MBR分区"><a href="#1、MBR分区" class="headerlink" title="1、MBR分区"></a><strong>1、MBR分区</strong></h3><p>　　MBR的意思是“主引导记录”，它是存在于驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统的启动加载器和驱动器的逻辑分区信息。MBR支持最大2TB磁盘，它无法处理大于2TB容量的磁盘。MBR格式的磁盘分区主要分为<strong>基本分区</strong>（primary partion）和<strong>扩展分区</strong>（extension partion）两种<strong>主分区</strong>和扩展分区下的<strong>逻辑分区</strong>。主分区总数不能大于4个，其中最多只能有一个扩展分区。且基本分区可以马上被挂载使用但不能再分区，扩展分区必须再进行二次分区后才能挂载。扩展分区下的二次分区被称之为逻辑分区，逻辑分区数量限制视磁盘类型而定。</p>
+<p>　　MBR的主分区号为1-4，逻辑分区号为从5开始累加的数字。比如设备主板上装了4块硬盘，分别为2块IDE接口硬盘，1块SCSI接口硬盘和一块SATA接口硬盘。其中2块IDE接口硬盘的分区策略为2个主分区和2个逻辑分区，SCSI分区策略为3个主分区和3个逻辑分区，SATA分区策略为4个主分区。硬盘文件和分区名称如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>硬盘</th>
+<th>主分区1</th>
+<th>主分区2</th>
+<th>主分区3</th>
+<th>主分区4</th>
+<th>逻辑分区1</th>
+<th>逻辑分区2</th>
+<th>逻辑分区3</th>
+<th>……</th>
+<th>逻辑分区n</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IDE1</td>
+<td>/dev/hda</td>
+<td>/dev/hda1(p)</td>
+<td>/dev/hda2(p)</td>
+<td>/dev/hda3(e)</td>
+<td>/</td>
+<td>/dev/hda5(l)</td>
+<td>/dev/hda6(l)</td>
+<td>/</td>
+<td>……</td>
+<td>/</td>
+</tr>
+<tr>
+<td>IDE2</td>
+<td>/dev/hdb</td>
+<td>/dev/hdb1(p)</td>
+<td>/dev/hdb2(p)</td>
+<td>/dev/hdb3(e)</td>
+<td>/</td>
+<td>/dev/hdb5(l)</td>
+<td>/dev/hdb6(l)</td>
+<td>/</td>
+<td>……</td>
+<td>/</td>
+</tr>
+<tr>
+<td>SCSI</td>
+<td>/dev/sda</td>
+<td>/dev/sda1(p)</td>
+<td>/dev/sda2(p)</td>
+<td>/dev/sda3(p)</td>
+<td>/dev/sda4(e)</td>
+<td>/dev/sda5(l)</td>
+<td>/dev/sda6(l)</td>
+<td>/dev/sda7(l)</td>
+<td>……</td>
+<td>/</td>
+</tr>
+<tr>
+<td>SATA</td>
+<td>/dev/sdb</td>
+<td>/dev/sdb1(p)</td>
+<td>/dev/sdb2(p)</td>
+<td>/dev/sdb3(p)</td>
+<td>/dev/sdb4(p)</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>……</td>
+<td>/</td>
+</tr>
+</tbody></table>
+<p>其中分区名称后面的（p）代表基本分区，（e）代表扩展分区，（l）代表逻辑分区。需要注意的是，如果分区策略中存在逻辑分区，则说明一定会有扩展分区，那么基本分区数则最多只能有3个，扩展分区数最多只能是1个，如果没有扩展分区则可以创建4个基本分区。想要创建逻辑分区，则必须先将唯一的扩展分区创建出来，并且如果删除了扩展分区，那么它下面的所有逻辑分区也会被自动删除。</p>
+<p>　　如果是SCSI接口硬盘则最多只能有15（其中扩展分区不能直接使用所以不计算）个分区，其中主分区最多4个，逻辑分区最多12个。IDE接口硬盘最多只能有63（其中扩展分区不能直接使用所以不计算）个分区，其中主分区最多4个，逻辑分区最多60个。</p>
+<h3 id="2、GPT分区"><a href="#2、GPT分区" class="headerlink" title="2、GPT分区"></a><strong>2、GPT分区</strong></h3><p>　　GPT意为GUID分区表，驱动器上的每个分区都有一个全局唯一的标识符（globally unique  identifier，GUID）。支持的最大磁盘可达18EB，它没有主分区和逻辑分区之分，每个硬盘最多可以有128个分区，具有更强的健壮性与更大的兼容性，并且将逐步取代MBR分区方式。GPT分区的命名和MBR类似，只不过没有主分区、扩展分区和逻辑分区之分，分区号直接从1开始累加一直到128。</p>
+<h2 id="三、逻辑卷"><a href="#三、逻辑卷" class="headerlink" title="三、逻辑卷"></a><strong>三、逻辑卷</strong></h2><p> 　　LVM（逻辑卷）的产生是因为传统的分区一旦分区好后就无法在线扩充空间，也存在一些工具能实现在线扩充空间但是还是会面临数据损坏的风险；传统的分区当分区空间不足时，一般的解决办法是再创建一个更大的分区将原分区卸载然后将数据拷贝到新分区，但是在企业的生产系统往往不允许停机或者允许停机的时间很短，LVM就能很好的解决在线扩充空间的问题，而且不会对数据造成影响，LVM还能通过快照在备份的过程中保证日志文件和表空间文件在同一时间点的一致性。</p>
+<p>　　在LVM中PE(Physical  Extend)是卷的最小单位，默认4M大小，就像我们的数据是以页的形式存储一样，卷就是以PE的形式存储。PV(Physical  Volume)是物理卷，如果要使用逻辑卷，首先第一步操作就是将物理磁盘或者物理分区格式化成PV，格式化之后PV就可以为逻辑卷提供PE了。VG(Volume   Group)是卷组，VG就是将很多PE组合在一起生成一个卷组，当然这里的PE是可以跨磁盘的，如果当前服务器磁盘空间不足就可以增加一个新磁盘对当前系统不会产生任何影响。LV(Logical  Volume)是逻辑卷，逻辑卷最终是给用户使用的，前面几个都是为创建逻辑卷做的准备，创建逻辑卷的大小只要不超过VG剩余空间就可以。</p>
+<h2 id="四、文件系统"><a href="#四、文件系统" class="headerlink" title="四、文件系统"></a><strong>四、文件系统</strong></h2><p>　　当硬盘分区被创建完成之后，还并不能直接挂载到目录上存储文件，需要选择合适的文件系统进行格式化。常见的分区类型有FAT32、FAT16、NTFS、HP-UX等，而专供Linux使用的主流的一些分区有ext2/3/4、physical  volume (LVM) 、softwareRAID、swap、vfat、xfs等。其中：</p>
+<p>　　1、ext2/3/4：是适合Linux的文件系统类型，由于ext3文件系统多了日志记录功能，因此系统恢复起来更加快速，ext4是ext3的升级，效率更加高，因此建议使用默认类型ext4类型，而不要使用ext2/3；</p>
+<p>　　2、physical volume (LVM)：这是一种弹性调整文件系统大小的机制，即可以让文件系统变大或变小，而不改变原文件数据的内容，功能不错，但性能不佳。</p>
+<p>　　3、softwareRAID：利用Linux系统的特性，用软件仿真出磁盘阵列功能。</p>
+<p>　　4、swap：就是内存交换空间。由于swap并不会使用到目录树的挂载，因此用swap就不需要指定挂载点。</p>
+<p>　　5、vfat：同时被Linux与windows所支持的文件系统类型。如果主机硬盘同事存在windows和linux两种操作系统，为了进行数据交换，可以使用该文件系统。</p>
+<p>　　6、xfs：也是一个文件系统类型，在centos7中将被作为默认的文件系统类型，替换ext4。</p>
+<p><a href="https://www.cnblogs.com/lbole/p/8904298.html" target="_blank" rel="noopener">https://www.cnblogs.com/lbole/p/8904298.html</a></p>
+<h2 id="五、使用fdisk操作分区"><a href="#五、使用fdisk操作分区" class="headerlink" title="五、使用fdisk操作分区"></a><strong>五、使用fdisk操作分区</strong></h2><p>　　本文主要以CentOS 7发行版的Linux作为实验，我们使用Fdisk工具来操作分区，Fdisk 是各种 Linux 发行版本中最常用的分区工具。</p>
+<p>　　首先输入 fdisk -h 命令查看帮助信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# fdisk -h</span><br><span class="line">用法：</span><br><span class="line">fdisk [选项] &lt;磁盘&gt; 更改分区表</span><br><span class="line">fdisk [选项] -l &lt;磁盘&gt; 列出分区表</span><br><span class="line">fdisk -s &lt;分区&gt; 给出分区大小(块数)</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line">-b &lt;大小&gt; 扇区大小(512、1024、2048或4096)</span><br><span class="line">-c[=&lt;模式&gt;] 兼容模式：“dos”或“nondos”(默认)</span><br><span class="line">-h 打印此帮助文本</span><br><span class="line">-u[=&lt;单位&gt;] 显示单位：“cylinders”(柱面)或“sectors”(扇区，默认)</span><br><span class="line">-v 打印程序版本</span><br><span class="line">-C &lt;数字&gt; 指定柱面数</span><br><span class="line">-H &lt;数字&gt; 指定磁头数</span><br><span class="line">-S &lt;数字&gt; 指定每个磁道的扇区数</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从中我们可以看出，使用 fdisk -l 命令可查看分区表信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# fdisk -l</span><br><span class="line"></span><br><span class="line">磁盘 /dev/sda：32.2 GB, 32212254720 字节，62914560 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0x000b1bc3</span><br><span class="line"></span><br><span class="line">   设备 Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sda1   *        2048     2099199     1048576   83  Linux</span><br><span class="line">/dev/sda2         2099200    62914559    30407680   8e  Linux LVM</span><br><span class="line"></span><br><span class="line">磁盘 /dev/sdb：53.7 GB, 53687091200 字节，104857600 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/cl-root：29.0 GB, 28982640640 字节，56606720 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/cl-swap：2147 MB, 2147483648 字节，4194304 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从中我们可以看出，有4个设备，分别为/dev/sda、/dev/sdb、/dev/mapper/cl-root、/dev/mapper/cl-swap。其中/dev/sda硬盘已经有2个分区分区为：/dev/sda1和/dev/sda2。/dev/mapper/cl-root和/dev/mapper/cl-swap两个设备是/dev/sda2分区创建的逻辑卷。这里的/dev/sdb硬盘设备并没有被分区，我们则是需要来操作这个硬盘，至于如何操作逻辑卷后面会讲到。</p>
+<p>　　输入 fdisk /dev/sdb 命令，对/dev/sda硬盘的分区表进行操作：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# fdisk /dev/sdb</span><br><span class="line">欢迎使用 fdisk (util-linux 2.23.2)。</span><br><span class="line"></span><br><span class="line">更改将停留在内存中，直到您决定将更改写入磁盘。</span><br><span class="line">使用写入命令前请三思。</span><br><span class="line"></span><br><span class="line">Device does not contain a recognized partition table</span><br><span class="line">使用磁盘标识符 0xc72a6f6a 创建新的 DOS 磁盘标签。</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　我们输入”m”选项可以查看到帮助信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：m</span><br><span class="line">命令操作</span><br><span class="line">   a   toggle a bootable flag 切换可引导标志</span><br><span class="line">   b   edit bsd disklabel 编辑BSD磁盘标签</span><br><span class="line">   c   toggle the dos compatibility flag 切换DOS兼容性标志</span><br><span class="line">   d   delete a partition 删除分区</span><br><span class="line">   g   create a new empty GPT partition table 创建一个新的空GPT分区表</span><br><span class="line">   G   create an IRIX (SGI) partition table 创建一个ILIX（SGI）分区表</span><br><span class="line">   l   list known partition types 列出已知分区类型</span><br><span class="line">   m   print this menu 打印此菜单</span><br><span class="line">   n   add a new partition 添加新分区</span><br><span class="line">   o   create a new empty DOS partition table 创建一个新的空DOS分区表</span><br><span class="line">   p   print the partition table 打印分区表</span><br><span class="line">   q   quit without saving changes 不保存更改退出</span><br><span class="line">   s   create a new empty Sun disklabel 创建一个新的空太阳标签</span><br><span class="line">   t   change a partition&apos;s system id 更改分区的系统ID</span><br><span class="line">   u   change display/entry units 更改显示/输入单元</span><br><span class="line">   v   verify the partition table 验证分区表</span><br><span class="line">   w   write table to disk and exit 将表写入磁盘并退出</span><br><span class="line">   x   extra functionality (experts only) 额外功能（仅专家）命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从上面的帮助信息中，可以得知一些选项的用途。这里主要注意”d”、”n”、”q”、”g”、”w”等选项。首先要明确分区格式，fdisk默认的分区格式是msdos（mbr），在此可输入”g”选项，将分区格式修改为GPT，不过在修改完保存退出之后，在输入 fdisk /dev/sdb 命令进入分区模式，会出现 WARNING: fdisk GPT support is currently new, and therefore in an experimental phase. Use at your own discretion. 信息，提示fdisk gpt分区是新的功能，目前还在实验阶段。所以如果要进行GPT分区，那么推荐使用 parted 命令，后面会介绍到。</p>
+<p>　　那么首先输入”n”选项来开始创建分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：n</span><br><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p):</span><br></pre></td></tr></table></figure>
+
+<p>　　可以看到交互界面打印的信息，提示需要选择一个分区类型，”p”:为基本分区（默认）；”e”：为扩展分区。在此我们选择”p”，创建一个基本分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Partition type:p primary (1 primary, 0 extended, 3 free)e extendedSelect (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示需要选择一个分区号，范围为2-4。由于已经存在了一个基本分区，所以只可选择2、3、4（默认2，顺序累加）。在此我们输入2：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>Partition type:<br>   p   primary (1 primary, 0 extended, 3 free)<br>   e   extended<br>Select (default p): p<br>分区号 (2-4，默认 2)：2<br>起始 扇区 (2099200-314572799，默认为 2099200)：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　可以看到交互界面提示序号选择其实扇区，默认为剩余未被分配的最小扇区，推荐选择默认（直接点击回车）；</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示，要输入需要分配的截止扇区，默认为未被分配的最小扇区，此处推荐默认（直接点击回车）：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br><span class="line">将使用默认值 314572799</span><br><span class="line">分区 2 已设置为 Linux 类型，大小设为 149 GiB</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　可以看到又回到了最初的交互界面，这表示分区表已经设置成功，输入选项q表示要放弃本次分区表的修改并退出，w选项表示保存本次分区表的修改并退出，此处选择w表示将分区信息写入到磁盘，此次分区完成；</p>
+<p>　　回到最初操作分区表的地方，选择”d”选项，删除分区的功能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：d</span><br><span class="line">分区号 (1,2，默认 2)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示输入要删除的分区的分区号，此处选择2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：d</span><br><span class="line">分区号 (1,2，默认 2)：2</span><br><span class="line">分区 2 已删除</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示本次分区表操作成功，输入选项”w”，表示将分区信息写入到磁盘，此次删除分区完成。回到最初选择分区类型的地方，选择”e”，创建扩展分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示要输入扩展分区的分区号，可选范围为2-4，此处选择2：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示输入要分配给扩展分区的起始扇区，此处选择默认：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示输入要分配给扩展分区的截止扇区，此处选择默认：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br><span class="line">将使用默认值 314572799</span><br><span class="line">分区 2 已设置为 Extended 类型，大小设为 149 GiB</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示本次对分区表的操作已完成，输入”w”选项，保存本次对分区表的操作；当再次创建分区的时候，交互界面就会将扩展分区的选项”e”替换成为逻辑分区的选项”l”：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 1 extended, 2 free)</span><br><span class="line">   l   logical (numbered from 5)</span><br><span class="line">Select (default p):</span><br></pre></td></tr></table></figure>
+
+<p>　　之后再要创建逻辑分区和之前创建分区的步骤一直，分区完成。至此CentOS中的分区操作已完成；接下来我们需要将物理分区格式化成某一个文件系统，我们使用mkds进行分区格式化操作，输入 mkfs -h 命令获取帮助信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkfs -h</span><br><span class="line">用法：</span><br><span class="line"> mkfs [选项] [-t &lt;类型&gt;] [文件系统选项] &lt;设备&gt; [&lt;大小&gt;]</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line"> -t, --type=&lt;类型&gt;  文件系统类型；</span><br><span class="line">     fs-options     实际文件系统构建程序的参数</span><br><span class="line">     &lt;设备&gt;         要使用设备的路径</span><br><span class="line">     &lt;大小&gt;         要使用设备上的块数</span><br><span class="line"> -V, --verbose      解释正在进行的操作；</span><br><span class="line">                      多次指定 -V 将导致空运行(dry-run)</span><br><span class="line"> -V, --version      显示版本信息并退出</span><br><span class="line">                      将 -V 作为 --version 选项时必须是惟一选项</span><br><span class="line"> -h, --help         显示此帮助并退出</span><br><span class="line"></span><br><span class="line">更多信息请参阅 mkfs(8)。</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从帮助信息中我们可以看到，可以使用mkfs -t xfs /dev/sdb1 进行格式化分区：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# mkfs -t xfs /dev/sda2 </span><br><span class="line">meta-data=/dev/sdb1              isize=512    agcount=4, agsize=624936 blks</span><br><span class="line">         =                       sectsz=512   attr=2, projid32bit=1</span><br><span class="line">         =                       crc=1        finobt=0, sparse=0</span><br><span class="line">data     =                       bsize=4096   blocks=2499744, imaxpct=25</span><br><span class="line">         =                       sunit=0      swidth=0 blks</span><br><span class="line">naming   =version 2              bsize=4096   ascii-ci=0 ftype=1</span><br><span class="line">log      =internal log           bsize=4096   blocks=2560, version=2</span><br><span class="line">         =                       sectsz=512   sunit=0 blks, lazy-count=1</span><br><span class="line">realtime =none                   extsz=4096   blocks=0, rtextents=0</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　格式化成xfs时，若提示分区已存在文件系统，则需要在分区前面加上-f选项强行覆盖，例如： mkfs -t xfs -f /dev/sda2 。被格式化的设备既可以是分区，也可以是逻辑卷。要查看所有分区的文件系统格式则可以使用 df -Th 命令。至此格式化分区完成。分区格式化完成之后则可以将分区挂载到某一个目录下面，正式开始使用改分区，我们在系统中创建一个用户挂载分区的目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir /data</span><br></pre></td></tr></table></figure>
+
+<p>　　将分区挂载到目录上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sda2 /data/</span><br></pre></td></tr></table></figure>
+
+<p>　　设置开机自动挂载分区到挂载点，编辑 vim /etc/fstab :</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># /etc/fstab</span><br><span class="line"># Created by anaconda on Sun Jun 25 07:16:25 2017</span><br><span class="line">#</span><br><span class="line"># Accessible filesystems, by reference, are maintained under &apos;/dev/disk&apos;</span><br><span class="line"># See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info</span><br><span class="line">#</span><br><span class="line">UUID=eb697457-a097-4263-8bbf-a75aa632d27c /                       ext4    defaults        1 1</span><br><span class="line"></span><br><span class="line">/dev/sda2                               /data                   xfs    defaults        0 0</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　如果想要卸载挂载点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# umount /dev/sda2</span><br></pre></td></tr></table></figure>
+
+<p>　　至此挂载分区已完成；</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/">磁盘分区与挂载</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2019年09月09日 - 12时34分</p>
+        <p><span>最后更新:</span>2019年09月09日 - 15时16分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/" title="磁盘分区与挂载">http://yoursite.com/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/　　作者: John Doe" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/09/24/09-24第一章爬虫/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          初识python
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2019/09/08/08-09网络连接/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">网络连接</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、硬盘接口类型"><span class="toc-number">1.</span> <span class="toc-text">一、硬盘接口类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、硬盘和分区"><span class="toc-number">2.</span> <span class="toc-text">二、硬盘和分区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、MBR分区"><span class="toc-number">2.1.</span> <span class="toc-text">1、MBR分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、GPT分区"><span class="toc-number">2.2.</span> <span class="toc-text">2、GPT分区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、逻辑卷"><span class="toc-number">3.</span> <span class="toc-text">三、逻辑卷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、文件系统"><span class="toc-number">4.</span> <span class="toc-text">四、文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、使用fdisk操作分区"><span class="toc-number">5.</span> <span class="toc-text">五、使用fdisk操作分区</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/09/24/09-24第一章爬虫/" title="上一篇: 初识python">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2019/09/08/08-09网络连接/" title="下一篇: 网络连接">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/24/09-18linux shell脚本/">09-18linux shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/24/09-24第一章爬虫/">初识python</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/">磁盘分区与挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/08-09网络连接/">网络连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/应急响应笔记大纲/">应急响应笔记大纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/09-08用户与组的管理/">用户与组的管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/08-24第1篇：Window入侵排查/">window入侵排查</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/28/本地计算机策略配置案例/">组策略与安全设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/26/08-28windows服务器/">Windows服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/25/第2篇：Linux入侵排查/">linux入侵排查</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/23/VPN/">VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/GNS3/">防火墙与VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/防火墙/">防火墙</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/20/网络地址转换NAT/">网络地址转换NAT</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/30/CSRF/">CSRF漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/25/学习前端/">初识前端</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
