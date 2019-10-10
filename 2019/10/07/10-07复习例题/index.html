@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>国庆复习（一） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、例题1.VLAN是什么？有什么作用？答：vlan可以理解为逻辑上划分广播域，可以降低广播风暴的产生     1、VLAN是 一种将局域网（LAN）设备从逻辑上划分（注意，不是从物理上划分）成一个个网段（或者说是更小的局域网LAN），从而实现虚拟工作组（单元）的数据交换技术。 VLAN这一新兴技术主要应用于交换机和路由器中，但目前主流应用还是在交换机之中 。不过不是所有交换机都具有此功能，只有三">
+<meta name="keywords" content="网络安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国庆复习（一）">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/10-07复习例题/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、例题1.VLAN是什么？有什么作用？答：vlan可以理解为逻辑上划分广播域，可以降低广播风暴的产生     1、VLAN是 一种将局域网（LAN）设备从逻辑上划分（注意，不是从物理上划分）成一个个网段（或者说是更小的局域网LAN），从而实现虚拟工作组（单元）的数据交换技术。 VLAN这一新兴技术主要应用于交换机和路由器中，但目前主流应用还是在交换机之中 。不过不是所有交换机都具有此功能，只有三">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-07T02:47:45.563Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="国庆复习（一）">
+<meta name="twitter:description" content="一、例题1.VLAN是什么？有什么作用？答：vlan可以理解为逻辑上划分广播域，可以降低广播风暴的产生     1、VLAN是 一种将局域网（LAN）设备从逻辑上划分（注意，不是从物理上划分）成一个个网段（或者说是更小的局域网LAN），从而实现虚拟工作组（单元）的数据交换技术。 VLAN这一新兴技术主要应用于交换机和路由器中，但目前主流应用还是在交换机之中 。不过不是所有交换机都具有此功能，只有三">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">John Doe</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/系统安全/" style="font-size: 20px;">系统安全</a> <a href="/tags/网络/" style="font-size: 16.67px;">网络</a> <a href="/tags/网络安全/" style="font-size: 13.33px;">网络安全</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-10-07复习例题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/10/07/10-07复习例题/" class="article-date">
+      <time datetime="2019-10-07T02:47:20.000Z" itemprop="datePublished">2019-10-07</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      国庆复习（一）
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络安全/">网络安全</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="一、例题"><a href="#一、例题" class="headerlink" title="一、例题"></a>一、例题</h1><p>1.VLAN是什么？有什么作用？<br>答：vlan可以理解为逻辑上划分广播域，可以降低广播风暴的产生    </p>
+<p>1、VLAN是 一种将局域网（LAN）设备从逻辑上划分（注意，不是从物理上划分）成一个个网段（或者说是更小的局域网LAN），从而实现虚拟工作组（单元）的数据交换技术。 VLAN这一新兴技术主要应用于交换机和路由器中，但目前主流应用还是在交换机之中 。不过不是所有交换机都具有此功能，只有三层以上交换机才具有此功能，这一点可以查 看相应交换机的说明书即可得知。VLAN的好处主要有三个：<br>(1)端口的分隔。即便在同一个交换机上，处于不同VLAN的端口也是不能通信的。这<br>样一个物理的交换机可以当作多个逻辑的交换机使用。<br>(2)网络的安全。不同VLAN不能直接通信，杜绝了广播信息的不安全性。<br>(3)灵活的管理。更改用户所属的网络不必换端口和连线，只更改软件配置就可以了。<br>2、VLAN技术的出现，使得管理员根据实际应用需求，把同一物理局域网内的不同用户逻<br>辑地划分成不同的广播域，每一个VLAN都包含一组有着相同需求的计算机工作站，与物理<br>上形成的LAN有着相同的属性。由于它是从逻辑上划分，而不是从物理上划分，所以同一个<br>VLAN内的各个工作站没有限制在同一个物理范围中，即这些工作站可以在不同物理LAN网段 。由VLAN的特点可知，一个VLAN内部的广播和单播流量都不会转发到其他VLAN中，从而有 助于控制流量、减少设备投资、简化网络管理、提高网络的安全性。 VLAN除了能将网划 分为多个广播域，从而有效地控制广播风暴的发生，以及使网络的拓扑结构变得非常灵活<br>的优点外，还可以用于控制网络中不同部门、不同站点之间的互相访问。</p>
+<p>2.VLAN的划分方法有哪些？<br>答：基于端口<br>     基于IP</p>
+<p>VLAN在交换机上的实现方法，可以大致划分为4类：<br>　　（1） 基于端口划分的VLAN<br>　　这种划分VLAN的方法是根据<a href="https://www.baidu.com/s?wd=以太网交换机&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">以太网交换机</a>的端口来划分，比如Quidway S3526的1<del>4端口为VLAN 10，5</del>17为VLAN 20，18<del>24为VLAN 30，当然，这些属于同一VLAN的端口可以不连续，如何配置，由管理员决定，如果有多个交换机，例如，可以指定交换机 1 的1</del>6端口和交换机 2 的1~4端口为同一VLAN，即同一VLAN可以跨越数个<a href="https://www.baidu.com/s?wd=以太网交换机&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">以太网交换机</a>，根据端口划分是目前定义VLAN的最广泛的方法，IEEE 802.1Q规定了依据<a href="https://www.baidu.com/s?wd=以太网交换机&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">以太网交换机</a>的端口来划分VLAN的国际标准。<br>　　这种划分的方法的优点是定义VLAN成员时非常简单，只要将所有的端口都指定义一下就可以了。它的缺点是如果VLAN A的用户离开了原来的端口，到了一个新的交换机的某个端口，那么就必须重新定义。<br>　（2）基于MAC地址划分VLAN<br>　　这种划分VLAN的方法是根据每个主机的MAC地址来划分，即对每个MAC地址的主机都配置他属于哪个组。这种划分VLAN的方法的最大优点就是当用户物理位置移动时，即从一个交换机换到其他的交换机时，VLAN不用重新配置，所以，可以认为这种根据MAC地址的划分方法是基于用户的VLAN，这种方法的缺点是初始化时，所有的用户都必须进行配置，如果有几百个甚至上千个用户的话，配置是非常累的。而且这种划分的方法也导致了交换机执行效率的降低，因为在每一个交换机的端口都可能存在很多个VLAN组的成员，这样就无法限制广播包了。另外，对于使用笔记本电脑的用户来说，他们的网卡可能经常更换，这样，VLAN就必须不停的配置。<br>　　（3）基于网络层划分VLAN<br>　　这种划分VLAN的方法是根据每个主机的网络层地址或协议类型（如果支持多协议）划分的，虽然这种划分方法是根据网络地址，比如IP地址，但它不是路由，与网络层的路由毫无关系。它虽然查看每个数据包的IP地址，但由于不是路由，所以，没有RIP，OSPF等路由协议，而是根据生成树算法进行桥交换，<br>　　这种方法的优点是用户的物理位置改变了，不需要重新配置所属的VLAN，而且可以根据协议类型来划分VLAN，这对网络管理者来说很重要，还有，这种方法不需要附加的帧标签来识别VLAN，这样可以减少网络的通信量。<br>　　这种方法的缺点是效率低，因为检查每一个数据包的网络层地址是需要消耗处理时间的（相对于前面两种方法），一般的交换机芯片都可以自动检查网络上数据包的以太网祯头，但要让芯片能检查IP帧头，需要更高的技术，同时也更费时。当然，这与各个厂商的实现方法有关。<br>　　（4）根据<a href="https://www.baidu.com/s?wd=IP组播&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">IP组播</a>划分VLAN<br>　　IP 组播实际上也是一种VLAN的定义，即认为一个组播组就是一个VLAN，这种划分的方法将VLAN扩大到了广域网，因此这种方法具有更大的灵活性，而且也很容易通过路由器进行扩展，当然这种方法不适合局域网，主要是效率不高。<br>　　鉴于当前业界VLAN发展的趋势，考虑到各种VLAN划分方式的优缺点，为了最大程度上地满足用户在具体使用过程中需求，减轻用户在VLAN的具体使用和维护中的工作量，Quidway S系列交换机采用根据端口来划分VLAN的方法。</p>
+<p>3.为什么要做冗余链路？冗余链路会带来什么问题？<br>答：冗余链路可以使PC消息多种路径转发 问题：会造成链路中有浪费</p>
+<p>使用<a href="https://www.baidu.com/s?wd=冗余链路&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">冗余链路</a>是为了防止单点故障，如果一条线路故障了另一条还可以继续工作保障通信正常。<a href="https://www.baidu.com/s?wd=冗余链路&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">冗余链路</a>是物理上的线路冗余，至于技术上主要是STP（<a href="https://www.baidu.com/s?wd=生成树协议&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">生成树协议</a>）。这个是为了防止链路冗余造成环路设计的。</p>
+<p>4.怎么避免环路？<br>答：可以在交换机中设置主副 primary secondery 然后链路聚合    //使用生成树协议</p>
+<p>5.STP是什么？有什么作用？有哪些类型？以及每种类型的特点是什么？<br>答：生成树协议<br>6.STP的工作过程是怎么样的？</p>
+<p>7.STP端口有哪些状态？每种状态的能力是什么？</p>
+<p><strong>Blocking（阻塞状态）：</strong>此时，二层端口为非指定端口，也不会参与数据帧的转发。该端口通过接收BPDU来判断根交换机的位置和根ID，以及在STP拓扑收敛结束之后，各交换机端口应该处于什么状态，在默认情况下，端口会在这种状态下停留20秒钟时间。</p>
+<p><strong>Listening（侦听状态）：</strong>生成树此时已经根据交换机所接收到的BPDU而判断出了这个端口应该参与数据帧的转发。于是交换机端口就将不再满足于接收BPDU，而同时也开始发送自己的BPDU，并以此通告邻接的交换机该端口会在活动拓扑中参与转发数据帧的工作。在默认情况下，该端口会在这种状态下停留15秒钟的时间。</p>
+<p><strong>Learning(学习状态)：</strong>这个二层端口准备参与数据帧的转发，并开始填写MAC表。在默认情况下，端口会在这种状态下停留15秒钟时间。</p>
+<p><strong>Forwarding（转发状态）：</strong>这个二层端口已经成为了活动拓扑的一个组成部分，它会转发数据帧，并同时收发BPDU。</p>
+<p><strong>Disabled（禁用状态）：</strong>这个二层端口不会参与生成树，也不会转发数据帧。</p>
+<p>8.100Mps的和10Mps在STP中COST值是多少？<br>答：100M的cost值为19</p>
+<p>​        10Mps为100</p>
+<p>9.本征VLAN是什么？有什么作用？</p>
+<p>native VLAN存在的原因主要是支持VLAN与不支持VLAN的设备相互兼容，大部分计算机网卡、集线器等设备不能识别带VLAN标签的数据帧，只有去掉VLAN标签，这些设备才能正确识别数据帧。</p>
+<p>提到native VLAN存在的原因常会举这样的例子，对STP协议数据打上VLAN标签会让不支持VLAN的交换机无法识别，最终STP协议无法工作，所以需要native VLAN将VLAN标签去掉在发送。</p>
+<p>这个例子实际上是新老设备兼容性问题，STP协议（802.1D）是1990年发布，802.1Q协议是1998年发布， VLAN概念出现的比较晚，老设备不支持802.1Q协议不能识别带VLAN标签的数据，所以新设备要具备去掉VLAN标签的能力， native  VLAN就出现了。</p>
+<p>网络技术进步很快，距离802.1Q协议发布已经过去20多年，这个兼容性问题现在基本不存在了。</p>
+<p>10.链路聚合协议有哪两种？端口模式分别有哪些？两端端口哪些模式可以实现聚合？</p>
+<p>11.链路聚合如果是三条100Mps的带宽，聚合后的信道带宽是多少？<br>答：300M<br>12.svi接口时什么接口？ //虚拟vlan的网关接口<br>答：vlan<br>13.VTP有几种模式？每种模式有什么区别？<br>答：<br>14.层三交换机和层二交换机有什么区别？<br>答：二层交换机在设置trunk时 本身自带封装，而三层交换机在设置trunk时会提示所有端口都是auto模式，设置不了，此时就必须设置封装 802.1<br>15.交换机的工作原理时什么？以及交换机的三种转发模式是什么？<br>答：原理：PC机在发送消息时，会携带自身的MAC地址，交换机在自己的的范围内广播这些消息，对应的PC机收到消息也会携带自身的MAC地址作出回应。 模式：protect\restrict\shutdown<br>16.172.16.0.78/25，请问网络号是多少？本网络有多少个可用IP？<br> 答：网络号：172.16.0.0/25     本网络有126个可用IP</p>
+<p>17.vlsm是什么？</p>
+<p>18.IP地址分类？有哪几类？<br> 答：A、B、C、D、E</p>
+<p>19.每类中的私有IP范围是多少？</p>
+<p>20.ICMP的类型有哪些？目标不可达和超时类型分别是什么？</p>
+<h1 id="二、知识点："><a href="#二、知识点：" class="headerlink" title="二、知识点："></a>二、知识点：</h1><h2 id="（一）STP原理，用途，类型"><a href="#（一）STP原理，用途，类型" class="headerlink" title="（一）STP原理，用途，类型"></a>（一）STP原理，用途，类型</h2><p>1、【原理】</p>
+<p> 通过选择性逻辑关闭端口传输来实现。</p>
+<p>具体是根据：<br> 选取一个根桥，然后在非根桥交换机上选出根端口和指定端口，<br> 最后选出阻塞端口将其阻塞。</p>
+<p>选举是根据传递BPDU的信息，桥协议数据单元来实现的。<br>BPDU里主要有：<br> 根端口ID，链路开销，桥ID，端口ID。<br> 通过比较上述内容来实现。 </p>
+<p><strong>生成树协议</strong>（英语：<strong>Spanning Tree Protocol</strong>，<strong>STP</strong>），是一种工作在OSI网络模型中的第二层数据链路层的通信协议，基本应用是防止交换机冗余链路产生的环路.用于确保以太网中无环路的逻辑拓扑结构.从而避免了广播风暴,大量占用交换机的资源.</p>
+<p>生成树协议工作原理:任意一交换机中如果到达根网桥有两条或者两条以上的链路.生成树协议都根据算法把其中一条切断,仅保留一条.从而保证任意两个交换机之间只有一条单一的活动链路.因为这种生成的这种拓扑结构.很像是以根交换机为树干的树形结构.故为生成树协议</p>
+<p>生成树协议是基于Radia Perlman在<a href="https://baike.baidu.com/item/DEC" target="_blank" rel="noopener">DEC</a>工作时发明的一种算法被纳入了IEEE 802.1d中，2001年IEEE组织推出了快速生成树协议(RSTP)在网络结构发生变化时其比STP更快的收敛网络,还引进了端口角色来完善了收敛机制,被纳入在IEEE 802.1w中.</p>
+<p>STP的工作过程如下：首先进行根网桥的选举，其依据是网桥优先级（bridge  priority）和MAC地址组合生成的桥ID，桥ID最小的网桥将成为网络中的根桥（bridge  root）。在此基础上，计算每个节点到根桥的距离，并由这些路径得到各冗余链路的代价，选择最小的成为通信路径（相应的端口状态变为forwarding），其它的就成为备份路径(相应的端口状态变为blocking)。STP生成过程中的通信任务由BPDU完成，这种数据包又分为包含配置信息的配置BPDU（其大小不超过35B）和包含拓扑变化信息的通知BPDU（其长度不超过4B）。</p>
+<p>五种状态：</p>
+<p>ｄｏｗｎ<br> 阻塞<br> 侦听<br> 学习<br> 转发</p>
+<table>
+<thead>
+<tr>
+<th>端口状态</th>
+<th>端口能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Disabled</td>
+<td>不收发任何报文</td>
+</tr>
+<tr>
+<td>Blocking</td>
+<td>不接收或者转发数据，接收但不发送BPDU，不进行地址学习</td>
+</tr>
+<tr>
+<td>Listening</td>
+<td>不接收或者转发数据，接收并发送BPDU，不进行地址学习</td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>不接收或者转发数据，接收并发送BPDU，开始进行地址学习</td>
+</tr>
+<tr>
+<td>Forwarding</td>
+<td>接收或者转发数据，接收并发送BPDU，进行地址学习</td>
+</tr>
+</tbody></table>
+<p>【用途】<br> STP应用于第二层。</p>
+<p>用途是消除网络环路，达到更好的冗余。<br>【类型】 </p>
+<p>STP，RSTP，MSTP 公有组织。<br> PVST+，PVRST，cisco</p>
+<p>2、STP的工作原理和作用</p>
+<p>STP的基本原理是通过在交换机之间传递一种特殊的协议报文，网桥协议数据单元（简称BPDU），来确定网络的拓扑结构。BPDU有两种，配置BPDU（和TCN BPDU）。前者是用于计算无环的生成树的，后者则是用于在二层网络拓扑发生变化时产生用来缩短MAC表项的刷新时间的。</p>
+<p>STP的作用：可应用于计算机网络中树形拓扑结构建立，主要作用是防止网桥网络中的冗余链路形成环路工作，即能解决了核心层网络需要冗余链路的网络健壮性要求，又能解决因为冗余链路形成的物理环路导致“广播风暴”问题。</p>
+<p>3、扩展资料：</p>
+<p>STP的潜在故障</p>
+<p>A、生成树算法不稳定</p>
+<p>STP协议工作在第二层，在交换机端口之间传递网络协议单元获取网络拓扑，并通过STA算法阻断环路形成树形逻辑网络拓扑。但如果网络拓扑过于复杂，STA算法有时会存在失效的情况，这时根桥、根端口和指定端口的选举失败，导致环路的产生，使网络瘫痪。</p>
+<p>B、端口工作方式导致端口工作模式不匹配</p>
+<p>工作在全双工模式下的端口在发送数据前不载波侦听链路是否处于空闲状态，直接发送数据，而工作在半双工模式下的端口在发送数据前先执行载波侦听且当链路处于空闲状态时才发送数据，此时，全双工端口持续性的有大量数据需要发送，那么半双工状态的端口将不会有数据传送给对端。</p>
+<p>C、单向链路故障</p>
+<p>在采用光纤为通信介质的网络中，往往采用两组光纤收发链路来保证网络的可靠性和稳定性。单链路故障影响了STP的网桥协议单元的发送，致使STA计算出现错误码，将本应处于阻断状态的端口转变为转发状态，从而导致环路的产生。</p>
+<h2 id="（二）STP潜在故障"><a href="#（二）STP潜在故障" class="headerlink" title="（二）STP潜在故障"></a>（二）STP潜在故障</h2><p><strong>1、生成树算法不稳定</strong></p>
+<p>STP协议工作在第二层，在交换机端口之间传递网络协议单元获取网络拓扑，并通过STA算法阻断环路形成树形逻辑网络拓扑。但如果网络拓扑过于复杂，STA算法有时会存在失效的情况，这时根桥、根端口和指定端口的选举失败，导致环路的产生，使网络瘫痪。这一问题的根本原因理论上还无定论，多数人认为是STP协议本身不稳定的问题，比如STP生成树收敛过慢，导致网络协议单元数据包丢失过多，STA误以为网络中出现了单点故障，从而使处于阻塞状态的端口变为转发状态，网络出现环路导致网络瘫痪。此种故障出现的概率很低，但出现了很难排除。</p>
+<p><strong>2、端口工作方式导致端口工作模式不匹配</strong></p>
+<p>交换机的端口工作模式有单工（Simplex）、半双工（half-duplex）和全双工（full-duplex）三种模式，一般在配置时都采用自动协商的方式。在配置时如果将交换机一端人工设置为全双工，另一端仍然采用自动协商方式，在有些品牌的交换机中，将使通信链路在半双工模式下工作；更有一种极端的方式，将一端交换机的端口工作方式设置为全双工模式，而将链路对端交换机的端口设置为半双工模式，这都会导致双工不匹配的问题。其结果是工作在全双工模式下的端口在发送数据前不载波侦听链路是否处于空闲状态，直接发送数据，而工作在半双工模式下的端口在发送数据前先执行载波侦听且当链路处于空闲状态时才发送数据，此时，如果全双工端口持续性的有大量数据需要发送，那么半双工状态的端口将不会有数据传送给对端。STA在计算的时候，由于半双工状态的端口发送不了网络协议单元，STA会将处于阻塞状态的端口打开，从而形成环路。</p>
+<p><strong>3、单向链路故障</strong></p>
+<p>在采用光纤为通信介质的网络中，往往采用两组光纤收发链路来保证网络的可靠性和稳定性（一组通信，一组冗余），由于光纤收发器的故障、任意一组收发对中的某一条链路故障或者两组链路中的某一条链路出现了交叉连接，都会导致本端收发器能收到对端收发器发送的报文，便对端收发器收不到本端收发器发送的报文，这种故障称为单链路现象，隐蔽性高，不易排错。由于单链路故障影响了STP的网桥协议单元的发送，致使STA计算出现错误码，将本应处于阻断状态的端口转变为转发状态，从而导致环路的产生。</p>
+<p><strong>4、数据帧被损坏</strong></p>
+<p>交换机是二层通信，如果物理链路的通信质量不高（通信介质质量问题或干扰问题等），将导致数据帧在传输时被损坏，从而被丢弃。网桥协议单元在传输时因信道质量不高而损坏达到一定量后，会使STA误认为出现单点故障而将已阻断的端口打开通信。一般对于STP协议来讲，如果阻塞端口丢失网桥协议单元的状态超过50秒，就会出现故障。</p>
+<p><strong>5、网络设备资源不足引起故障</strong></p>
+<p>STP协议的执行及其网桥协议单元的处理都由网络设备（主要是交换机）的CPU来进行，如果交换机的CPU本身处理能力不强或被其他问题过渡占用，使交换机无法及时发出或接收网桥协议单元，引起STP无法正常工作的故障。</p>
+<p><strong>6、配置Por tFast快速端口引起的故障</strong></p>
+<p>在运行STP的网络中，如果将交换机上直接连接主机的端口配置为Port   Fast，可以使端口直接从阻断状态转变为转发状态，从而使STP网络快速收敛。如果网络管理员在配置交换机是，将用于连接其他交换机的某个端口也设置为Port  Fast，那么当该端口被启用时会直接进入转发状态，从而导致网络中短时存在环路，当环路中的数据流量相当大时，网络会瘫痪 [2]  。</p>
+<h2 id="（三）SVI"><a href="#（三）SVI" class="headerlink" title="（三）SVI"></a>（三）SVI</h2><p> SVI:（switch virtualinterface）交换机虚拟接口既交互三级的管理Vlan 地址<br>　　svi有两种类型：</p>
+<p>　　一、主机管理接口。管理员可以利用该接口管理交换机。</p>
+<p>　　二、网关接口。用于三层交换机跨vlan间路由。具体可以用interface　vlan接口配置命令来创建svi,然后为其配置ip地址即可实现路由功能。　</p>
+<p>​        一个交换机虚拟接口（Switch Virtual Interface，SVI）代表一个由交换端口构成的VLAN（其实就是通常所说的VLAN接口），以便于实现系统中路由和桥接的功能。一个交换机虚拟接口对应一个VLAN，当需要路由虚拟局域网之间的流量或桥接VLAN之间不可路由的协议，以及提供IP主机到交换机的连接的时候，就需要为相应的虚拟局域网配置相应的交换机虚拟接口，其实SVI就是指通常所说的VLAN接口，只不过它是虚拟的，用于连接整个VLAN，所以通常也把这种接口称为逻辑三层接口，也是三层接口。SVI接口是当在interface vlan全局配置命令后面键入具体的VLAN ID时创建的。可以用no interface vlan vlan_id全局配置命令来删除对应的SVI接口，只是不能删除VLAN 1的SVI接口（VLAN 1），因为VLAN 1接口是默认已创建的，用于远程交换机管理。应当为所有VLAN配置SVI接口，以便在VLAN间路由通信。也就是SVI接口的用途就是为VLAN间提供通信路由。</p>
+<p>　　一个VLAN仅可以有一个SVI。在你希望在VLAN之间进行路由，或者在VLAN间进行非路由协议的fallback桥接，或者提供IP主机连接到交换机时，就需要为VLAN配置一个SVI。默认情况下，SVI是为默认VLAN（通常是VLAN1）而创建的，以允许进行远程交换机管理。其他的SVI必须明确配置。所以说，SVI接口可以同时是该交换机的管理接口和下层设备的网关接口（路由连接口）。SVI提供到系统的IP主机连接。在三层模式中，可以配置通过SVI的路由。</p>
+<p>　　SVI是在你为VLAN接口第一次键入vlan接口配置命令时创建的。VLAN与ISL或IEEE 802.1q协议中封装的中继，或者访问端口配置的VLAN ID的数据帧相关联的VLAN标记相对应。如果需要路由VLAN间的通信，则需要为每个VLAN配置一个VLAN接口（也就是这里所说的SVI），并为每个SVI接口分配一个IP地址。</p>
+<p>　　SVI具有自动状态排除（Autostate Exclude）特征。带有多个端口的VLAN上的SVI线路状态在SVI接口满足以下条件时呈开启状态：</p>
+<p>　　VLAN存在，并且在交换机的VLAN数据库中呈激活状态。</p>
+<p>　　VLAN接口存在，并且是可管理的。</p>
+<p>　　在VLAN中至少存在一个二层端口（访问端口或中继端口）的链路呈开启状态，并且这个链路在VLAN中是在生成树转发状态（Spanning-tree<br>　　forwarding State）中。</p>
+<p>　　默认情况下，在一个VLAN有多个端口时，VLAN中的所有端口关闭后，SVI接口也将关闭。可以使用SVI自动状态排除特征来配置端口，使它不包括在SVI接口状态开关考虑范围内。例如，如果在VLAN中只有一个激活端口是镜像端口，则可以在该端口上配置自动状态排除，以便在所有其他端口关闭时关闭VLAN。在启用一个端口时，自动状态排除特征将应用到该端口上所连的所有已启用的VLAN中。   </p>
+<h2 id="（四）二层交换机与三层交换机的区别"><a href="#（四）二层交换机与三层交换机的区别" class="headerlink" title="（四）二层交换机与三层交换机的区别"></a>（四）二层交换机与三层交换机的区别</h2><p>我们习惯说，在二层网络环境中相同vlan之间可以通信，不同vlan之间不可以通信，如果想通信必须借助三层设备，所以说三层交换机必须要做的事情是路由转发，但是二、三层交换机具体有什么区别呢？</p>
+<p>二层交换机工作于OSI模型的第2层(数据链路层)，故而称为二层交换机。</p>
+<p>二层交换技术发展比较成熟，二层交换机属数据链路层设备，可以识别数据包中的MAC地址信息，根据MAC地址进行转发，并将这些MAC地址与对应的端口记录在自己内部的一个地址表中。具体的工作流程如下：</p>
+<p>（1） 当交换机从某个端口收到一个数据包，它先读取包头中的源MAC地址，这样它就知道源MAC地址的机器是连在哪个端口上的；</p>
+<p>（2） 再去读取包头中的目的MAC地址，并在地址表中查找相应的端口；</p>
+<p>（3） 如表中有与这目的MAC地址对应的端口，把数据包直接复制到这端口上；</p>
+<p>（4） 如表中找不到相应的端口则把数据包广播到所有端口上，当目的机器对源机器回应时，交换机又可以学习一目的MAC地址与哪个端口对应，在下次传送数据时就不再需要对所有端口进行广播了。</p>
+<p>不断的循环这个过程，对于全网的MAC地址信息都可以学习到，二层交换机就是这样建立和维护它自己的地址表。</p>
+<p>二层交换技术从网桥发展到VLAN（虚拟局域网），在局域网建设和改造中得到了广泛的应用。第二层交换技术是工作在OSI七层网络模型中的第二层，即数据链路层。它按照所接收到数据包的目的MAC地址来进行转发，对于网络层或者高层协议来说是透明的。它不处理网络层的IP地址，不处理高层协议的诸如TCP、UDP的端口地址，<strong>它只需要数据包的物理地址即MAC地址，数据交换是靠硬件来实现的，其速度相当快，这是二层交换的一个显著的优点。但是，它不能处理不同IP子网之间的数据交换</strong>。<strong>传统的路由器可以处理大量的跨越IP子网的数据包，但是它的转发效率比二层低</strong>，因此要想利用二层转发效率高这一优点，又要处理三层IP数据包，三层交换技术就诞生了。</p>
+<p>三层交换（也称多层交换技术，或IP交换技术）是相对于传统交换概念而提出的。众所周知，传统的交换技术是在OSI网络标准模型中的第二层——数据链路层进行操作的，而三层交换技术是在网络模型中的第三层实现了数据包的高速转发。简单地说，<strong>三层交换技术就是：二层交换技术＋三层转发技术。</strong></p>
+<p><strong>三层交换机就是具有部分路由器功能的交换机。</strong></p>
+<p>三层交换机的最重要目的<strong>是加快大型局域网内部的数据交换，所具有的路由功能也是为这目的服务的，能够做到一次路由，多次转发</strong>。对于数据包转发等规律性的过程由硬件高速实现，而像路由信息更新、路由表维护、路由计算、路由确定等功能，由软件实现。三层交换技术就是二层交换技术+三层转发技术。</p>
+<p>三层交换技术的出现，解决了局域网中网段划分之后，网段中子网必须依赖路由器进行管理的局面，解决了传统路由器低速、复杂所造成的网络瓶颈问题。</p>
+<p>举个栗子，在上课的时候学生偷偷传纸条，当一个男生偷偷传张纸条给女生，女生这时候会干嘛？是要打开纸条查看里面写了什么内容吧！三层交换机在接收到目的mac地址是自己的时候要做的事情也是向上层解封装，查看三层目的IP地址，然后呢？</p>
+<p>女生打开，上面写着“请将纸条递给下一个人”，三层交换机也是这样一看原来目的IP地址不是自己，这才执行路由层面的转发；所以说交换机在执行要不要三层转发，是在目的mac是自己的同时，IP地址是不是自己，如果是自己那还转发个啥来，就不用转发了。</p>
+<p>交换机在判断出目的IP不是自己的时候是不是一定就去查看路由表呢 ？不是，这个就是交换机的关键所在了，交换机此时不会查看路由表，不会查看arp表，不会查看mac地址表；那交换机会查看什么表？</p>
+<p>交换机此时会查看自己集成在ASIC硬件转发卡中的硬件转发表，那这个硬件转发表都包含了什么内容呢？</p>
+<p>当第一个包过来的时候，发现硬件转发表并没有什么表项，所以此时必须将数据包交由路由进程处理，一旦交由cpu处理，必然会消耗cpu资源，此时会查看路由表，然后发现此IP地址个自己是直连的，此时就去查看arp找出此地址对应的mac地址，就可以转发出去了在决定转发出去过程中，交换机至少会做三件事情，一，修改IP包头的ttl值；二，修改原mac地址，改成自己出接口mac地址；三，建立交换机硬件转发表，包括目的IP地址，目的IP地址（下一跳）对应的mac地址，mac地址对应的vlan，以及对应的端口（这个每个厂家有自己的理解）这样当一下包过来的时候，交换机就会查看硬件转发表直接转发而不会在经过路由表的查询了，也即是交换机的一次路由，多次交换机原理。</p>
+<p>总之，二层交换机用于小型的局域网络。这个就不用多言了，在小型局域网中，广播包影响不大，二层交换机的快速交换功能、多个接入端口和低廉价格为小型网络用户提供了很完善的解决方案。</p>
+<p>而三层交换机的最重要的功能是加快大型局域网络内部的数据的快速转发，加入路由功能也是为这个目的服务的。如果把大型网络按照部门，地域等等因素划分成一个个小局域网，这将导致大量的网际互访，<strong>单纯的使用二层交换机不能实现网际互访；如单纯的使用路由器，由于接口数量有限和路由转发速度慢，将限制网络的速度和网络规模，采用具有路由功能的快速转发的三层交换机就成为首选。</strong></p>
+<p>一般来说，在内网数据流量大，要求快速转发响应的网络中，如全部由三层交换机来做这个工作，会造成三层交换机负担过重，响应速度受影响，将网间的路由交由路由器去完成，充分发挥不同设备的优点，不失为一种好的组网策略，当然，前提是你的腰包很鼓，不然就退而求其次，让三层交换机也兼为网际互连。</p>
+<p>传统交换技术是在OSI网络标准模型第二层–数据链路层进行操作的，而三层交换技术是在网络模型中的第三层实现了数据包的高速转发，既可实现网络路由功能，又可根据不同网络状况做到最优网络性能。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/10/07/10-07复习例题/">国庆复习（一）</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2019年10月07日 - 10时47分</p>
+        <p><span>最后更新:</span>2019年10月07日 - 10时47分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/10/07/10-07复习例题/" title="国庆复习（一）">http://yoursite.com/2019/10/07/10-07复习例题/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/10/07/10-07复习例题/　　作者: John Doe" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/10/10/10-10爬虫问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          点击事件里后台打印数据闪现
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2019/09/24/09-18linux shell脚本/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、例题"><span class="toc-number">1.</span> <span class="toc-text">一、例题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、知识点："><span class="toc-number">2.</span> <span class="toc-text">二、知识点：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#（一）STP原理，用途，类型"><span class="toc-number">2.1.</span> <span class="toc-text">（一）STP原理，用途，类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（二）STP潜在故障"><span class="toc-number">2.2.</span> <span class="toc-text">（二）STP潜在故障</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（三）SVI"><span class="toc-number">2.3.</span> <span class="toc-text">（三）SVI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（四）二层交换机与三层交换机的区别"><span class="toc-number">2.4.</span> <span class="toc-text">（四）二层交换机与三层交换机的区别</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/10/10/10-10爬虫问题/" title="上一篇: 点击事件里后台打印数据闪现">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2019/09/24/09-18linux shell脚本/" title="下一篇: ">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/10/10-10爬虫问题/">点击事件里后台打印数据闪现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/10-07复习例题/">国庆复习（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/24/09-18linux shell脚本/">09-18linux shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/24/09-24第一章爬虫/">初识python</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/">磁盘分区与挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/08-09网络连接/">网络连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/应急响应笔记大纲/">应急响应笔记大纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/09-08用户与组的管理/">用户与组的管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/08-24第1篇：Window入侵排查/">window入侵排查</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/28/本地计算机策略配置案例/">组策略与安全设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/26/08-28windows服务器/">Windows服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/25/第2篇：Linux入侵排查/">linux入侵排查</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/23/VPN/">VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/GNS3/">防火墙与VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/防火墙/">防火墙</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/20/网络地址转换NAT/">网络地址转换NAT</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/30/CSRF/">CSRF漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/25/学习前端/">初识前端</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
