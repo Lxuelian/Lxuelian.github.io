@@ -194,7 +194,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/web安全/" style="font-size: 12.5px;">web安全</a> <a href="/tags/渗透/" style="font-size: 10px;">渗透</a> <a href="/tags/系统安全/" style="font-size: 20px;">系统安全</a> <a href="/tags/网络/" style="font-size: 17.5px;">网络</a> <a href="/tags/网络安全/" style="font-size: 15px;">网络安全</a>
+                        <a href="/tags/web安全/" style="font-size: 12.5px;">web安全</a> <a href="/tags/渗透/" style="font-size: 10px;">渗透</a> <a href="/tags/渗透测试/" style="font-size: 20px;">渗透测试</a> <a href="/tags/系统安全/" style="font-size: 20px;">系统安全</a> <a href="/tags/网络/" style="font-size: 17.5px;">网络</a> <a href="/tags/网络安全/" style="font-size: 15px;">网络安全</a>
                     </div>
                 </section>
                 
@@ -272,6 +272,1214 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-10-07复习例题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/10/07/10-07复习例题/" class="article-date">
+      <time datetime="2019-10-07T02:47:20.000Z" itemprop="datePublished">2019-10-07</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/10/07/10-07复习例题/">国庆复习（一）</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="一、例题"><a href="#一、例题" class="headerlink" title="一、例题"></a>一、例题</h1><p>1.VLAN是什么？有什么作用？<br>答：vlan可以理解为逻辑上划分广播域，可以降低广播风暴的产生    </p>
+<p>1、VLAN是 一种将局域网（LAN）设备从逻辑上划分（注意，不是从物理上划分）成一个个网段（或者说是更小的局域网LAN），从而实现虚拟工作组（单元）的数据交换技术。 VLAN这一新兴技术主要应用于交换机和路由器中，但目前主流应用还是在交换机之中 。不过不是所有交换机都具有此功能，只有三层以上交换机才具有此功能，这一点可以查 看相应交换机的说明书即可得知。VLAN的好处主要有三个：<br>(1)端口的分隔。即便在同一个交换机上，处于不同VLAN的端口也是不能通信的。这<br>样一个物理的交换机可以当作多个逻辑的交换机使用。<br>(2)网络的安全。不同VLAN不能直接通信，杜绝了广播信息的不安全性。<br>(3)灵活的管理。更改用户所属的网络不必换端口和连线，只更改软件配置就可以了。<br>2、VLAN技术的出现，使得管理员根据实际应用需求，把同一物理局域网内的不同用户逻<br>辑地划分成不同的广播域，每一个VLAN都包含一组有着相同需求的计算机工作站，与物理<br>上形成的LAN有着相同的属性。由于它是从逻辑上划分，而不是从物理上划分，所以同一个<br>VLAN内的各个工作站没有限制在同一个物理范围中，即这些工作站可以在不同物理LAN网段 。由VLAN的特点可知，一个VLAN内部的广播和单播流量都不会转发到其他VLAN中，从而有 助于控制流量、减少设备投资、简化网络管理、提高网络的安全性。 VLAN除了能将网划 分为多个广播域，从而有效地控制广播风暴的发生，以及使网络的拓扑结构变得非常灵活<br>的优点外，还可以用于控制网络中不同部门、不同站点之间的互相访问。</p>
+<p>2.VLAN的划分方法有哪些？<br>答：基于端口<br>     基于IP</p>
+<p>VLAN在交换机上的实现方法，可以大致划分为4类：<br>　　（1） 基于端口划分的VLAN<br>　　这种划分VLAN的方法是根据<a href="https://www.baidu.com/s?wd=以太网交换机&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">以太网交换机</a>的端口来划分，比如Quidway S3526的1<del>4端口为VLAN 10，5</del>17为VLAN 20，18<del>24为VLAN 30，当然，这些属于同一VLAN的端口可以不连续，如何配置，由管理员决定，如果有多个交换机，例如，可以指定交换机 1 的1</del>6端口和交换机 2 的1~4端口为同一VLAN，即同一VLAN可以跨越数个<a href="https://www.baidu.com/s?wd=以太网交换机&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">以太网交换机</a>，根据端口划分是目前定义VLAN的最广泛的方法，IEEE 802.1Q规定了依据<a href="https://www.baidu.com/s?wd=以太网交换机&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">以太网交换机</a>的端口来划分VLAN的国际标准。<br>　　这种划分的方法的优点是定义VLAN成员时非常简单，只要将所有的端口都指定义一下就可以了。它的缺点是如果VLAN A的用户离开了原来的端口，到了一个新的交换机的某个端口，那么就必须重新定义。<br>　（2）基于MAC地址划分VLAN<br>　　这种划分VLAN的方法是根据每个主机的MAC地址来划分，即对每个MAC地址的主机都配置他属于哪个组。这种划分VLAN的方法的最大优点就是当用户物理位置移动时，即从一个交换机换到其他的交换机时，VLAN不用重新配置，所以，可以认为这种根据MAC地址的划分方法是基于用户的VLAN，这种方法的缺点是初始化时，所有的用户都必须进行配置，如果有几百个甚至上千个用户的话，配置是非常累的。而且这种划分的方法也导致了交换机执行效率的降低，因为在每一个交换机的端口都可能存在很多个VLAN组的成员，这样就无法限制广播包了。另外，对于使用笔记本电脑的用户来说，他们的网卡可能经常更换，这样，VLAN就必须不停的配置。<br>　　（3）基于网络层划分VLAN<br>　　这种划分VLAN的方法是根据每个主机的网络层地址或协议类型（如果支持多协议）划分的，虽然这种划分方法是根据网络地址，比如IP地址，但它不是路由，与网络层的路由毫无关系。它虽然查看每个数据包的IP地址，但由于不是路由，所以，没有RIP，OSPF等路由协议，而是根据生成树算法进行桥交换，<br>　　这种方法的优点是用户的物理位置改变了，不需要重新配置所属的VLAN，而且可以根据协议类型来划分VLAN，这对网络管理者来说很重要，还有，这种方法不需要附加的帧标签来识别VLAN，这样可以减少网络的通信量。<br>　　这种方法的缺点是效率低，因为检查每一个数据包的网络层地址是需要消耗处理时间的（相对于前面两种方法），一般的交换机芯片都可以自动检查网络上数据包的以太网祯头，但要让芯片能检查IP帧头，需要更高的技术，同时也更费时。当然，这与各个厂商的实现方法有关。<br>　　（4）根据<a href="https://www.baidu.com/s?wd=IP组播&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">IP组播</a>划分VLAN<br>　　IP 组播实际上也是一种VLAN的定义，即认为一个组播组就是一个VLAN，这种划分的方法将VLAN扩大到了广域网，因此这种方法具有更大的灵活性，而且也很容易通过路由器进行扩展，当然这种方法不适合局域网，主要是效率不高。<br>　　鉴于当前业界VLAN发展的趋势，考虑到各种VLAN划分方式的优缺点，为了最大程度上地满足用户在具体使用过程中需求，减轻用户在VLAN的具体使用和维护中的工作量，Quidway S系列交换机采用根据端口来划分VLAN的方法。</p>
+<p>3.为什么要做冗余链路？冗余链路会带来什么问题？<br>答：冗余链路可以使PC消息多种路径转发 问题：会造成链路中有浪费</p>
+<p>使用<a href="https://www.baidu.com/s?wd=冗余链路&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">冗余链路</a>是为了防止单点故障，如果一条线路故障了另一条还可以继续工作保障通信正常。<a href="https://www.baidu.com/s?wd=冗余链路&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">冗余链路</a>是物理上的线路冗余，至于技术上主要是STP（<a href="https://www.baidu.com/s?wd=生成树协议&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">生成树协议</a>）。这个是为了防止链路冗余造成环路设计的。</p>
+<p>4.怎么避免环路？<br>答：可以在交换机中设置主副 primary secondery 然后链路聚合    //使用生成树协议</p>
+<p>5.STP是什么？有什么作用？有哪些类型？以及每种类型的特点是什么？<br>答：生成树协议<br>6.STP的工作过程是怎么样的？</p>
+<p>7.STP端口有哪些状态？每种状态的能力是什么？</p>
+<p><strong>Blocking（阻塞状态）：</strong>此时，二层端口为非指定端口，也不会参与数据帧的转发。该端口通过接收BPDU来判断根交换机的位置和根ID，以及在STP拓扑收敛结束之后，各交换机端口应该处于什么状态，在默认情况下，端口会在这种状态下停留20秒钟时间。</p>
+<p><strong>Listening（侦听状态）：</strong>生成树此时已经根据交换机所接收到的BPDU而判断出了这个端口应该参与数据帧的转发。于是交换机端口就将不再满足于接收BPDU，而同时也开始发送自己的BPDU，并以此通告邻接的交换机该端口会在活动拓扑中参与转发数据帧的工作。在默认情况下，该端口会在这种状态下停留15秒钟的时间。</p>
+<p><strong>Learning(学习状态)：</strong>这个二层端口准备参与数据帧的转发，并开始填写MAC表。在默认情况下，端口会在这种状态下停留15秒钟时间。</p>
+<p><strong>Forwarding（转发状态）：</strong>这个二层端口已经成为了活动拓扑的一个组成部分，它会转发数据帧，并同时收发BPDU。</p>
+<p><strong>Disabled（禁用状态）：</strong>这个二层端口不会参与生成树，也不会转发数据帧。</p>
+<p>8.100Mps的和10Mps在STP中COST值是多少？<br>答：100M的cost值为19</p>
+<p>​        10Mps为100</p>
+<p>9.本征VLAN是什么？有什么作用？</p>
+<p>native VLAN存在的原因主要是支持VLAN与不支持VLAN的设备相互兼容，大部分计算机网卡、集线器等设备不能识别带VLAN标签的数据帧，只有去掉VLAN标签，这些设备才能正确识别数据帧。</p>
+<p>提到native VLAN存在的原因常会举这样的例子，对STP协议数据打上VLAN标签会让不支持VLAN的交换机无法识别，最终STP协议无法工作，所以需要native VLAN将VLAN标签去掉在发送。</p>
+<p>这个例子实际上是新老设备兼容性问题，STP协议（802.1D）是1990年发布，802.1Q协议是1998年发布， VLAN概念出现的比较晚，老设备不支持802.1Q协议不能识别带VLAN标签的数据，所以新设备要具备去掉VLAN标签的能力， native  VLAN就出现了。</p>
+<p>网络技术进步很快，距离802.1Q协议发布已经过去20多年，这个兼容性问题现在基本不存在了。</p>
+<p>10.链路聚合协议有哪两种？端口模式分别有哪些？两端端口哪些模式可以实现聚合？</p>
+<p>11.链路聚合如果是三条100Mps的带宽，聚合后的信道带宽是多少？<br>答：300M<br>12.svi接口时什么接口？ //虚拟vlan的网关接口<br>答：vlan<br>13.VTP有几种模式？每种模式有什么区别？<br>答：<br>14.层三交换机和层二交换机有什么区别？<br>答：二层交换机在设置trunk时 本身自带封装，而三层交换机在设置trunk时会提示所有端口都是auto模式，设置不了，此时就必须设置封装 802.1<br>15.交换机的工作原理时什么？以及交换机的三种转发模式是什么？<br>答：原理：PC机在发送消息时，会携带自身的MAC地址，交换机在自己的的范围内广播这些消息，对应的PC机收到消息也会携带自身的MAC地址作出回应。 模式：protect\restrict\shutdown<br>16.172.16.0.78/25，请问网络号是多少？本网络有多少个可用IP？<br> 答：网络号：172.16.0.0/25     本网络有126个可用IP</p>
+<p>17.vlsm是什么？</p>
+<p>18.IP地址分类？有哪几类？<br> 答：A、B、C、D、E</p>
+<p>19.每类中的私有IP范围是多少？</p>
+<p>20.ICMP的类型有哪些？目标不可达和超时类型分别是什么？</p>
+<h1 id="二、知识点："><a href="#二、知识点：" class="headerlink" title="二、知识点："></a>二、知识点：</h1><h2 id="（一）STP原理，用途，类型"><a href="#（一）STP原理，用途，类型" class="headerlink" title="（一）STP原理，用途，类型"></a>（一）STP原理，用途，类型</h2><p>1、【原理】</p>
+<p> 通过选择性逻辑关闭端口传输来实现。</p>
+<p>具体是根据：<br> 选取一个根桥，然后在非根桥交换机上选出根端口和指定端口，<br> 最后选出阻塞端口将其阻塞。</p>
+<p>选举是根据传递BPDU的信息，桥协议数据单元来实现的。<br>BPDU里主要有：<br> 根端口ID，链路开销，桥ID，端口ID。<br> 通过比较上述内容来实现。 </p>
+<p><strong>生成树协议</strong>（英语：<strong>Spanning Tree Protocol</strong>，<strong>STP</strong>），是一种工作在OSI网络模型中的第二层数据链路层的通信协议，基本应用是防止交换机冗余链路产生的环路.用于确保以太网中无环路的逻辑拓扑结构.从而避免了广播风暴,大量占用交换机的资源.</p>
+<p>生成树协议工作原理:任意一交换机中如果到达根网桥有两条或者两条以上的链路.生成树协议都根据算法把其中一条切断,仅保留一条.从而保证任意两个交换机之间只有一条单一的活动链路.因为这种生成的这种拓扑结构.很像是以根交换机为树干的树形结构.故为生成树协议</p>
+<p>生成树协议是基于Radia Perlman在<a href="https://baike.baidu.com/item/DEC" target="_blank" rel="noopener">DEC</a>工作时发明的一种算法被纳入了IEEE 802.1d中，2001年IEEE组织推出了快速生成树协议(RSTP)在网络结构发生变化时其比STP更快的收敛网络,还引进了端口角色来完善了收敛机制,被纳入在IEEE 802.1w中.</p>
+<p>STP的工作过程如下：首先进行根网桥的选举，其依据是网桥优先级（bridge  priority）和MAC地址组合生成的桥ID，桥ID最小的网桥将成为网络中的根桥（bridge  root）。在此基础上，计算每个节点到根桥的距离，并由这些路径得到各冗余链路的代价，选择最小的成为通信路径（相应的端口状态变为forwarding），其它的就成为备份路径(相应的端口状态变为blocking)。STP生成过程中的通信任务由BPDU完成，这种数据包又分为包含配置信息的配置BPDU（其大小不超过35B）和包含拓扑变化信息的通知BPDU（其长度不超过4B）。</p>
+<p>五种状态：</p>
+<p>ｄｏｗｎ<br> 阻塞<br> 侦听<br> 学习<br> 转发</p>
+<table>
+<thead>
+<tr>
+<th>端口状态</th>
+<th>端口能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Disabled</td>
+<td>不收发任何报文</td>
+</tr>
+<tr>
+<td>Blocking</td>
+<td>不接收或者转发数据，接收但不发送BPDU，不进行地址学习</td>
+</tr>
+<tr>
+<td>Listening</td>
+<td>不接收或者转发数据，接收并发送BPDU，不进行地址学习</td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>不接收或者转发数据，接收并发送BPDU，开始进行地址学习</td>
+</tr>
+<tr>
+<td>Forwarding</td>
+<td>接收或者转发数据，接收并发送BPDU，进行地址学习</td>
+</tr>
+</tbody></table>
+<p>【用途】<br> STP应用于第二层。</p>
+<p>用途是消除网络环路，达到更好的冗余。<br>【类型】 </p>
+<p>STP，RSTP，MSTP 公有组织。<br> PVST+，PVRST，cisco</p>
+<p>2、STP的工作原理和作用</p>
+<p>STP的基本原理是通过在交换机之间传递一种特殊的协议报文，网桥协议数据单元（简称BPDU），来确定网络的拓扑结构。BPDU有两种，配置BPDU（和TCN BPDU）。前者是用于计算无环的生成树的，后者则是用于在二层网络拓扑发生变化时产生用来缩短MAC表项的刷新时间的。</p>
+<p>STP的作用：可应用于计算机网络中树形拓扑结构建立，主要作用是防止网桥网络中的冗余链路形成环路工作，即能解决了核心层网络需要冗余链路的网络健壮性要求，又能解决因为冗余链路形成的物理环路导致“广播风暴”问题。</p>
+<p>3、扩展资料：</p>
+<p>STP的潜在故障</p>
+<p>A、生成树算法不稳定</p>
+<p>STP协议工作在第二层，在交换机端口之间传递网络协议单元获取网络拓扑，并通过STA算法阻断环路形成树形逻辑网络拓扑。但如果网络拓扑过于复杂，STA算法有时会存在失效的情况，这时根桥、根端口和指定端口的选举失败，导致环路的产生，使网络瘫痪。</p>
+<p>B、端口工作方式导致端口工作模式不匹配</p>
+<p>工作在全双工模式下的端口在发送数据前不载波侦听链路是否处于空闲状态，直接发送数据，而工作在半双工模式下的端口在发送数据前先执行载波侦听且当链路处于空闲状态时才发送数据，此时，全双工端口持续性的有大量数据需要发送，那么半双工状态的端口将不会有数据传送给对端。</p>
+<p>C、单向链路故障</p>
+<p>在采用光纤为通信介质的网络中，往往采用两组光纤收发链路来保证网络的可靠性和稳定性。单链路故障影响了STP的网桥协议单元的发送，致使STA计算出现错误码，将本应处于阻断状态的端口转变为转发状态，从而导致环路的产生。</p>
+<h2 id="（二）STP潜在故障"><a href="#（二）STP潜在故障" class="headerlink" title="（二）STP潜在故障"></a>（二）STP潜在故障</h2><p><strong>1、生成树算法不稳定</strong></p>
+<p>STP协议工作在第二层，在交换机端口之间传递网络协议单元获取网络拓扑，并通过STA算法阻断环路形成树形逻辑网络拓扑。但如果网络拓扑过于复杂，STA算法有时会存在失效的情况，这时根桥、根端口和指定端口的选举失败，导致环路的产生，使网络瘫痪。这一问题的根本原因理论上还无定论，多数人认为是STP协议本身不稳定的问题，比如STP生成树收敛过慢，导致网络协议单元数据包丢失过多，STA误以为网络中出现了单点故障，从而使处于阻塞状态的端口变为转发状态，网络出现环路导致网络瘫痪。此种故障出现的概率很低，但出现了很难排除。</p>
+<p><strong>2、端口工作方式导致端口工作模式不匹配</strong></p>
+<p>交换机的端口工作模式有单工（Simplex）、半双工（half-duplex）和全双工（full-duplex）三种模式，一般在配置时都采用自动协商的方式。在配置时如果将交换机一端人工设置为全双工，另一端仍然采用自动协商方式，在有些品牌的交换机中，将使通信链路在半双工模式下工作；更有一种极端的方式，将一端交换机的端口工作方式设置为全双工模式，而将链路对端交换机的端口设置为半双工模式，这都会导致双工不匹配的问题。其结果是工作在全双工模式下的端口在发送数据前不载波侦听链路是否处于空闲状态，直接发送数据，而工作在半双工模式下的端口在发送数据前先执行载波侦听且当链路处于空闲状态时才发送数据，此时，如果全双工端口持续性的有大量数据需要发送，那么半双工状态的端口将不会有数据传送给对端。STA在计算的时候，由于半双工状态的端口发送不了网络协议单元，STA会将处于阻塞状态的端口打开，从而形成环路。</p>
+<p><strong>3、单向链路故障</strong></p>
+<p>在采用光纤为通信介质的网络中，往往采用两组光纤收发链路来保证网络的可靠性和稳定性（一组通信，一组冗余），由于光纤收发器的故障、任意一组收发对中的某一条链路故障或者两组链路中的某一条链路出现了交叉连接，都会导致本端收发器能收到对端收发器发送的报文，便对端收发器收不到本端收发器发送的报文，这种故障称为单链路现象，隐蔽性高，不易排错。由于单链路故障影响了STP的网桥协议单元的发送，致使STA计算出现错误码，将本应处于阻断状态的端口转变为转发状态，从而导致环路的产生。</p>
+<p><strong>4、数据帧被损坏</strong></p>
+<p>交换机是二层通信，如果物理链路的通信质量不高（通信介质质量问题或干扰问题等），将导致数据帧在传输时被损坏，从而被丢弃。网桥协议单元在传输时因信道质量不高而损坏达到一定量后，会使STA误认为出现单点故障而将已阻断的端口打开通信。一般对于STP协议来讲，如果阻塞端口丢失网桥协议单元的状态超过50秒，就会出现故障。</p>
+<p><strong>5、网络设备资源不足引起故障</strong></p>
+<p>STP协议的执行及其网桥协议单元的处理都由网络设备（主要是交换机）的CPU来进行，如果交换机的CPU本身处理能力不强或被其他问题过渡占用，使交换机无法及时发出或接收网桥协议单元，引起STP无法正常工作的故障。</p>
+<p><strong>6、配置Por tFast快速端口引起的故障</strong></p>
+<p>在运行STP的网络中，如果将交换机上直接连接主机的端口配置为Port   Fast，可以使端口直接从阻断状态转变为转发状态，从而使STP网络快速收敛。如果网络管理员在配置交换机是，将用于连接其他交换机的某个端口也设置为Port  Fast，那么当该端口被启用时会直接进入转发状态，从而导致网络中短时存在环路，当环路中的数据流量相当大时，网络会瘫痪 [2]  。</p>
+<h2 id="（三）SVI"><a href="#（三）SVI" class="headerlink" title="（三）SVI"></a>（三）SVI</h2><p> SVI:（switch virtualinterface）交换机虚拟接口既交互三级的管理Vlan 地址<br>　　svi有两种类型：</p>
+<p>　　一、主机管理接口。管理员可以利用该接口管理交换机。</p>
+<p>　　二、网关接口。用于三层交换机跨vlan间路由。具体可以用interface　vlan接口配置命令来创建svi,然后为其配置ip地址即可实现路由功能。　</p>
+<p>​        一个交换机虚拟接口（Switch Virtual Interface，SVI）代表一个由交换端口构成的VLAN（其实就是通常所说的VLAN接口），以便于实现系统中路由和桥接的功能。一个交换机虚拟接口对应一个VLAN，当需要路由虚拟局域网之间的流量或桥接VLAN之间不可路由的协议，以及提供IP主机到交换机的连接的时候，就需要为相应的虚拟局域网配置相应的交换机虚拟接口，其实SVI就是指通常所说的VLAN接口，只不过它是虚拟的，用于连接整个VLAN，所以通常也把这种接口称为逻辑三层接口，也是三层接口。SVI接口是当在interface vlan全局配置命令后面键入具体的VLAN ID时创建的。可以用no interface vlan vlan_id全局配置命令来删除对应的SVI接口，只是不能删除VLAN 1的SVI接口（VLAN 1），因为VLAN 1接口是默认已创建的，用于远程交换机管理。应当为所有VLAN配置SVI接口，以便在VLAN间路由通信。也就是SVI接口的用途就是为VLAN间提供通信路由。</p>
+<p>　　一个VLAN仅可以有一个SVI。在你希望在VLAN之间进行路由，或者在VLAN间进行非路由协议的fallback桥接，或者提供IP主机连接到交换机时，就需要为VLAN配置一个SVI。默认情况下，SVI是为默认VLAN（通常是VLAN1）而创建的，以允许进行远程交换机管理。其他的SVI必须明确配置。所以说，SVI接口可以同时是该交换机的管理接口和下层设备的网关接口（路由连接口）。SVI提供到系统的IP主机连接。在三层模式中，可以配置通过SVI的路由。</p>
+<p>　　SVI是在你为VLAN接口第一次键入vlan接口配置命令时创建的。VLAN与ISL或IEEE 802.1q协议中封装的中继，或者访问端口配置的VLAN ID的数据帧相关联的VLAN标记相对应。如果需要路由VLAN间的通信，则需要为每个VLAN配置一个VLAN接口（也就是这里所说的SVI），并为每个SVI接口分配一个IP地址。</p>
+<p>　　SVI具有自动状态排除（Autostate Exclude）特征。带有多个端口的VLAN上的SVI线路状态在SVI接口满足以下条件时呈开启状态：</p>
+<p>　　VLAN存在，并且在交换机的VLAN数据库中呈激活状态。</p>
+<p>　　VLAN接口存在，并且是可管理的。</p>
+<p>　　在VLAN中至少存在一个二层端口（访问端口或中继端口）的链路呈开启状态，并且这个链路在VLAN中是在生成树转发状态（Spanning-tree<br>　　forwarding State）中。</p>
+<p>　　默认情况下，在一个VLAN有多个端口时，VLAN中的所有端口关闭后，SVI接口也将关闭。可以使用SVI自动状态排除特征来配置端口，使它不包括在SVI接口状态开关考虑范围内。例如，如果在VLAN中只有一个激活端口是镜像端口，则可以在该端口上配置自动状态排除，以便在所有其他端口关闭时关闭VLAN。在启用一个端口时，自动状态排除特征将应用到该端口上所连的所有已启用的VLAN中。   </p>
+<h2 id="（四）二层交换机与三层交换机的区别"><a href="#（四）二层交换机与三层交换机的区别" class="headerlink" title="（四）二层交换机与三层交换机的区别"></a>（四）二层交换机与三层交换机的区别</h2><p>我们习惯说，在二层网络环境中相同vlan之间可以通信，不同vlan之间不可以通信，如果想通信必须借助三层设备，所以说三层交换机必须要做的事情是路由转发，但是二、三层交换机具体有什么区别呢？</p>
+<p>二层交换机工作于OSI模型的第2层(数据链路层)，故而称为二层交换机。</p>
+<p>二层交换技术发展比较成熟，二层交换机属数据链路层设备，可以识别数据包中的MAC地址信息，根据MAC地址进行转发，并将这些MAC地址与对应的端口记录在自己内部的一个地址表中。具体的工作流程如下：</p>
+<p>（1） 当交换机从某个端口收到一个数据包，它先读取包头中的源MAC地址，这样它就知道源MAC地址的机器是连在哪个端口上的；</p>
+<p>（2） 再去读取包头中的目的MAC地址，并在地址表中查找相应的端口；</p>
+<p>（3） 如表中有与这目的MAC地址对应的端口，把数据包直接复制到这端口上；</p>
+<p>（4） 如表中找不到相应的端口则把数据包广播到所有端口上，当目的机器对源机器回应时，交换机又可以学习一目的MAC地址与哪个端口对应，在下次传送数据时就不再需要对所有端口进行广播了。</p>
+<p>不断的循环这个过程，对于全网的MAC地址信息都可以学习到，二层交换机就是这样建立和维护它自己的地址表。</p>
+<p>二层交换技术从网桥发展到VLAN（虚拟局域网），在局域网建设和改造中得到了广泛的应用。第二层交换技术是工作在OSI七层网络模型中的第二层，即数据链路层。它按照所接收到数据包的目的MAC地址来进行转发，对于网络层或者高层协议来说是透明的。它不处理网络层的IP地址，不处理高层协议的诸如TCP、UDP的端口地址，<strong>它只需要数据包的物理地址即MAC地址，数据交换是靠硬件来实现的，其速度相当快，这是二层交换的一个显著的优点。但是，它不能处理不同IP子网之间的数据交换</strong>。<strong>传统的路由器可以处理大量的跨越IP子网的数据包，但是它的转发效率比二层低</strong>，因此要想利用二层转发效率高这一优点，又要处理三层IP数据包，三层交换技术就诞生了。</p>
+<p>三层交换（也称多层交换技术，或IP交换技术）是相对于传统交换概念而提出的。众所周知，传统的交换技术是在OSI网络标准模型中的第二层——数据链路层进行操作的，而三层交换技术是在网络模型中的第三层实现了数据包的高速转发。简单地说，<strong>三层交换技术就是：二层交换技术＋三层转发技术。</strong></p>
+<p><strong>三层交换机就是具有部分路由器功能的交换机。</strong></p>
+<p>三层交换机的最重要目的<strong>是加快大型局域网内部的数据交换，所具有的路由功能也是为这目的服务的，能够做到一次路由，多次转发</strong>。对于数据包转发等规律性的过程由硬件高速实现，而像路由信息更新、路由表维护、路由计算、路由确定等功能，由软件实现。三层交换技术就是二层交换技术+三层转发技术。</p>
+<p>三层交换技术的出现，解决了局域网中网段划分之后，网段中子网必须依赖路由器进行管理的局面，解决了传统路由器低速、复杂所造成的网络瓶颈问题。</p>
+<p>举个栗子，在上课的时候学生偷偷传纸条，当一个男生偷偷传张纸条给女生，女生这时候会干嘛？是要打开纸条查看里面写了什么内容吧！三层交换机在接收到目的mac地址是自己的时候要做的事情也是向上层解封装，查看三层目的IP地址，然后呢？</p>
+<p>女生打开，上面写着“请将纸条递给下一个人”，三层交换机也是这样一看原来目的IP地址不是自己，这才执行路由层面的转发；所以说交换机在执行要不要三层转发，是在目的mac是自己的同时，IP地址是不是自己，如果是自己那还转发个啥来，就不用转发了。</p>
+<p>交换机在判断出目的IP不是自己的时候是不是一定就去查看路由表呢 ？不是，这个就是交换机的关键所在了，交换机此时不会查看路由表，不会查看arp表，不会查看mac地址表；那交换机会查看什么表？</p>
+<p>交换机此时会查看自己集成在ASIC硬件转发卡中的硬件转发表，那这个硬件转发表都包含了什么内容呢？</p>
+<p>当第一个包过来的时候，发现硬件转发表并没有什么表项，所以此时必须将数据包交由路由进程处理，一旦交由cpu处理，必然会消耗cpu资源，此时会查看路由表，然后发现此IP地址个自己是直连的，此时就去查看arp找出此地址对应的mac地址，就可以转发出去了在决定转发出去过程中，交换机至少会做三件事情，一，修改IP包头的ttl值；二，修改原mac地址，改成自己出接口mac地址；三，建立交换机硬件转发表，包括目的IP地址，目的IP地址（下一跳）对应的mac地址，mac地址对应的vlan，以及对应的端口（这个每个厂家有自己的理解）这样当一下包过来的时候，交换机就会查看硬件转发表直接转发而不会在经过路由表的查询了，也即是交换机的一次路由，多次交换机原理。</p>
+<p>总之，二层交换机用于小型的局域网络。这个就不用多言了，在小型局域网中，广播包影响不大，二层交换机的快速交换功能、多个接入端口和低廉价格为小型网络用户提供了很完善的解决方案。</p>
+<p>而三层交换机的最重要的功能是加快大型局域网络内部的数据的快速转发，加入路由功能也是为这个目的服务的。如果把大型网络按照部门，地域等等因素划分成一个个小局域网，这将导致大量的网际互访，<strong>单纯的使用二层交换机不能实现网际互访；如单纯的使用路由器，由于接口数量有限和路由转发速度慢，将限制网络的速度和网络规模，采用具有路由功能的快速转发的三层交换机就成为首选。</strong></p>
+<p>一般来说，在内网数据流量大，要求快速转发响应的网络中，如全部由三层交换机来做这个工作，会造成三层交换机负担过重，响应速度受影响，将网间的路由交由路由器去完成，充分发挥不同设备的优点，不失为一种好的组网策略，当然，前提是你的腰包很鼓，不然就退而求其次，让三层交换机也兼为网际互连。</p>
+<p>传统交换技术是在OSI网络标准模型第二层–数据链路层进行操作的，而三层交换技术是在网络模型中的第三层实现了数据包的高速转发，既可实现网络路由功能，又可根据不同网络状况做到最优网络性能。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络安全/">网络安全</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-09-18linux shell脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/24/09-18linux shell脚本/" class="article-date">
+      <time datetime="2019-09-24T14:07:30.328Z" itemprop="datePublished">2019-09-24</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>linux shell脚本</p>
+<p>shell脚本与Windows/Dos下的批处理相似，也就是用各类命令预先放入到一个文件中，方便一次性执行的一个程序文件，<br>主要是方便管理员进行设置或者管理用的。相对于Perl、Python等脚本语言优势在于它能处理底层业务，<br>因为有大量Linux命令作为支撑，“自动安装”等用shell脚本写就会非常简单。</p>
+<p>Linux下的shell脚本默认为bash ，sh其实是bash的一个链接。</p>
+<p>1）查看默认shell的两种方法:<br>1）echo $SHELL<br>/bin/bash</p>
+<p>2）grep root /etc/passwd<br>root:x:0:0:root:/root:/bin/bash</p>
+<p>（2）样例脚本：<br>基于这个脚本来学习一下简单的shell脚本。</p>
+<p>#!bin/bash</p>
+<p>#变量定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ETC_DIR=/etc/sysconfig/network-scripts</span><br><span class="line">NET_DIR=/etc/sysconfig</span><br><span class="line">ROOT_UID=0</span><br></pre></td></tr></table></figure>
+
+<p>#if条件判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$UID&quot; -ne &quot;$ROOT_UID&quot; ]  #判断是否为root权限</span><br><span class="line">then</span><br><span class="line">   echo &quot;Must be root to run this script&quot;</span><br><span class="line">   exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">cd $ETC_DIR || &#123;</span><br><span class="line">    echo &quot;Cannot change to necessary directory,&quot;&gt;&amp;2</span><br><span class="line">    exit 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>#清除原来的网卡配置文件</p>
+<p>cat /dev/null  &gt;ifcfg-eth0 &amp;&amp; echo “clean ifcfg-eth0 ok!”</p>
+<p>#写入eth0配置：init_ip是先编辑好的网卡配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat /root/init_ip &gt;ifcfg-eth0 &amp;&amp; echo &quot;write eth0 sucessfully&quot;</span><br><span class="line">cd $NET_DIR || &#123;</span><br><span class="line">    echo &quot;Cannot change to necessary directory,&quot;&gt;&amp;2</span><br><span class="line">    exit 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>service network restart   #重启网络命令<br>exit 0  #返回成功</p>
+<p>（2）UID说明<br>UID是一个系统变量，当前是root权限 UID=0，当前非root权限UID不等于0<br>所以我们在这设置了一个变量ROOT_UID=0,来判断当前是否为root状态，因为我们对系统的配置文件进行修改必须使用root权限。所以执行的时候必须加sudo。</p>
+<p>脚本执行时候会先调用环境变量，去找相关变量，有的变量是系统已经定义可直接使用，如上文用到的UID。<br>1）cat /etc/profile     （全局）<br>2）cat /etc/profile.d   （全局）可以把变量放在这里面就可以直接用<br>3）.bashrc：用户环境变量<br>4）.bash_profile：用户环境变量</p>
+<p>（3）清空文件的三种方法：<br>清空日志的三种方法：<br>1、echo “”&gt;test.log<br>2、echo  &gt;test.log<br>3、cat /dev/null &gt;test.log</p>
+<p>/dev/null称之为黑洞<br>在代码中用的是第三种方法：cat /dev/null &gt;network</p>
+<p>（4）&amp;&amp;与||的使用：<br>cat /dev/null  &gt;ifcfg-eth0 &amp;&amp; echo “clean ifcfg-eth0 ok!”</p>
+<p><a href>1.&amp;&amp;表示只有当前面的命令执行成功以后才执行后面的命令。<br>2.||表示前面执行不成功就执行后面命令。</a><br>在这两个符号后面，用大括号，可以写入多条命令<br>cd $NET_DIR || {<br>    echo “Cannot change to necessary directory,”&gt;&amp;2<br>    exit 1<br>}</p>
+<p>如果不能够进入到该目录下，就打印错误信息。<br>1）&amp;0表示标准输入。<br>2）&amp;1表示标准输出。<br>3）&amp;2表示标准出错，</p>
+<p>（5）脚本执行的三种方法：<br>1）bash或sh + 脚本名     （文件无可执行权限，或者没指定解释器）<br>2）绝对路径/脚本名     （需要可执行权限）或者./（和第一种方法类似，不过需要可执行权限）<br>3）source +脚本名 或者. 脚本名</p>
+<p>bash或sh 指定的bash执行脚本，然后启动子shell去执行,比如，没有在脚本第一行指定使用哪一种脚本命令，就要在执行时指定解释器。<br>一般脚本都会在第一行写上‘#!/bin/bash’,且只能放在第一行，放在其他行就作注释处理，则需要用使用第一种方法。但是在Linux系统默认是bash，所以无需指定也可以，但是在其他系统就不行了。</p>
+<p>（6）source xxx.sh<br>source和.命令是Shell的内建命令，这种方式也不会创建子Shell,直接在当前的shell中执行，并且调用系统默认的shell去执行脚本，不管脚本中是不是指定shell命令解析器。<br>source和.命令不启动子shell，所以会直接执行子shell里的语句，并把变量传给父shell。脚本里面所有新建、改变变量的语句都会保存在当前shell里面。</p>
+<p>一、常见变量</p>
+<p>不同于其它语言需要先声明变量，shell的变量直接使用，eg:a=15   echo $a （该命令可提出出a的值）<br>调用变量的话 $a 或者 ${a}。 ${a} 可实现字符串拼接</p>
+<p>​       </p>
+<pre><code>$?    #判断上一条命令执行的是否成功，执行成功返回0，失败返回1
+
+$0    #返回脚本的文件名称
+
+$1-$9 #返回对应的参数值
+
+$* #返回所有的参数值是什么
+
+$# #返回参数的个数和</code></pre><p>编写脚本如下：</p>
+<pre><code>#test
+#!/bin/bash
+#by xuhan 2019-3
+#test
+echo &quot;this is my first shell&quot;
+
+echo &quot;脚本名称：$0&quot;
+echo &quot;第一个参数：$1&quot;
+echo &quot;第二个参数：$2&quot;
+echo “所有的参数值：$* ”
+echo &quot;参数的个数和：$#&quot;
+~</code></pre><p>添加测试用例结果如下：</p>
+<p>二、常见的几个符号</p>
+<blockquote>
+<p>#会覆盖原有的内容</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>#不会覆盖原有的内容</p>
+</blockquote>
+</blockquote>
+<p>;    #执行多条命令</p>
+<p>|    #管道符</p>
+<p>&amp;&amp; #前面的命令执行成功，后面的才可以执行</p>
+<p>|| #前面的命令执行失败，后面的才可以执行</p>
+<p> “” #会输出变量值</p>
+<p> ‘’ #输出本身</p>
+<p>`` #输出命令结果 eg:a=<code>date</code>;echo $a</p>
+<p>2&gt;/dev/null  #错误输出到无底洞</p>
+<p>1&gt;/dev/null  #正确输出到无底洞</p>
+<p>​              </p>
+<p><a href="https://www.jb51.net/article/134292.htm" target="_blank" rel="noopener">https://www.jb51.net/article/134292.htm</a></p>
+<p>1、单行注释：#</p>
+<p>2、多行注释</p>
+<p>方法一（这是比较稳妥的作法）：可以采用 HERE DOCUMENT 特性，实现多行注释，比如</p>
+<pre><code>&lt;&lt;&apos;COMMENT&apos;
+...
+
+COMMENT</code></pre><p>举例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">echo &quot;Say Something&quot;</span><br><span class="line">&lt;&lt;COMMENT</span><br><span class="line">    your comment 1</span><br><span class="line">    comment 2</span><br><span class="line">    blah</span><br><span class="line">COMMENT</span><br><span class="line">echo &quot;Do something else&quot;</span><br></pre></td></tr></table></figure>
+
+<p>方法二 </p>
+<p>直接采用 : 这个命令的特殊作用，但这种做法有很多局限性，而且会影响性能，下面会介绍它的原理及性能分析。</p>
+<p>如下是最简单的使用方法:</p>
+<pre><code>: &apos;
+COMMENT1
+COMMENT2
+&apos;</code></pre><p>即 : + 空格 + 单引号。</p>
+<p>解释如下：</p>
+<p>首先要知道 : 在 shell 中的特殊作用，它是内置的命令，先看一下它的帮助说明：</p>
+<pre><code>$ help :
+:: :
+Null command.
+No effect; the command does nothing.
+Exit Status:
+Always succeeds.</code></pre><p>即，:  它也是一个命令，既然是命令就会可以给它传参数，但因它会过滤掉这些参数，而单引号括起来的是普通的代码部分表示字符串，所以我们刚好可将来用来代表注释，表示在 : 后的 单引号括起来的部分在程序执行的时候忽略。</p>
+<p>另外如果不好理解，直接把它当作汇编中的 NOP， python 中的 pass ，它只是一个占位，每次返回都是真，即 $? 的话，结果会是 0 。</p>
+<p>如此一来，此方法是不是很绝妙？ 但事实上里面潜藏着很多问题：</p>
+<pre><code>它不会注释 shell 脚本中本身带有单引号的语句部分，除非你将程序中的单引号全部换成双引号，这样不爽。
+还是就是，虽然 : 会忽视后面的参数，但其实参数部分还是可能会被执行些操作，比如替换操作，文件截取操作等。所以这样会影响到代码的执行效率。
+例如：
+: &gt; file 会截取 file 。
+: $(dangerous command) 这个替换操作照样会执行。</code></pre><p>所以第二种方法，只能临时用用。</p>
+<p>第三种方法，即：采用 : + &lt;&lt; ‘COMMENT’ 的方式。</p>
+<pre><code>#!/bin/bash
+echo &quot;Say Something&quot;
+: &lt;&lt;&apos;COMMENT&apos;
+    your comment 1
+    comment 2
+    blah
+COMMENT
+echo &quot;Do something else&quot;</code></pre><p>注意：要加上单引号部分，有时候虽然不加不会有什么问题，但还是要加，以防出现莫名其妙的意外发生，比如发生字符扩展，命令替换等。</p>
+<p>但最保险的方法还是每行前加上 #</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-09-24第一章爬虫" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/24/09-24第一章爬虫/" class="article-date">
+      <time datetime="2019-09-23T16:00:00.000Z" itemprop="datePublished">2019-09-24</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/09/24/09-24第一章爬虫/">初识python</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>浅谈python</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web安全/">web安全</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2019/09/24/09-24第一章爬虫/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-09-09Linux下的磁盘分区和逻辑卷" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/" class="article-date">
+      <time datetime="2019-09-09T04:34:30.000Z" itemprop="datePublished">2019-09-09</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/">磁盘分区与挂载</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<p>Linux下的磁盘分区和逻辑卷 </p>
+<h2 id="一、硬盘接口类型"><a href="#一、硬盘接口类型" class="headerlink" title="一、硬盘接口类型"></a><strong>一、硬盘接口类型</strong></h2><p>　　硬盘的接口主要有IDE、SATA、SCSI  、SAS和光纤通道等五种类型。其中IDE和SATA接口硬盘多用于家用产品中，也有部分应用于服务器，SATA是一种新生的硬盘接口类型，已经取代了大部分IDE接口应用。SCSI   、SAS主要应用于服务器上，普通家用设备一般不支持SCSI和SAS接口。SAS也是是一种新生的硬盘接口类型，可以和SATA以及部分SCSI设备无缝结合。光纤通道最初设计也不是为了硬盘设计开发的接口，是专门为网络系统设计的，但随着存储系统对速度的需求，才逐渐应用到硬盘系统中，并且其只应用在高端服务器上价格昂贵。</p>
+<h2 id="二、硬盘和分区"><a href="#二、硬盘和分区" class="headerlink" title="二、硬盘和分区"></a><strong>二、硬盘和分区</strong></h2><p> 　　Linux中主要有两种分区类型，分别为MBR（Master Boot Record）和GPT（GUID Partition  Table），是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。</p>
+<p>　　在Linux中会把设备映射成为一个/dev目录下的系统文件，IDE接口类型的硬盘设备映射的文件名称前缀为“hd”，SCSI、SATA、SAS等接口的硬盘设备映射的文件名称前缀为“sd”（部分虚拟机或者云主机的名称可能是其他的，比如“vd”），后面拼接从“a”开始一直到“z”用来区分不同的硬盘设备，在硬盘名称后面拼接数字形式的分区号用来区分不同的分区。</p>
+<h3 id="1、MBR分区"><a href="#1、MBR分区" class="headerlink" title="1、MBR分区"></a><strong>1、MBR分区</strong></h3><p>　　MBR的意思是“主引导记录”，它是存在于驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统的启动加载器和驱动器的逻辑分区信息。MBR支持最大2TB磁盘，它无法处理大于2TB容量的磁盘。MBR格式的磁盘分区主要分为<strong>基本分区</strong>（primary partion）和<strong>扩展分区</strong>（extension partion）两种<strong>主分区</strong>和扩展分区下的<strong>逻辑分区</strong>。主分区总数不能大于4个，其中最多只能有一个扩展分区。且基本分区可以马上被挂载使用但不能再分区，扩展分区必须再进行二次分区后才能挂载。扩展分区下的二次分区被称之为逻辑分区，逻辑分区数量限制视磁盘类型而定。</p>
+<p>　　MBR的主分区号为1-4，逻辑分区号为从5开始累加的数字。比如设备主板上装了4块硬盘，分别为2块IDE接口硬盘，1块SCSI接口硬盘和一块SATA接口硬盘。其中2块IDE接口硬盘的分区策略为2个主分区和2个逻辑分区，SCSI分区策略为3个主分区和3个逻辑分区，SATA分区策略为4个主分区。硬盘文件和分区名称如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>硬盘</th>
+<th>主分区1</th>
+<th>主分区2</th>
+<th>主分区3</th>
+<th>主分区4</th>
+<th>逻辑分区1</th>
+<th>逻辑分区2</th>
+<th>逻辑分区3</th>
+<th>……</th>
+<th>逻辑分区n</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IDE1</td>
+<td>/dev/hda</td>
+<td>/dev/hda1(p)</td>
+<td>/dev/hda2(p)</td>
+<td>/dev/hda3(e)</td>
+<td>/</td>
+<td>/dev/hda5(l)</td>
+<td>/dev/hda6(l)</td>
+<td>/</td>
+<td>……</td>
+<td>/</td>
+</tr>
+<tr>
+<td>IDE2</td>
+<td>/dev/hdb</td>
+<td>/dev/hdb1(p)</td>
+<td>/dev/hdb2(p)</td>
+<td>/dev/hdb3(e)</td>
+<td>/</td>
+<td>/dev/hdb5(l)</td>
+<td>/dev/hdb6(l)</td>
+<td>/</td>
+<td>……</td>
+<td>/</td>
+</tr>
+<tr>
+<td>SCSI</td>
+<td>/dev/sda</td>
+<td>/dev/sda1(p)</td>
+<td>/dev/sda2(p)</td>
+<td>/dev/sda3(p)</td>
+<td>/dev/sda4(e)</td>
+<td>/dev/sda5(l)</td>
+<td>/dev/sda6(l)</td>
+<td>/dev/sda7(l)</td>
+<td>……</td>
+<td>/</td>
+</tr>
+<tr>
+<td>SATA</td>
+<td>/dev/sdb</td>
+<td>/dev/sdb1(p)</td>
+<td>/dev/sdb2(p)</td>
+<td>/dev/sdb3(p)</td>
+<td>/dev/sdb4(p)</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>……</td>
+<td>/</td>
+</tr>
+</tbody></table>
+<p>其中分区名称后面的（p）代表基本分区，（e）代表扩展分区，（l）代表逻辑分区。需要注意的是，如果分区策略中存在逻辑分区，则说明一定会有扩展分区，那么基本分区数则最多只能有3个，扩展分区数最多只能是1个，如果没有扩展分区则可以创建4个基本分区。想要创建逻辑分区，则必须先将唯一的扩展分区创建出来，并且如果删除了扩展分区，那么它下面的所有逻辑分区也会被自动删除。</p>
+<p>　　如果是SCSI接口硬盘则最多只能有15（其中扩展分区不能直接使用所以不计算）个分区，其中主分区最多4个，逻辑分区最多12个。IDE接口硬盘最多只能有63（其中扩展分区不能直接使用所以不计算）个分区，其中主分区最多4个，逻辑分区最多60个。</p>
+<h3 id="2、GPT分区"><a href="#2、GPT分区" class="headerlink" title="2、GPT分区"></a><strong>2、GPT分区</strong></h3><p>　　GPT意为GUID分区表，驱动器上的每个分区都有一个全局唯一的标识符（globally unique  identifier，GUID）。支持的最大磁盘可达18EB，它没有主分区和逻辑分区之分，每个硬盘最多可以有128个分区，具有更强的健壮性与更大的兼容性，并且将逐步取代MBR分区方式。GPT分区的命名和MBR类似，只不过没有主分区、扩展分区和逻辑分区之分，分区号直接从1开始累加一直到128。</p>
+<h2 id="三、逻辑卷"><a href="#三、逻辑卷" class="headerlink" title="三、逻辑卷"></a><strong>三、逻辑卷</strong></h2><p> 　　LVM（逻辑卷）的产生是因为传统的分区一旦分区好后就无法在线扩充空间，也存在一些工具能实现在线扩充空间但是还是会面临数据损坏的风险；传统的分区当分区空间不足时，一般的解决办法是再创建一个更大的分区将原分区卸载然后将数据拷贝到新分区，但是在企业的生产系统往往不允许停机或者允许停机的时间很短，LVM就能很好的解决在线扩充空间的问题，而且不会对数据造成影响，LVM还能通过快照在备份的过程中保证日志文件和表空间文件在同一时间点的一致性。</p>
+<p>　　在LVM中PE(Physical  Extend)是卷的最小单位，默认4M大小，就像我们的数据是以页的形式存储一样，卷就是以PE的形式存储。PV(Physical  Volume)是物理卷，如果要使用逻辑卷，首先第一步操作就是将物理磁盘或者物理分区格式化成PV，格式化之后PV就可以为逻辑卷提供PE了。VG(Volume   Group)是卷组，VG就是将很多PE组合在一起生成一个卷组，当然这里的PE是可以跨磁盘的，如果当前服务器磁盘空间不足就可以增加一个新磁盘对当前系统不会产生任何影响。LV(Logical  Volume)是逻辑卷，逻辑卷最终是给用户使用的，前面几个都是为创建逻辑卷做的准备，创建逻辑卷的大小只要不超过VG剩余空间就可以。</p>
+<h2 id="四、文件系统"><a href="#四、文件系统" class="headerlink" title="四、文件系统"></a><strong>四、文件系统</strong></h2><p>　　当硬盘分区被创建完成之后，还并不能直接挂载到目录上存储文件，需要选择合适的文件系统进行格式化。常见的分区类型有FAT32、FAT16、NTFS、HP-UX等，而专供Linux使用的主流的一些分区有ext2/3/4、physical  volume (LVM) 、softwareRAID、swap、vfat、xfs等。其中：</p>
+<p>　　1、ext2/3/4：是适合Linux的文件系统类型，由于ext3文件系统多了日志记录功能，因此系统恢复起来更加快速，ext4是ext3的升级，效率更加高，因此建议使用默认类型ext4类型，而不要使用ext2/3；</p>
+<p>　　2、physical volume (LVM)：这是一种弹性调整文件系统大小的机制，即可以让文件系统变大或变小，而不改变原文件数据的内容，功能不错，但性能不佳。</p>
+<p>　　3、softwareRAID：利用Linux系统的特性，用软件仿真出磁盘阵列功能。</p>
+<p>　　4、swap：就是内存交换空间。由于swap并不会使用到目录树的挂载，因此用swap就不需要指定挂载点。</p>
+<p>　　5、vfat：同时被Linux与windows所支持的文件系统类型。如果主机硬盘同事存在windows和linux两种操作系统，为了进行数据交换，可以使用该文件系统。</p>
+<p>　　6、xfs：也是一个文件系统类型，在centos7中将被作为默认的文件系统类型，替换ext4。</p>
+<p><a href="https://www.cnblogs.com/lbole/p/8904298.html" target="_blank" rel="noopener">https://www.cnblogs.com/lbole/p/8904298.html</a></p>
+<h2 id="五、使用fdisk操作分区"><a href="#五、使用fdisk操作分区" class="headerlink" title="五、使用fdisk操作分区"></a><strong>五、使用fdisk操作分区</strong></h2><p>　　本文主要以CentOS 7发行版的Linux作为实验，我们使用Fdisk工具来操作分区，Fdisk 是各种 Linux 发行版本中最常用的分区工具。</p>
+<p>　　首先输入 fdisk -h 命令查看帮助信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# fdisk -h</span><br><span class="line">用法：</span><br><span class="line">fdisk [选项] &lt;磁盘&gt; 更改分区表</span><br><span class="line">fdisk [选项] -l &lt;磁盘&gt; 列出分区表</span><br><span class="line">fdisk -s &lt;分区&gt; 给出分区大小(块数)</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line">-b &lt;大小&gt; 扇区大小(512、1024、2048或4096)</span><br><span class="line">-c[=&lt;模式&gt;] 兼容模式：“dos”或“nondos”(默认)</span><br><span class="line">-h 打印此帮助文本</span><br><span class="line">-u[=&lt;单位&gt;] 显示单位：“cylinders”(柱面)或“sectors”(扇区，默认)</span><br><span class="line">-v 打印程序版本</span><br><span class="line">-C &lt;数字&gt; 指定柱面数</span><br><span class="line">-H &lt;数字&gt; 指定磁头数</span><br><span class="line">-S &lt;数字&gt; 指定每个磁道的扇区数</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从中我们可以看出，使用 fdisk -l 命令可查看分区表信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# fdisk -l</span><br><span class="line"></span><br><span class="line">磁盘 /dev/sda：32.2 GB, 32212254720 字节，62914560 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0x000b1bc3</span><br><span class="line"></span><br><span class="line">   设备 Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sda1   *        2048     2099199     1048576   83  Linux</span><br><span class="line">/dev/sda2         2099200    62914559    30407680   8e  Linux LVM</span><br><span class="line"></span><br><span class="line">磁盘 /dev/sdb：53.7 GB, 53687091200 字节，104857600 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/cl-root：29.0 GB, 28982640640 字节，56606720 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/cl-swap：2147 MB, 2147483648 字节，4194304 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从中我们可以看出，有4个设备，分别为/dev/sda、/dev/sdb、/dev/mapper/cl-root、/dev/mapper/cl-swap。其中/dev/sda硬盘已经有2个分区分区为：/dev/sda1和/dev/sda2。/dev/mapper/cl-root和/dev/mapper/cl-swap两个设备是/dev/sda2分区创建的逻辑卷。这里的/dev/sdb硬盘设备并没有被分区，我们则是需要来操作这个硬盘，至于如何操作逻辑卷后面会讲到。</p>
+<p>　　输入 fdisk /dev/sdb 命令，对/dev/sda硬盘的分区表进行操作：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# fdisk /dev/sdb</span><br><span class="line">欢迎使用 fdisk (util-linux 2.23.2)。</span><br><span class="line"></span><br><span class="line">更改将停留在内存中，直到您决定将更改写入磁盘。</span><br><span class="line">使用写入命令前请三思。</span><br><span class="line"></span><br><span class="line">Device does not contain a recognized partition table</span><br><span class="line">使用磁盘标识符 0xc72a6f6a 创建新的 DOS 磁盘标签。</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　我们输入”m”选项可以查看到帮助信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：m</span><br><span class="line">命令操作</span><br><span class="line">   a   toggle a bootable flag 切换可引导标志</span><br><span class="line">   b   edit bsd disklabel 编辑BSD磁盘标签</span><br><span class="line">   c   toggle the dos compatibility flag 切换DOS兼容性标志</span><br><span class="line">   d   delete a partition 删除分区</span><br><span class="line">   g   create a new empty GPT partition table 创建一个新的空GPT分区表</span><br><span class="line">   G   create an IRIX (SGI) partition table 创建一个ILIX（SGI）分区表</span><br><span class="line">   l   list known partition types 列出已知分区类型</span><br><span class="line">   m   print this menu 打印此菜单</span><br><span class="line">   n   add a new partition 添加新分区</span><br><span class="line">   o   create a new empty DOS partition table 创建一个新的空DOS分区表</span><br><span class="line">   p   print the partition table 打印分区表</span><br><span class="line">   q   quit without saving changes 不保存更改退出</span><br><span class="line">   s   create a new empty Sun disklabel 创建一个新的空太阳标签</span><br><span class="line">   t   change a partition&apos;s system id 更改分区的系统ID</span><br><span class="line">   u   change display/entry units 更改显示/输入单元</span><br><span class="line">   v   verify the partition table 验证分区表</span><br><span class="line">   w   write table to disk and exit 将表写入磁盘并退出</span><br><span class="line">   x   extra functionality (experts only) 额外功能（仅专家）命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从上面的帮助信息中，可以得知一些选项的用途。这里主要注意”d”、”n”、”q”、”g”、”w”等选项。首先要明确分区格式，fdisk默认的分区格式是msdos（mbr），在此可输入”g”选项，将分区格式修改为GPT，不过在修改完保存退出之后，在输入 fdisk /dev/sdb 命令进入分区模式，会出现 WARNING: fdisk GPT support is currently new, and therefore in an experimental phase. Use at your own discretion. 信息，提示fdisk gpt分区是新的功能，目前还在实验阶段。所以如果要进行GPT分区，那么推荐使用 parted 命令，后面会介绍到。</p>
+<p>　　那么首先输入”n”选项来开始创建分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：n</span><br><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p):</span><br></pre></td></tr></table></figure>
+
+<p>　　可以看到交互界面打印的信息，提示需要选择一个分区类型，”p”:为基本分区（默认）；”e”：为扩展分区。在此我们选择”p”，创建一个基本分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Partition type:p primary (1 primary, 0 extended, 3 free)e extendedSelect (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示需要选择一个分区号，范围为2-4。由于已经存在了一个基本分区，所以只可选择2、3、4（默认2，顺序累加）。在此我们输入2：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>Partition type:<br>   p   primary (1 primary, 0 extended, 3 free)<br>   e   extended<br>Select (default p): p<br>分区号 (2-4，默认 2)：2<br>起始 扇区 (2099200-314572799，默认为 2099200)：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　可以看到交互界面提示序号选择其实扇区，默认为剩余未被分配的最小扇区，推荐选择默认（直接点击回车）；</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示，要输入需要分配的截止扇区，默认为未被分配的最小扇区，此处推荐默认（直接点击回车）：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br><span class="line">将使用默认值 314572799</span><br><span class="line">分区 2 已设置为 Linux 类型，大小设为 149 GiB</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　可以看到又回到了最初的交互界面，这表示分区表已经设置成功，输入选项q表示要放弃本次分区表的修改并退出，w选项表示保存本次分区表的修改并退出，此处选择w表示将分区信息写入到磁盘，此次分区完成；</p>
+<p>　　回到最初操作分区表的地方，选择”d”选项，删除分区的功能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：d</span><br><span class="line">分区号 (1,2，默认 2)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示输入要删除的分区的分区号，此处选择2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令(输入 m 获取帮助)：d</span><br><span class="line">分区号 (1,2，默认 2)：2</span><br><span class="line">分区 2 已删除</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示本次分区表操作成功，输入选项”w”，表示将分区信息写入到磁盘，此次删除分区完成。回到最初选择分区类型的地方，选择”e”，创建扩展分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：</span><br></pre></td></tr></table></figure>
+
+<p>　　交互界面提示要输入扩展分区的分区号，可选范围为2-4，此处选择2：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示输入要分配给扩展分区的起始扇区，此处选择默认：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示输入要分配给扩展分区的截止扇区，此处选择默认：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): e</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (2099200-314572799，默认为 2099200)：</span><br><span class="line">将使用默认值 2099200</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2099200-314572799，默认为 314572799)：</span><br><span class="line">将使用默认值 314572799</span><br><span class="line">分区 2 已设置为 Extended 类型，大小设为 149 GiB</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　交互界面提示本次对分区表的操作已完成，输入”w”选项，保存本次对分区表的操作；当再次创建分区的时候，交互界面就会将扩展分区的选项”e”替换成为逻辑分区的选项”l”：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 1 extended, 2 free)</span><br><span class="line">   l   logical (numbered from 5)</span><br><span class="line">Select (default p):</span><br></pre></td></tr></table></figure>
+
+<p>　　之后再要创建逻辑分区和之前创建分区的步骤一直，分区完成。至此CentOS中的分区操作已完成；接下来我们需要将物理分区格式化成某一个文件系统，我们使用mkds进行分区格式化操作，输入 mkfs -h 命令获取帮助信息：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkfs -h</span><br><span class="line">用法：</span><br><span class="line"> mkfs [选项] [-t &lt;类型&gt;] [文件系统选项] &lt;设备&gt; [&lt;大小&gt;]</span><br><span class="line"></span><br><span class="line">选项：</span><br><span class="line"> -t, --type=&lt;类型&gt;  文件系统类型；</span><br><span class="line">     fs-options     实际文件系统构建程序的参数</span><br><span class="line">     &lt;设备&gt;         要使用设备的路径</span><br><span class="line">     &lt;大小&gt;         要使用设备上的块数</span><br><span class="line"> -V, --verbose      解释正在进行的操作；</span><br><span class="line">                      多次指定 -V 将导致空运行(dry-run)</span><br><span class="line"> -V, --version      显示版本信息并退出</span><br><span class="line">                      将 -V 作为 --version 选项时必须是惟一选项</span><br><span class="line"> -h, --help         显示此帮助并退出</span><br><span class="line"></span><br><span class="line">更多信息请参阅 mkfs(8)。</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　从帮助信息中我们可以看到，可以使用mkfs -t xfs /dev/sdb1 进行格式化分区：</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# mkfs -t xfs /dev/sda2 </span><br><span class="line">meta-data=/dev/sdb1              isize=512    agcount=4, agsize=624936 blks</span><br><span class="line">         =                       sectsz=512   attr=2, projid32bit=1</span><br><span class="line">         =                       crc=1        finobt=0, sparse=0</span><br><span class="line">data     =                       bsize=4096   blocks=2499744, imaxpct=25</span><br><span class="line">         =                       sunit=0      swidth=0 blks</span><br><span class="line">naming   =version 2              bsize=4096   ascii-ci=0 ftype=1</span><br><span class="line">log      =internal log           bsize=4096   blocks=2560, version=2</span><br><span class="line">         =                       sectsz=512   sunit=0 blks, lazy-count=1</span><br><span class="line">realtime =none                   extsz=4096   blocks=0, rtextents=0</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　格式化成xfs时，若提示分区已存在文件系统，则需要在分区前面加上-f选项强行覆盖，例如： mkfs -t xfs -f /dev/sda2 。被格式化的设备既可以是分区，也可以是逻辑卷。要查看所有分区的文件系统格式则可以使用 df -Th 命令。至此格式化分区完成。分区格式化完成之后则可以将分区挂载到某一个目录下面，正式开始使用改分区，我们在系统中创建一个用户挂载分区的目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir /data</span><br></pre></td></tr></table></figure>
+
+<p>　　将分区挂载到目录上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sda2 /data/</span><br></pre></td></tr></table></figure>
+
+<p>　　设置开机自动挂载分区到挂载点，编辑 vim /etc/fstab :</p>
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># /etc/fstab</span><br><span class="line"># Created by anaconda on Sun Jun 25 07:16:25 2017</span><br><span class="line">#</span><br><span class="line"># Accessible filesystems, by reference, are maintained under &apos;/dev/disk&apos;</span><br><span class="line"># See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info</span><br><span class="line">#</span><br><span class="line">UUID=eb697457-a097-4263-8bbf-a75aa632d27c /                       ext4    defaults        1 1</span><br><span class="line"></span><br><span class="line">/dev/sda2                               /data                   xfs    defaults        0 0</span><br></pre></td></tr></table></figure>
+
+<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
+<p>　　如果想要卸载挂载点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localnat201 ~]# umount /dev/sda2</span><br></pre></td></tr></table></figure>
+
+<p>　　至此挂载分区已完成；</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-08-09网络连接" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/08/08-09网络连接/" class="article-date">
+      <time datetime="2019-09-08T09:42:20.000Z" itemprop="datePublished">2019-09-08</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/09/08/08-09网络连接/">网络连接</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<p>网络安全：</p>
+<h1 id="一、主机名的配置（配置文件-etc-hostname）"><a href="#一、主机名的配置（配置文件-etc-hostname）" class="headerlink" title="一、主机名的配置（配置文件/etc/hostname）"></a>一、主机名的配置（配置文件/etc/hostname）</h1><h2 id="1、使用-hostname-命令临时设置主机名"><a href="#1、使用-hostname-命令临时设置主机名" class="headerlink" title="1、使用 hostname 命令临时设置主机名"></a>1、使用 hostname 命令临时设置主机名</h2><p>  命令格式：hostname [新主机名] </p>
+<h2 id="2．永久设置主机名"><a href="#2．永久设置主机名" class="headerlink" title="2．永久设置主机名"></a>2．永久设置主机名</h2><p> 命令格式：hostnamectl set-hostname 新主机名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost guest1]# hostname</span><br><span class="line">localhost.localdomain</span><br><span class="line">[root@localhost guest1]# hostnamectl set-hostname xuelian</span><br><span class="line">[root@localhost guest1]# hostname</span><br><span class="line">xuelian</span><br></pre></td></tr></table></figure>
+
+<p>重启之后 进入命令行界面，并且使用等级转换不了</p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6shv6rhszj309g02nweb.jpg" alt="\img"></p>
+<h1 id="二、网卡信息的配置"><a href="#二、网卡信息的配置" class="headerlink" title="二、网卡信息的配置"></a>二、网卡信息的配置</h1><h2 id="1、网卡配置文件"><a href="#1、网卡配置文件" class="headerlink" title="1、网卡配置文件"></a>1、网卡配置文件</h2><p>位于:/etc/sysconfig/network-scripts 目录下,一块网卡对应一个配置文件。<strong>ifcfg-ens33</strong>为网卡配置文件，常用配置项的含义如下：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=ens33 //定义该网卡的识别名称。</span><br><span class="line"></span><br><span class="line">BOOTPROTO=dhcp //启动该网卡的方式，dhcp 表示通过 BOOTP 或 DHCP 协议动态取得 IP 地址。 </span><br><span class="line">ONBOOT=yes //启动 network 服务时，是否启动该网卡。</span><br><span class="line"></span><br><span class="line">TYPE=Ethernet //网卡的类型。 </span><br><span class="line"></span><br><span class="line">IPADDR=192.168.64.128 //静态方式指定网卡的 IP 地址 </span><br><span class="line"></span><br><span class="line">NETMASK=255.255.255.0 //定义网卡的子网掩码 </span><br><span class="line"></span><br><span class="line">MTU=1500 //网卡传输的最大数据包 </span><br><span class="line"></span><br><span class="line">GATEWAY=192.168.64.254 //网络的默认网关 </span><br><span class="line">DNS1=</span><br></pre></td></tr></table></figure>
+
+<p>实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=eth0</span><br><span class="line">IPADD=192.168.199.129</span><br><span class="line">DNS1=192.168.199.2</span><br><span class="line">UUID=74f0b9ff-58d8-4166-add5-710e912ba2e5</span><br><span class="line">DEVICE=eth0</span><br><span class="line">ONBOOT=no</span><br><span class="line">ZONE=</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、配置网卡信息"><a href="#2、配置网卡信息" class="headerlink" title="2、配置网卡信息"></a>2、配置网卡信息</h2><h3 id="（1）直接修改网卡配置文件"><a href="#（1）直接修改网卡配置文件" class="headerlink" title="（1）直接修改网卡配置文件"></a>（1）直接修改网卡配置文件</h3><p> #vim /etc/sysconfig/network-scripts ifcfg-ens33 </p>
+<p>修改完成后重启服务才生效 #systemctl restart network.service </p>
+<h3 id="（2）ifconfig-命令"><a href="#（2）ifconfig-命令" class="headerlink" title="（2）ifconfig 命令"></a>（2）ifconfig 命令</h3><p> ①查看网卡信息 命令格式：ifconfig [选项] </p>
+<p>​     无选项：显示当前活动的网卡。</p>
+<p>   –a ：显示系统中所有网卡配置信息。 </p>
+<p>   网卡设备名：显示指定网卡配置信息。</p>
+<p>②设置 IP 地址（临时的） </p>
+<p>   命令格式：ifconfig 网卡设备名 IP 地址 netmask 子网掩码 </p>
+<p>③ 修改网卡的 MAC 地址（先禁用网卡，修改后重启网卡） </p>
+<p>   命令格式：ifconfig 网卡设备名 hw ether MAC 地址</p>
+<h3 id="（3）网卡常用命令"><a href="#（3）网卡常用命令" class="headerlink" title="（3）网卡常用命令"></a>（3）网卡常用命令</h3><p>① ifdown（禁用网卡） </p>
+<p>命令格式：ifdown 网卡设备名</p>
+<p>② ifup（重启网卡） </p>
+<p>命令格式：ifup 网卡设备名 </p>
+<p>③绑定 IP 和 MAC 地址 </p>
+<p>【举例】创建/etc/ethers 文件，将 193.168.168.154 与 00：0C：29：03：F3：75 网卡绑定。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#echo “193.168.168.154 00：0C：29：03：F3：75” &gt;&gt;/etc/ethers #arp -f</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、客户端域名解析服务器的配置"><a href="#三、客户端域名解析服务器的配置" class="headerlink" title="三、客户端域名解析服务器的配置"></a>三、客户端域名解析服务器的配置</h1><p>在 Linux 系统中客户端域名解析服务器的配置文件是<strong>/etc/resolv.conf</strong></p>
+<p>文件内容格式：nameserver 指定 DNS 服务器的 IP 地址。 </p>
+<p>最多可同时指定 3 个 DNS 服务器的 IP 地址，根据 nameserver 的配置顺序决定搜索。可 以使用 domain 来指定当前主机所在域的域名。 </p>
+<p>为 避 免 /etc/resolv.conf 文 件 的 内 容 被 系 统 修 改 或 覆 盖 ， 需 要 修 改 /etc/NetworkManager/NetworkManager.conf 文件，在 main 部分添加“dns=none”选项。 </p>
+<p>修改后的 NetworkManager.conf 文件的内容如下所示： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[main] </span><br><span class="line"></span><br><span class="line">plugins=ifcfg-rh </span><br><span class="line"></span><br><span class="line">dns=none</span><br></pre></td></tr></table></figure>
+
+<p>在完成修改后，需要执行命令：</p>
+<p> #systemctl restart NetworkManager.service </p>
+<p>重新装载 NetworkManager 的配置。此时客户端域名解析服务器设置完成</p>
+<h1 id="四、常用网络调试命令与故障排查"><a href="#四、常用网络调试命令与故障排查" class="headerlink" title="四、常用网络调试命令与故障排查"></a>四、常用网络调试命令与故障排查</h1><h2 id="1．-ping-命令"><a href="#1．-ping-命令" class="headerlink" title="1．*ping *命令"></a>1．*<em>ping *</em>命令</h2><p>测试网络中是否畅通以及网络质量。 </p>
+<p>命令格式：*<em>ping [选项] 对方 IP 地址 *</em></p>
+<p>选项说明： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-c : 指定向目的主机发送多少个报文。 </span><br><span class="line"></span><br><span class="line">-s :指定发送报文的大小，以字节为单位。</span><br><span class="line"></span><br><span class="line"> -W: 设置等待接收回应报文的时间间隔，以秒为单位。</span><br></pre></td></tr></table></figure>
+
+<h2 id="2．netstat-命令："><a href="#2．netstat-命令：" class="headerlink" title="2．netstat 命令："></a>2．<strong>netstat</strong> 命令：</h2><p>显示网络连接、路由表、正在监听的端口等信息。 </p>
+<p>命令格式：netstat [选项] 选项说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> -l : 显示正在监听的服务或端口。</span><br><span class="line"></span><br><span class="line">-a : 显示当前主机开放的所有端口 </span><br><span class="line"></span><br><span class="line">-n : 不进行域名解析。 </span><br><span class="line"></span><br><span class="line">-p : 显示端口是由哪个进程和程序在监听。</span><br><span class="line"></span><br><span class="line"> -c : 动态显示网络连接和端口监听信息。 </span><br><span class="line"></span><br><span class="line">-i : 显示网卡相关信息。 </span><br><span class="line"></span><br><span class="line">-r : 显示当前主机的路由表信息。</span><br></pre></td></tr></table></figure>
+
+<h2 id="3．traceroute-命令：路由跟踪。"><a href="#3．traceroute-命令：路由跟踪。" class="headerlink" title="3．traceroute 命令：路由跟踪。"></a>3．<strong>traceroute</strong> 命令：路由跟踪。</h2><p>命令格式：*<em>traceroute 目的 IP 地址 *</em></p>
+<h2 id="4．nslookup-命令"><a href="#4．nslookup-命令" class="headerlink" title="4．nslookup 命令"></a>4．<strong>nslookup</strong> 命令</h2><p>检测指定的 DNS 服务器工作是否正常 </p>
+<p>命令格式：nslookup</p>
+<h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p>1、主机名与网卡信息的配置 </p>
+<p>2、客户端域名解析服务器的配置 </p>
+<p>3、网络故障排查方法</p>
+<h1 id="课后作业"><a href="#课后作业" class="headerlink" title="课后作业"></a>课后作业</h1><p>1、 临时设置主机名为：myhost。 </p>
+<p>2、 设置网卡信息： IP地址为202.137.5.6，网关是202.137.5.1，子网掩码是255.255.255.0， 设置域名解析服务器为 216.128.5.132。 </p>
+<p>3、 对每一步的设置，管理员都要做相应的查看以确认设置是否成功。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-应急响应笔记大纲" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/08/应急响应笔记大纲/" class="article-date">
+      <time datetime="2019-09-08T08:00:57.133Z" itemprop="datePublished">2019-09-08</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><img src="https://bypass007.github.io/Emergency-Response-Notes/Summary/image/sum-title.png" alt></p>
+<h3 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h3><p>面对各种各样的安全事件，我们该怎么处理？</p>
+<p>这是一个关于安全事件应急响应的项目，从系统入侵到事件处理，收集和整理了一些案例进行分析。</p>
+<p>我将持续更新这份笔记，希望能帮到有需要的人。</p>
+<h3 id="项目目录"><a href="#项目目录" class="headerlink" title="项目目录"></a>项目目录</h3><ul>
+<li><p><strong>[第一章：应急响应]</strong></p>
+</li>
+<li><p>第1篇:Window入侵排查</p>
+</li>
+<li><p>第2篇:Linux入侵排查</p>
+</li>
+<li><p><strong>[第二章：日志分析]</strong></p>
+<ul>
+<li><p>第1篇:Window日志分析</p>
+<ul>
+<li>第2篇:Linux日志分析 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第3篇:Web日志分析</p>
+</li>
+<li><p>第4篇:MSSQL日志分析 </p>
+<ul>
+<li>第5篇:MySQL日志分析</li>
+</ul>
+</li>
+<li><p><strong>[第三章:Windows实战篇]</strong></p>
+<ul>
+<li><p>第1篇：FTP暴力破解</p>
+</li>
+<li><p>第2篇：蠕虫病毒</p>
+</li>
+<li><p>第3篇：勒索病毒</p>
+</li>
+<li><p>第4篇：ARP病毒</p>
+</li>
+<li><p>第5篇：挖矿病毒（一）</p>
+</li>
+<li><p>第6篇：挖矿病毒（二）</p>
+</li>
+</ul>
+</li>
+<li><p><strong>[第四章：Linux实战篇]</strong></p>
+<ul>
+<li><p>第1篇：SSH暴力破解</p>
+</li>
+<li><p>第2篇：捕捉短连接</p>
+</li>
+<li><p>第3篇：挖矿病毒</p>
+</li>
+<li><p>第4篇：盖茨木马</p>
+</li>
+<li><p>第5篇：DDOS病毒</p>
+</li>
+<li><p>第6篇：Shell病毒</p>
+</li>
+</ul>
+</li>
+<li><p><strong>[第五章：Web实战篇]</strong></p>
+<ul>
+<li><p>第1篇：网站被植入Webshell</p>
+</li>
+<li><p>第2篇：门罗币恶意挖矿</p>
+</li>
+<li><p>第3篇：批量挂黑页</p>
+</li>
+<li><p>第4篇：新闻源网站劫持</p>
+</li>
+<li><p>第5篇：移动端劫持</p>
+</li>
+<li><p>第6篇：搜索引擎劫持</p>
+</li>
+<li><p>第7篇：网站首页被篡改</p>
+</li>
+<li><p>第8篇：管理员账号被篡改</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-09-08用户与组的管理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/04/09-08用户与组的管理/" class="article-date">
+      <time datetime="2019-09-04T09:18:20.000Z" itemprop="datePublished">2019-09-04</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/09/04/09-08用户与组的管理/">用户与组的管理</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<h1 id="1-用户与用户组概念"><a href="#1-用户与用户组概念" class="headerlink" title="1.用户与用户组概念"></a>1.用户与用户组概念</h1><p>Linux 是一个多用户、多任务的服务器操作系统。Linux 用户是根据角色定义的，具体分 为三种角色：</p>
+<p> 超级用户：拥有对系统的最高管理权限，默认是 root 用户。</p>
+<p> 普通用户：只能对自己目录下的文件进行访问和修改，具有登录系统的权限。 </p>
+<p>虚拟用户：也叫“伪”用户，这类用户最大的特点是不能登录系统，它们的存在主要是 方便系统管理，满足相应的系统进程对文件属主的要求。<br>主要组（主组）：每个用户有且只有一个主要组，创建用户时默认创建。</p>
+<p> 附属组（补充组）：用户可以是零个或多个附属组成员。一般用于帮助确保用户具有对 系统中文件及其他资源的访问权限</p>
+<h1 id="2、用户配置文件"><a href="#2、用户配置文件" class="headerlink" title="2、用户配置文件"></a>2、用户配置文件</h1><p>（1）用户配置文件/etc/passwd，在 passwd 配置文件中，从左到右各个字段的含义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用户名：用户登录系统时使用的用户名。</span><br><span class="line">口令：存放加密的口令，被/etc/shadow 文件保护。 </span><br><span class="line">用户标识号(UID)：系统内部用它来标识用户，每个用户的 UID 都是唯一的。 </span><br><span class="line">用户组标识号(GID)：系统内部用它来标识用户所属的组，这里的 GID 是主组 GID。 </span><br><span class="line">注释性描述：为了方便管理和记忆该用户而添加的信息。 用户主目录：也称家目录，用户登录系统后所进入的目录。</span><br><span class="line">命令解释器：指示该用户使用的 Shell，CentOS Linux 7 默认的是 bash。如果指定 Shell 为/sbin/nologin，则代表用户无法登录系统。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/passwd</span><br><span class="line">host:x:1000:1000:root:/home/host:/bin/bash</span><br><span class="line">student:x:1001:1001::/home/student:/bin/bash</span><br><span class="line">stu2:x:1002:1002::/home/stu2:/bin/bash</span><br><span class="line">stu3:x:1003:1003::/home/stu3:/bin/bash</span><br><span class="line">stu4:x:1004:1004::/home/stu4:/bin/bash</span><br><span class="line">stu5:x:1005:1005::/home/stu5:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6r3l3x5t7j30cj039dfq.jpg" alt="\img"></p>
+<p>（2）用户密码配置文件/etc/shadow</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用户名：用户账户名。 </span><br><span class="line">密码：用户的加密密码。</span><br><span class="line">最后一次修改的时间：从 1970 年 1 月 1 日起，到用户最后一次更改密码的天数。</span><br><span class="line">最小时间间隔：从 1970 年 1 月 1 日起，到用户可以更改密码的天数，(0 表示随时可以变更)。 </span><br><span class="line">最大时间间隔：从 1970 年 1 月 1 日起，到必须更改密码的天数，否则密码将过期，(99999 表示永远不 过期)。 警告时间：在密码过期之前多少天提醒用户更新，默认值是 7 天。 不活动时间：在用户密码过期之后到禁用账户的天数。</span><br><span class="line">失效时间：从 1970 年 1 月 1 日起，到账户被禁用的天数。 标志：保留位。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/shadow</span><br><span class="line">root:$6$JU.c5THlJ2kmlzRx$9H/TrK2wGfsWYUuQWc0iIuLXw4qP5Kv05nKDJ0PN73cf9E/lupRWZvijHKBinbQQrMGalsEioejlqIlpCsoW91::0:99999:7:::</span><br><span class="line">bin:*:17834:0:99999:7:::</span><br><span class="line">daemon:*:17834:0:99999:7:::</span><br><span class="line">adm:*:17834:0:99999:7:::</span><br><span class="line">lp:*:17834:0:99999:7:::</span><br><span class="line">sync:*:17834:0:99999:7:::</span><br><span class="line">shutdown:*:17834:0:99999:7:::</span><br><span class="line">halt:*:17834:0:99999:7:::</span><br><span class="line">mail:*:17834:0:99999:7:::</span><br><span class="line">...</span><br><span class="line">host:$6$FR0ZFhAfSy12p0.X$KpDrpp1xfoJvan0Dee6Lhl2HqMOTqckqHEy33F6otLnAXfZovhsqcKQDUrhAiSxYxWtSqsxKWBqqYwaJoMkLH0:18142:0:99999:7:::</span><br><span class="line">student:!!:18143:0:99999:7:::</span><br><span class="line">stu2:!!:18143:0:99999:7:::</span><br><span class="line">stu3:!!:18143:0:99999:7:::</span><br><span class="line">stu4:!!:18143:0:99999:7:::</span><br><span class="line">stu5:!!:18143:0:99999:7:::</span><br></pre></td></tr></table></figure>
+
+<h1 id="3、用户组配置文件"><a href="#3、用户组配置文件" class="headerlink" title="3、用户组配置文件"></a>3、用户组配置文件</h1><p>（1）用户组配置文件/etc/group，文件中各字段的含义从左到右分别是： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">组名：组的名称。 </span><br><span class="line">组口令：用户组的口令，用 x 表示口令是被/etc/gshadow 文件保护的。 </span><br><span class="line">组标识号(GID)：系统内部用它来标识用户组，每个用户组的 GID 都是唯一的。 </span><br><span class="line">组成员：该组的成员。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/group</span><br><span class="line">root:x:0:</span><br><span class="line">bin:x:1:</span><br><span class="line">daemon:x:2:</span><br><span class="line">sys:x:3:</span><br><span class="line">adm:x:4:</span><br><span class="line">tty:x:5:</span><br><span class="line">disk:x:6:</span><br><span class="line">...</span><br><span class="line">host:x:1000:</span><br><span class="line">student:x:1001:</span><br><span class="line">stu2:x:1002:</span><br><span class="line">stu3:x:1003:</span><br><span class="line">stu4:x:1004:</span><br><span class="line">stu5:x:1005:</span><br></pre></td></tr></table></figure>
+
+<p>（2）用户组密码配置文件/etc/gshadow，文件中各字段的含义从左到右分别是：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">组名：组的名称。 </span><br><span class="line">组口令：用户组的口令，保存已加密的口令。 </span><br><span class="line">组的管理员帐号：组的管理员帐号，管理员有权对该组添加、删除帐号。 </span><br><span class="line">组成员：该组的成员，多个用户用“，”分开</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/gshadow</span><br><span class="line">root:::</span><br><span class="line">bin:::</span><br><span class="line">daemon:::</span><br><span class="line">sys:::</span><br><span class="line">adm:::</span><br><span class="line">tty:::</span><br><span class="line">disk:::</span><br><span class="line">...</span><br><span class="line">host:!::</span><br><span class="line">student:!::</span><br><span class="line">stu2:!::</span><br><span class="line">stu3:!::</span><br><span class="line">stu4:!::</span><br><span class="line">stu5:!::</span><br><span class="line">[root@loca</span><br></pre></td></tr></table></figure>
+
+<h1 id="4、用户管理"><a href="#4、用户管理" class="headerlink" title="4、用户管理"></a>4、用户管理</h1><p>（1）用 useradd 命令创建用户 命令格式：useradd [选项] 用户名<br>选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-d 指定用户主目录</span><br><span class="line">-g 指定用户组</span><br><span class="line">-m 若主目录不存在，则创建</span><br><span class="line">-M 不创建主目录</span><br><span class="line">-s 指定登录时使用的 Shell 类型，默认为/bin/bash，如果为 /bin/nologin 就是虚拟用户</span><br><span class="line">-c 设置对该账号的注释说明文字</span><br><span class="line">-r 创建系统账号(用户 ID 小于 1000， 从 999 起按照递减的顺序创建)， 默认不创建对应的主目录</span><br><span class="line">-u 手工指定新用户的 ID 值，该值必须唯一，且大于 999。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# useradd -u 500 stu5</span><br><span class="line">useradd：用户“stu5”已存在</span><br><span class="line">[root@localhost ~]# useradd -u 500 student2</span><br><span class="line">[root@localhost ~]# cat /etc/passwd</span><br><span class="line">student2:x:500:1009::/home/student2:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>#useradd stu1 分为三步</p>
+<p> 新建一个名为 stu1 的用户 </p>
+<p>创建 stu1 的基本组为 stu1 </p>
+<p>创建主目录：/home/stu1</p>
+<p>（3）用 passwd 命令管理用户登录密码 root 用户可以为任何用户设置密码，普通用户默认情况下只能为自己设置密码。 命令格式：passwd [选项] [用户名称] 选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-l 锁定用户密码</span><br><span class="line">-u 解锁用户密码</span><br><span class="line">-S 查询用户密码状态</span><br><span class="line">-d 删除用户密码</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# passwd -S stu5</span><br><span class="line">stu5 LK 2019-09-04 0 99999 7 -1 (密码已被锁定。)</span><br><span class="line">[root@localhost ~]# passwd -u stu5</span><br><span class="line">解锁用户 stu5 的密码。</span><br><span class="line">passwd: 警告：未锁定的密码将是空的。</span><br><span class="line">passwd: 不安全的操作(使用 -f 参数强制进行该操作)</span><br><span class="line">[root@localhost ~]# passwd -u -f stu5</span><br><span class="line">解锁用户 stu5 的密码。</span><br><span class="line">passwd: 操作成功</span><br><span class="line">[root@localhost ~]# passwd -l stu5</span><br><span class="line">锁定用户 stu5 的密码 。</span><br><span class="line">passwd: 操作成功</span><br><span class="line">[root@localhost ~]# passwd -d stu5</span><br><span class="line">清除用户的密码 stu5。</span><br><span class="line">passwd: 操作成功</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
+
+<p>【举例 1】创建用户 zhangsan,指定登录类型为/bin/bash;用户 lisi，登录类型为 /sbin/nologin,并分别设置密码为：123456。并测试两个用户能否登录系统。 #useradd -s /bin/bash zhangsan #useradd -s /bin/nologin lisi </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd -s /bin/bash zhangsan</span><br><span class="line">[root@localhost ~]# useradd -s /bin/nologin lisi</span><br><span class="line">[root@localhost ~]# su zhangsan</span><br><span class="line">[zhangsan@localhost root]$ su lisi</span><br><span class="line">密码：</span><br><span class="line">12345su: 鉴定故障</span><br><span class="line">[zhangsan@localhost root]$ 123456</span><br><span class="line">bash: 123456: 未找到命令...</span><br><span class="line">[zhangsan@localhost root]$</span><br></pre></td></tr></table></figure>
+
+<p>【举例 2】创建用户 tom，并设置 tom 的真实姓名为:tom-sing,家庭电话：13911202319，公 司地址：tf5jie,公司电话：028-85699999 #useradd -c “tom-sing 13911202319 tf5jie 028-85699999” tom</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd -c &quot;tom-sing 139112022319 tf5jie 028-85699999&quot; tom</span><br><span class="line">[root@localhost ~]# cat /etc/passwd</span><br><span class="line">tom:x:1010:1010:tom-sing 139112022319 tf5jie 028-85699999:/home/tom:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>删除用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# userdel tom</span><br><span class="line">[root@localhost ~]# userdel lisi</span><br><span class="line">[root@localhost ~]# userdelstudent1</span><br><span class="line">bash: userdelstudent1: 未找到命令...</span><br><span class="line">[root@localhost ~]# userdel student1</span><br><span class="line">[root@localhost ~]# userdel zhangsan</span><br><span class="line">userdel: user zhangsan is currently used by process 38864</span><br><span class="line">[root@localhost ~]# userdel -r zhangsan</span><br><span class="line">userdel: user zhangsan is currently used by process 38864</span><br><span class="line">[root@localhost ~]# exit</span><br><span class="line">exit</span><br><span class="line">[zhangsan@localhost root]$ exit</span><br><span class="line">exit</span><br><span class="line">[root@localhost ~]# userdel zhangsan</span><br><span class="line">[root@localhost ~]# cat /etc/shadow</span><br><span class="line">student:!!:18143:0:99999:7:::</span><br><span class="line">stu2:!!:18143:0:99999:7:::</span><br><span class="line">stu3:!!:18143:0:99999:7:::</span><br><span class="line">stu4:!!:18143:0:99999:7:::</span><br><span class="line">stu5::18143:0:99999:7:::</span><br><span class="line">student2:!!:18143:0:99999:7:::</span><br><span class="line">student3:!!:18143:0:99999:7:::</span><br></pre></td></tr></table></figure>
+
+<p>【举例 3】# usermod -s /bin/nologin jack</p>
+<p>（4）用 userdel 命令删除用户 命令格式：userdel [-r] 用户名</p>
+<p> #userdel stu8 只删除用户，但不删除主目录 </p>
+<p>#userdel -r stu8 连同主目录一起删除<br>（5）用于修改用户口令有效期限的 chage 命令 命令格式：chage [选项] 用户名 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">选项 功能说明</span><br><span class="line">-m 密码可更改的最小天数。为零时代表任何时候都可以更改密码</span><br><span class="line">-W 用户密码到期前，提前收到警告信息的天数</span><br><span class="line">-M 密码保持有效的最大天数</span><br><span class="line">-E 账号到期的日期。过了这天，此账号将不可用</span><br><span class="line">-d 上一次更改的日期</span><br><span class="line">-I 停滞时期。如果一个密码已过期这些天，那么此账号将不可用</span><br><span class="line">-l 列出当前的设置。由非特权用户来确定他们的密码或账号何时过期</span><br></pre></td></tr></table></figure>
+
+<p>【举例】设置 jack 用户的密码最大有效期为 30 天，提前 9 天警告，失效时间 40 天。</p>
+<p> #chage -M 18054 -W 9 -E 18064</p>
+<p>（6）修改用户注释信息的 chfn 命令 命令格式：chfn [选项] [用户名]<br>选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-f 设置真实姓名。</span><br><span class="line">-h 设置家中的电话号码。</span><br><span class="line">-o 设置办公室的地址。</span><br><span class="line">-p 设置办公室的电话号码。</span><br></pre></td></tr></table></figure>
+
+<p>（7）修改用户 Shell 类型的 chsh 命令 命令格式：chsh [-s] [用户名]</p>
+<h1 id="5、用户组管理"><a href="#5、用户组管理" class="headerlink" title="5、用户组管理"></a>5、用户组管理</h1><p>（1）用 groupadd 命令创建用户组</p>
+<p> 命令格式：groupadd  [r]  用户组名称<br>（2）用 groupmod 命令修改用户组属性 命令格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupmod 选项 组名 选项 功能说明</span><br><span class="line">-n 修改组名</span><br><span class="line">-g 修改组标识号 GID</span><br></pre></td></tr></table></figure>
+
+<p>（4）用 groupdel 命令删除用户组</p>
+<p>​    命令格式：groupdel  组名<br>（4）用 gpasswd 命令维护组中成员 </p>
+<p>命令格式：gpasswd 选项 用户名 组名 </p>
+<p>#gpasswd stu1 为 stu1 组设置密码 选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-a 添加用户到组。</span><br><span class="line">-d 将用户从组中删除。</span><br><span class="line">-A 设置用户为组管理员。</span><br></pre></td></tr></table></figure>
+
+<p>【举例】新建 yanyan、yuanyuan、lili 三个用户和 teacher 组将 lili 设置为 teacher 组的管理员，那么 lili 就具有向该组添加用户和移除用户的权限。也可以为该 组设置密码，其他用户就可以通过 newgrp 命令切换成该组的成员身份，否则只 有本组成员才能使用该组身份。</p>
+<p> #useradd yanyan</p>
+<p> #useradd yuanyuan </p>
+<p>#useradd lili </p>
+<p>#gpasswd -a lili teacher</p>
+<p>6、扩展知识<br>（1）查看用户信息的 id 命令 </p>
+<p>（2）输出指定用户所在组 groups 命令 #groups stu1 </p>
+<p>（3）查看当前登录用户 who am i 命令<br>（4）查看当前用户 w 命令 </p>
+<p>（5）查看登录用户 who 命令 </p>
+<p>（6）查看登录用户历史 last 命令<br>课程小结：<br>1、用户与用户组概念 超级用户 普通用户 虚拟用户 主组 附加组 </p>
+<p>2、用户与组的相关配置文件 </p>
+<p>用户配置文件：/etc/passwd /etc/shadow </p>
+<p>用户组配置文件：/etc/group /etc/gshadow </p>
+<p>3、用户与组的管理 </p>
+<p>useradd passwd usermod userdel groupadd gpasswd groupmod groupdel</p>
+<h1 id="6、补充"><a href="#6、补充" class="headerlink" title="6、补充"></a>6、补充</h1><h2 id="1、Centos7基本操作"><a href="#1、Centos7基本操作" class="headerlink" title="1、Centos7基本操作"></a>1、Centos7基本操作</h2><p><strong>Linux**</strong>系统是一个多用户多任务的操作系统**</p>
+<p><strong>开源免费的，更安全，兼容性更好</strong></p>
+<p><strong>[root@localhost ~]#</strong>   <strong>表示当前登录的用户是**</strong>root**</p>
+<p><strong>当前登录的用户名</strong></p>
+<p><strong>主机名</strong></p>
+<p><strong>当前所在的目录</strong></p>
+<p><strong>student@localhost root]$</strong>   <strong>当前登录的用户是普通用户</strong> </p>
+<p><strong>~</strong> <strong>主目录（每个用户的用户配置文件夹）</strong></p>
+<p>   <strong>root</strong> <strong>用户的主目录是**</strong>/root**</p>
+<p>   <strong>普通用户的主目录是**</strong>/home/<strong>**用户名</strong></p>
+<p><strong>pwd</strong>  <strong>查看当前所在的具体目录位置</strong></p>
+<p><strong>[student@localhost /]$ ls</strong></p>
+<p><strong>查看当前目录下的文件有哪些</strong></p>
+<p><strong>dr-xr-xr-x.</strong>   <strong>5 root root 4096 7**</strong>月**   <strong>8 2019</strong> <strong>boot</strong></p>
+<p><strong>文件的类型和权限</strong></p>
+<p>   <strong>第一个字符代表文件的类型：**</strong>d - l** </p>
+<p>   <strong>后面的字符代表文件的权限</strong></p>
+<p><strong>代表的是所有都权限</strong></p>
+<p><strong>代表的是所属组的权限</strong></p>
+<p><strong>代表的是其他用户的权限</strong></p>
+<p> <strong>r</strong> <strong>读</strong>   <strong>w</strong> <strong>写</strong>  <strong>x</strong> <strong>执行</strong>  <strong>-</strong>  <strong>没有权限</strong></p>
+<p><strong>改变文件的权限：</strong></p>
+<p><strong>字母方式：</strong> <strong>chmod</strong> </p>
+<p><strong>mkdir test</strong>   <strong>新建文件，名为</strong> <strong>test</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# chmod u-x test</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# chmod g=rwx test</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# chmod a=rx test</span><br></pre></td></tr></table></figure>
+
+<p><strong>数字方式修改：</strong></p>
+<p><strong>[root@localhost ~]# chmod 755 test</strong></p>
+<p><strong>修改所有者与属组</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**[root@localhost ~]# chown student test**</span><br><span class="line"></span><br><span class="line">**[root@localhost ~]# chown :student test**</span><br><span class="line"></span><br><span class="line">**[root@localhost ~]# chown root:root test**</span><br></pre></td></tr></table></figure>
+
+<p><strong>连接文件的数量</strong></p>
+<p><strong>文件的所有者（属主）</strong></p>
+<p><strong>文件的所属组（属组）</strong></p>
+<p><strong>文件的大小（默认单位字节）</strong></p>
+<p><strong>文件创建或修改的时间</strong></p>
+<p><strong>文件的名字</strong> </p>
+<p><strong>cd   ls  -l -a  ll  -lh</strong>  </p>
+<p><strong>mkdir</strong>  </p>
+<p><strong>touch</strong></p>
+<p><strong>rmdir</strong>  <strong>删除空文件夹</strong></p>
+<p><strong>rm</strong>  <strong>默认删除文件，不是删除目录</strong></p>
+<p><strong># rm -rf c</strong></p>
+<p><strong>mv</strong>  <strong>剪切或重命名</strong></p>
+<p><strong>cp</strong> <strong>默认是复制文件不是目录</strong> </p>
+<p><strong># cp -R /mnt/public/zz /mnt</strong></p>
+<p><strong>查看文件内容：</strong></p>
+<p>  <strong>cat</strong> </p>
+<p>  <strong>more</strong> <strong>分页显示，自动退出</strong></p>
+<p><strong>less</strong> <strong>分页显示，</strong> <strong>q</strong> <strong>退出</strong></p>
+<p>  <strong>head</strong>  <strong>查看前十行</strong>  <strong>head -3 +**</strong>路径：前三行**</p>
+<p>  <strong>tail</strong>      <strong>查看后十行</strong></p>
+<p><strong>帮助命令</strong></p>
+<p>  <strong>ls –help</strong></p>
+<p><strong>man</strong></p>
+<p><strong>4、**</strong>查找命令**</p>
+<p>  <strong>find</strong>  <strong>相当于</strong> <strong>windows</strong>  <strong>里面的搜索文件</strong> <strong>find+</strong> <strong>查找范围</strong> <strong>+</strong> <strong>查找条件</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sij3v125j30c603yglk.jpg" alt="\img"></p>
+<p><strong>查找**</strong>3M<strong>**以上的文件</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijkzxmkj30b901y746.jpg" alt="\img"></p>
+<p>  <strong>grep</strong> <strong>查找内容</strong></p>
+<p><strong>包含**</strong>root**</p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijrlaesj30c201ka9y.jpg" alt="\img"></p>
+<p>以root开头</p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijxq6emj30bj014dfo.jpg" alt="\img"></p>
+<p>文件权限：</p>
+<p> R:读  4</p>
+<p> W:写  2</p>
+<p>X:执行  1</p>
+<p>-：无权限  0</p>
+<p>Rwx r-x r-x.</p>
+<p>属主权限u 属组权限g <strong>其他用户**</strong>0**  <strong>所有**</strong>a**</p>
+<p><strong>.**</strong>代表有没有<strong>**ACL</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd xuelian</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ls</span><br><span class="line"></span><br><span class="line">11.txt  22.txt  33.txt  44.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ll</span><br></pre></td></tr></table></figure>
+
+<p>总用量 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x. 4 root root 52 9月   4 07:50 11.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 22.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 33.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:29 44.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# chmod a+wrx 11.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ll</span><br></pre></td></tr></table></figure>
+
+<p>总用量 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drwxrwxrwx. 4 root root 52 9月   4 07:50 11.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 22.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 33.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:29 44.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# chmod 770 11.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ll</span><br></pre></td></tr></table></figure>
+
+<p>总用量 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drwxrwx---. 4 root root 52 9月   4 07:50 11.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 22.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 33.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:29 44.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-、用户与组的管理"><a href="#2-、用户与组的管理" class="headerlink" title="2**、用户与组的管理**"></a><strong>2**</strong>、用户与组的管理**</h2><p><strong>（1）用户的管理</strong></p>
+<p>useradd命令创建用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\#useradd stu1</span><br><span class="line"></span><br><span class="line">\#useradd -s /bin/nologin stu1</span><br><span class="line"></span><br><span class="line">**# usermod -s /bin/nologin stu1**</span><br></pre></td></tr></table></figure>
+
+<p><strong>-s:**</strong>指定登录类型。**</p>
+<p><strong>为用户设置密码：**</strong>passwd** </p>
+<p>   <strong>如果是**</strong>root<strong>**用户操作，那么它可以设置任何用户的密码。</strong></p>
+<p>   <strong>如果是普通用户呢？如果是一个组的管理员，它可以设置本组用户的密码</strong></p>
+<p>​                     <strong>如果是普通用户，只能设置自己的密码</strong></p>
+<p><strong>如果从**</strong>root<strong>**用户切换到普通用户，是不需要输入密码的。</strong></p>
+<p><strong>如果是普通用户切换到其他用户是需要输入密码的。</strong></p>
+<p><strong>sbit:**</strong>粘滞位权限**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">**[root@localhost xuelian]# su stu2**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost xuelian]$ cd sbit**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost sbit]$ touch 1.txt**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost sbit]$ touch 2.txt**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost sbit]$ exit**</span><br><span class="line"></span><br><span class="line">**[root@localhost xuelian]# su stu3**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost xuelian]$ cd sbit**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ touch stu3.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ ll**</span><br><span class="line"></span><br><span class="line">**总用量** **0**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu2 stu2 0 9****月**   **4 19:16 1.txt**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu2 stu2 0 9****月**   **4 19:16 2.txt**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu3 stu3 0 9****月**   **4 19:17 stu3.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$**</span><br><span class="line"></span><br><span class="line"> **[stu3@localhost sbit]$ rm -rf 1.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ ll**</span><br><span class="line"></span><br><span class="line">**总用量** **0**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu2 stu2 0 9****月**   **4 19:16 2.txt**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu3 stu3 0 9****月**   **4 19:17 stu3.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ chmod 0+t sbit/**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ chmod o+t sbit/**</span><br><span class="line"></span><br><span class="line">**chmod:** **无法访问****&quot;sbit/&quot;:** **没有那个文件或目录**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ chmod o+t sbit**</span><br><span class="line"></span><br><span class="line">**chmod:** **无法访问****&quot;sbit&quot;:** **没有那个文件或目录**   **//****加权限必须是****ROOT****下**</span><br><span class="line"></span><br><span class="line">**[root@localhost xuelian]# chmod o+t sbit**</span><br><span class="line"></span><br><span class="line">**[root@localhost xuelian]# ll**</span><br><span class="line"></span><br><span class="line">**总用量** **0**</span><br><span class="line"></span><br><span class="line">**drwxrwx---. 4 root root 52 9****月**   **4 07:50 11.txt**</span><br><span class="line"></span><br><span class="line">**drwxr-xr-x. 2 root root  6 9****月**   **4 07:28 22.txt**</span><br><span class="line"></span><br><span class="line">**drwxr-xr-x. 2 root root  6 9****月**   **4 07:28 33.txt**</span><br><span class="line"></span><br><span class="line">**drwxr-xr-x. 2 root root  6 9****月**   **4 07:29 44.txt**</span><br><span class="line"></span><br><span class="line">**drwxrwxrwt. 2 root root 35 9****月**   **4 19:18 sbit //****多了个****t** **如果原来有****x****权限，加的就是****t,****如果没有，就是加****T**</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除用户：</strong> userdel [-r] 用户名</p>
+<p><strong>修改用户：</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**usermod -l**  **修改用户名**</span><br><span class="line"></span><br><span class="line">​          **usermod -L** **锁定用户**</span><br><span class="line"></span><br><span class="line">​           **usermod -U** **解锁用户**</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）用户组的管理</strong> </p>
+<p>新建用户组：groupadd</p>
+<p>组用户管理：gpasswd</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>添加用户到组。</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>将用户从组中删除。</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>设置用户为组管理员。</td>
+</tr>
+</tbody></table>
+<p>为用户组设置密码：gpasswd </p>
+<p>普通用户临时加入到组，并享有组的权限：newgroup</p>
+<p>人事部有两个员工（rs1 rs2),其中rs1为组rsb的管理员，rsb组的密码是：123456</p>
+<p>/mnt/rsb文件 drwxr-x— rs1 rsb</p>
+<p>现在有一个员工：zjl  想有临时权限查看rsb目录中的文件？</p>
+<p><strong>3**</strong>、特殊权限**</p>
+<p><strong>ACL:**</strong>是针对其他用户当中的个别或部份用户设置的权限**</p>
+<p><strong>setfacl -m</strong>   <strong>创建</strong></p>
+<p><strong>setfacl -x</strong>    <strong>删除一条</strong></p>
+<p><strong>stfacl -b</strong>    <strong>删除所有</strong></p>
+<p><strong>getfacl</strong>     <strong>查看</strong></p>
+<p><strong>SBIT**</strong>：<strong>**chmod  o+t</strong></p>
+<p><strong>SGID**</strong>：<strong>**chmod g+s</strong></p>
+<p><strong>4**</strong>、今日任务** </p>
+<p><strong>项目一组：</strong></p>
+<p><strong>用户组：**</strong>xm1z**</p>
+<p><strong>用户：**</strong>xm11 (<strong><strong>组管理员</strong></strong>) xm12**</p>
+<p><strong>文件：**</strong>/mnt/xm1z**</p>
+<p><strong>项目二组：</strong></p>
+<p><strong>用户组：**</strong>xm2z**</p>
+<p><strong>用户：**</strong>xm21 (<strong><strong>组管理员</strong></strong>) xm22**</p>
+<p><strong>文件：**</strong>/mnt/xm2z**</p>
+<p><strong>管理团队用户：</strong></p>
+<p><strong>用户组：**</strong>glz**</p>
+<p><strong>用户：**</strong>xmjl<strong>**（项目经理）</strong>  <strong>rsjl**</strong>（人事经理）**  <strong>xmzl**</strong>（经理助理）**</p>
+<p><strong>文件：**</strong>/mnt/wan19**</p>
+<p><strong>要求：</strong></p>
+<p><strong>每组的文件夹只允许本组的同学访问，并可以读写文件，并且建立的文件所属组为员工所在的组，但只能删除自己的文件，不能删除别人的文件。其他组的同学对本组的文件没有任何权限。其中管理团队的**</strong>xmjl<strong>**对各组文件具有读写执行的权限。</strong></p>
+<p><strong>每组的管理员可以管理本组员工的帐号。</strong></p>
+<p><strong>请每位同学按照功能实现，并将实现步骤截图整理成文档，保存为自己的名字，发给组长，由组长打包发送至班组群里。</strong></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-08-24第1篇：Window入侵排查" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -735,1243 +1943,6 @@ CPU或内存资源占用长时间过高的进程</code></pre></li>
         <p class="article-more-link">
           <a   href="/2019/08/26/08-28windows服务器/#more">查看更多 >></a>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-第2篇：Linux入侵排查" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/25/第2篇：Linux入侵排查/" class="article-date">
-      <time datetime="2019-08-25T08:20:20.000Z" itemprop="datePublished">2019-08-25</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/25/第2篇：Linux入侵排查/">linux入侵排查</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <a id="more"></a>
-
-<h2 id="第2篇：Linux入侵排查"><a href="#第2篇：Linux入侵排查" class="headerlink" title="第2篇：Linux入侵排查"></a>第2篇：Linux入侵排查</h2><h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h3><p>当企业发生黑客入侵、系统崩溃或其它影响业务正常运行的安全事件时，急需第一时间进行处理，使企业的网络信息系统在最短时间内恢复正常工作，进一步查找入侵来源，还原入侵事故过程，同时给出解决方案与防范措施，为企业挽回或减少经济损失。  </p>
-<p>针对常见的攻击事件，结合工作中应急响应事件分析和解决的方法，总结了一些Linux服务器入侵排查的思路。</p>
-<h3 id="0x01-入侵排查思路"><a href="#0x01-入侵排查思路" class="headerlink" title="0x01 入侵排查思路"></a>0x01 入侵排查思路</h3><h4 id="1-1-账号安全"><a href="#1-1-账号安全" class="headerlink" title="1.1 账号安全"></a>1.1 账号安全</h4><p><strong>基本使用：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1、用户信息文件/etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">account:password:UID:GID:GECOS:directory:shell</span><br><span class="line">用户名：密码：用户ID：组ID：用户说明：家目录：登陆之后shell</span><br><span class="line">注意：无密码只允许本机登陆，远程不允许登陆</span><br><span class="line"></span><br><span class="line">2、影子文件/etc/shadow</span><br><span class="line">root:$6$oGs1PqhL2p3ZetrE$X7o7bzoouHQVSEmSgsYN5UD4.kMHx6qgbTqwNVC5oOAouXvcjQSt.Ft7ql1WpkopY0UV9ajBwUt1DpYxTCVvI/:16809:0:99999:7:::</span><br><span class="line">用户名：加密密码：密码最后一次修改日期：两次密码的修改时间间隔：密码有效期：密码修改到期到的警告天数：密码过期之后的宽限天数：账号失效时间：保留</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">who     查看当前登录用户（tty本地登陆  pts远程登录）</span><br><span class="line">w       查看系统信息，想知道某一时刻用户的行为</span><br><span class="line">uptime  查看登陆多久、多少用户，负载</span><br></pre></td></tr></table></figure>
-
-<p><strong>入侵排查：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、查询特权用户特权用户(uid 为0)</span><br><span class="line">[root@localhost ~]# awk -F: &apos;$3==0&#123;print $1&#125;&apos; /etc/passwd</span><br><span class="line">2、查询可以远程登录的帐号信息</span><br><span class="line">[root@localhost ~]# awk &apos;/\$1|\$6/&#123;print $1&#125;&apos; /etc/shadow</span><br><span class="line">3、除root帐号外，其他帐号是否存在sudo权限。如非管理需要，普通帐号应删除sudo权限</span><br><span class="line">[root@localhost ~]# more /etc/sudoers | grep -v &quot;^#\|^$&quot; | grep &quot;ALL=(ALL)&quot;</span><br><span class="line">4、禁用或删除多余及可疑的帐号</span><br><span class="line">    usermod -L user    禁用帐号，帐号无法登录，/etc/shadow第二栏为!开头</span><br><span class="line">	userdel user       删除user用户</span><br><span class="line">	userdel -r user    将删除user用户，并且将/home目录下的user目录一并删除</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-历史命令"><a href="#1-2-历史命令" class="headerlink" title="1.2 历史命令"></a>1.2 历史命令</h4><p><strong>基本使用：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">通过.bash_history查看帐号执行过的系统命令</span><br><span class="line">1、root的历史命令</span><br><span class="line">histroy</span><br><span class="line">2、打开/home各帐号目录下的.bash_history，查看普通帐号的历史命令</span><br><span class="line"></span><br><span class="line">为历史的命令增加登录的IP地址、执行命令时间等信息：</span><br><span class="line">1）保存1万条命令</span><br><span class="line">sed -i &apos;s/^HISTSIZE=1000/HISTSIZE=10000/g&apos; /etc/profile</span><br><span class="line">2）在/etc/profile的文件尾部添加如下行数配置信息：</span><br><span class="line">######jiagu history xianshi#########</span><br><span class="line">USER_IP=`who -u am i 2&gt;/dev/null | awk &apos;&#123;print $NF&#125;&apos; | sed -e &apos;s/[()]//g&apos;`</span><br><span class="line">if [ &quot;$USER_IP&quot; = &quot;&quot; ]</span><br><span class="line">then</span><br><span class="line">USER_IP=`hostname`</span><br><span class="line">fi</span><br><span class="line">export HISTTIMEFORMAT=&quot;%F %T $USER_IP `whoami` &quot;</span><br><span class="line">shopt -s histappend</span><br><span class="line">export PROMPT_COMMAND=&quot;history -a&quot;</span><br><span class="line">######### jiagu history xianshi ##########</span><br><span class="line">3）source /etc/profile让配置生效</span><br><span class="line"></span><br><span class="line">生成效果： 1  2018-07-10 19:45:39 192.168.204.1 root source /etc/profile</span><br><span class="line"></span><br><span class="line">3、历史操作命令的清除：history -c</span><br><span class="line">但此命令并不会清除保存在文件中的记录，因此需要手动删除.bash_profile文件中的记录。</span><br></pre></td></tr></table></figure>
-
-<p><strong>入侵排查：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">进入用户目录下</span><br><span class="line">cat .bash_history &gt;&gt; history.txt</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-检查异常端口"><a href="#1-3-检查异常端口" class="headerlink" title="1.3 检查异常端口"></a>1.3 检查异常端口</h4><p>使用netstat 网络连接命令，分析可疑端口、IP、PID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">netstat -antlp|more</span><br><span class="line"></span><br><span class="line">查看下pid所对应的进程文件路径，</span><br><span class="line">运行ls -l /proc/$PID/exe或file /proc/$PID/exe（$PID 为对应的pid 号）</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-检查异常进程"><a href="#1-4-检查异常进程" class="headerlink" title="1.4 检查异常进程"></a>1.4 检查异常进程</h4><p>使用ps命令，分析进程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep pid</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-5-检查开机启动项"><a href="#1-5-检查开机启动项" class="headerlink" title="1.5 检查开机启动项"></a>1.5 检查开机启动项</h4><p><strong>基本使用：</strong></p>
-<p>系统运行级别示意图：</p>
-<table>
-<thead>
-<tr>
-<th align="center">运行级别</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">关机</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="center">单用户模式，可以想象为windows的安全模式，主要用于系统修复</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">不完全的命令行模式，不含NFS服务</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">完全的命令行模式，就是标准字符界面</td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="center">系统保留</td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="center">图形模式</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="center">重启动</td>
-</tr>
-</tbody></table>
-<p>查看运行级别命令<br>    runlevel   </p>
-<p>系统默认允许级别</p>
-<pre><code>vi  /etc/inittab
-id=3：initdefault  系统开机后直接进入哪个运行级别</code></pre><p>开机启动配置文件</p>
-<pre><code>/etc/rc.local
-/etc/rc.d/rc[0~6].d</code></pre><p>例子:当我们需要开机启动自己的脚本时，只需要将可执行脚本丢在/etc/init.d目录下，然后在/etc/rc.d/rc*.d中建立软链接即可</p>
-<pre><code>root@localhost ~]# ln -s /etc/init.d/sshd /etc/rc.d/rc3.d/S100ssh</code></pre><p>此处sshd是具体服务的脚本文件，S100ssh是其软链接，S开头代表加载时自启动；如果是K开头的脚本文件，代表运行级别加载时需要关闭的。</p>
-<p><strong>入侵排查：</strong></p>
-<p>启动项文件：<br>    more /etc/rc.local<br>    /etc/rc.d/rc[0~6].d<br>    ls -l /etc/rc.d/rc3.d/</p>
-<h4 id="1-6-检查定时任务"><a href="#1-6-检查定时任务" class="headerlink" title="1.6 检查定时任务"></a>1.6 检查定时任务</h4><p><strong>基本使用</strong></p>
-<p>1、利用crontab创建计划任务</p>
-<ul>
-<li>基本命令</li>
-</ul>
-<p>crontab -l   列出某个用户cron服务的详细内容</p>
-<p>Tips：默认编写的crontab文件会保存在 (/var/spool/cron/用户名 例如: /var/spool/cron/root</p>
-<p>crontab -r   删除每个用户cront任务(谨慎：删除所有的计划任务)</p>
-<p>crontab -e   使用编辑器编辑当前的crontab文件 </p>
-<p>如：*/1 * * * * echo “hello world” &gt;&gt; /tmp/test.txt 每分钟写入文件</p>
-<p>2、利用anacron实现异步定时任务调度</p>
-<ul>
-<li>使用案例</li>
-</ul>
-<p>每天运行 /home/backup.sh脚本：<br>    vi /etc/anacrontab<br>    @daily    10    example.daily   /bin/bash /home/backup.sh</p>
-<p>当机器在 backup.sh 期望被运行时是关机的，anacron会在机器开机十分钟之后运行它，而不用再等待 7天。</p>
-<p><strong>入侵排查</strong></p>
-<p>重点关注以下目录中是否存在恶意脚本</p>
-<pre><code>/var/spool/cron/* 
-/etc/crontab
-/etc/cron.d/*
-/etc/cron.daily/* 
-/etc/cron.hourly/* 
-/etc/cron.monthly/*
-/etc/cron.weekly/
-/etc/anacrontab
-/var/spool/anacron/*</code></pre><p>小技巧：</p>
-<pre><code>more /etc/cron.daily/*  查看目录下所有文件</code></pre><h4 id="1-7-检查服务"><a href="#1-7-检查服务" class="headerlink" title="1.7 检查服务"></a>1.7 检查服务</h4><p><strong>服务自启动</strong></p>
-<p>第一种修改方法：</p>
-<pre><code>chkconfig [--level 运行级别] [独立服务名] [on|off]
-chkconfig –level  2345 httpd on  开启自启动
-chkconfig httpd on （默认level是2345）</code></pre><p>第二种修改方法：</p>
-<pre><code>修改/etc/re.d/rc.local 文件  
-加入 /etc/init.d/httpd start</code></pre><p>第三种修改方法：</p>
-<p>使用ntsysv命令管理自启动，可以管理独立服务和xinetd服务。</p>
-<p><strong>入侵排查</strong></p>
-<p>1、查询已安装的服务：</p>
-<p>RPM包安装的服务</p>
-<pre><code>chkconfig  --list  查看服务自启动状态，可以看到所有的RPM包安装的服务
-ps aux | grep crond 查看当前服务
-
-系统在3与5级别下的启动项 
-中文环境
-chkconfig --list | grep &quot;3:启用\|5:启用&quot;
-英文环境
-chkconfig --list | grep &quot;3:on\|5:on&quot;</code></pre><p>源码包安装的服务</p>
-<pre><code>查看服务安装位置 ，一般是在/user/local/
-service httpd start
-搜索/etc/rc.d/init.d/  查看是否存在</code></pre><h4 id="1-8-检查异常文件"><a href="#1-8-检查异常文件" class="headerlink" title="1.8 检查异常文件"></a>1.8 检查异常文件</h4><p>1、查看敏感目录，如/tmp目录下的文件，同时注意隐藏文件夹，以“..”为名的文件夹具有隐藏属性</p>
-<p>2、得到发现WEBSHELL、远控木马的创建时间，如何找出同一时间范围内创建的文件？</p>
-<p>​    可以使用find命令来查找，如 find /opt -iname “*” -atime 1 -type f  找出 /opt 下一天前访问过的文件</p>
-<p>3、针对可疑文件可以使用stat进行创建修改时间。</p>
-<h4 id="1-9-检查系统日志"><a href="#1-9-检查系统日志" class="headerlink" title="1.9 检查系统日志"></a>1.9 检查系统日志</h4><p>日志默认存放位置：/var/log/</p>
-<p>查看日志配置情况：more /etc/rsyslog.conf</p>
-<table>
-<thead>
-<tr>
-<th align="center">日志文件</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">/var/log/cron</td>
-<td align="center">记录了系统定时任务相关的日志</td>
-</tr>
-<tr>
-<td align="center">/var/log/cups</td>
-<td align="center">记录打印信息的日志</td>
-</tr>
-<tr>
-<td align="center">/var/log/dmesg</td>
-<td align="center">记录了系统在开机时内核自检的信息，也可以使用dmesg命令直接查看内核自检信息</td>
-</tr>
-<tr>
-<td align="center">/var/log/mailog</td>
-<td align="center">记录邮件信息</td>
-</tr>
-<tr>
-<td align="center">/var/log/message</td>
-<td align="center">记录系统重要信息的日志。这个日志文件中会记录Linux系统的绝大多数重要信息，如果系统出现问题时，首先要检查的就应该是这个日志文件</td>
-</tr>
-<tr>
-<td align="center">/var/log/btmp</td>
-<td align="center">记录错误登录日志，这个文件是二进制文件，不能直接vi查看，而要使用lastb命令查看</td>
-</tr>
-<tr>
-<td align="center">/var/log/lastlog</td>
-<td align="center">记录系统中所有用户最后一次登录时间的日志，这个文件是二进制文件，不能直接vi，而要使用lastlog命令查看</td>
-</tr>
-<tr>
-<td align="center">/var/log/wtmp</td>
-<td align="center">永久记录所有用户的登录、注销信息，同时记录系统的启动、重启、关机事件。同样这个文件也是一个二进制文件，不能直接vi，而需要使用last命令来查看</td>
-</tr>
-<tr>
-<td align="center">/var/log/utmp</td>
-<td align="center">记录当前已经登录的用户信息，这个文件会随着用户的登录和注销不断变化，只记录当前登录用户的信息。同样这个文件不能直接vi，而要使用w,who,users等命令来查询</td>
-</tr>
-<tr>
-<td align="center">/var/log/secure</td>
-<td align="center">记录验证和授权方面的信息，只要涉及账号和密码的程序都会记录，比如SSH登录，su切换用户，sudo授权，甚至添加用户和修改用户密码都会记录在这个日志文件中</td>
-</tr>
-</tbody></table>
-<p>日志分析技巧：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1、定位有多少IP在爆破主机的root帐号：    </span><br><span class="line">grep &quot;Failed password for root&quot; /var/log/secure | awk &apos;&#123;print $11&#125;&apos; | sort | uniq -c | sort -nr | more</span><br><span class="line"></span><br><span class="line">定位有哪些IP在爆破：</span><br><span class="line">grep &quot;Failed password&quot; /var/log/secure|grep -E -o &quot;(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)&quot;|uniq -c</span><br><span class="line"></span><br><span class="line">爆破用户名字典是什么？</span><br><span class="line"> grep &quot;Failed password&quot; /var/log/secure|perl -e &apos;while($_=&lt;&gt;)&#123; /for(.*?) from/; print &quot;$1\n&quot;;&#125;&apos;|uniq -c|sort -nr</span><br><span class="line"> </span><br><span class="line">2、登录成功的IP有哪些： 	</span><br><span class="line">grep &quot;Accepted &quot; /var/log/secure | awk &apos;&#123;print $11&#125;&apos; | sort | uniq -c | sort -nr | more</span><br><span class="line"></span><br><span class="line">登录成功的日期、用户名、IP：</span><br><span class="line">grep &quot;Accepted &quot; /var/log/secure | awk &apos;&#123;print $1,$2,$3,$9,$11&#125;&apos; </span><br><span class="line"></span><br><span class="line">3、增加一个用户kali日志：</span><br><span class="line">Jul 10 00:12:15 localhost useradd[2382]: new group: name=kali, GID=1001</span><br><span class="line">Jul 10 00:12:15 localhost useradd[2382]: new user: name=kali, UID=1001, GID=1001, home=/home/kali</span><br><span class="line">, shell=/bin/bash</span><br><span class="line">Jul 10 00:12:58 localhost passwd: pam_unix(passwd:chauthtok): password changed for kali</span><br><span class="line">#grep &quot;useradd&quot; /var/log/secure </span><br><span class="line"></span><br><span class="line">4、删除用户kali日志：</span><br><span class="line">Jul 10 00:14:17 localhost userdel[2393]: delete user &apos;kali&apos;</span><br><span class="line">Jul 10 00:14:17 localhost userdel[2393]: removed group &apos;kali&apos; owned by &apos;kali&apos;</span><br><span class="line">Jul 10 00:14:17 localhost userdel[2393]: removed shadow group &apos;kali&apos; owned by &apos;kali&apos;</span><br><span class="line"># grep &quot;userdel&quot; /var/log/secure</span><br><span class="line"></span><br><span class="line">5、su切换用户：</span><br><span class="line">Jul 10 00:38:13 localhost su: pam_unix(su-l:session): session opened for user good by root(uid=0)</span><br><span class="line"></span><br><span class="line">sudo授权执行:</span><br><span class="line">sudo -l</span><br><span class="line">Jul 10 00:43:09 localhost sudo:    good : TTY=pts/4 ; PWD=/home/good ; USER=root ; COMMAND=/sbin/shutdown -r now</span><br></pre></td></tr></table></figure>
-
-<h3 id="0x02-工具篇"><a href="#0x02-工具篇" class="headerlink" title="0x02 工具篇"></a>0x02 工具篇</h3><h4 id="2-1-Rootkit查杀"><a href="#2-1-Rootkit查杀" class="headerlink" title="2.1 Rootkit查杀"></a>2.1 Rootkit查杀</h4><ul>
-<li><p>chkrootkit  </p>
-<p>网址：<a href="http://www.chkrootkit.org" target="_blank" rel="noopener">http://www.chkrootkit.org</a> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">使用方法：</span><br><span class="line">wget ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit.tar.gz</span><br><span class="line">tar zxvf chkrootkit.tar.gz</span><br><span class="line">cd chkrootkit-0.52</span><br><span class="line">make sense</span><br><span class="line">#编译完成没有报错的话执行检查</span><br><span class="line">./chkrootkit</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>rkhunter</p>
-<p>网址：<a href="http://rkhunter.sourceforge.net" target="_blank" rel="noopener">http://rkhunter.sourceforge.net</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">使用方法：</span><br><span class="line">Wget https://nchc.dl.sourceforge.net/project/rkhunter/rkhunter/1.4.4/rkhunter-1.4.4.tar.gz</span><br><span class="line">tar -zxvf rkhunter-1.4.4.tar.gz</span><br><span class="line">cd rkhunter-1.4.4</span><br><span class="line">./installer.sh --install</span><br><span class="line">rkhunter -c</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="2-2-病毒查杀"><a href="#2-2-病毒查杀" class="headerlink" title="2.2 病毒查杀"></a>2.2 病毒查杀</h4><ul>
-<li><p>Clamav</p>
-<p>ClamAV的官方下载地址为：<a href="http://www.clamav.net/download.html" target="_blank" rel="noopener">http://www.clamav.net/download.html</a> </p>
-<p>安装方式一： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">1、安装zlib：</span><br><span class="line">wget http://nchc.dl.sourceforge.net/project/libpng/zlib/1.2.7/zlib-1.2.7.tar.gz </span><br><span class="line">tar -zxvf  zlib-1.2.7.tar.gz</span><br><span class="line">cd zlib-1.2.7</span><br><span class="line">#安装一下gcc编译环境： yum install gcc</span><br><span class="line">CFLAGS=&quot;-O3 -fPIC&quot; ./configure --prefix= /usr/local/zlib/</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">2、添加用户组clamav和组成员clamav：</span><br><span class="line">groupadd clamav</span><br><span class="line">useradd -g clamav -s /bin/false -c &quot;Clam AntiVirus&quot; clamav</span><br><span class="line"></span><br><span class="line">3、安装Clamav</span><br><span class="line">tar –zxvf clamav-0.97.6.tar.gz</span><br><span class="line">cd clamav-0.97.6</span><br><span class="line">./configure --prefix=/opt/clamav --disable-clamav -with-zlib=/usr/local/zlib</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">4、配置Clamav</span><br><span class="line">mkdir /opt/clamav/logs</span><br><span class="line">mkdir /opt/clamav/updata</span><br><span class="line">touch /opt/clamav/logs/freshclam.log</span><br><span class="line">touch /opt/clamav/logs/clamd.log</span><br><span class="line">cd /opt/clamav/logs</span><br><span class="line">chown clamav:clamav clamd.log</span><br><span class="line">chown clamav:clamav freshclam.log</span><br><span class="line"></span><br><span class="line">5、ClamAV 使用：</span><br><span class="line"> /opt/clamav/bin/freshclam 升级病毒库</span><br><span class="line">./clamscan –h 查看相应的帮助信息</span><br><span class="line">./clamscan -r /home  扫描所有用户的主目录就使用</span><br><span class="line">./clamscan -r --bell -i /bin  扫描bin目录并且显示有问题的文件的扫描结果</span><br></pre></td></tr></table></figure>
-
-<p>安装方式二： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#安装</span><br><span class="line">yum install -y clamav</span><br><span class="line">#更新病毒库</span><br><span class="line">freshclam</span><br><span class="line">#扫描方法</span><br><span class="line">clamscan -r /etc --max-dir-recursion=5 -l /root/etcclamav.log</span><br><span class="line">clamscan -r /bin --max-dir-recursion=5 -l /root/binclamav.log</span><br><span class="line">clamscan -r /usr --max-dir-recursion=5 -l /root/usrclamav.log</span><br><span class="line">#扫描并杀毒</span><br><span class="line">clamscan -r  --remove  /usr/bin/bsd-port</span><br><span class="line">clamscan -r  --remove  /usr/bin/</span><br><span class="line">clamscan -r --remove  /usr/local/zabbix/sbin</span><br><span class="line">#查看日志发现</span><br><span class="line">cat /root/usrclamav.log |grep FOUND</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="2-3-webshell查杀"><a href="#2-3-webshell查杀" class="headerlink" title="2.3 webshell查杀"></a>2.3 webshell查杀</h4><p>linux版：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">河马webshell查杀：http://www.shellpub.com</span><br><span class="line">深信服Webshell网站后门检测工具：http://edr.sangfor.com.cn/backdoor_detection.html</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-RPM-check检查"><a href="#2-4-RPM-check检查" class="headerlink" title="2.4 RPM check检查"></a>2.4 RPM check检查</h4><p>​    系统完整性可以通过rpm自带的-Va来校验检查所有的rpm软件包，查看哪些命令是否被替换了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rpm -Va &gt; rpm.log</span><br></pre></td></tr></table></figure>
-
-<p>如果一切均校验正常将不会产生任何输出，如果有不一致的地方，就会显示出来，输出格式是8位长字符串，每个字符都用以表示文件与RPM数据库中一种属性的比较结果 ，如果是. (点) 则表示测试通过。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">验证内容中的8个信息的具体内容如下：</span><br><span class="line">		S         文件大小是否改变</span><br><span class="line">		M         文件的类型或文件的权限（rwx）是否被改变</span><br><span class="line">		5         文件MD5校验是否改变（可以看成文件内容是否改变）</span><br><span class="line">		D         设备中，从代码是否改变</span><br><span class="line">		L         文件路径是否改变</span><br><span class="line">		U         文件的属主（所有者）是否改变</span><br><span class="line">		G         文件的属组是否改变</span><br><span class="line">		T         文件的修改时间是否改变</span><br></pre></td></tr></table></figure>
-
-<p>如果命令被替换了，如果还原回来：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">文件提取还原案例：</span><br><span class="line">rpm  -qf /bin/ls  查询ls命令属于哪个软件包</span><br><span class="line">mv  /bin/ls /tmp  先把ls转移到tmp目录下，造成ls命令丢失的假象</span><br><span class="line">rpm2cpio /mnt/cdrom/Packages/coreutils-8.4-19.el6.i686.rpm | cpio -idv ./bin/ls 提取rpm包中ls命令到当前目录的/bin/ls下</span><br><span class="line">cp /root/bin/ls  /bin/ 把ls命令复制到/bin/目录 修复文件丢失</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-linux安全检查脚本"><a href="#2-5-linux安全检查脚本" class="headerlink" title="2.5 linux安全检查脚本"></a>2.5 linux安全检查脚本</h4><p>Github项目地址：</p>
-<p><a href="https://github.com/grayddq/GScan" target="_blank" rel="noopener">https://github.com/grayddq/GScan</a></p>
-<p><a href="https://github.com/ppabc/security_check" target="_blank" rel="noopener">https://github.com/ppabc/security_check</a></p>
-<p><a href="https://github.com/T0xst/linux" target="_blank" rel="noopener">https://github.com/T0xst/linux</a></p>
-<p><strong>尽信书不如无书，工具只是辅助，别太过于依赖，关键在于你如何解决问题的思路。</strong></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-VPN" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/23/VPN/" class="article-date">
-      <time datetime="2019-08-23T10:45:50.000Z" itemprop="datePublished">2019-08-23</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/23/VPN/">VPN</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <a id="more"></a>
-
-<h1 id="一、VPN"><a href="#一、VPN" class="headerlink" title="一、VPN"></a>一、VPN</h1><h2 id="1、L2TP-VPN"><a href="#1、L2TP-VPN" class="headerlink" title="1、L2TP VPN"></a>1、L2TP VPN</h2><p>2TP是一种工业标准的Internet隧道协议，功能大致和PPTP协议类似，比如同样可以对网络数据流进行加密。不过也有不同之处，比如PPTP要求网络为IP网络，L2TP要求面向数据包的点对点连接；PPTP使用单一隧道，L2TP使用多隧道；L2TP提供包头压缩、隧道验证，而PPTP不支持。</p>
-<h2 id="2、PPTP-VPN"><a href="#2、PPTP-VPN" class="headerlink" title="2、PPTP-VPN"></a>2、PPTP-VPN</h2><p>即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使远程用户通过拨入ISP、通过直接连接Internet或其他网络安全地访问企业网。</p>
-<h2 id="3、IPsec-VPN"><a href="#3、IPsec-VPN" class="headerlink" title="3、IPsec-VPN"></a>3、IPsec-VPN</h2><p>互联网安全协议（英语：Internet Protocol Security，缩写为IPsec），是一个协议包，通过对IP协议的分组进行加密和认证来保护IP协议的网络传输协议族（一些相互关联的协议的集合）。 [1]<br>IPsec主要由以下协议组成：</p>
-<p>一、认证头（AH），为IP数据报提供无连接数据完整性、消息认证以及防重放攻击保护；</p>
-<p>二、封装安全载荷（ESP），提供机密性、数据源认证、无连接完整性、防重放和有限的传输流（traffic-flow）机密性；</p>
-<p>三、安全关联（SA），提供算法和数据包，提供AH、ESP操作所需的参数。</p>
-<p>IPsec协议工作在OSI模型的第三层，使其在单独使用时适于保护基于TCP或UDP的协议（如安全套接子层（SSL）就不能保护UDP层的通信流）。这就意味着，与传输层或更高层的协议相比，IPsec协议必须处理可靠性和分片的问题，这同时也增加了它的复杂性和处理开销。相对而言，SSL/TLS依靠更高层的TCP（OSI的第四层）来管理可靠性和分片。</p>
-<h2 id="4、GRE-VPN"><a href="#4、GRE-VPN" class="headerlink" title="4、GRE VPN"></a>4、GRE VPN</h2><p>GRE是一种最传统的隧道协议，其根本功能就是要实现隧道功能，通过隧道连接的两<br>个远程网络就如同直连，GRE在两个远程网络之间模拟出直连链路,从而使网络间达到直<br>连的效果，为此，GRE需要完成多次封装,总共有3次</p>
-<p>（1）接收原始IP数据包当作乘客协议,原始IR数据包包头的IP地址为私有IP地址</p>
-<p>（2）将原始IP数据包封装进GRE协议, GRE协议称为封装协议(Encapsulation Protocol) ,封装的包头IP地址为虚拟直连链路两端的IP地址</p>
-<p>（3）将整个GRE数据包当作数据，在外层封装公网IP包头，也就是隧道的起源和终点，从而路由到隧道终点</p>
-<h1 id="实验一：配置VPN"><a href="#实验一：配置VPN" class="headerlink" title="实验一：配置VPN"></a>实验一：配置VPN</h1><h2 id="整体图："><a href="#整体图：" class="headerlink" title="整体图："></a>整体图：</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sppt013j30y109ajrp.jpg" alt="/img"></p>
-<h2 id="基本配置："><a href="#基本配置：" class="headerlink" title="基本配置："></a>基本配置：</h2><h3 id="PC1和PC2"><a href="#PC1和PC2" class="headerlink" title="PC1和PC2:"></a>PC1和PC2:</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sq76y5oj30co046web.jpg" alt="/img"></p>
-<h3 id="BJ"><a href="#BJ" class="headerlink" title="BJ:"></a>BJ:</h3><p>BJ(config)#int e0/0</p>
-<p>BJ(config-if)#ip add 192.168.1.1 255.255.255.0</p>
-<p>BJ(config-if)#no shutdown</p>
-<p>BJ(config)#int e0/1</p>
-<p>BJ(config-if)#ip add 61.1.1.1 255.255.255.0</p>
-<p>BJ(config-if)#no shutdown</p>
-<p>Internet:</p>
-<p>Internet(config)#int e0/0</p>
-<p>Internet(config-if)#ip add 61.1.1.2 255.255.255.0</p>
-<p>Internet(config-if)#no shutdown</p>
-<p>Internet(config)#int e0/1</p>
-<p>Internet(config-if)#ip add 181.1.1.2 255.255.255.0</p>
-<p>Internet(config-if)#no shutdown</p>
-<h3 id="CD"><a href="#CD" class="headerlink" title="CD:"></a>CD:</h3><p>CD(config)#int e0/0</p>
-<p>CD(config-if)#ip add 181.1.1.1 255.255.255.0</p>
-<p>CD(config-if)#no shutdown</p>
-<p>CD(config)#int e0/1</p>
-<p>CD(config-if)#ip add 172.16.1.2 255.255.255.0</p>
-<p>CD(config-if)#no shutdown</p>
-<h3 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF:"></a>OSPF:</h3><p>BJ(config)#router ospf 1</p>
-<p>BJ(config-router)#net</p>
-<p>BJ(config-router)#network 61.1.1.0 0.0.0.255 ar</p>
-<p>BJ(config-router)#network 61.1.1.0 0.0.0.255 area 0</p>
-<p>Internet(config)#router ospf 1</p>
-<p>Internet(config-router)#network 61.1.1.0 0.0.0.255 area 0</p>
-<p>Internet(config-router)#network 181.1.1.0 0.0.0.255 area 0</p>
-<p>CD(config)#router ospf 1</p>
-<p>CD(config-router)#network 181.1.1.0 0.0.0.255 area 0</p>
-<p>show i proute:</p>
-<h3 id="各路由器"><a href="#各路由器" class="headerlink" title="各路由器"></a>各路由器</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sqpx15uj30eu038749.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sr0aekqj30d002ut8l.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69srfu00rj30es03kweh.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69srofqqzj3098033dfm.jpg" alt="/img"></p>
-<h3 id="VPN"><a href="#VPN" class="headerlink" title="VPN:"></a>VPN:</h3><p>BJ(config)#int tunnel 1</p>
-<p>BJ(config-if)#tunnel source 61.1.1.1</p>
-<p>BJ(config-if)#tunnel destination 181.1.1.1</p>
-<p>BJ(config-if)#ip add 10.0.0.1 255.255.255.252</p>
-<p>BJ(config)#ip route 172.16.1.0 255.255.255.0 tunnel 1 //不进入接口</p>
-<p>CD(config)#int tunnel 1</p>
-<p>CD(config-if)#tunnel source 181.1.1.1</p>
-<p>CD(config-if)#tunnel destination 61.1.1.1</p>
-<p>CD(config-if)#ip address 10.0.0.2 255.255.255.252</p>
-<p>CD(config)#ip route 192.168.1.0 255.255.255.0 tunnel 1</p>
-<h3 id="实验成果："><a href="#实验成果：" class="headerlink" title="实验成果："></a>实验成果：</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69sseepiqj30ce082glo.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69ssvidc0j310o0kw75m.jpg" alt="/img"></p>
-<p>最后说一下，本次实验其实很简单，代码没几行，但是过程要细致一点，比如我代码敲完了最后没Ping通，最后检查了好久，才发现是C2端的IP给错了，无话可说，但是这次是自己一个人独立操作完成的，也算是一次成长，自己写，自己检查，最后成功。</p>
-<h1 id="实验二：PPTP"><a href="#实验二：PPTP" class="headerlink" title="实验二：PPTP"></a>实验二：PPTP</h1><h2 id="PPTP介绍"><a href="#PPTP介绍" class="headerlink" title="PPTP介绍"></a>PPTP介绍</h2><p>PPTP（Point to Point Tunneling Protocol）,即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使用远程用户通过拨入ISP、通过直接连接Internet或者其他网络安全的访问企业网</p>
-<p>配置PPTP：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g69st6vnt4j30xy0aj74n.jpg" alt="/img"></p>
-<h2 id="基本配置：-1"><a href="#基本配置：-1" class="headerlink" title="基本配置："></a>基本配置：</h2><p>jiudian(config)#int e0/1</p>
-<p>jiudian(config-if)#ip add 192.168.1.1 255.255.255.0</p>
-<p>jiudian(config-if)#no shutdown</p>
-<p>jiudian(config)#int e0/0</p>
-<p>jiudian(config-if)#ip add 61.1.1.1 255.255.255.0</p>
-<p>jiudian(config-if)#no shutdown</p>
-<p>Internet(config)#int e0/0</p>
-<p>Internet(config-if)#ip add 61.1.1.1 255.255.255.0</p>
-<p>Internet(config-if)#no shutdown</p>
-<p>Internet(config)#int e0/1</p>
-<p>Internet(config-if)#ip add 181.1.1.1 255.255.255.0</p>
-<p>Internet(config-if)#no shutdown</p>
-<p>Router(config)#int e0/0</p>
-<p>Router(config-if)#ip add 181.1.1.2 255.255.255.0</p>
-<p>Router(config-if)#no shutdown</p>
-<p>Router(config)#int e0/1</p>
-<p>Router(config-if)#ip add 172.16.1.1 255.255.255.0</p>
-<p>Router(config-if)#no shutdown</p>
-<p>此实验可以用eigrp</p>
-<p>jiudian(config)#router eigrp 10</p>
-<p>jiudian(config-router)#network 192.168.1.0 0.0.0.255 //真时网络中没有这一步的</p>
-<p>jiudian(config-router)#network 61.1.1.0 0.0.0.255</p>
-<p>jiudian(config-router)#no auto-summary</p>
-<p>Internet(config)#router eigrp 10</p>
-<p>Internet(config-router)#network 61.1.1.0 0.0.0.255</p>
-<p>Internet(config-router)#network 181.1.1.0 0.0.0.255</p>
-<p>Internet(config-router)#no auto-summary</p>
-<p>GS(config)#router eigrp 10</p>
-<p>GS(config-router)#network 181.1.1.0 0.0.0.255</p>
-<p>GS(config-router)#no auto-summary</p>
-<h2 id="PPTP"><a href="#PPTP" class="headerlink" title="PPTP:"></a>PPTP:</h2><p>GS(config)#vpdn enable  //开启vpdn服务</p>
-<p>GS(config)#vpdn-group pptp //创建一个VPDN组，命名为pptp</p>
-<p>GS(config-vpdn)#accept-dialin  //允许拨号</p>
-<p>GS(config-vpdn-acc-in)#protocol pptp  //协议为PPTP</p>
-<p>GS(config-vpdn-acc-in)#virtual-template 1   //引用虚拟模板</p>
-<p>GS(config-vpdn-acc-in)#exit</p>
-<p>GS(config)#username admin password ccie  //创建拨号账号和密码</p>
-<p>GS(config)#ip local pool vpn 1.1.1.100 1.1.1.110 //创建地址池</p>
-<p>GS(config)#int virtual-template 1 //创建虚拟模板1</p>
-<p>GS(config-if)#ppp authentication pap  //加密方式为PAP</p>
-<p>GS(config-if)#peer default ip add pool vpn  //对默认IP 从地址池租约</p>
-<p>GS(config-if)#ip unnumbered ethernet 0/1 //关联内网接口</p>
-<p>GS(config)#ip route 0.0.0.0 0.0.0.0 e0/0 //默认路由</p>
-<h2 id="虚拟机部分："><a href="#虚拟机部分：" class="headerlink" title="虚拟机部分："></a>虚拟机部分：</h2><p>实验效果：</p>
-<p>此实验未做成功</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-08-21PPP协议及验证" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/21/08-21PPP协议及验证/" class="article-date">
-      <time datetime="2019-08-21T08:32:50.000Z" itemprop="datePublished">2019-08-21</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="一、PPP协议及验证"><a href="#一、PPP协议及验证" class="headerlink" title="一、PPP协议及验证"></a>一、PPP协议及验证</h1>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2019/08/21/08-21PPP协议及验证/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-防火墙" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/21/防火墙/" class="article-date">
-      <time datetime="2019-08-20T16:00:00.000Z" itemprop="datePublished">2019-08-21</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/21/防火墙/">防火墙</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <a id="more"></a>
-
-<h1 id="一、防火墙（Firewall）"><a href="#一、防火墙（Firewall）" class="headerlink" title="一、防火墙（Firewall）"></a>一、防火墙（Firewall）</h1><h2 id="1、什么是防火墙"><a href="#1、什么是防火墙" class="headerlink" title="1、什么是防火墙"></a>1、什么是防火墙</h2><p>防火墙是指设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间的一系列部件的组合。</p>
-<p>它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。 </p>
-<p>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部网络的安全。 </p>
-<h2 id="2、部署位置"><a href="#2、部署位置" class="headerlink" title="2、部署位置"></a>2、部署位置</h2><p>1、可信网络与不可信网络之间<br>2、不同安全级别网络之间<br>3、两个需要隔离的区域之间</p>
-<h2 id="3、部署方式（1）"><a href="#3、部署方式（1）" class="headerlink" title="3、部署方式（1）"></a>3、部署方式（1）</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
-<h2 id="3、部署方式（2）"><a href="#3、部署方式（2）" class="headerlink" title="3、部署方式（2）"></a>3、部署方式（2）</h2><p>路由模式</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ave2hxubj30n109zq47.jpg" alt="/img"></p>
-<p>透明模式</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6aveg0nycj30md09p3zs.jpg" alt="/img"></p>
-<p>混合模式</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6avestho2j30mx0dh40h.jpg" alt="/img"></p>
-<h2 id="4、功能"><a href="#4、功能" class="headerlink" title="4、功能"></a>4、功能</h2><p>1、入侵检测功能<br>2、网络地址转换功能<br>3、网络操作的审计监控功能<br>4、强化网络安全服务</p>
-<h1 id="二、防火墙的配置"><a href="#二、防火墙的配置" class="headerlink" title="二、防火墙的配置"></a>二、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p>形式：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg" alt="/img"></p>
-<p>这里可以使用虚拟机 也可以Tools&gt;VPCS 但是注意序号的差别并且点进去之后不可以点击X 不然所作的配置失效</p>
-<p>虚拟机：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pch3ki4j30sn0lz77r.jpg" alt="/img"></p>
-<p>VPCS:</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pd1izjuj30cj07kdfp.jpg" alt="/img"></p>
-<p>基础配置</p>
-<p>R1：</p>
-<p>R1(config)#int e0/0<br>R1(config-if)#ip add 192.168.1.1 255.255.255.0<br>R1(config-if)#no shutdown</p>
-<p>R1(config-if)#int e0/1<br>R1(config-if)#ip add 10.0.0.2 255.255.255.252<br>R1(config-if)#no shutdown</p>
-<p>R1(config)#ip route 61.1.1.0 255.255.255.0 10.0.0.1</p>
-<p>R2：</p>
-<p>R2(config)#int e0/0<br>R2(config-if)#ip add 61.1.1.2 255.255.255.0<br>R2(config-if)#no shutdown<br>R2(config)#ip route 192.168.1.0 255.255.255.0 61.1.1.1</p>
-<p>防火墙配置：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pdjcayej30a103v745.jpg" alt="/img"></p>
-<p>密码可以不用管 默认密码为空值</p>
-<p>PIX(config-if)# nameif outside //将e1接口设置为外接口<br>INFO: Security level for “outside” set to 0 by default.<br>PIX(config-if)# security-level 0 //安全级别设置为零 其实是默认的 这一步可以不用写<br>PIX(config-if)# ip add 61.1.1.1 255.255.255.0  //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# int e0<br>PIX(config-if)# nameif inside  //将e0接口设置为内接口<br>PIX(config-if)# security-level 100 //安全级别设置为内接口<br>PIX(config-if)# ip add 10.0.0.1 255.255.255.252   //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# route inside 192.168.1.0 255.255.255.0 10.0.0.2</p>
-<p>//实现内部网络的路由，下一跳10.0.0.2，否则PIX不知道如何返回数据包<br>PIX(config)# route outside 0.0.0.0 0.0.0.0 61.1.1.2<br>PIX(config)# access-list 1 permit icmp any any<br>PIX(config)# nat (inside) 1 192.168.1.0 255.255.255.0<br> //只允许内部PC的192.168.1.0/24 网络流量<br>PIX(config)# global (outside) 1 interface  //使用地址池或者PAT</p>
-<p><strong>注：pix防火墙对于内部到外部的流量默认不能做ping，做其它服务必须使用NAT功能，对到未知网络还需配置路由。而且pix防火墙可以通过由内部向外发出的返回数据包，而且默认拒绝由外部向内部发出的主动连接数据包。为了防止前次的实验干扰，在实验之前建议使用clear xlate来清除pix的内存连接</strong></p>
-<p>结果：PC机能ping 同外部网络</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pe4xqbdj30br03zjr9.jpg" alt="/img"></p>
-<p>R1能ping通外部网络</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pelk6wwj30g9037weg.jpg" alt="/img"></p>
-<p>外部网络不能ping通内部网络</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pey4obwj30gv0380sp.jpg" alt="/img"></p>
-<p>实验成果图：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
-<h2 id="2、透明式防火墙"><a href="#2、透明式防火墙" class="headerlink" title="2、透明式防火墙"></a>2、透明式防火墙</h2><p>![img](file:///C:\Users\19453\Documents\Tencent Files\1945384242\Image\Group\CRQX@G2L`DK%Q[VM~V]KVZG.png)</p>
-<p>做OSPF的时候no 掉了之前写的ip route xxxx.xxxx.   但是之前写的是ip route 0.0.0.0 0.0.0.0 +下一跳接口</p>
-<p>路由器R4</p>
-<p>hostname R4<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.2 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> ip address 192.168.1.2 255.255.255.0<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 192.168.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
-<p>防火墙</p>
-<dl><dt>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000<br>: end<br>pixfirewall# conf t<br>pixfirewall(config)# acc<br>pixfirewall(config)# access-l<br>pixfirewall(config)# access-list 101 pe<br>pixfirewall(config)# access-list 101 permit ic<br>pixfirewall(config)# access-list 101 permit icmp any any<br>pixfirewall(config)# end<br>pixfirewall#<br>pixfirewall# show run<br>pixfirewall# show running-config<br>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>access-list 101 extended permit icmp any any<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000</dt><dd>end</dd></dl><p>路由器R6</p>
-<p>Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP<br>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area<br>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2<br>       E1 - OSPF external type 1, E2 - OSPF external type 2<br>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2<br>       ia - IS-IS inter area, * - candidate default, U - per-user static route<br>       o - ODR, P - periodic downloaded static route</p>
-<p>Gateway of last resort is not set</p>
-<pre><code>10.0.0.0/29 is subnetted, 1 subnets</code></pre><p>C       10.0.0.0 is directly connected, Ethernet0/0<br>O    192.168.1.0/24 [110/20] via 10.0.0.2, 00:01:08, Ethernet0/0<br>     61.0.0.0/24 is subnetted, 1 subnets<br>C       61.1.1.0 is directly connected, Loopback0<br>R6#show run<br>R6#show running-config<br>Building configuration…</p>
-<p>Current configuration : 828 bytes<br>!<br>version 12.4<br>service timestamps debug datetime msec<br>service timestamps log datetime msec<br>no service password-encryption<br>!<br>hostname R6<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Loopback0<br> ip address 61.1.1.1 255.255.255.0<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.1 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 61.1.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
-<h2 id="3、混合式防火墙"><a href="#3、混合式防火墙" class="headerlink" title="3、混合式防火墙"></a>3、混合式防火墙</h2><p>作业：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pkavvllj30wu0igtam.jpg" alt="/img"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-GNS3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/21/GNS3/" class="article-date">
-      <time datetime="2019-08-20T16:00:00.000Z" itemprop="datePublished">2019-08-21</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/21/GNS3/">防火墙与VPN</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <a id="more"></a>
-
-<h1 id="一、防火墙（Firewall）"><a href="#一、防火墙（Firewall）" class="headerlink" title="一、防火墙（Firewall）"></a>一、防火墙（Firewall）</h1><h2 id="1、什么是防火墙"><a href="#1、什么是防火墙" class="headerlink" title="1、什么是防火墙"></a>1、什么是防火墙</h2><p>防火墙是指设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间的一系列部件的组合。</p>
-<p>它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。 </p>
-<p>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部网络的安全。 </p>
-<h2 id="2、部署位置"><a href="#2、部署位置" class="headerlink" title="2、部署位置"></a>2、部署位置</h2><p>1、可信网络与不可信网络之间<br>2、不同安全级别网络之间<br>3、两个需要隔离的区域之间</p>
-<h2 id="3、部署方式"><a href="#3、部署方式" class="headerlink" title="3、部署方式"></a>3、部署方式</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
-<h2 id="4、功能"><a href="#4、功能" class="headerlink" title="4、功能"></a>4、功能</h2><p>1、入侵检测功能<br>2、网络地址转换功能<br>3、网络操作的审计监控功能<br>4、强化网络安全服务</p>
-<h1 id="二、VPN"><a href="#二、VPN" class="headerlink" title="二、VPN"></a>二、VPN</h1><h2 id="1、L2TP-VPN"><a href="#1、L2TP-VPN" class="headerlink" title="1、L2TP VPN"></a>1、L2TP VPN</h2><p>2TP是一种工业标准的Internet隧道协议，功能大致和PPTP协议类似，比如同样可以对网络数据流进行加密。不过也有不同之处，比如PPTP要求网络为IP网络，L2TP要求面向数据包的点对点连接；PPTP使用单一隧道，L2TP使用多隧道；L2TP提供包头压缩、隧道验证，而PPTP不支持。</p>
-<h2 id="2、PPTP-VPN"><a href="#2、PPTP-VPN" class="headerlink" title="2、PPTP-VPN"></a>2、PPTP-VPN</h2><p>即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使远程用户通过拨入ISP、通过直接连接Internet或其他网络安全地访问企业网。</p>
-<h2 id="3、IPsec-VPN"><a href="#3、IPsec-VPN" class="headerlink" title="3、IPsec-VPN"></a>3、IPsec-VPN</h2><p>互联网安全协议（英语：Internet Protocol Security，缩写为IPsec），是一个协议包，通过对IP协议的分组进行加密和认证来保护IP协议的网络传输协议族（一些相互关联的协议的集合）。 [1]<br>IPsec主要由以下协议组成：</p>
-<p>一、认证头（AH），为IP数据报提供无连接数据完整性、消息认证以及防重放攻击保护；</p>
-<p>二、封装安全载荷（ESP），提供机密性、数据源认证、无连接完整性、防重放和有限的传输流（traffic-flow）机密性；</p>
-<p>三、安全关联（SA），提供算法和数据包，提供AH、ESP操作所需的参数。</p>
-<p>IPsec协议工作在OSI模型的第三层，使其在单独使用时适于保护基于TCP或UDP的协议（如安全套接子层（SSL）就不能保护UDP层的通信流）。这就意味着，与传输层或更高层的协议相比，IPsec协议必须处理可靠性和分片的问题，这同时也增加了它的复杂性和处理开销。相对而言，SSL/TLS依靠更高层的TCP（OSI的第四层）来管理可靠性和分片。</p>
-<h2 id="4、GRE-VPN"><a href="#4、GRE-VPN" class="headerlink" title="4、GRE VPN"></a>4、GRE VPN</h2><p>GRE是一种最传统的隧道协议，其根本功能就是要实现隧道功能，通过隧道连接的两<br>个远程网络就如同直连，GRE在两个远程网络之间模拟出直连链路,从而使网络间达到直<br>连的效果，为此，GRE需要完成多次封装,总共有3次</p>
-<p>（1）接收原始IP数据包当作乘客协议,原始IR数据包包头的IP地址为私有IP地址</p>
-<p>（2）将原始IP数据包封装进GRE协议, GRE协议称为封装协议(Encapsulation Protocol) ,封装的包头IP地址为虚拟直连链路两端的IP地址</p>
-<p>（3）将整个GRE数据包当作数据，在外层封装公网IP包头，也就是隧道的起源和终点，从而路由到隧道终点</p>
-<h1 id="三、防火墙的配置"><a href="#三、防火墙的配置" class="headerlink" title="三、防火墙的配置"></a>三、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg" alt="/img"></p>
-<p>这里可以使用虚拟机 也可以Tools&gt;VPCS 但是注意序号的差别并且点进去之后不可以点击X 不然所作的配置失效</p>
-<p>虚拟机：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pch3ki4j30sn0lz77r.jpg" alt="/img"></p>
-<p>VPCS:</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pd1izjuj30cj07kdfp.jpg" alt="/img"></p>
-<p>基础配置</p>
-<p>R1：</p>
-<p>R1(config)#int e0/0<br>R1(config-if)#ip add 192.168.1.1 255.255.255.0<br>R1(config-if)#no shutdown</p>
-<p>R1(config-if)#int e0/1<br>R1(config-if)#ip add 10.0.0.2 255.255.255.252<br>R1(config-if)#no shutdown</p>
-<p>R1(config)#ip route 61.1.1.0 255.255.255.0 10.0.0.1</p>
-<p>R2：</p>
-<p>R2(config)#int e0/0<br>R2(config-if)#ip add 61.1.1.2 255.255.255.0<br>R2(config-if)#no shutdown<br>R2(config)#ip route 192.168.1.0 255.255.255.0 61.1.1.1</p>
-<p>防火墙配置：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pdjcayej30a103v745.jpg" alt="/img"></p>
-<p>密码可以不用管 默认密码为空值</p>
-<p>PIX(config-if)# nameif outside //将e1接口设置为外接口<br>INFO: Security level for “outside” set to 0 by default.<br>PIX(config-if)# security-level 0 //安全级别设置为零 其实是默认的 这一步可以不用写<br>PIX(config-if)# ip add 61.1.1.1 255.255.255.0  //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# int e0<br>PIX(config-if)# nameif inside  //将e0接口设置为内接口<br>PIX(config-if)# security-level 100 //安全级别设置为内接口<br>PIX(config-if)# ip add 10.0.0.1 255.255.255.252   //给接口一个管理IP<br>PIX(config-if)# no shu<br>PIX(config-if)# exit<br>PIX(config)# route inside 192.168.1.0 255.255.255.0 10.0.0.2</p>
-<p>//实现内部网络的路由，下一跳10.0.0.2，否则PIX不知道如何返回数据包<br>PIX(config)# route outside 0.0.0.0 0.0.0.0 61.1.1.2<br>PIX(config)# access-list 1 permit icmp any any<br>PIX(config)# nat (inside) 1 192.168.1.0 255.255.255.0<br> //只允许内部PC的192.168.1.0/24 网络流量<br>PIX(config)# global (outside) 1 interface  //使用地址池或者PAT</p>
-<p><strong>注：pix防火墙对于内部到外部的流量默认不能做ping，做其它服务必须使用NAT功能，对到未知网络还需配置路由。而且pix防火墙可以通过由内部向外发出的返回数据包，而且默认拒绝由外部向内部发出的主动连接数据包。为了防止前次的实验干扰，在实验之前建议使用clear xlate来清除pix的内存连接</strong></p>
-<p>结果：PC机能ping 同外部网络</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pe4xqbdj30br03zjr9.jpg" alt="/img"></p>
-<p>R1能ping通外部网络</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pelk6wwj30g9037weg.jpg" alt="/img"></p>
-<p>外部网络不能ping通内部网络</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pey4obwj30gv0380sp.jpg" alt="/img"></p>
-<p>实验成果图：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
-<h2 id="2、透明式防火墙"><a href="#2、透明式防火墙" class="headerlink" title="2、透明式防火墙"></a>2、透明式防火墙</h2><p>![img](file:///C:\Users\19453\Documents\Tencent Files\1945384242\Image\Group\CRQX@G2L`DK%Q[VM~V]KVZG.png)</p>
-<p>做OSPF的时候no 掉了之前写的ip route xxxx.xxxx.   但是之前写的是ip route 0.0.0.0 0.0.0.0 +下一跳接口</p>
-<p>路由器R4</p>
-<p>hostname R4<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.2 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> ip address 192.168.1.2 255.255.255.0<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 192.168.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
-<p>防火墙</p>
-<dl><dt>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000<br>: end<br>pixfirewall# conf t<br>pixfirewall(config)# acc<br>pixfirewall(config)# access-l<br>pixfirewall(config)# access-list 101 pe<br>pixfirewall(config)# access-list 101 permit ic<br>pixfirewall(config)# access-list 101 permit icmp any any<br>pixfirewall(config)# end<br>pixfirewall#<br>pixfirewall# show run<br>pixfirewall# show running-config<br>: Saved<br>:<br>PIX Version 7.2(1)<br>!<br>firewall transparent<br>hostname pixfirewall<br>enable password 8Ry2YjIyt7RRXU24 encrypted<br>names<br>!<br>interface Ethernet0<br> nameif inside<br> security-level 100<br>!<br>interface Ethernet1<br> nameif outside<br> security-level 0<br>!<br>interface Ethernet2<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet3<br> shutdown<br> no nameif<br> no security-level<br>!<br>interface Ethernet4<br> shutdown<br> no nameif<br> no security-level<br>!<br>passwd 2KFQnbNIdI.2KYOU encrypted<br>ftp mode passive<br>access-list aaa extended permit icmp any any<br>access-list 101 extended permit ospf any any<br>access-list 101 extended permit icmp any any echo<br>access-list 101 extended permit icmp any any<br>pager lines 24<br>mtu inside 1500<br>mtu outside 1500<br>ip address 10.0.0.3 255.255.255.248<br>no asdm history enable<br>arp timeout 14400<br>access-group 101 in interface inside<br>access-group 101 in interface outside<br>timeout xlate 3:00:00<br>timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02<br>timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00<br>timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00<br>timeout uauth 0:05:00 absolute<br>no snmp-server location<br>no snmp-server contact<br>snmp-server enable traps snmp authentication linkup linkdown coldstart<br>telnet timeout 5<br>ssh timeout 5<br>console timeout 0<br>!<br>!<br>prompt hostname context<br>Cryptochecksum:00000000000000000000000000000000</dt><dd>end</dd></dl><p>路由器R6</p>
-<p>Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP<br>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area<br>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2<br>       E1 - OSPF external type 1, E2 - OSPF external type 2<br>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2<br>       ia - IS-IS inter area, * - candidate default, U - per-user static route<br>       o - ODR, P - periodic downloaded static route</p>
-<p>Gateway of last resort is not set</p>
-<pre><code>10.0.0.0/29 is subnetted, 1 subnets</code></pre><p>C       10.0.0.0 is directly connected, Ethernet0/0<br>O    192.168.1.0/24 [110/20] via 10.0.0.2, 00:01:08, Ethernet0/0<br>     61.0.0.0/24 is subnetted, 1 subnets<br>C       61.1.1.0 is directly connected, Loopback0<br>R6#show run<br>R6#show running-config<br>Building configuration…</p>
-<p>Current configuration : 828 bytes<br>!<br>version 12.4<br>service timestamps debug datetime msec<br>service timestamps log datetime msec<br>no service password-encryption<br>!<br>hostname R6<br>!<br>boot-start-marker<br>boot-end-marker<br>!<br>!<br>no aaa new-model<br>memory-size iomem 5<br>!<br>!<br>ip cef<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>interface Loopback0<br> ip address 61.1.1.1 255.255.255.0<br>!<br>interface Ethernet0/0<br> ip address 10.0.0.1 255.255.255.248<br> half-duplex<br>!<br>interface Ethernet0/1<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/2<br> no ip address<br> shutdown<br> half-duplex<br>!<br>interface Ethernet0/3<br> no ip address<br> shutdown<br> half-duplex<br>!<br>router ospf 1<br> log-adjacency-changes<br> network 10.0.0.0 0.0.0.7 area 0<br> network 61.1.1.0 0.0.0.255 area 0<br>!<br>no ip http server<br>no ip http secure-server<br>!<br>!<br>!<br>!<br>!<br>!<br>control-plane<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>!<br>line con 0<br>line aux 0<br>line vty 0 4<br>!<br>!<br>end</p>
-<h2 id="3、混合式防火墙"><a href="#3、混合式防火墙" class="headerlink" title="3、混合式防火墙"></a>3、混合式防火墙</h2><p>作业：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pkavvllj30wu0igtam.jpg" alt="/img"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-网络地址转换NAT" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/20/网络地址转换NAT/" class="article-date">
-      <time datetime="2019-08-19T16:00:00.000Z" itemprop="datePublished">2019-08-20</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/20/网络地址转换NAT/">网络地址转换NAT</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <a id="more"></a>
-
-<h2 id="网络地址转换（NAT）"><a href="#网络地址转换（NAT）" class="headerlink" title="网络地址转换（NAT）"></a>网络地址转换（NAT）</h2><h4 id="什么是NAT"><a href="#什么是NAT" class="headerlink" title="什么是NAT"></a>什么是NAT</h4><p>一种将私有（保留）地址转化为合法IP地址的转换技术，它被广泛应用于各种类型Internet接入方式和各种类型的网络中。</p>
-<p>NAT技术设计初衷</p>
-<p>增加私有组织的可用地址空间</p>
-<p>解决现有私有网络接入的IP地址编号问题</p>
-<h4 id="NAT的优缺点"><a href="#NAT的优缺点" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h4><p>优点</p>
-<p>管理方便并且节约IP地址资源</p>
-<p>隐藏内部 IP 地址信息</p>
-<p>可用于实现网络负载均衡</p>
-<p>缺点</p>
-<p>外部应用程序却不能方便地与 NAT 网关后面的应用程序联系。 </p>
-<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>  通过使用少量公有IP表示众多私有IP地址实现的，为推迟可用IP地址空间耗尽的时间</p>
-<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yf40hjzj30lg09vgov.jpg" alt="/img"></p>
-<p><strong>NAT适用于以下情况</strong>：</p>
-<p>1 需要连接到INTERNET，但主机没有全局唯一的IP地址；</p>
-<p>2 更换的ISP（Internet Service Provider，网络最终用户进入internet的入口和桥梁）要求对网络进行重新编址；</p>
-<p>3 需要合并两个使用相同编址方案的内联网；</p>
-<p>且NAT通常用于边界路由器；</p>
-<h3 id="NAT的优缺点-1"><a href="#NAT的优缺点-1" class="headerlink" title="NAT的优缺点"></a>NAT的优缺点</h3><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63ymuy7jmj30nq064dif.jpg" alt="/img"></p>
-<p>最明显的优点：能够节省合法的注册地址，这也是IPv4地址至今未耗尽的原因；将局域网隐藏在公用网络之中，增加网络的安全性；</p>
-<h3 id="网络地址转换类型"><a href="#网络地址转换类型" class="headerlink" title="网络地址转换类型"></a>网络地址转换类型</h3><h4 id="静态NAT"><a href="#静态NAT" class="headerlink" title="静态NAT"></a>静态NAT</h4><p>这种NAT能够在本地地址和全局地址之间进行一对一映射。即使用静态NAT时，必须为网络中的每台主机提供一个公有因特网IP地址。</p>
-<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g685q62wu8j30jw0e8dhh.jpg" alt="/img"></p>
-<h4 id="动态NAT"><a href="#动态NAT" class="headerlink" title="动态NAT"></a>动态NAT</h4><p>它能够将未注册的IP地址映射到注册IP地址池中的一个地址，无需配置静态路由器，使其将每个内部地址映射到一个外部地址，但必须有足够的公有因特网IP地址，让连接到因特网的主机都能够同时发送和接收分组。</p>
-<h4 id="NAT重载"><a href="#NAT重载" class="headerlink" title="NAT重载"></a>NAT重载</h4><p>也是动态NAT，它利用源端口将多个非注册的IP地址映射到一个注册IP地址，形成多对一。也被称为端口地址转换（PAT）。通过使用 PAT (NAT 重载)，只 使用一个全局 地址，就可将数千名用户连接到因特网，这是不是很酷?因特网 IP 地址之所以还未耗尽，真正的原因就在 使用了 NAT重载。</p>
-<h4 id="NAT术语"><a href="#NAT术语" class="headerlink" title="NAT术语"></a>NAT术语</h4><p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g63yx0ca48j30l205amyl.jpg" alt="/img"></p>
-<p>对于用于 NAT 的地址，我们使用的术语很简单。 NAT 转换后的地址称为全局地址，这通常是因特网公有地址;但如果无需连接到因特网，则不需要公有地址。</p>
-<p>进行 NAT 转换前的地址称为本地地址。因此，内部本地地址是试图连接到因特网的主机的私有地址;而外部本地地址通常是与 ISP 相连的路由器接口的地址。后者通常是公有地址，主机发送的分组的源地址通常会转换为这种地址。</p>
-<p>内部本地地址将被转换为内部全局地址，而外部全局地址将成为目标地址。表 13-2 列出了各种 NAT术语。</p>
-<h3 id="静态NAT配置"><a href="#静态NAT配置" class="headerlink" title="静态NAT配置"></a>静态NAT配置</h3><p>示例图：<img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g673plhco0j30mq0bbdgy.jpg" alt="/img"></p>
-<p>实际拓扑图：</p>
-<p><img src="http://ww1.sinaimg.cn/large/0072FDFVgy1g674wcg0htj30od0dhaag.jpg" alt="/img"></p>
-<p>静态NAT：</p>
-<p>基本配置：</p>
-<p>加模块：</p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566558306805.png" alt="1566558306805"></p>
-<p>交换机配置：</p>
-<p>SW:</p>
-<p>SW1(config)#vlan 10</p>
-<p>SW1(config-vlan)#int vlan 10</p>
-<p>SW1(config-if)#exit</p>
-<p>SW1(config)#vlan 20</p>
-<p>SW1(config-vlan)#int vlan 20</p>
-<p>SW1(config-if)#exit</p>
-<p>把端口接入vlan </p>
-<p>SW1(config)#int f0/1</p>
-<p>SW1(config-if)#sw mo acc</p>
-<p>SW1(config-if)#sw acc vlan 10</p>
-<p>SW1(config-if)#no shutdown </p>
-<p>SW1(config-if)#exit</p>
-<p>SW1(config)#int f0/2</p>
-<p>SW1(config-if)#sw mo acc</p>
-<p>SW1(config-if)#sw acc vlan 20</p>
-<p>SW1(config-if)#no shutdown </p>
-<p>SW1(config)#int f0/3</p>
-<p>SW1(config-if)#sw mo trunk </p>
-<p>SW1(config-if)#no shutdown </p>
-<p>路由器配置:</p>
-<p>R1(config)#int f0/0.10</p>
-<p>R1(config-subif)#encapsulation dot1Q 10</p>
-<p>R1(config-subif)#ip add 192.168.0.254 255.255.255.0</p>
-<p>R1(config-subif)#no shutdown </p>
-<p>R1(config)#int f0/0.20</p>
-<p>R1(config-subif)#encapsulation dot1Q 20</p>
-<p>R1(config-subif)#ip add 192.168.1.254 255.255.255.0</p>
-<p>R1(config-subif)#no shutdown </p>
-<p>R1(config)#int f0/0</p>
-<p>R1(config-if)#no shutdown </p>
-<p>R1(config)#int s0/3/0</p>
-<p>R1(config-if)#ip add 61.1.1.1 255.255.255.0</p>
-<p>R1(config-if)#no shutdown </p>
-<p>R2(config)#int s0/3/0</p>
-<p>R2(config-if)#ip add 61.1.1.2 255.255.255.0 </p>
-<p>R2(config-if)#no shutdown </p>
-<p> R2(config)#int f0/0</p>
-<p>R2(config-if)#ip add 172.16.1.254 255.255.255.0</p>
-<p>R2(config-if)#no shutdown </p>
-<p>R1(config)#int f0/0.10<br>R1(config-subif)#ip nat inside<br>R1(config)#int f0/0.20<br>R1(config-subif)#ip nat inside </p>
-<p>R1(config)#ip route 172.16.1.0 255.255.255.0 61.1.1.2 //我在配置的时候就少了这句，然后找了好久好久才发现漏掉了这个，少了这句话服务器就找不到经过R2的下一跳路由，就ping不到PC2</p>
-<p>效果展示：</p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566565998981.png" alt="1566565998981"></p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566018310.png" alt="1566566018310"></p>
-<p>R1#debug ip nat</p>
-<p>R1#show ip nat translations </p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566566113573.png" alt="1566566113573"></p>
-<p>最终实现效果：服务器可以访问外部网络的PC机，而外部网络不可以访问内部服务器，如果要内部网络可以访问外部网络，就加上一条静态的：ip nat inside source static 192.168.1.1  61.1.1.1 </p>
-<p>动态NAT：</p>
-<p>为了方便，动态nat是在静态的基础上做的，把之前写的ip nat inside source static 192.168.0.1 61.1.1.1 删掉就可以了</p>
-<p>核心配置：</p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567476212.png" alt="1566567476212"></p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566567687190.png" alt="1566567687190"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-IPv4编址方案" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/05/IPv4编址方案/" class="article-date">
-      <time datetime="2019-08-04T16:00:00.000Z" itemprop="datePublished">2019-08-05</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>第二讲 IP地址介绍及VLSM**</p>
-<h2 id="一、-IPv4-编址方案"><a href="#一、-IPv4-编址方案" class="headerlink" title="一、**IPv4**编址方案"></a><strong>一、**</strong>IPv4<strong>**编址方案</strong></h2><p>IP地址由32位二进制数组成，这些位被划分为4组，中间用“.”号隔开，每组8位，以十进制数形式表示。分为<strong>网络地址</strong>和<strong>主机地址</strong>两个部分。</p>
-<h3 id="1、-IP-地址分类"><a href="#1、-IP-地址分类" class="headerlink" title="1、**IP**地址分类"></a><strong>1、**</strong>IP<strong>**地址分类</strong></h3><h4 id="A-类网络地址范围"><a href="#A-类网络地址范围" class="headerlink" title="A**类网络地址范围**"></a><strong>A**</strong>类网络地址范围**</h4><p>​    第一个字节的第一位必须为0，第一个字节的取值为<strong>0**</strong>－127**</p>
-<p>​        即：0xxxxxxx    取值范围是：<strong>0</strong>0000000－<strong>0</strong>1111111  （0－127）</p>
-<p><strong>1.1.1.1/8</strong>   <strong>网络号：8**</strong>位   255.0.0.0**</p>
-<p>网络地址：1.0.0.0</p>
-<p>广播地址：1.255.255.255</p>
-<p>在这网络中有多少个地址呢？2^24</p>
-<p>有效地址：2^24-2</p>
-<h4 id="B-类网络地址范围"><a href="#B-类网络地址范围" class="headerlink" title="B**类网络地址范围**"></a><strong>B**</strong>类网络地址范围**</h4><p>第一个字节的第一位必须是1，且第二位必须是0，第一个字节的取值为<strong>128**</strong>－191**</p>
-<p>​       即：<strong>1</strong>0000000   取值范围是：<strong>10</strong>000000－<strong>10</strong>111111   （128－191）</p>
-<p>181.1.1.1/16   255.255.0.0</p>
-<p>网络地址：181.1.0.0</p>
-<p>广播地址：181.1.255.255</p>
-<p>有效地址：2^16-2</p>
-<h4 id="C-类网络的地址范围"><a href="#C-类网络的地址范围" class="headerlink" title="C**类网络的地址范围**"></a><strong>C**</strong>类网络的地址范围**</h4><p>​    第一个字节的前两位必须是1，且第三位必须是0，第一个字节的取值为<strong>192**</strong>－223**</p>
-<p>​       即：<strong>110</strong>00000   取值范围是：<strong>110</strong>00000－11011111   （192－223）</p>
-<p>192.168.1.1/24  255.255.255.0</p>
-<p>网络地址：192.168.1.0</p>
-<p>广播地址：192.168.1.255</p>
-<p>有效地址：2^8-2  254</p>
-<p><strong>D**</strong>类网络的地址范围：第一个字节为224–239<strong>**，用作组播地址。</strong></p>
-<p><strong>E**</strong>类网络的地址范围：第一个字节为240–255<strong>**，用于科学用途。</strong></p>
-<h3 id="2-、保留的IP地址"><a href="#2-、保留的IP地址" class="headerlink" title="2**、保留的IP地址**"></a><strong>2**</strong>、保留的<strong><strong>IP</strong></strong>地址**</h3><p>   <img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ascnwblgj30fj003064.jpg" alt="/img">   <strong>地</strong>  <strong>址</strong>                     <strong>功</strong>     <strong>能</strong></p>
-<p>网络地址全为0           表示当前网络或网段</p>
-<p>网络地址全为1           表示所有网络</p>
-<p>地址127.0.0.1            保留用于环回测试</p>
-<p>节点地址全为0           表示网络地址或指定网络中的任何主机</p>
-<p>节点地址全为1           表示指定网络中的所有节点</p>
-<p>整个IP地址全为0         思科路由器用它来指定默认路由，也可能表示任何网络</p>
-<p>整个IP地址全为1         到当前网络中所有节点的广播，有时称为“全1广播”或限定</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ascnwblgj30fj003064.jpg" alt="/img">                         广播即：255.255.255.255</p>
-<h3 id="3-、各类网络地址中网络数和主机数"><a href="#3-、各类网络地址中网络数和主机数" class="headerlink" title="3**、各类网络地址中网络数和主机数**"></a><strong>3**</strong>、各类网络地址中网络数和主机数**</h3><p>　　A 类网络地址：</p>
-<p>　　　　　　实际可用的A类网络地址数为：2^7=128</p>
-<p>​                         合法的主机数为：2 ^24－2＝16777214</p>
-<p>　　B类网络地址：</p>
-<p>　　　　　　实际可用的B类网络地址数为：2^14=16384</p>
-<p>​                        合法的主机数为：2^16-2=65534</p>
-<p>　　C类网络地址：</p>
-<p>　　　　　　实际可用的C类网络地址数为：2^21=2097152</p>
-<p>​                        合法的主机数为：2^8-2=254</p>
-<h3 id="4-、私有IP地址范围-在公网中是不能路由的，必须经过地址转换。"><a href="#4-、私有IP地址范围-在公网中是不能路由的，必须经过地址转换。" class="headerlink" title="4**、私有IP地址范围** 在公网中是不能路由的，必须经过地址转换。"></a><strong>4**</strong>、私有<strong><strong>IP</strong></strong>地址范围** <strong>在公网中是不能路由的，必须经过地址转换。</strong></h3><p>　　　A类　　　10.0.0.0~10.255.255.255</p>
-<p>​      B类      172.16.0.0~172.31.255.255</p>
-<p>​      C类      192.168.0.0~192.168.255.255</p>
-<p><strong>子网划分：将大的网络划分成若干个小网络，尽量减少广播风暴，提高网络效率。</strong></p>
-<p>C类IP地址： <strong>192.168.1</strong>.0 /24  255.255.255.0  有效地址：254个</p>
-<p><strong>请问**</strong>192.168.1.201/27<strong>**在哪个网络？网络号是多少？广播号是多少？有效地址范围是多少？</strong></p>
-<p>B类IP地址：181.1.0.0/17   255.255.128.0</p>
-<p>181.1.0.0</p>
-<p>181.1.0.1  -  181.1.127.254</p>
-<p>181.1.128.0</p>
-<h3 id="5-、如何创建子网？"><a href="#5-、如何创建子网？" class="headerlink" title="5**、如何创建子网？**"></a><strong>5**</strong>、如何创建子网？**</h3><p>   要创建子网，我们可以采用如下步骤：</p>
-<p>​     （1）确定需要的网络ID数</p>
-<p>​           ■ 每个LAN子网一个</p>
-<p>​           ■ 每条广域网连接一个        </p>
-<p>​     （2）确定每个子网所需的主机ID数</p>
-<p>​           ■每个TCP/IP主机一个</p>
-<p>​           ■每个路由器接口一个</p>
-<p>​    （3）根据上述需要，确定如下内容：</p>
-<p>​           ■一个用于整个网络的子网掩码</p>
-<p>​           ■每个物理网段的唯一子网ID</p>
-<p>​           ■每个子网的主机ID范围</p>
-<p><strong>5、**</strong>C<strong>**类网络的子网划分</strong></p>
-<p><strong>C**</strong>类网络的快速子网划分**</p>
-<p>给网络选择子网掩码后，需要计算该子网掩码提供的子网数以及每个子网的合法主机地址和广播地址。为此，你只需要回答下面5个问题：</p>
-<p><strong>（1）**</strong>选定的子网掩码将创建多少个子网？**</p>
-<p>​         <strong>192.168.1.0 /26</strong></p>
-<p><strong>11111111.11111111.11111111.11000000</strong></p>
-<p>​                          <strong>128+64=192</strong></p>
-<p>​       <strong>子网掩码值：255.255.255.192</strong></p>
-<p>​     2^2个，向主机位借位（取值为1）的位数。例：11000000，子网数为：2^2（4个）</p>
-<p><strong>（2**</strong>）每个子网可包含多少台主机？**</p>
-<p>​     2y个，y为被遮盖（取值为0）的位数。例：11000000，每个子网包含的主机数</p>
-<p>​     为：2^6－2（62个）</p>
-<p><strong>（3**</strong>）有哪些合法的子网？**</p>
-<p>​     块大小（增量）为<strong>256**</strong>－子网掩码**。如：256－192＝64，即子网掩码为192时，</p>
-<p> 块大小为64。从0开始不断增加64，直到达到子网掩码值，中间的值就是子网，即：</p>
-<p>192.168.1.0–63</p>
-<p>网络号：192.168.1.0</p>
-<p>广播号：192.168.1.63</p>
-<p>有效地址范围：192.168.1.1–192.168.1.62</p>
-<p>192.168.1.64-127</p>
-<p>网络号：192.168.1.64</p>
-<p>广播号：192.168.1.127</p>
-<p>有效地址范围：192.168.1.65-192.168.126</p>
-<p>192.168.128-191</p>
-<p>192.168.128</p>
-<p>192.168.1.192-255</p>
-<p>192.168.4.0  255.255.255.0  划分8个子网</p>
-<p><strong>11111111.11111111.11111111.11100000</strong></p>
-<p>​                          <strong>128+64+32=224</strong></p>
-<p>192.168.4.0/27   255.255.255.224</p>
-<p>2^3=8</p>
-<p>块大小：256-224=32</p>
-<p>地址范围：</p>
-<p>192.168.4.0–192.168.4.31</p>
-<p>网络号：</p>
-<p>广播号：</p>
-<p>有效地址：</p>
-<p>4.0–31</p>
-<p>192.168.4.32–192.168.4.63</p>
-<p>192.168.4.64–192.168.4.95</p>
-<p>96–127</p>
-<p>128–159</p>
-<p>160–191</p>
-<p>192–223</p>
-<p>224–255</p>
-<p>192.168.4.200请问这个地址是属于哪个网络</p>
-<p><strong>练习：</strong></p>
-<p><strong>例1</strong>：255.255.255.128 （/25）</p>
-<p>​       网络地址：192.168.10.0</p>
-<p>​       子网掩码：255.255.255.128</p>
-<p><strong>例2</strong>：255.255.255.224（/27）</p>
-<p>  网络地址：192.168.10.0</p>
-<p>  子网掩码：255.255.255.224</p>
-<p><strong>多少个子网？</strong></p>
-<p><strong>每个子网多少台主机？</strong></p>
-<p><strong>有哪些合法的子网？</strong></p>
-<p><strong>每个子网的广播地址是多少？</strong></p>
-<p><strong>每个子网包含哪些合法主机地址？</strong></p>
-<p><strong>3、**</strong>网络地址：192.168.10.33** <strong>，子网掩码：255.255.255.224**</strong>，有哪些网络？分别有哪些**</p>
-<p><strong>4**</strong>、假设主机地址为：192.168.10.174<strong><strong>，子网掩码为255.255.255.240</strong></strong>。合法的主**</p>
-<p>   <strong>机地址范围是多少呢？</strong></p>
-<p> <strong>5**</strong>、如果节点地址为：192.168.10.17<strong><strong>，子网掩码为：255.255.255.252</strong></strong>。该IP<strong>**地址属于哪个子网？该子网的广播地址是什么？</strong></p>
-<p><strong>B**</strong>类地址的子网划分**</p>
-<p><strong>举例１：172.16.0.0/16       255.255.0.0</strong></p>
-<p>​                          <strong>11111111.11111111.10000000.00000000</strong></p>
-<p><strong>划分为两个网络：2^1=2</strong></p>
-<p>　　　<strong>子网掩码是多少？255.255.128.0</strong></p>
-<p><strong>块大小是多少？256-128=128</strong></p>
-<p>　　　<strong>有哪些合法的子网？</strong></p>
-<p>​         <strong>172.16.0.0</strong></p>
-<p>​         <strong>172.16.128.0</strong></p>
-<p>　<strong>每个子网多少台主机？2^15-2=32766</strong></p>
-<p>　　　<strong>每个子网包含哪些合法主机地址？</strong></p>
-<p>​          <strong>子网                 0.0             128.0</strong></p>
-<p>​          <strong>第一个主机地址      172.16.0.1        172.16.128.1</strong></p>
-<p>​          <strong>最后一个主机地址    172.16.0.254      172.16.128.254</strong></p>
-<p>​          <strong>广播地址            172.16.0.255      172.16.128.255</strong></p>
-<p>　</p>
-<p><strong>举例2**</strong>：172.16.0.0/24**</p>
-<p>有多少个网络?</p>
-<p>子网掩码是多少？</p>
-<p>块大小是多少？</p>
-<p>练习：</p>
-<p>\1.  172.16.10.33/27属于哪个网络？该子网的广播地址是多少？</p>
-<p>\2.  172.16.66.10  255.255.192.0 属于哪个子网？该子网的广播地址是多少？</p>
-<p>\3.   172.16.50.10  255.255.224.0  属于哪个子网？该子网的广播地址是多少？</p>
-<p>\4.  172.16.45.14  255.255.255.252  属于哪个子网？该子网的广播地址是多少？ </p>
-<p>\5.  172.16.88.255/20 属于哪个子网？该子网的广播地址是多少？   </p>
-<p><strong>A**</strong>类网络的子网划分**</p>
-<p>​    A类网络的子网划分和C类网强没有什么不同，但需要处理的是24位，而B类和C类网络需要处理的分别是16位和8位。 </p>
-<p>  <strong>举例1**</strong>：**10.0.0.0/16</p>
-<p>​    多少个子网？2^8=256</p>
-<p>​    每个子网的主机数？2^16-2=65534</p>
-<p>​    有哪些合法子网？需要考虑的是第几个字节？只有第二个字节。256-255=1因此子</p>
-<p>网为10.1.0.0   10.2.0.0   10.3.0.0 …….10.255.0.0</p>
-<p>​        每个子网的广播地址是什么？</p>
-<p>​        合法的主机地址是什么？</p>
-<p>举例2：10.0.0.0/20</p>
-<p><strong>CIDR**</strong>（classless inter-domain routing,<strong>**无类域间选择）</strong></p>
-<p>   它是ISP用来将大量地址分配给客户的一种方法。</p>
-<p><strong>CIDR**</strong>值表：**</p>
-<p>255.0.0.0                /8        255.128.0.0              /9     255.192.0.0              /10</p>
-<p>255.224.0.0              /11     255.240.0.0              /12   255.248.0.0              /13</p>
-<p>255.252.0.0              /14     255.254.0.0              /15    255.255.0.0              /16    </p>
-<p>255.255.128.0            /17   255.255.192.0            /18    255.255.224.0            /19</p>
-<p>255.255.240.0           /20    255.255.248.0           /21    255.255.252.0           /22</p>
-<p>255.255.254.0           /23     255.255.255.0           /24    255.255.255.128         /25</p>
-<p>255.255.255.192         /26    255.255.255.224         /27    255.255.255.240         /28</p>
-<p>255.255.255.248         /29    255.255.255.252         /30</p>
-<h2 id="二、变长子网掩码："><a href="#二、变长子网掩码：" class="headerlink" title="二、变长子网掩码："></a><strong>二、变长子网掩码：</strong></h2><p>  <strong>使用长度不同的子网掩码将网络划分成多个子网，适用于不同类型的网络设计，称为VLSM**</strong>组网。**</p>
-<p>   <strong>分类路由选择：RIP1  IGRP**</strong>协议**</p>
-<p>   <strong>无类路由选择：RIP2</strong>　<strong>EIGRP</strong>　　<strong>OSPF**</strong>等协议**</p>
-<p><strong>有类路由</strong>：汇总以后地址是标准的A B C类地址掩码 即 255.0.0.0 255.255.0.0 255.255.255.0 (<a href="https://www.baidu.com/s?wd=有类路由&from=1012015a&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Y3rHTzm1c3uW6zuhmdm1bz0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnWRsnHn1nWnd" target="_blank" rel="noopener">有类路由</a>里 大类网络中 子网码必须一致 这样叫做有类路由 因为有类路由协议不传递子网码信息)<br> 　　<strong>无类路由</strong>：汇总以后地址是无类的比如 172.16.12.0/16 - 172.16.15.0/16 汇总以后的地址是 172.16.12.0/20 子码 不属于 A B C 3个类别(无类路由是相反的 他传递子网信息所有大类网络中可以使用不同的子网码)</p>
-<h3 id="１、典型的分类网络设计"><a href="#１、典型的分类网络设计" class="headerlink" title="１、典型的分类网络设计"></a><strong>１、典型的分类网络设计</strong></h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asdj1c06j30aq066weh.jpg" alt="/img"></p>
-<h3 id="2-、无类网络设计"><a href="#2-、无类网络设计" class="headerlink" title="2**、无类网络设计**"></a><strong>2**</strong>、无类网络设计**</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ase4rv7oj30am064aa2.jpg" alt="/img"></p>
-<h3 id="3、-变长子网掩码工作表"><a href="#3、-变长子网掩码工作表" class="headerlink" title="3、**变长子网掩码工作表**"></a><strong>3、**</strong>变长子网掩码工作表**</h3><h2 id="三、地址汇总"><a href="#三、地址汇总" class="headerlink" title="三、地址汇总"></a><strong>三、地址汇总</strong></h2><p><strong>汇总：也叫路由聚合，让路由选择协议能够用一个地址通告众多网络</strong>。<strong>旨在缩小路由器中路由选择表的规模，以节省内存，并缩短**</strong>IP<strong>**对路由选择表进行分析以找出前往远程网络的所需时间。</strong>图中说明了在互联网络的使用的汇总地址。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asefuaq4j30fk03mweg.jpg" alt="/img"></p>
-<p><strong>举例1**</strong>：**</p>
-<p>192.168.16.0—192.168.31.0  第三个字节：块大小16   240  /20   255.255.240.0</p>
-<p>192.168.16.0/20   255.255.240.0   </p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asez68mzj30fd03v74r.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asfx80c6j30fd02rq31.jpg" alt="/img"></p>
-<p><strong>思考？</strong></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asfi30wdj30fd06i3yi.jpg" alt="/img"></p>
-<p>变化的字节在哪里？第二字节</p>
-<p><strong>块大小？  16</strong></p>
-<p>掩码值：256-16=240</p>
-<p>255.240.0.0  /12  </p>
-<p>172.0.0.0</p>
-<p>172.16.0.0  32 48 64 80 96 112 128 144 160</p>
-<p>172.144.0.0/12</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asgsrii1j30dw03nwer.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ash917wvj30fe03gglp.jpg" alt="/img"></p>
-<h2 id="四、-Cisco-Packet-Tracer介绍与思科设备的基本配置"><a href="#四、-Cisco-Packet-Tracer介绍与思科设备的基本配置" class="headerlink" title="四、 Cisco Packet Tracer介绍与思科设备的基本配置**"></a><strong>四、 <strong>Cisco Packet Tracer</strong></strong>介绍与思科设备的基本配置**</h2><h2 id="五、-PT-介绍及思科的基本操作命令"><a href="#五、-PT-介绍及思科的基本操作命令" class="headerlink" title="五、**PT**介绍及思科的基本操作命令"></a><strong>五、**</strong>PT<strong>**介绍及思科的基本操作命令</strong></h2><h3 id="1、PT介绍（界面、路由器、交换机、线缆、工具…-）"><a href="#1、PT介绍（界面、路由器、交换机、线缆、工具…-）" class="headerlink" title="1、PT介绍（界面、路由器、交换机、线缆、工具…..）"></a>1、PT介绍（界面、路由器、交换机、线缆、工具…..）</h3><p>双绞线：直通线、交叉线、全反线（CONSOLE线）</p>
-<p>线序标准：</p>
-<p>​        T568B：橙白 橙  绿白 蓝 蓝白 绿 棕白 棕</p>
-<p>​        T568A：绿白 绿  橙白 蓝 蓝白 橙 棕白 棕</p>
-<p>直通线：T568B-T568B    T568A-T568A</p>
-<p><strong>不同种设备</strong>相连（模拟器不支持自适应）</p>
-<p>​           交换机–路由器  路由器–集线器  交换机–PC机</p>
-<p>​    交叉线：568A–568B 同种设备相连</p>
-<p>​           交换机–交换机  路由器–路由器 交换机–集线器</p>
-<p>全反线：（CONSOLE线）</p>
-<h3 id="2、设备的连接"><a href="#2、设备的连接" class="headerlink" title="2、设备的连接"></a>2、设备的连接</h3><h3 id="3、路由器的开机过程："><a href="#3、路由器的开机过程：" class="headerlink" title="3、路由器的开机过程："></a>3、路由器的开机过程：</h3><p>开机过程：加电自检–从flash查找和装载IOS–从NVROM（非易失性                      </p>
-<p>存储器）里加载启动配置文件—是否进入配置向导–</p>
-<p>​                            直接进入配置模式</p>
-<p>配置文件：startupconfig   runningconfig</p>
-<p>启动配置文件   运行配置文件</p>
-<h3 id="4、基本命令操作："><a href="#4、基本命令操作：" class="headerlink" title="4、基本命令操作："></a>4、基本命令操作：</h3><h3 id="5、"><a href="#5、" class="headerlink" title="5、"></a>5、</h3><p>（1）、模式：</p>
-<p>​      Router&gt;用户模式</p>
-<p>​      Router&gt;enable</p>
-<p>​      Router#特权模式</p>
-<p>​      Router#configure terminal </p>
-<p>​      Router(config)#全局配置模式</p>
-<p>​      Router(config)#hostname R1  （配置路由器的名称）</p>
-<p>​      R1(config)#interface FastEthernet 0/0</p>
-<p>​      R1(config-if)#接口模式</p>
-<p>​      R1(config-if)#ip address 192.168.1.1 255.255.255.0 （配置IP地址）</p>
-<p>​      R1(config-if)#no shutdown （开启端口）</p>
-<p>​      两台路由器相连，测试连通性</p>
-<p>​       Router&gt;用户模式</p>
-<p>​       Router&gt;enable</p>
-<p>​       Router#特权模式</p>
-<p>​       Router#configure terminal </p>
-<p>​       Router(config)#全局配置模式</p>
-<p>​       Router(config)#hostname R2  （配置路由器的名称）</p>
-<p>​       R2(config)#interface FastEthernet 0/0</p>
-<p>​       R2(config-if)#接口模式</p>
-<p>​       R2(config-if)#ip address 192.168.1.2 255.255.255.0 （配置IP地址）</p>
-<p>​       R2(config-if)#no shutdown （开启端口）</p>
-<p>​       使用ping命令测试通信：如果通信用!!!表示，不通用…表示</p>
-<p>​           R1(config-if)#接口模式</p>
-<p>​           R1(config-if)#exit  退出当前模式，返回上一级模式</p>
-<p>​           R1(config)#全局配置模式</p>
-<p>​           R1(config)#exit</p>
-<p>​           R1#特权模式</p>
-<p>​           R1#ping 192.168.1.1 </p>
-<p>​        –输入end（或ctrl+c或ctrl+z）直接返回到特权模式—————–</p>
-<p>​            R1(config-if)#end</p>
-<p>​            R1#特权模式</p>
-<p>​        -——————————————</p>
-<p>   （2）命令支持简写</p>
-<p>   （3）帮助功能</p>
-<p>   （4）tab补全命令</p>
-<p>   （5）给设备配置密码：防止别人非法更改我设备的配置</p>
-<p>​       </p>
-<p>​      为特权模式配置明文密码</p>
-<p>​       R1(config)#enable password 123456   明文密码</p>
-<p>​       R1(config)#show running-config   可以查看密码</p>
-<p>​       Current configuration : 565 bytes  配置文件大小可以判断是否更改设备配置</p>
-<p>​      为特权模式配置密文密码</p>
-<p>​       R1(config)#enable secret 123456   明文密码</p>
-<p>​       R1(config)#show running-config   可以查看密码</p>
-<p>​       两个密码同时配置时，加密的密码生效。</p>
-<p>   （6）保存配置文件</p>
-<p>​       R1#copy <strong>running-config</strong> startup-config  </p>
-<p>​       或  R1#write</p>
-<p>​              </p>
-<p>   （7）查看命令</p>
-<p>​        R1#show ip interface brief  查看接口摘要信息</p>
-<p>​        R1#show running-config      查年当前的运行配置文件</p>
-<p>​        R1#show startup-config      查看启动配置文件</p>
-<p>Running-config本来和startup-config 一样 但是running-config如果不保存的话，就不会和startup-config一样了</p>
-<p>   （8）重启设备：</p>
-<p>​        R1#reload</p>
-<p>​     </p>
-<p>模式：</p>
-<p>enable (en)  configure terminal(config t)   interface fastEthernet 0/1(int f0/1)</p>
-<p>Show</p>
-<p>running-config    startup-config</p>
-<p>copy runing-config startup-config 或 write(w)</p>
-<p>Ip add 192.168.10.1 255.255.255.0</p>
-<p>no shutdown</p>
-<p>reload</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-    </div>
-
       
       <div class="clearfix"></div>
     </div>
