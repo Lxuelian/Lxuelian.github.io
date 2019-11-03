@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>centos(一)文件、用户和组 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习linux最开始就要了解文件与用户这些最基本的东西，有了这些基础，我们就可以进行一些基本的操作">
+<meta name="keywords" content="系统安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos(一)文件、用户和组">
+<meta property="og:url" content="http://yoursite.com/2019/11/02/11-2centos(一)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="学习linux最开始就要了解文件与用户这些最基本的东西，有了这些基础，我们就可以进行一些基本的操作">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/03/KXDyTO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/03/KXDInP.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/03/KXDHAS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/03/KXDbtg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/03/KXDOpj.png">
+<meta property="og:updated_time" content="2019-11-03T08:38:45.412Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centos(一)文件、用户和组">
+<meta name="twitter:description" content="学习linux最开始就要了解文件与用户这些最基本的东西，有了这些基础，我们就可以进行一些基本的操作">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/11/03/KXDyTO.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">John Doe</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/web安全/" style="font-size: 12px;">web安全</a> <a href="/tags/渗透/" style="font-size: 10px;">渗透</a> <a href="/tags/渗透测试/" style="font-size: 18px;">渗透测试</a> <a href="/tags/系统安全/" style="font-size: 20px;">系统安全</a> <a href="/tags/网络/" style="font-size: 16px;">网络</a> <a href="/tags/网络安全/" style="font-size: 14px;">网络安全</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-11-2centos(一)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/11/02/11-2centos(一)/" class="article-date">
+      <time datetime="2019-11-02T12:23:30.000Z" itemprop="datePublished">2019-11-02</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      centos(一)文件、用户和组
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>学习linux最开始就要了解文件与用户这些最基本的东西，有了这些基础，我们就可以进行一些基本的操作</p>
+<a id="more"></a>
+
+<h1 id="1、命令"><a href="#1、命令" class="headerlink" title="1、命令"></a>1、命令</h1><h2 id="1-1-which-命令"><a href="#1-1-which-命令" class="headerlink" title="1.1 which 命令"></a>1.1 which 命令</h2><p> 查找且只能查找命令所在目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# which ls</span><br><span class="line">alias ls=&apos;ls --color=auto&apos;</span><br><span class="line">	/usr/bin/ls</span><br><span class="line">[root@localhost etc]# which pwd</span><br><span class="line">/usr/bin/pwd</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-whereis-命令"><a href="#1-2-whereis-命令" class="headerlink" title="1.2 whereis 命令"></a>1.2 whereis 命令</h2><p> 查找且只能查找命令所在目录 + 帮助文档位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# whereis pwd</span><br><span class="line">pwd: /usr/bin/pwd /usr/share/man/man1/pwd.1.gz /usr/share/man/man1p/pwd.1p.gz</span><br><span class="line">[root@localhost etc]# whereis ls</span><br><span class="line">ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz /usr/share/man/man1p/ls.1p.gz</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-find"><a href="#1-3-find" class="headerlink" title="1.3  find"></a>1.3  find</h2><p>“find 路径 查找方式 参数” 可以查找任何文件<br>查找方式有很多种：</p>
+<p>1.根据文件名查找<br>查找方式：-name</p>
+<p>注：文件名可以用通配符   </p>
+<h2 id="1-4-ls-l-与-ls-lh"><a href="#1-4-ls-l-与-ls-lh" class="headerlink" title="1.4 ls -l 与 ls -lh"></a>1.4 <strong>ls -l</strong> 与 <strong>ls -lh</strong></h2><p>  -h, –human-readable        与-l 一起，以易于阅读的格式输出文件大小<br>                (例如 1K 234M 2G)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# ls -l</span><br><span class="line">-rw-r--r--.  1 root root     1982 10月 31 2018 virc</span><br><span class="line">drwxr-xr-x.  5 root root      231 9月  12 01:41 vmware-tools</span><br><span class="line">-rw-r--r--.  1 root root     4479 10月 31 2018 wgetrc</span><br><span class="line"></span><br><span class="line">[root@localhost etc]# ls -lh</span><br><span class="line">-rw-r--r--.  1 root root   2.0K 10月 31 2018 vimrc</span><br><span class="line">-rw-r--r--.  1 root root   2.0K 10月 31 2018 virc</span><br><span class="line">drwxr-xr-x.  5 root root    231 9月  12 01:41 vmware-tools</span><br><span class="line">-rw-r--r--.  1 root root   4.4K 10月 31 2018 wgetrc</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-查看文件"><a href="#2-查看文件" class="headerlink" title="2 查看文件"></a>2 查看文件</h1><h2 id="2-1-more"><a href="#2-1-more" class="headerlink" title="2.1 more"></a>2.1 more</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# more passwd</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.ax1x.com/2019/11/03/KXDyTO.png" alt="/img"></p>
+<p>一页一页显示，按空格键翻下一页，按enter加1%</p>
+<h2 id="2-2-less"><a href="#2-2-less" class="headerlink" title="2.2 less"></a>2.2 less</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# less passwd</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.ax1x.com/2019/11/03/KXDInP.png" alt="/img"></p>
+<p>​        没有直接打印出来，而是进入另一个页面，并且可以使用上下键选取上一条还是下一跳数据，可以使用空格键和enter键，最后结束时，可使用<strong>q</strong>退出。</p>
+<h2 id="2-3-head"><a href="#2-3-head" class="headerlink" title="2.3 head"></a>2.3 head</h2><p>只显示了前十行</p>
+<p><img src="https://s2.ax1x.com/2019/11/03/KXDHAS.png" alt="/img"></p>
+<h2 id="2-4-tail"><a href="#2-4-tail" class="headerlink" title="2.4 tail"></a>2.4 tail</h2><p>显示了后十行</p>
+<p><img src="https://s2.ax1x.com/2019/11/03/KXDbtg.png" alt="/img"></p>
+<h2 id="2-5-cat"><a href="#2-5-cat" class="headerlink" title="2.5 cat"></a>2.5 cat</h2><p>把文件里面的都给打印出来了</p>
+<h2 id="2-6-查找命令"><a href="#2-6-查找命令" class="headerlink" title="2.6 查找命令"></a>2.6 查找命令</h2><h3 id="2-6-1-find"><a href="#2-6-1-find" class="headerlink" title="2.6.1 find"></a>2.6.1 find</h3><h3 id="2-6-2-grep"><a href="#2-6-2-grep" class="headerlink" title="2.6.2 grep"></a>2.6.2 grep</h3><h1 id="3-帮助命令"><a href="#3-帮助命令" class="headerlink" title="3 帮助命令"></a>3 帮助命令</h1><h2 id="3-1-ls-help"><a href="#3-1-ls-help" class="headerlink" title="3.1 ls-help"></a>3.1 ls-help</h2><h2 id="3-2-man"><a href="#3-2-man" class="headerlink" title="3.2 man"></a>3.2 man</h2><p>例 man ls</p>
+<p><img src="https://s2.ax1x.com/2019/11/03/KXDOpj.png" alt="/img"></p>
+<p><strong>注</strong>：查看时需要翻屏：</p>
+<p>​        向后翻一屏：space(空格键)    　　向前翻一屏：b</p>
+<p>​        向后翻一行：Enter(回车键)    　　 向前翻一行：k</p>
+<h1 id="4-常用实例"><a href="#4-常用实例" class="headerlink" title="4 常用实例"></a>4 常用实例</h1><h2 id="4-1-标准用户命令"><a href="#4-1-标准用户命令" class="headerlink" title="4.1 标准用户命令"></a>4.1 标准用户命令</h2><p>可以使用whatis命令用于查询一个命令执行什么功能，并将结果打印到终端上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# whatis cd</span><br><span class="line">cd (1)               - GNU Bourne-Again SHell (GNU 命令解释程序 “Bour...</span><br><span class="line">cd (3tcl)            - 改变工作目录</span><br><span class="line">cd (1p)              - change the working directory</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# man 1 cd  //查看cd的帮助信息</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# whatis cd</span><br><span class="line">cd (1)               - GNU Bourne-Again SHell (GNU 命令解释程序 “Bour...</span><br><span class="line">cd (3tcl)            - 改变工作目录</span><br><span class="line">cd (1p)              - change the working directory</span><br><span class="line"></span><br><span class="line">[root@localhost etc]# man 1 cd</span><br><span class="line"></span><br><span class="line">[root@localhost etc]# man 1p cd</span><br><span class="line"></span><br><span class="line">[root@localhost etc]# whatis read</span><br><span class="line">read (1)             - GNU Bourne-Again SHell (GNU 命令解释程序 “Bour...</span><br><span class="line">read (3tcl)          - 从一个通道读</span><br><span class="line">read (2)             - 在文件描述符上执行读操作</span><br><span class="line">read (1p)            - read a line from standard input</span><br><span class="line">read (3p)            - read from a file</span><br><span class="line"></span><br><span class="line">[root@localhost etc]# whereis read</span><br><span class="line">read: /usr/bin/read /usr/share/man/man1/read.1.gz /usr/share/man/man1p/read.1p.gz /usr/share/man/man2/read.2.gz /usr/share/man/man3p/read.3p.gz</span><br><span class="line"></span><br><span class="line">[root@localhost etc]# which read</span><br><span class="line">/usr/bin/read</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-创建用户和组"><a href="#5-创建用户和组" class="headerlink" title="5 创建用户和组"></a>5 创建用户和组</h1><h2 id="5-1-用户的管理"><a href="#5-1-用户的管理" class="headerlink" title="5.1 用户的管理"></a>5.1 用户的管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# useradd lei</span><br></pre></td></tr></table></figure>
+
+<p>用户管理的一项重要内容是用户口令的管理。用户账号刚创建时没有口令，但是被系统锁定，无法使用，必须为其指定口令后才可以使用，即使是指定空口令。</p>
+<p>指定和修改用户口令的Shell命令是<code>passwd</code>。超级用户可以为自己和其他用户指定口令，普通用户只能用它修改自己的口令。命令的格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 选项 用户名</span><br></pre></td></tr></table></figure>
+
+<p>可使用的选项：</p>
+<ul>
+<li>-l 锁定口令，即禁用账号。</li>
+<li>-u 口令解锁。</li>
+<li>-d 使账号无口令。</li>
+<li>-f 强迫用户下次登录时修改口令。</li>
+</ul>
+<p>如果默认用户名，则修改当前用户的口令。</p>
+<p>例如，假设当前用户是sam，则下面的命令修改该用户自己的口令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ passwd </span><br><span class="line">Old password:****** </span><br><span class="line">New password:******* </span><br><span class="line">Re-enter new password:*******</span><br></pre></td></tr></table></figure>
+
+<p>如果是超级用户，可以用下列形式指定任何用户的口令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># passwd sam </span><br><span class="line">New password:******* </span><br><span class="line">Re-enter new password:*******</span><br></pre></td></tr></table></figure>
+
+<p>普通用户修改自己的口令时，passwd命令会先询问原口令，验证后再要求用户输入两遍新口令，如果两次输入的口令一致，则将这个口令指定给用户；而超级用户为用户指定口令时，就不需要知道原口令。</p>
+<p>为了系统安全起见，用户应该选择比较复杂的口令，例如最好使用8位长的口令，口令中包含有大写、小写字母和数字，并且应该与姓名、生日等不相同。</p>
+<p>为用户指定空口令时，执行下列形式的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># passwd -d sam</span><br></pre></td></tr></table></figure>
+
+<p>此命令将用户sam的口令删除，这样用户sam下一次登录时，系统就不再询问口令。</p>
+<p>passwd命令还可以用-l(lock)选项锁定某一用户，使其不能登录，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># passwd -l sam</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-组的管理"><a href="#5-2-组的管理" class="headerlink" title="5.2 组的管理"></a>5.2 组的管理</h2><p>每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。不同Linux 系统对用户组的规定有所不同，如Linux下的用户属于与它同名的用户组，这个用户组在创建用户时同时创建。</p>
+<p>用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对/etc/group文件的更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[root@localhost etc]# groupadd stu1</span><br><span class="line">[root@localhost etc]# gpasswd -a lei stu1</span><br><span class="line">正在将用户“lei”加入到“stu1”组中</span><br><span class="line"></span><br><span class="line">[root@localhost etc]# cat gshadow</span><br><span class="line">stu2:!::</span><br><span class="line">lei:!::</span><br><span class="line">stu1:!::lei</span><br><span class="line"></span><br><span class="line">[root@localhost etc]# cat group</span><br><span class="line">xzusr:x:1001:</span><br><span class="line">gcusr:x:1002:</span><br><span class="line">xsusr:x:1003:</span><br><span class="line">stu2:x:1005:</span><br><span class="line">lei:x:1006:</span><br><span class="line">stu1:x:1007:lei</span><br><span class="line"></span><br><span class="line">[root@localhost etc]# cat passwd</span><br><span class="line">stu2:x:1005:1005::/home/stu2:/bin/nologin</span><br><span class="line">lei:x:1006:1006::/home/lei:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="1、增加一个新的用户组使用groupadd命令。其格式如下："><a href="#1、增加一个新的用户组使用groupadd命令。其格式如下：" class="headerlink" title="1、增加一个新的用户组使用groupadd命令。其格式如下："></a>1、增加一个新的用户组使用groupadd命令。其格式如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd 选项 用户组</span><br></pre></td></tr></table></figure>
+
+<p>可以使用的选项有：</p>
+<ul>
+<li>-g GID 指定新用户组的组标识号（GID）。</li>
+<li>-o 一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同。</li>
+</ul>
+<h4 id="实例1："><a href="#实例1：" class="headerlink" title="实例1："></a>实例1：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># groupadd group1</span><br></pre></td></tr></table></figure>
+
+<p>此命令向系统中增加了一个新组group1，新组的组标识号是在当前已有的最大组标识号的基础上加1。</p>
+<h4 id="实例2："><a href="#实例2：" class="headerlink" title="实例2："></a>实例2：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># groupadd -g 101 group2</span><br></pre></td></tr></table></figure>
+
+<p>此命令向系统中增加了一个新组group2，同时指定新组的组标识号是101。</p>
+<h3 id="2、如果要删除一个已有的用户组，使用groupdel命令，其格式如下："><a href="#2、如果要删除一个已有的用户组，使用groupdel命令，其格式如下：" class="headerlink" title="2、如果要删除一个已有的用户组，使用groupdel命令，其格式如下："></a>2、如果要删除一个已有的用户组，使用groupdel命令，其格式如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel 用户组</span><br></pre></td></tr></table></figure>
+
+<h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># groupdel group1</span><br></pre></td></tr></table></figure>
+
+<p>此命令从系统中删除组group1。</p>
+<h3 id="3、修改用户组的属性使用groupmod命令。其语法如下："><a href="#3、修改用户组的属性使用groupmod命令。其语法如下：" class="headerlink" title="3、修改用户组的属性使用groupmod命令。其语法如下："></a>3、修改用户组的属性使用groupmod命令。其语法如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupmod 选项 用户组</span><br></pre></td></tr></table></figure>
+
+<p>常用的选项有：</p>
+<ul>
+<li>-g GID 为用户组指定新的组标识号。</li>
+<li>-o 与-g选项同时使用，用户组的新GID可以与系统已有用户组的GID相同。</li>
+<li>-n新用户组 将用户组的名字改为新名字</li>
+</ul>
+<h4 id="实例1：-1"><a href="#实例1：-1" class="headerlink" title="实例1："></a>实例1：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># groupmod -g 102 group2</span><br></pre></td></tr></table></figure>
+
+<p>此命令将组group2的组标识号修改为102。</p>
+<h4 id="实例2：-1"><a href="#实例2：-1" class="headerlink" title="实例2："></a>实例2：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># groupmod –g 10000 -n group3 group2</span><br></pre></td></tr></table></figure>
+
+<p>此命令将组group2的标识号改为10000，组名修改为group3。</p>
+<h3 id="4、如果一个用户同时属于多个用户组，那么用户可以在用户组之间切换，以便具有其他用户组的权限。"><a href="#4、如果一个用户同时属于多个用户组，那么用户可以在用户组之间切换，以便具有其他用户组的权限。" class="headerlink" title="4、如果一个用户同时属于多个用户组，那么用户可以在用户组之间切换，以便具有其他用户组的权限。"></a>4、如果一个用户同时属于多个用户组，那么用户可以在用户组之间切换，以便具有其他用户组的权限。</h3><p>用户可以在登录后，使用命令newgrp切换到其他用户组，这个命令的参数就是目的用户组。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ newgrp root</span><br></pre></td></tr></table></figure>
+
+<p>这条命令将当前用户切换到root用户组，前提条件是root用户组确实是该用户的主组或附加组。类似于用户账号的管理，用户组的管理也可以通过集成的系统管理工具来完成。</p>
+<hr>
+<h2 id="6-与用户账号有关的系统文件"><a href="#6-与用户账号有关的系统文件" class="headerlink" title="6 与用户账号有关的系统文件"></a>6 与用户账号有关的系统文件</h2><p>完成用户管理的工作有许多种方法，但是每一种方法实际上都是对有关的系统文件进行修改。</p>
+<p>与用户和用户组相关的信息都存放在一些系统文件中，这些文件包括/etc/passwd, /etc/shadow, /etc/group等。</p>
+<p>下面分别介绍这些文件的内容。</p>
+<h3 id="1、-etc-passwd文件是用户管理工作涉及的最重要的一个文件。"><a href="#1、-etc-passwd文件是用户管理工作涉及的最重要的一个文件。" class="headerlink" title="1、/etc/passwd文件是用户管理工作涉及的最重要的一个文件。"></a>1、/etc/passwd文件是用户管理工作涉及的最重要的一个文件。</h3><p>Linux系统中的每个用户都在/etc/passwd文件中有一个对应的记录行，它记录了这个用户的一些基本属性。</p>
+<p>这个文件对所有用户都是可读的。它的内容类似下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">＃ cat /etc/passwd</span><br><span class="line"></span><br><span class="line">root:x:0:0:Superuser:/:</span><br><span class="line">daemon:x:1:1:System daemons:/etc:</span><br><span class="line">bin:x:2:2:Owner of system commands:/bin:</span><br><span class="line">sys:x:3:3:Owner of system files:/usr/sys:</span><br><span class="line">adm:x:4:4:System accounting:/usr/adm:</span><br><span class="line">uucp:x:5:5:UUCP administrator:/usr/lib/uucp:</span><br><span class="line">auth:x:7:21:Authentication administrator:/tcb/files/auth:</span><br><span class="line">cron:x:9:16:Cron daemon:/usr/spool/cron:</span><br><span class="line">listen:x:37:4:Network daemon:/usr/net/nls:</span><br><span class="line">lp:x:71:18:Printer administrator:/usr/spool/lp:</span><br><span class="line">sam:x:200:50:Sam san:/usr/sam:/bin/sh</span><br></pre></td></tr></table></figure>
+
+<p>从上面的例子我们可以看到，/etc/passwd中一行记录对应着一个用户，每行记录又被冒号(:)分隔为7个字段，其格式和具体含义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</span><br></pre></td></tr></table></figure>
+
+<h3 id="1）”用户名”是代表用户账号的字符串。"><a href="#1）”用户名”是代表用户账号的字符串。" class="headerlink" title="1）”用户名”是代表用户账号的字符串。"></a>1）”用户名”是代表用户账号的字符串。</h3><p>通常长度不超过8个字符，并且由大小写字母和/或数字组成。登录名中不能有冒号(:)，因为冒号在这里是分隔符。</p>
+<p>为了兼容起见，登录名中最好不要包含点字符(.)，并且不使用连字符(-)和加号(+)打头。</p>
+<h3 id="2）“口令”一些系统中，存放着加密后的用户口令字。"><a href="#2）“口令”一些系统中，存放着加密后的用户口令字。" class="headerlink" title="2）“口令”一些系统中，存放着加密后的用户口令字。"></a>2）“口令”一些系统中，存放着加密后的用户口令字。</h3><p>虽然这个字段存放的只是用户口令的加密串，不是明文，但是由于/etc/passwd文件对所有用户都可读，所以这仍是一个安全隐患。因此，现在许多Linux   系统（如SVR4）都使用了shadow技术，把真正的加密后的用户口令字存放到/etc/shadow文件中，而在/etc/passwd文件的口令字段中只存放一个特殊的字符，例如“x”或者“*”。</p>
+<h3 id="3）“用户标识号”是一个整数，系统内部用它来标识用户。"><a href="#3）“用户标识号”是一个整数，系统内部用它来标识用户。" class="headerlink" title="3）“用户标识号”是一个整数，系统内部用它来标识用户。"></a>3）“用户标识号”是一个整数，系统内部用它来标识用户。</h3><p>一般情况下它与用户名是一一对应的。如果几个用户名对应的用户标识号是一样的，系统内部将把它们视为同一个用户，但是它们可以有不同的口令、不同的主目录以及不同的登录Shell等。</p>
+<p>通常用户标识号的取值范围是0～65 535。0是超级用户root的标识号，1～99由系统保留，作为管理账号，普通用户的标识号从100开始。在Linux系统中，这个界限是500。</p>
+<h3 id="4）“组标识号”字段记录的是用户所属的用户组。"><a href="#4）“组标识号”字段记录的是用户所属的用户组。" class="headerlink" title="4）“组标识号”字段记录的是用户所属的用户组。"></a>4）“组标识号”字段记录的是用户所属的用户组。</h3><p>它对应着/etc/group文件中的一条记录。</p>
+<h3 id="5-“注释性描述”字段记录着用户的一些个人情况。"><a href="#5-“注释性描述”字段记录着用户的一些个人情况。" class="headerlink" title="5)“注释性描述”字段记录着用户的一些个人情况。"></a>5)“注释性描述”字段记录着用户的一些个人情况。</h3><p>例如用户的真实姓名、电话、地址等，这个字段并没有什么实际的用途。在不同的Linux 系统中，这个字段的格式并没有统一。在许多Linux系统中，这个字段存放的是一段任意的注释性描述文字，用做finger命令的输出。</p>
+<h3 id="6-“主目录”，也就是用户的起始工作目录。"><a href="#6-“主目录”，也就是用户的起始工作目录。" class="headerlink" title="6)“主目录”，也就是用户的起始工作目录。"></a>6)“主目录”，也就是用户的起始工作目录。</h3><p>它是用户在登录到系统之后所处的目录。在大多数系统中，各用户的主目录都被组织在同一个特定的目录下，而用户主目录的名称就是该用户的登录名。各用户对自己的主目录有读、写、执行（搜索）权限，其他用户对此目录的访问权限则根据具体情况设置。</p>
+<h3 id="7-用户登录后，要启动一个进程，负责将用户的操作传给内核，这个进程是用户登录到系统后运行的命令解释器或某个特定的程序，即Shell。"><a href="#7-用户登录后，要启动一个进程，负责将用户的操作传给内核，这个进程是用户登录到系统后运行的命令解释器或某个特定的程序，即Shell。" class="headerlink" title="7)用户登录后，要启动一个进程，负责将用户的操作传给内核，这个进程是用户登录到系统后运行的命令解释器或某个特定的程序，即Shell。"></a>7)用户登录后，要启动一个进程，负责将用户的操作传给内核，这个进程是用户登录到系统后运行的命令解释器或某个特定的程序，即Shell。</h3><p>Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种都有不同的特点。常用的有sh(Bourne Shell),  csh(C Shell), ksh(Korn Shell), tcsh(TENEX/TOPS-20 type C Shell),  bash(Bourne Again Shell)等。</p>
+<p>系统管理员可以根据系统情况和用户习惯为用户指定某个Shell。如果不指定Shell，那么系统使用sh为默认的登录Shell，即这个字段的值为/bin/sh。</p>
+<p>用户的登录Shell也可以指定为某个特定的程序（此程序不是一个命令解释器）。</p>
+<p>利用这一特点，我们可以限制用户只能运行指定的应用程序，在该应用程序运行结束后，用户就自动退出了系统。有些Linux 系统要求只有那些在系统中登记了的程序才能出现在这个字段中。</p>
+<h3 id="8-系统中有一类用户称为伪用户（psuedo-users）。"><a href="#8-系统中有一类用户称为伪用户（psuedo-users）。" class="headerlink" title="8)系统中有一类用户称为伪用户（psuedo users）。"></a>8)系统中有一类用户称为伪用户（psuedo users）。</h3><p>这些用户在/etc/passwd文件中也占有一条记录，但是不能登录，因为它们的登录Shell为空。它们的存在主要是方便系统管理，满足相应的系统进程对文件属主的要求。</p>
+<p>常见的伪用户如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">伪 用 户 含 义 </span><br><span class="line">bin 拥有可执行的用户命令文件 </span><br><span class="line">sys 拥有系统文件 </span><br><span class="line">adm 拥有帐户文件 </span><br><span class="line">uucp UUCP使用 </span><br><span class="line">lp lp或lpd子系统使用 </span><br><span class="line">nobody NFS使用</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="拥有帐户文件"><a href="#拥有帐户文件" class="headerlink" title="拥有帐户文件"></a>拥有帐户文件</h2><p><strong>1、除了上面列出的伪用户外，还有许多标准的伪用户，例如：audit, cron, mail, usenet等，它们也都各自为相关的进程和文件所需要。</strong></p>
+<p>由于/etc/passwd文件是所有用户都可读的，如果用户的密码太简单或规律比较明显的话，一台普通的计算机就能够很容易地将它破解，因此对安全性要求较高的Linux系统都把加密后的口令字分离出来，单独存放在一个文件中，这个文件是/etc/shadow文件。  有超级用户才拥有该文件读权限，这就保证了用户密码的安全性。</p>
+<p><strong>2、/etc/shadow中的记录行与/etc/passwd中的一一对应，它由pwconv命令根据/etc/passwd中的数据自动产生</strong></p>
+<p>它的文件格式与/etc/passwd类似，由若干个字段组成，字段之间用”:”隔开。这些字段是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>“登录名”是与/etc/passwd文件中的登录名相一致的用户账号</li>
+<li>“口令”字段存放的是加密后的用户口令字，长度为13个字符。如果为空，则对应用户没有口令，登录时不需要口令；如果含有不属于集合 { ./0-9A-Za-z }中的字符，则对应的用户不能登录。</li>
+<li>“最后一次修改时间”表示的是从某个时刻起，到用户最后一次修改口令时的天数。时间起点对不同的系统可能不一样。例如在SCO Linux 中，这个时间起点是1970年1月1日。</li>
+<li>“最小时间间隔”指的是两次修改口令之间所需的最小天数。</li>
+<li>“最大时间间隔”指的是口令保持有效的最大天数。</li>
+<li>“警告时间”字段表示的是从系统开始警告用户到用户密码正式失效之间的天数。</li>
+<li>“不活动时间”表示的是用户没有登录活动但账号仍能保持有效的最大天数。</li>
+<li>“失效时间”字段给出的是一个绝对的天数，如果使用了这个字段，那么就给出相应账号的生存期。期满后，该账号就不再是一个合法的账号，也就不能再用来登录了。</li>
+</ol>
+<p>下面是/etc/shadow的一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">＃ cat /etc/shadow</span><br><span class="line"></span><br><span class="line">root:Dnakfw28zf38w:8764:0:168:7:::</span><br><span class="line">daemon:*::0:0::::</span><br><span class="line">bin:*::0:0::::</span><br><span class="line">sys:*::0:0::::</span><br><span class="line">adm:*::0:0::::</span><br><span class="line">uucp:*::0:0::::</span><br><span class="line">nuucp:*::0:0::::</span><br><span class="line">auth:*::0:0::::</span><br><span class="line">cron:*::0:0::::</span><br><span class="line">listen:*::0:0::::</span><br><span class="line">lp:*::0:0::::</span><br><span class="line">sam:EkdiSECLWPdSa:9740:0:0::::</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、用户组的所有信息都存放在-etc-group文件中。"><a href="#3、用户组的所有信息都存放在-etc-group文件中。" class="headerlink" title="3、用户组的所有信息都存放在/etc/group文件中。"></a>3、用户组的所有信息都存放在/etc/group文件中。</h3><p>将用户分组是Linux 系统中对用户进行管理及控制访问权限的一种手段。</p>
+<p>每个用户都属于某个用户组；一个组中可以有多个用户，一个用户也可以属于不同的组。</p>
+<p>当一个用户同时是多个组中的成员时，在/etc/passwd文件中记录的是用户所属的主组，也就是登录时所属的默认组，而其他组称为附加组。</p>
+<p>用户要访问属于附加组的文件时，必须首先使用newgrp命令使自己成为所要访问的组中的成员。</p>
+<p>用户组的所有信息都存放在/etc/group文件中。此文件的格式也类似于/etc/passwd文件，由冒号(:)隔开若干个字段，这些字段有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">组名:口令:组标识号:组内用户列表</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>“组名”是用户组的名称，由字母或数字构成。与/etc/passwd中的登录名一样，组名不应重复。</li>
+<li>“口令”字段存放的是用户组加密后的口令字。一般Linux 系统的用户组都没有口令，即这个字段一般为空，或者是*。</li>
+<li>“组标识号”与用户标识号类似，也是一个整数，被系统内部用来标识组。</li>
+<li>“组内用户列表”是属于这个组的所有用户的列表/b]，不同用户之间用逗号(,)分隔。这个用户组可能是用户的主组，也可能是附加组。</li>
+</ol>
+<p>/etc/group文件的一个例子如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root::0:root</span><br><span class="line">bin::2:root,bin</span><br><span class="line">sys::3:root,uucp</span><br><span class="line">adm::4:root,adm</span><br><span class="line">daemon::5:root,daemon</span><br><span class="line">lp::7:root,lp</span><br><span class="line">users::20:root,sam</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、添加批量用户"><a href="#四、添加批量用户" class="headerlink" title="四、添加批量用户"></a>四、添加批量用户</h3><p>添加和删除用户对每位Linux系统管理员都是轻而易举的事，比较棘手的是如果要添加几十个、上百个甚至上千个用户时，我们不太可能还使用useradd一个一个地添加，必然要找一种简便的创建大量用户的方法。Linux系统提供了创建大量用户的工具，可以让您立即创建大量用户，方法如下：</p>
+<h3 id="（1）先编辑一个文本用户文件。"><a href="#（1）先编辑一个文本用户文件。" class="headerlink" title="（1）先编辑一个文本用户文件。"></a>（1）先编辑一个文本用户文件。</h3><p>每一列按照<code>/etc/passwd</code>密码文件的格式书写，要注意每个用户的用户名、UID、宿主目录都不可以相同，其中密码栏可以留做空白或输入x号。一个范例文件user.txt内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">user001::600:100:user:/home/user001:/bin/bash</span><br><span class="line">user002::601:100:user:/home/user002:/bin/bash</span><br><span class="line">user003::602:100:user:/home/user003:/bin/bash</span><br><span class="line">user004::603:100:user:/home/user004:/bin/bash</span><br><span class="line">user005::604:100:user:/home/user005:/bin/bash</span><br><span class="line">user006::605:100:user:/home/user006:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）以root身份执行命令-usr-sbin-newusers，从刚创建的用户文件user-txt中导入数据，创建用户："><a href="#（2）以root身份执行命令-usr-sbin-newusers，从刚创建的用户文件user-txt中导入数据，创建用户：" class="headerlink" title="（2）以root身份执行命令 /usr/sbin/newusers，从刚创建的用户文件user.txt中导入数据，创建用户："></a>（2）以root身份执行命令 <code>/usr/sbin/newusers</code>，从刚创建的用户文件<code>user.txt</code>中导入数据，创建用户：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># newusers &lt; user.txt</span><br></pre></td></tr></table></figure>
+
+<p>然后可以执行命令 <code>vipw</code> 或 <code>vi /etc/passwd</code> 检查 <code>/etc/passwd</code> 文件是否已经出现这些用户的数据，并且用户的宿主目录是否已经创建。</p>
+<h3 id="（3）执行命令-usr-sbin-pwunconv。"><a href="#（3）执行命令-usr-sbin-pwunconv。" class="headerlink" title="（3）执行命令/usr/sbin/pwunconv。"></a>（3）执行命令/usr/sbin/pwunconv。</h3><p>将 <code>/etc/shadow</code> 产生的 <code>shadow</code> 密码解码，然后回写到 <code>/etc/passwd</code> 中，并将<code>/etc/shadow</code>的<code>shadow</code>密码栏删掉。这是为了方便下一步的密码转换工作，即先取消 <code>shadow password</code> 功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pwunconv</span><br></pre></td></tr></table></figure>
+
+<h3 id="（4）编辑每个用户的密码对照文件。"><a href="#（4）编辑每个用户的密码对照文件。" class="headerlink" title="（4）编辑每个用户的密码对照文件。"></a>（4）编辑每个用户的密码对照文件。</h3><p>范例文件 <code>passwd.txt</code> 内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">user001:密码</span><br><span class="line">user002:密码</span><br><span class="line">user003:密码</span><br><span class="line">user004:密码</span><br><span class="line">user005:密码</span><br><span class="line">user006:密码</span><br></pre></td></tr></table></figure>
+
+<h3 id="（5）以root身份执行命令-usr-sbin-chpasswd。"><a href="#（5）以root身份执行命令-usr-sbin-chpasswd。" class="headerlink" title="（5）以root身份执行命令 /usr/sbin/chpasswd。"></a>（5）以root身份执行命令 <code>/usr/sbin/chpasswd</code>。</h3><p>创建用户密码，<code>chpasswd</code> 会将经过 <code>/usr/bin/passwd</code> 命令编码过的密码写入 <code>/etc/passwd</code> 的密码栏。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chpasswd &lt; passwd.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="（6）确定密码经编码写入-etc-passwd的密码栏后。"><a href="#（6）确定密码经编码写入-etc-passwd的密码栏后。" class="headerlink" title="（6）确定密码经编码写入/etc/passwd的密码栏后。"></a>（6）确定密码经编码写入/etc/passwd的密码栏后。</h3><p>执行命令 <code>/usr/sbin/pwconv</code> 将密码编码为 <code>shadow password</code>，并将结果写入 <code>/etc/shadow</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pwconv</span><br></pre></td></tr></table></figure>
+
+<p>这样就完成了大量用户的创建了，之后您可以到/home下检查这些用户宿主目录的权限设置是否都正确，并登录验证用户密码是否正确。</p>
+<h1 id="5-特殊权限"><a href="#5-特殊权限" class="headerlink" title="5 特殊权限"></a>5 特殊权限</h1><p>参考网址：<a href="https://www.cnblogs.com/cisum/p/8005641.html" target="_blank" rel="noopener">https://www.cnblogs.com/cisum/p/8005641.html</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/11/02/11-2centos(一)/">centos(一)文件、用户和组</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2019年11月02日 - 20时23分</p>
+        <p><span>最后更新:</span>2019年11月03日 - 16时38分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/11/02/11-2centos(一)/" title="centos(一)文件、用户和组">http://yoursite.com/2019/11/02/11-2centos(一)/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/11/02/11-2centos(一)/　　作者: John Doe" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/11/03/11-3安全加固操作/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          系统加固是常用命令
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2019/10/26/10-26-5.3扫描端口/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">渗透测试之（五）信息收集（3）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、命令"><span class="toc-number">1.</span> <span class="toc-text">1、命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-which-命令"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 which 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-whereis-命令"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 whereis 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-find"><span class="toc-number">1.3.</span> <span class="toc-text">1.3  find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-ls-l-与-ls-lh"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 ls -l 与 ls -lh</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-查看文件"><span class="toc-number">2.</span> <span class="toc-text">2 查看文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-more"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 more</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-less"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 less</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-head"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 head</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-tail"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 tail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-cat"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 cat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-查找命令"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 查找命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-1-find"><span class="toc-number">2.6.1.</span> <span class="toc-text">2.6.1 find</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-2-grep"><span class="toc-number">2.6.2.</span> <span class="toc-text">2.6.2 grep</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-帮助命令"><span class="toc-number">3.</span> <span class="toc-text">3 帮助命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-ls-help"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 ls-help</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-man"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 man</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-常用实例"><span class="toc-number">4.</span> <span class="toc-text">4 常用实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-标准用户命令"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 标准用户命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-创建用户和组"><span class="toc-number">5.</span> <span class="toc-text">5 创建用户和组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-用户的管理"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 用户的管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-组的管理"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 组的管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、增加一个新的用户组使用groupadd命令。其格式如下："><span class="toc-number">5.2.1.</span> <span class="toc-text">1、增加一个新的用户组使用groupadd命令。其格式如下：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实例1："><span class="toc-number">5.2.1.1.</span> <span class="toc-text">实例1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例2："><span class="toc-number">5.2.1.2.</span> <span class="toc-text">实例2：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、如果要删除一个已有的用户组，使用groupdel命令，其格式如下："><span class="toc-number">5.2.2.</span> <span class="toc-text">2、如果要删除一个已有的用户组，使用groupdel命令，其格式如下：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#例如："><span class="toc-number">5.2.2.1.</span> <span class="toc-text">例如：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、修改用户组的属性使用groupmod命令。其语法如下："><span class="toc-number">5.2.3.</span> <span class="toc-text">3、修改用户组的属性使用groupmod命令。其语法如下：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实例1：-1"><span class="toc-number">5.2.3.1.</span> <span class="toc-text">实例1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例2：-1"><span class="toc-number">5.2.3.2.</span> <span class="toc-text">实例2：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、如果一个用户同时属于多个用户组，那么用户可以在用户组之间切换，以便具有其他用户组的权限。"><span class="toc-number">5.2.4.</span> <span class="toc-text">4、如果一个用户同时属于多个用户组，那么用户可以在用户组之间切换，以便具有其他用户组的权限。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-与用户账号有关的系统文件"><span class="toc-number">5.3.</span> <span class="toc-text">6 与用户账号有关的系统文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、-etc-passwd文件是用户管理工作涉及的最重要的一个文件。"><span class="toc-number">5.3.1.</span> <span class="toc-text">1、/etc/passwd文件是用户管理工作涉及的最重要的一个文件。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1）”用户名”是代表用户账号的字符串。"><span class="toc-number">5.3.2.</span> <span class="toc-text">1）”用户名”是代表用户账号的字符串。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2）“口令”一些系统中，存放着加密后的用户口令字。"><span class="toc-number">5.3.3.</span> <span class="toc-text">2）“口令”一些系统中，存放着加密后的用户口令字。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3）“用户标识号”是一个整数，系统内部用它来标识用户。"><span class="toc-number">5.3.4.</span> <span class="toc-text">3）“用户标识号”是一个整数，系统内部用它来标识用户。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4）“组标识号”字段记录的是用户所属的用户组。"><span class="toc-number">5.3.5.</span> <span class="toc-text">4）“组标识号”字段记录的是用户所属的用户组。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-“注释性描述”字段记录着用户的一些个人情况。"><span class="toc-number">5.3.6.</span> <span class="toc-text">5)“注释性描述”字段记录着用户的一些个人情况。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-“主目录”，也就是用户的起始工作目录。"><span class="toc-number">5.3.7.</span> <span class="toc-text">6)“主目录”，也就是用户的起始工作目录。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-用户登录后，要启动一个进程，负责将用户的操作传给内核，这个进程是用户登录到系统后运行的命令解释器或某个特定的程序，即Shell。"><span class="toc-number">5.3.8.</span> <span class="toc-text">7)用户登录后，要启动一个进程，负责将用户的操作传给内核，这个进程是用户登录到系统后运行的命令解释器或某个特定的程序，即Shell。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-系统中有一类用户称为伪用户（psuedo-users）。"><span class="toc-number">5.3.9.</span> <span class="toc-text">8)系统中有一类用户称为伪用户（psuedo users）。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拥有帐户文件"><span class="toc-number">5.4.</span> <span class="toc-text">拥有帐户文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3、用户组的所有信息都存放在-etc-group文件中。"><span class="toc-number">5.4.1.</span> <span class="toc-text">3、用户组的所有信息都存放在/etc/group文件中。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、添加批量用户"><span class="toc-number">5.4.2.</span> <span class="toc-text">四、添加批量用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）先编辑一个文本用户文件。"><span class="toc-number">5.4.3.</span> <span class="toc-text">（1）先编辑一个文本用户文件。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）以root身份执行命令-usr-sbin-newusers，从刚创建的用户文件user-txt中导入数据，创建用户："><span class="toc-number">5.4.4.</span> <span class="toc-text">（2）以root身份执行命令 /usr/sbin/newusers，从刚创建的用户文件user.txt中导入数据，创建用户：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（3）执行命令-usr-sbin-pwunconv。"><span class="toc-number">5.4.5.</span> <span class="toc-text">（3）执行命令/usr/sbin/pwunconv。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（4）编辑每个用户的密码对照文件。"><span class="toc-number">5.4.6.</span> <span class="toc-text">（4）编辑每个用户的密码对照文件。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（5）以root身份执行命令-usr-sbin-chpasswd。"><span class="toc-number">5.4.7.</span> <span class="toc-text">（5）以root身份执行命令 /usr/sbin/chpasswd。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（6）确定密码经编码写入-etc-passwd的密码栏后。"><span class="toc-number">5.4.8.</span> <span class="toc-text">（6）确定密码经编码写入/etc/passwd的密码栏后。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-特殊权限"><span class="toc-number">6.</span> <span class="toc-text">5 特殊权限</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/11/03/11-3安全加固操作/" title="上一篇: 系统加固是常用命令">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2019/10/26/10-26-5.3扫描端口/" title="下一篇: 渗透测试之（五）信息收集（3）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/11/03/11-3注册表/">注册表编辑器管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/03/11-3安全加固操作/">系统加固是常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/02/11-2centos(一)/">centos(一)文件、用户和组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/26/10-26-5.3扫描端口/">渗透测试之（五）信息收集（3）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/26/10-26-5.7 信息分析和整理/">渗透测试之（五）信息收集（7）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/26/10-26-5.4识别操作系统/">渗透测试之（五）信息收集（4）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/26/10-26-5.2域名分析/">渗透测试之（五）信息收集（2）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/26/10-27-5.1发现主机/">渗透测试之（五）信息收集（1）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/26/10-26-5.6收集服务信息/">渗透测试之（五）信息收集（6）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/26/10-26-5.5识别服务/">渗透测试之（五）信息收集（5）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/13/10-13大马和小马/">大马和小马</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/10/10-10爬虫问题/">点击事件里后台打印数据闪现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/10/10-11图片未上传title python爬虫系列（二）/">python爬虫系列（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/10-07复习例题/">国庆复习（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/24/09-18linux shell脚本/">09-18linux shell脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/24/09-24第一章爬虫/">初识python</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/09/09-09Linux下的磁盘分区和逻辑卷/">磁盘分区与挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/08-09网络连接/">网络连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/应急响应笔记大纲/">应急响应笔记大纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/09-08用户与组的管理/">用户与组的管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/08-24第1篇：Window入侵排查/">window入侵排查</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/28/本地计算机策略配置案例/">组策略与安全设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/26/08-28windows服务器/">Windows服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/25/第2篇：Linux入侵排查/">linux入侵排查</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/23/VPN/">VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/08-21PPP协议及验证/">PPP协议及验证、Qos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/GNS3/">防火墙与VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/21/防火墙/">防火墙</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/20/网络地址转换NAT/">网络地址转换NAT</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/30/CSRF/">CSRF漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/25/学习前端/">初识前端</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
