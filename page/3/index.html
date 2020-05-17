@@ -62,7 +62,7 @@
 
         <a href="/" class="profilepic">
             
-            <img lazy-src="http://www.s4tu.com/images/2020/05/17/57d34ddfe75b4e112b64a.md.jpg" class="js-avatar">
+            <img lazy-src="/img/avatar.jpg" class="js-avatar">
             
         </a>
         <hgroup>
@@ -234,7 +234,7 @@
         <header id="header" class="inner">
             <a href="/" class="profilepic">
                 
-                    <img lazy-src="http://www.s4tu.com/images/2020/05/17/57d34ddfe75b4e112b64a.md.jpg" class="js-avatar">
+                    <img lazy-src="/img/avatar.jpg" class="js-avatar">
                 
             </a>
             <hgroup>
@@ -1570,10 +1570,10 @@ service httpd start
 
 
   
-    <article id="post-GNS3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-防火墙" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/08/21/GNS3/" class="article-date">
+      <a  href="/2019/08/21/防火墙/" class="article-date">
       <time datetime="2019-08-20T16:00:00.000Z" itemprop="datePublished">2019-08-21</time>
 </a>
 
@@ -1588,7 +1588,7 @@ service httpd start
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/21/GNS3/">防火墙与VPN</a>
+      <a  class="article-title" href="/2019/08/21/防火墙/">防火墙</a>
     </h1>
   
 
@@ -1605,20 +1605,16 @@ service httpd start
 <p>它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。 </p>
 <p>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部网络的安全。 </p>
 <h2 id="2、部署位置"><a href="#2、部署位置" class="headerlink" title="2、部署位置"></a>2、部署位置</h2><p>1、可信网络与不可信网络之间<br>2、不同安全级别网络之间<br>3、两个需要隔离的区域之间</p>
-<h2 id="3、部署方式"><a href="#3、部署方式" class="headerlink" title="3、部署方式"></a>3、部署方式</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
+<h2 id="3、部署方式（1）"><a href="#3、部署方式（1）" class="headerlink" title="3、部署方式（1）"></a>3、部署方式（1）</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
+<h2 id="3、部署方式（2）"><a href="#3、部署方式（2）" class="headerlink" title="3、部署方式（2）"></a>3、部署方式（2）</h2><p>路由模式</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ave2hxubj30n109zq47.jpg" alt="/img"></p>
+<p>透明模式</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6aveg0nycj30md09p3zs.jpg" alt="/img"></p>
+<p>混合模式</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6avestho2j30mx0dh40h.jpg" alt="/img"></p>
 <h2 id="4、功能"><a href="#4、功能" class="headerlink" title="4、功能"></a>4、功能</h2><p>1、入侵检测功能<br>2、网络地址转换功能<br>3、网络操作的审计监控功能<br>4、强化网络安全服务</p>
-<h1 id="二、VPN"><a href="#二、VPN" class="headerlink" title="二、VPN"></a>二、VPN</h1><h2 id="1、L2TP-VPN"><a href="#1、L2TP-VPN" class="headerlink" title="1、L2TP VPN"></a>1、L2TP VPN</h2><p>2TP是一种工业标准的Internet隧道协议，功能大致和PPTP协议类似，比如同样可以对网络数据流进行加密。不过也有不同之处，比如PPTP要求网络为IP网络，L2TP要求面向数据包的点对点连接；PPTP使用单一隧道，L2TP使用多隧道；L2TP提供包头压缩、隧道验证，而PPTP不支持。</p>
-<h2 id="2、PPTP-VPN"><a href="#2、PPTP-VPN" class="headerlink" title="2、PPTP-VPN"></a>2、PPTP-VPN</h2><p>即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使远程用户通过拨入ISP、通过直接连接Internet或其他网络安全地访问企业网。</p>
-<h2 id="3、IPsec-VPN"><a href="#3、IPsec-VPN" class="headerlink" title="3、IPsec-VPN"></a>3、IPsec-VPN</h2><p>互联网安全协议（英语：Internet Protocol Security，缩写为IPsec），是一个协议包，通过对IP协议的分组进行加密和认证来保护IP协议的网络传输协议族（一些相互关联的协议的集合）。 [1]<br>IPsec主要由以下协议组成：</p>
-<p>一、认证头（AH），为IP数据报提供无连接数据完整性、消息认证以及防重放攻击保护；</p>
-<p>二、封装安全载荷（ESP），提供机密性、数据源认证、无连接完整性、防重放和有限的传输流（traffic-flow）机密性；</p>
-<p>三、安全关联（SA），提供算法和数据包，提供AH、ESP操作所需的参数。</p>
-<p>IPsec协议工作在OSI模型的第三层，使其在单独使用时适于保护基于TCP或UDP的协议（如安全套接子层（SSL）就不能保护UDP层的通信流）。这就意味着，与传输层或更高层的协议相比，IPsec协议必须处理可靠性和分片的问题，这同时也增加了它的复杂性和处理开销。相对而言，SSL/TLS依靠更高层的TCP（OSI的第四层）来管理可靠性和分片。</p>
-<h2 id="4、GRE-VPN"><a href="#4、GRE-VPN" class="headerlink" title="4、GRE VPN"></a>4、GRE VPN</h2><p>GRE是一种最传统的隧道协议，其根本功能就是要实现隧道功能，通过隧道连接的两<br>个远程网络就如同直连，GRE在两个远程网络之间模拟出直连链路,从而使网络间达到直<br>连的效果，为此，GRE需要完成多次封装,总共有3次</p>
-<p>（1）接收原始IP数据包当作乘客协议,原始IR数据包包头的IP地址为私有IP地址</p>
-<p>（2）将原始IP数据包封装进GRE协议, GRE协议称为封装协议(Encapsulation Protocol) ,封装的包头IP地址为虚拟直连链路两端的IP地址</p>
-<p>（3）将整个GRE数据包当作数据，在外层封装公网IP包头，也就是隧道的起源和终点，从而路由到隧道终点</p>
-<h1 id="三、防火墙的配置"><a href="#三、防火墙的配置" class="headerlink" title="三、防火墙的配置"></a>三、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
+<h1 id="二、防火墙的配置"><a href="#二、防火墙的配置" class="headerlink" title="二、防火墙的配置"></a>二、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p>形式：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
 <p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg" alt="/img"></p>
 <p>这里可以使用虚拟机 也可以Tools&gt;VPCS 但是注意序号的差别并且点进去之后不可以点击X 不然所作的配置失效</p>
 <p>虚拟机：</p>
@@ -1690,10 +1686,10 @@ service httpd start
 
 
   
-    <article id="post-防火墙" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-GNS3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/08/21/防火墙/" class="article-date">
+      <a  href="/2019/08/21/GNS3/" class="article-date">
       <time datetime="2019-08-20T16:00:00.000Z" itemprop="datePublished">2019-08-21</time>
 </a>
 
@@ -1708,7 +1704,7 @@ service httpd start
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/21/防火墙/">防火墙</a>
+      <a  class="article-title" href="/2019/08/21/GNS3/">防火墙与VPN</a>
     </h1>
   
 
@@ -1725,16 +1721,20 @@ service httpd start
 <p>它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况， 以此来实现网络的安全保护。 </p>
 <p>在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动， 保证了内部网络的安全。 </p>
 <h2 id="2、部署位置"><a href="#2、部署位置" class="headerlink" title="2、部署位置"></a>2、部署位置</h2><p>1、可信网络与不可信网络之间<br>2、不同安全级别网络之间<br>3、两个需要隔离的区域之间</p>
-<h2 id="3、部署方式（1）"><a href="#3、部署方式（1）" class="headerlink" title="3、部署方式（1）"></a>3、部署方式（1）</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
-<h2 id="3、部署方式（2）"><a href="#3、部署方式（2）" class="headerlink" title="3、部署方式（2）"></a>3、部署方式（2）</h2><p>路由模式</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ave2hxubj30n109zq47.jpg" alt="/img"></p>
-<p>透明模式</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6aveg0nycj30md09p3zs.jpg" alt="/img"></p>
-<p>混合模式</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6avestho2j30mx0dh40h.jpg" alt="/img"></p>
+<h2 id="3、部署方式"><a href="#3、部署方式" class="headerlink" title="3、部署方式"></a>3、部署方式</h2><p>1、单防火墙（无DMZ）部署方式<br>2、单防火墙（DMZ）部署方式<br>3、双防火墙部署方式</p>
 <h2 id="4、功能"><a href="#4、功能" class="headerlink" title="4、功能"></a>4、功能</h2><p>1、入侵检测功能<br>2、网络地址转换功能<br>3、网络操作的审计监控功能<br>4、强化网络安全服务</p>
-<h1 id="二、防火墙的配置"><a href="#二、防火墙的配置" class="headerlink" title="二、防火墙的配置"></a>二、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p>形式：</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
+<h1 id="二、VPN"><a href="#二、VPN" class="headerlink" title="二、VPN"></a>二、VPN</h1><h2 id="1、L2TP-VPN"><a href="#1、L2TP-VPN" class="headerlink" title="1、L2TP VPN"></a>1、L2TP VPN</h2><p>2TP是一种工业标准的Internet隧道协议，功能大致和PPTP协议类似，比如同样可以对网络数据流进行加密。不过也有不同之处，比如PPTP要求网络为IP网络，L2TP要求面向数据包的点对点连接；PPTP使用单一隧道，L2TP使用多隧道；L2TP提供包头压缩、隧道验证，而PPTP不支持。</p>
+<h2 id="2、PPTP-VPN"><a href="#2、PPTP-VPN" class="headerlink" title="2、PPTP-VPN"></a>2、PPTP-VPN</h2><p>即点对点隧道协议。该协议是在PPP协议的基础上开发的一种新的增强型安全协议，支持多协议虚拟专用网（VPN），可以通过密码验证协议（PAP）、可扩展认证协议（EAP）等方法增强安全性。可以使远程用户通过拨入ISP、通过直接连接Internet或其他网络安全地访问企业网。</p>
+<h2 id="3、IPsec-VPN"><a href="#3、IPsec-VPN" class="headerlink" title="3、IPsec-VPN"></a>3、IPsec-VPN</h2><p>互联网安全协议（英语：Internet Protocol Security，缩写为IPsec），是一个协议包，通过对IP协议的分组进行加密和认证来保护IP协议的网络传输协议族（一些相互关联的协议的集合）。 [1]<br>IPsec主要由以下协议组成：</p>
+<p>一、认证头（AH），为IP数据报提供无连接数据完整性、消息认证以及防重放攻击保护；</p>
+<p>二、封装安全载荷（ESP），提供机密性、数据源认证、无连接完整性、防重放和有限的传输流（traffic-flow）机密性；</p>
+<p>三、安全关联（SA），提供算法和数据包，提供AH、ESP操作所需的参数。</p>
+<p>IPsec协议工作在OSI模型的第三层，使其在单独使用时适于保护基于TCP或UDP的协议（如安全套接子层（SSL）就不能保护UDP层的通信流）。这就意味着，与传输层或更高层的协议相比，IPsec协议必须处理可靠性和分片的问题，这同时也增加了它的复杂性和处理开销。相对而言，SSL/TLS依靠更高层的TCP（OSI的第四层）来管理可靠性和分片。</p>
+<h2 id="4、GRE-VPN"><a href="#4、GRE-VPN" class="headerlink" title="4、GRE VPN"></a>4、GRE VPN</h2><p>GRE是一种最传统的隧道协议，其根本功能就是要实现隧道功能，通过隧道连接的两<br>个远程网络就如同直连，GRE在两个远程网络之间模拟出直连链路,从而使网络间达到直<br>连的效果，为此，GRE需要完成多次封装,总共有3次</p>
+<p>（1）接收原始IP数据包当作乘客协议,原始IR数据包包头的IP地址为私有IP地址</p>
+<p>（2）将原始IP数据包封装进GRE协议, GRE协议称为封装协议(Encapsulation Protocol) ,封装的包头IP地址为虚拟直连链路两端的IP地址</p>
+<p>（3）将整个GRE数据包当作数据，在外层封装公网IP包头，也就是隧道的起源和终点，从而路由到隧道终点</p>
+<h1 id="三、防火墙的配置"><a href="#三、防火墙的配置" class="headerlink" title="三、防火墙的配置"></a>三、防火墙的配置</h1><h2 id="1、路由模式防火墙配置"><a href="#1、路由模式防火墙配置" class="headerlink" title="1、路由模式防火墙配置"></a>1、路由模式防火墙配置</h2><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pfemd5pj312o0iojsm.jpg" alt="/img"></p>
 <p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g68pbvjubzj30pp06r3yj.jpg" alt="/img"></p>
 <p>这里可以使用虚拟机 也可以Tools&gt;VPCS 但是注意序号的差别并且点进去之后不可以点击X 不然所作的配置失效</p>
 <p>虚拟机：</p>
