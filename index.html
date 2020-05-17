@@ -62,7 +62,7 @@
 
         <a href="/" class="profilepic">
             
-            <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+            <img lazy-src="http://www.s4tu.com/images/2020/05/17/57d34ddfe75b4e112b64a.md.jpg" class="js-avatar">
             
         </a>
         <hgroup>
@@ -234,7 +234,7 @@
         <header id="header" class="inner">
             <a href="/" class="profilepic">
                 
-                    <img lazy-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1565358714416&amp;di=db969344db196a4bd9c41365b8e45c8a&amp;imgtype=0&amp;src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F3082ac27c9139ea7b80b1c88f31ea86f8531f25611dcf-Owa1Zu_fw658" class="js-avatar">
+                    <img lazy-src="http://www.s4tu.com/images/2020/05/17/57d34ddfe75b4e112b64a.md.jpg" class="js-avatar">
                 
             </a>
             <hgroup>
@@ -590,10 +590,10 @@
 
 
   
-    <article id="post-10-26-5.3扫描端口" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-10-26-5.2域名分析" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/10/26/10-26-5.3扫描端口/" class="article-date">
+      <a  href="/2019/10/26/10-26-5.2域名分析/" class="article-date">
       <time datetime="2019-10-25T16:00:00.000Z" itemprop="datePublished">2019-10-26</time>
 </a>
 
@@ -608,7 +608,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2019/10/26/10-26-5.3扫描端口/">渗透测试之（五）信息收集（3）</a>
+      <a  class="article-title" href="/2019/10/26/10-26-5.2域名分析/">渗透测试之（五）信息收集（2）</a>
     </h1>
   
 
@@ -619,8 +619,50 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="5-3扫描端口"><a href="#5-3扫描端口" class="headerlink" title="5.3扫描端口"></a>5.3扫描端口</h2><p>通过扫描端口，可以发现目标主机中运行的程序。然后在对这些程序进行信息收集，以获取其漏洞信息，并实施渗透测试。</p>
-          
+        <a id="more"></a>
+
+<h2 id="5-2域名分析"><a href="#5-2域名分析" class="headerlink" title="5.2域名分析"></a>5.2域名分析</h2><h3 id="5-2-1域名基础信息"><a href="#5-2-1域名基础信息" class="headerlink" title="5.2.1域名基础信息"></a>5.2.1域名基础信息</h3><h4 id="1、使用whois工具"><a href="#1、使用whois工具" class="headerlink" title="1、使用whois工具"></a>1、使用whois工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois [域名]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# whois baidu.com</span><br><span class="line">   Domain Name: BAIDU.COM</span><br><span class="line">   Registry Domain ID: 11181110_DOMAIN_COM-VRSN</span><br><span class="line">   Registrar WHOIS Server: whois.markmonitor.com</span><br><span class="line">   Registrar URL: http://www.markmonitor.com</span><br><span class="line">   Updated Date: 2019-05-09T04:30:46Z</span><br><span class="line">   Creation Date: 1999-10-11T11:05:17Z</span><br><span class="line">   Registry Expiry Date: 2026-10-11T11:05:17Z</span><br><span class="line">   Registrar: MarkMonitor Inc.</span><br><span class="line">   Registrar IANA ID: 292</span><br><span class="line">   Registrar Abuse Contact Email: abusecomplaints@markmonitor.com</span><br><span class="line">   Registrar Abuse Contact Phone: +1.2083895740</span><br><span class="line">   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited</span><br><span class="line">   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited</span><br><span class="line">   Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited</span><br><span class="line">   Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited</span><br><span class="line">   Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited</span><br><span class="line">   Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited</span><br><span class="line">   Name Server: NS1.BAIDU.COM</span><br><span class="line">   Name Server: NS2.BAIDU.COM</span><br><span class="line">   Name Server: NS3.BAIDU.COM</span><br><span class="line">   Name Server: NS4.BAIDU.COM</span><br><span class="line">   Name Server: NS7.BAIDU.COM</span><br><span class="line">   DNSSEC: unsigned</span><br><span class="line">   URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/</span><br><span class="line">&gt;&gt;&gt; Last update of whois database: 2019-10-27T13:20:37Z &lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">For more information on Whois status codes, please visit https://icann.org/epp</span><br><span class="line"></span><br><span class="line">NOTICE: The expiration date displayed in this record is the date the</span><br><span class="line">registrar&apos;s sponsorship of the domain name registration in the registry is</span><br><span class="line">currently set to expire. This date does not necessarily reflect the expiration</span><br><span class="line">date of the domain name registrant&apos;s agreement with the sponsoring</span><br><span class="line">registrar.  Users may consult the sponsoring registrar&apos;s Whois database to</span><br><span class="line">view the registrar&apos;s reported date of expiration for this registration.</span><br><span class="line"></span><br><span class="line">TERMS OF USE: You are not authorized to access or query our Whois</span><br><span class="line">database through the use of electronic processes that are high-volume and</span><br><span class="line">automated except as reasonably necessary to register domain names or</span><br><span class="line">modify existing registrations; the Data in VeriSign Global Registry</span><br><span class="line">Services&apos; (&quot;VeriSign&quot;) Whois database is provided by VeriSign for</span><br><span class="line">information purposes only, and to assist persons in obtaining information</span><br><span class="line">about or related to a domain name registration record. VeriSign does not</span><br><span class="line">guarantee its accuracy. By submitting a Whois query, you agree to abide</span><br><span class="line">by the following terms of use: You agree that you may use this Data only</span><br><span class="line">for lawful purposes and that under no circumstances will you use this Data</span><br><span class="line">to: (1) allow, enable, or otherwise support the transmission of mass</span><br><span class="line">unsolicited, commercial advertising or solicitations via e-mail, telephone,</span><br><span class="line">or facsimile; or (2) enable high volume, automated, electronic processes</span><br><span class="line">that apply to VeriSign (or its computer systems). The compilation,</span><br><span class="line">repackaging, dissemination or other use of this Data is expressly</span><br><span class="line">prohibited without the prior written consent of VeriSign. You agree not to</span><br><span class="line">use electronic processes that are automated and high-volume to access or</span><br><span class="line">query the Whois database except as reasonably necessary to register</span><br><span class="line">domain names or modify existing registrations. VeriSign reserves the right</span><br><span class="line">to restrict your access to the Whois database in its sole discretion to ensure</span><br><span class="line">operational stability.  VeriSign may restrict or terminate your access to the</span><br><span class="line">Whois database for failure to abide by these terms of use. VeriSign</span><br><span class="line">reserves the right to modify these terms at any time.</span><br><span class="line"></span><br><span class="line">The Registry database contains ONLY .COM, .NET, .EDU domains and</span><br><span class="line">Registrars.</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、使用DMitry工具"><a href="#2、使用DMitry工具" class="headerlink" title="2、使用DMitry工具"></a>2、使用DMitry工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmitry -w [域名]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dmitry -w baidu.com</span><br><span class="line">Deepmagic Information Gathering Tool</span><br><span class="line">&quot;There be some deep magic going on&quot;</span><br><span class="line"></span><br><span class="line">HostIP:39.156.69.79</span><br><span class="line">HostName:baidu.com</span><br><span class="line"></span><br><span class="line">Gathered Inic-whois information for baidu.com</span><br><span class="line">---------------------------------</span><br><span class="line">   Domain Name: BAIDU.COM</span><br><span class="line">   Registry Domain ID: 11181110_DOMAIN_COM-VRSN</span><br><span class="line">   Registrar WHOIS Server: whois.markmonitor.com</span><br><span class="line">   Registrar URL: http://www.markmonitor.com</span><br><span class="line">   Updated Date: 2019-05-09T04:30:46Z</span><br><span class="line">   Creation Date: 1999-10-11T11:05:17Z</span><br><span class="line">   Registry Expiry Date: 2026-10-11T11:05:17Z</span><br><span class="line">   Registrar: MarkMonitor Inc.</span><br><span class="line">   Registrar IANA ID: 292</span><br><span class="line">   Registrar Abuse Contact Email: abusecomplaints@markmonitor.com</span><br><span class="line">   Registrar Abuse Contact Phone: +1.2083895740</span><br><span class="line">   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited</span><br><span class="line">   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited</span><br><span class="line">   Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited</span><br><span class="line">   Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited</span><br><span class="line">   Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited</span><br><span class="line">   Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited</span><br><span class="line">   Name Server: NS1.BAIDU.COM</span><br><span class="line">   Name Server: NS2.BAIDU.COM</span><br><span class="line">   Name Server: NS3.BAIDU.COM</span><br><span class="line">   Name Server: NS4.BAIDU.COM</span><br><span class="line">   Name Server: NS7.BAIDU.COM</span><br><span class="line">   DNSSEC: unsigned</span><br><span class="line">   URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/</span><br><span class="line">&gt;&gt;&gt; Last update of whois database: 2019-10-27T13:22:08Z &lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">For more information on Whois status codes, please visit https://icann.org/epp</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-2查找子域名"><a href="#5-2-2查找子域名" class="headerlink" title="5.2.2查找子域名"></a>5.2.2查找子域名</h3><h4 id="1、使用dmitry工具"><a href="#1、使用dmitry工具" class="headerlink" title="1、使用dmitry工具"></a>1、使用dmitry工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dmitry -s baidu.com -o domain</span><br><span class="line">-s:实施子域名查询</span><br><span class="line">-o：指定保存输出的文件</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dmitry -s baidu.com -o domain</span><br><span class="line">Deepmagic Information Gathering Tool</span><br><span class="line">&quot;There be some deep magic going on&quot;</span><br><span class="line"></span><br><span class="line">Writing output to &apos;domain.txt&apos;</span><br><span class="line"></span><br><span class="line">HostIP:39.156.69.79</span><br><span class="line">HostName:baidu.com</span><br><span class="line"></span><br><span class="line">Gathered Subdomain information for baidu.com</span><br><span class="line">---------------------------------</span><br><span class="line">Searching Google.com:80...</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、在线查询"><a href="#2、在线查询" class="headerlink" title="2、在线查询"></a>2、在线查询</h4><h3 id="5-2-3发现服务器"><a href="#5-2-3发现服务器" class="headerlink" title="5.2.3发现服务器"></a>5.2.3发现服务器</h3><h4 id="1、Dnsenum工具"><a href="#1、Dnsenum工具" class="headerlink" title="1、Dnsenum工具"></a>1、Dnsenum工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnsenum -w zhiliaotang.com  -w 表示在C段网络中实施whois查询</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.s4tu.com/images/2019/10/27/1572088288223faf9f.png" alt="\img"></p>
+<p>这里补充一下泛域名解析：</p>
+<p>所谓“泛域名解析”是指：利用通配符* （星号）来做[次级域名以实现所有的次级域名均指向同一IP地址。</p>
+<p>泛解析的用途</p>
+<p>1.可以让域名支持无限的子域名(这也是泛域名解析最大的用途)。</p>
+<p>2.防止用户错误输入导致的网站不能访问的问题</p>
+<p>3.可以让直接输入网址登陆网站的用户输入简洁的网址即可访问网站</p>
+<p>泛域名在实际使用中作用是非常广泛的，比如实现无限二级域名功能，提供免费的url转发，在IDC部门实现自动分配免费网址，在大型企业中实现网址分类管理等等，都发挥了巨大的作用。</p>
+<p>​    </p>
+<p>与域名解析区别</p>
+<p>泛域名解析是：*.域名解析到同一IP。</p>
+<p>域名解析是：子域名.域名解析到同一IP。</p>
+<p>​    </p>
+<p>设置方法</p>
+<p>你可按以下的步骤办理：<br>　　（1）用你的用户名和密码登陆你注册域名时的网站。<br>　　下面操作会根据域名提供商控制面板的不同而有差别，请具体参照自己域名所在网站的提示。<br>　　（2）自助管理–域名管理–信息下的管理–在域名控制面板输入域名(如不需加www)和域名密码(如果忘记域名密码可以点击初始密码下的重置密码即可把域名密码设置为初始密码)。<br>　　（3）DNS解析管理–增加IP–主机名中输入<em>,对应IP输入你服务器的IP地址–增加–刷新所有解析。<br>　　（4）如果你需要解析2级域名的泛解析比如那么在上面的主机名里输入</em>.abc即可<br>　　（5）等半个小时到1个小时你的解析就可生效(新注册的域名24小时内生效) [1]  </p>
+<h4 id="2、nslookup"><a href="#2、nslookup" class="headerlink" title="2、nslookup"></a>2、nslookup</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# nslookup</span><br><span class="line">&gt; set type=ns</span><br><span class="line">&gt; zhiliaotang.com</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.s4tu.com/images/2019/10/27/1572088918764ca4b4.png" alt="\img"></p>
+<p>这里需要补充一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A //表示一台主机</span><br><span class="line">MX //表示邮件服务器</span><br><span class="line">NS  //DNS服务器</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、使用ping命令"><a href="#3、使用ping命令" class="headerlink" title="3、使用ping命令"></a>3、使用ping命令</h4><p>​        ping命令可以检测网络是否互通，可以很好的帮助用户分析何判断网络故障。对于一个域名，通常可以指定多个IP地址。所以当用户借助一些工具查询域名信息时，将获取多个地址信息。此时，用户无法确定目标服务器使用的是哪个地址。用户通过使用Ping命令，则可以判断目前使用的IP地址，进而确定目标主机，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# ping -c 4 www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<p>​        在以上语法中，选项-C用来发地址送指定的Ping包数，参数用来指定目标主机的地址，其中，该目标主机可以是主机名，IP地址或域名。在windows系统中，Ping命令进发送4个相应包就停止。在linux中，默认将会一直ping命令，需要用户按ctrl+c组合键停止</p>
+<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1572089274977.png" alt="\img"></p>
+<p>## </p>
+
       
     </div>
     
@@ -633,10 +675,6 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/渗透测试/">渗透测试</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a   href="/2019/10/26/10-26-5.3扫描端口/#more">查看更多 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -656,10 +694,10 @@
 
 
   
-    <article id="post-10-27-5.1发现主机" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-10-26-5.4识别操作系统" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/10/26/10-27-5.1发现主机/" class="article-date">
+      <a  href="/2019/10/26/10-26-5.4识别操作系统/" class="article-date">
       <time datetime="2019-10-25T16:00:00.000Z" itemprop="datePublished">2019-10-26</time>
 </a>
 
@@ -674,7 +712,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2019/10/26/10-27-5.1发现主机/">渗透测试之（五）信息收集（1）</a>
+      <a  class="article-title" href="/2019/10/26/10-26-5.4识别操作系统/">渗透测试之（五）信息收集（4）</a>
     </h1>
   
 
@@ -685,7 +723,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="5-1发现主机"><a href="#5-1发现主机" class="headerlink" title="5.1发现主机"></a>5.1发现主机</h2><p>​        发现主机是用来探测哪些主机是活动的，进而获取该主机的信息。用户可以使用主动扫描的方式发现主机，也可以采用被动监听的方式发现主机</p>
+              <h2 id="5-4-识别操作系统"><a href="#5-4-识别操作系统" class="headerlink" title="5.4 识别操作系统"></a>5.4 识别操作系统</h2><p>​        通过识别操作系统，可以确定目标主机的的类型。这样，渗透者可以有针对性的对目标系统的程序实施漏洞探测，以节省不必要的浪费的时间。</p>
           
       
     </div>
@@ -701,73 +739,7 @@
 
       
         <p class="article-more-link">
-          <a   href="/2019/10/26/10-27-5.1发现主机/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-10-26-5.6收集服务信息" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/10/26/10-26-5.6收集服务信息/" class="article-date">
-      <time datetime="2019-10-25T16:00:00.000Z" itemprop="datePublished">2019-10-26</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/10/26/10-26-5.6收集服务信息/">渗透测试之（五）信息收集（6）</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="5-6收集服务信息"><a href="#5-6收集服务信息" class="headerlink" title="5.6收集服务信息"></a>5.6收集服务信息</h2><p>​        一些特殊服务可以提供额外的信息。例如，SMB服务可以提供文件系统结构；SNMP服务可以提供目标主机的相关信息。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/渗透测试/">渗透测试</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a   href="/2019/10/26/10-26-5.6收集服务信息/#more">查看更多 >></a>
+          <a   href="/2019/10/26/10-26-5.4识别操作系统/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -854,10 +826,10 @@
 
 
   
-    <article id="post-10-26-5.4识别操作系统" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-10-27-5.1发现主机" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/10/26/10-26-5.4识别操作系统/" class="article-date">
+      <a  href="/2019/10/26/10-27-5.1发现主机/" class="article-date">
       <time datetime="2019-10-25T16:00:00.000Z" itemprop="datePublished">2019-10-26</time>
 </a>
 
@@ -872,7 +844,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2019/10/26/10-26-5.4识别操作系统/">渗透测试之（五）信息收集（4）</a>
+      <a  class="article-title" href="/2019/10/26/10-27-5.1发现主机/">渗透测试之（五）信息收集（1）</a>
     </h1>
   
 
@@ -883,7 +855,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="5-4-识别操作系统"><a href="#5-4-识别操作系统" class="headerlink" title="5.4 识别操作系统"></a>5.4 识别操作系统</h2><p>​        通过识别操作系统，可以确定目标主机的的类型。这样，渗透者可以有针对性的对目标系统的程序实施漏洞探测，以节省不必要的浪费的时间。</p>
+              <h2 id="5-1发现主机"><a href="#5-1发现主机" class="headerlink" title="5.1发现主机"></a>5.1发现主机</h2><p>​        发现主机是用来探测哪些主机是活动的，进而获取该主机的信息。用户可以使用主动扫描的方式发现主机，也可以采用被动监听的方式发现主机</p>
           
       
     </div>
@@ -899,7 +871,7 @@
 
       
         <p class="article-more-link">
-          <a   href="/2019/10/26/10-26-5.4识别操作系统/#more">查看更多 >></a>
+          <a   href="/2019/10/26/10-27-5.1发现主机/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -920,10 +892,10 @@
 
 
   
-    <article id="post-10-26-5.2域名分析" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-10-26-5.7 信息分析和整理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/10/26/10-26-5.2域名分析/" class="article-date">
+      <a  href="/2019/10/26/10-26-5.7 信息分析和整理/" class="article-date">
       <time datetime="2019-10-25T16:00:00.000Z" itemprop="datePublished">2019-10-26</time>
 </a>
 
@@ -938,7 +910,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2019/10/26/10-26-5.2域名分析/">渗透测试之（五）信息收集（2）</a>
+      <a  class="article-title" href="/2019/10/26/10-26-5.7 信息分析和整理/">渗透测试之（五）信息收集（7）</a>
     </h1>
   
 
@@ -949,50 +921,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <a id="more"></a>
-
-<h2 id="5-2域名分析"><a href="#5-2域名分析" class="headerlink" title="5.2域名分析"></a>5.2域名分析</h2><h3 id="5-2-1域名基础信息"><a href="#5-2-1域名基础信息" class="headerlink" title="5.2.1域名基础信息"></a>5.2.1域名基础信息</h3><h4 id="1、使用whois工具"><a href="#1、使用whois工具" class="headerlink" title="1、使用whois工具"></a>1、使用whois工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois [域名]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# whois baidu.com</span><br><span class="line">   Domain Name: BAIDU.COM</span><br><span class="line">   Registry Domain ID: 11181110_DOMAIN_COM-VRSN</span><br><span class="line">   Registrar WHOIS Server: whois.markmonitor.com</span><br><span class="line">   Registrar URL: http://www.markmonitor.com</span><br><span class="line">   Updated Date: 2019-05-09T04:30:46Z</span><br><span class="line">   Creation Date: 1999-10-11T11:05:17Z</span><br><span class="line">   Registry Expiry Date: 2026-10-11T11:05:17Z</span><br><span class="line">   Registrar: MarkMonitor Inc.</span><br><span class="line">   Registrar IANA ID: 292</span><br><span class="line">   Registrar Abuse Contact Email: abusecomplaints@markmonitor.com</span><br><span class="line">   Registrar Abuse Contact Phone: +1.2083895740</span><br><span class="line">   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited</span><br><span class="line">   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited</span><br><span class="line">   Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited</span><br><span class="line">   Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited</span><br><span class="line">   Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited</span><br><span class="line">   Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited</span><br><span class="line">   Name Server: NS1.BAIDU.COM</span><br><span class="line">   Name Server: NS2.BAIDU.COM</span><br><span class="line">   Name Server: NS3.BAIDU.COM</span><br><span class="line">   Name Server: NS4.BAIDU.COM</span><br><span class="line">   Name Server: NS7.BAIDU.COM</span><br><span class="line">   DNSSEC: unsigned</span><br><span class="line">   URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/</span><br><span class="line">&gt;&gt;&gt; Last update of whois database: 2019-10-27T13:20:37Z &lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">For more information on Whois status codes, please visit https://icann.org/epp</span><br><span class="line"></span><br><span class="line">NOTICE: The expiration date displayed in this record is the date the</span><br><span class="line">registrar&apos;s sponsorship of the domain name registration in the registry is</span><br><span class="line">currently set to expire. This date does not necessarily reflect the expiration</span><br><span class="line">date of the domain name registrant&apos;s agreement with the sponsoring</span><br><span class="line">registrar.  Users may consult the sponsoring registrar&apos;s Whois database to</span><br><span class="line">view the registrar&apos;s reported date of expiration for this registration.</span><br><span class="line"></span><br><span class="line">TERMS OF USE: You are not authorized to access or query our Whois</span><br><span class="line">database through the use of electronic processes that are high-volume and</span><br><span class="line">automated except as reasonably necessary to register domain names or</span><br><span class="line">modify existing registrations; the Data in VeriSign Global Registry</span><br><span class="line">Services&apos; (&quot;VeriSign&quot;) Whois database is provided by VeriSign for</span><br><span class="line">information purposes only, and to assist persons in obtaining information</span><br><span class="line">about or related to a domain name registration record. VeriSign does not</span><br><span class="line">guarantee its accuracy. By submitting a Whois query, you agree to abide</span><br><span class="line">by the following terms of use: You agree that you may use this Data only</span><br><span class="line">for lawful purposes and that under no circumstances will you use this Data</span><br><span class="line">to: (1) allow, enable, or otherwise support the transmission of mass</span><br><span class="line">unsolicited, commercial advertising or solicitations via e-mail, telephone,</span><br><span class="line">or facsimile; or (2) enable high volume, automated, electronic processes</span><br><span class="line">that apply to VeriSign (or its computer systems). The compilation,</span><br><span class="line">repackaging, dissemination or other use of this Data is expressly</span><br><span class="line">prohibited without the prior written consent of VeriSign. You agree not to</span><br><span class="line">use electronic processes that are automated and high-volume to access or</span><br><span class="line">query the Whois database except as reasonably necessary to register</span><br><span class="line">domain names or modify existing registrations. VeriSign reserves the right</span><br><span class="line">to restrict your access to the Whois database in its sole discretion to ensure</span><br><span class="line">operational stability.  VeriSign may restrict or terminate your access to the</span><br><span class="line">Whois database for failure to abide by these terms of use. VeriSign</span><br><span class="line">reserves the right to modify these terms at any time.</span><br><span class="line"></span><br><span class="line">The Registry database contains ONLY .COM, .NET, .EDU domains and</span><br><span class="line">Registrars.</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、使用DMitry工具"><a href="#2、使用DMitry工具" class="headerlink" title="2、使用DMitry工具"></a>2、使用DMitry工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmitry -w [域名]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dmitry -w baidu.com</span><br><span class="line">Deepmagic Information Gathering Tool</span><br><span class="line">&quot;There be some deep magic going on&quot;</span><br><span class="line"></span><br><span class="line">HostIP:39.156.69.79</span><br><span class="line">HostName:baidu.com</span><br><span class="line"></span><br><span class="line">Gathered Inic-whois information for baidu.com</span><br><span class="line">---------------------------------</span><br><span class="line">   Domain Name: BAIDU.COM</span><br><span class="line">   Registry Domain ID: 11181110_DOMAIN_COM-VRSN</span><br><span class="line">   Registrar WHOIS Server: whois.markmonitor.com</span><br><span class="line">   Registrar URL: http://www.markmonitor.com</span><br><span class="line">   Updated Date: 2019-05-09T04:30:46Z</span><br><span class="line">   Creation Date: 1999-10-11T11:05:17Z</span><br><span class="line">   Registry Expiry Date: 2026-10-11T11:05:17Z</span><br><span class="line">   Registrar: MarkMonitor Inc.</span><br><span class="line">   Registrar IANA ID: 292</span><br><span class="line">   Registrar Abuse Contact Email: abusecomplaints@markmonitor.com</span><br><span class="line">   Registrar Abuse Contact Phone: +1.2083895740</span><br><span class="line">   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited</span><br><span class="line">   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited</span><br><span class="line">   Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited</span><br><span class="line">   Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited</span><br><span class="line">   Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited</span><br><span class="line">   Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited</span><br><span class="line">   Name Server: NS1.BAIDU.COM</span><br><span class="line">   Name Server: NS2.BAIDU.COM</span><br><span class="line">   Name Server: NS3.BAIDU.COM</span><br><span class="line">   Name Server: NS4.BAIDU.COM</span><br><span class="line">   Name Server: NS7.BAIDU.COM</span><br><span class="line">   DNSSEC: unsigned</span><br><span class="line">   URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/</span><br><span class="line">&gt;&gt;&gt; Last update of whois database: 2019-10-27T13:22:08Z &lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">For more information on Whois status codes, please visit https://icann.org/epp</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-2-2查找子域名"><a href="#5-2-2查找子域名" class="headerlink" title="5.2.2查找子域名"></a>5.2.2查找子域名</h3><h4 id="1、使用dmitry工具"><a href="#1、使用dmitry工具" class="headerlink" title="1、使用dmitry工具"></a>1、使用dmitry工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dmitry -s baidu.com -o domain</span><br><span class="line">-s:实施子域名查询</span><br><span class="line">-o：指定保存输出的文件</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dmitry -s baidu.com -o domain</span><br><span class="line">Deepmagic Information Gathering Tool</span><br><span class="line">&quot;There be some deep magic going on&quot;</span><br><span class="line"></span><br><span class="line">Writing output to &apos;domain.txt&apos;</span><br><span class="line"></span><br><span class="line">HostIP:39.156.69.79</span><br><span class="line">HostName:baidu.com</span><br><span class="line"></span><br><span class="line">Gathered Subdomain information for baidu.com</span><br><span class="line">---------------------------------</span><br><span class="line">Searching Google.com:80...</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、在线查询"><a href="#2、在线查询" class="headerlink" title="2、在线查询"></a>2、在线查询</h4><h3 id="5-2-3发现服务器"><a href="#5-2-3发现服务器" class="headerlink" title="5.2.3发现服务器"></a>5.2.3发现服务器</h3><h4 id="1、Dnsenum工具"><a href="#1、Dnsenum工具" class="headerlink" title="1、Dnsenum工具"></a>1、Dnsenum工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnsenum -w zhiliaotang.com  -w 表示在C段网络中实施whois查询</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://www.s4tu.com/images/2019/10/27/1572088288223faf9f.png" alt="\img"></p>
-<p>这里补充一下泛域名解析：</p>
-<p>所谓“泛域名解析”是指：利用通配符* （星号）来做[次级域名以实现所有的次级域名均指向同一IP地址。</p>
-<p>泛解析的用途</p>
-<p>1.可以让域名支持无限的子域名(这也是泛域名解析最大的用途)。</p>
-<p>2.防止用户错误输入导致的网站不能访问的问题</p>
-<p>3.可以让直接输入网址登陆网站的用户输入简洁的网址即可访问网站</p>
-<p>泛域名在实际使用中作用是非常广泛的，比如实现无限二级域名功能，提供免费的url转发，在IDC部门实现自动分配免费网址，在大型企业中实现网址分类管理等等，都发挥了巨大的作用。</p>
-<p>​    </p>
-<p>与域名解析区别</p>
-<p>泛域名解析是：*.域名解析到同一IP。</p>
-<p>域名解析是：子域名.域名解析到同一IP。</p>
-<p>​    </p>
-<p>设置方法</p>
-<p>你可按以下的步骤办理：<br>　　（1）用你的用户名和密码登陆你注册域名时的网站。<br>　　下面操作会根据域名提供商控制面板的不同而有差别，请具体参照自己域名所在网站的提示。<br>　　（2）自助管理–域名管理–信息下的管理–在域名控制面板输入域名(如不需加www)和域名密码(如果忘记域名密码可以点击初始密码下的重置密码即可把域名密码设置为初始密码)。<br>　　（3）DNS解析管理–增加IP–主机名中输入<em>,对应IP输入你服务器的IP地址–增加–刷新所有解析。<br>　　（4）如果你需要解析2级域名的泛解析比如那么在上面的主机名里输入</em>.abc即可<br>　　（5）等半个小时到1个小时你的解析就可生效(新注册的域名24小时内生效) [1]  </p>
-<h4 id="2、nslookup"><a href="#2、nslookup" class="headerlink" title="2、nslookup"></a>2、nslookup</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# nslookup</span><br><span class="line">&gt; set type=ns</span><br><span class="line">&gt; zhiliaotang.com</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://www.s4tu.com/images/2019/10/27/1572088918764ca4b4.png" alt="\img"></p>
-<p>这里需要补充一下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A //表示一台主机</span><br><span class="line">MX //表示邮件服务器</span><br><span class="line">NS  //DNS服务器</span><br></pre></td></tr></table></figure>
-
-<h4 id="3、使用ping命令"><a href="#3、使用ping命令" class="headerlink" title="3、使用ping命令"></a>3、使用ping命令</h4><p>​        ping命令可以检测网络是否互通，可以很好的帮助用户分析何判断网络故障。对于一个域名，通常可以指定多个IP地址。所以当用户借助一些工具查询域名信息时，将获取多个地址信息。此时，用户无法确定目标服务器使用的是哪个地址。用户通过使用Ping命令，则可以判断目前使用的IP地址，进而确定目标主机，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# ping -c 4 www.baidu.com</span><br></pre></td></tr></table></figure>
-
-<p>​        在以上语法中，选项-C用来发地址送指定的Ping包数，参数用来指定目标主机的地址，其中，该目标主机可以是主机名，IP地址或域名。在windows系统中，Ping命令进发送4个相应包就停止。在linux中，默认将会一直ping命令，需要用户按ctrl+c组合键停止</p>
-<p><img src="C:%5CUsers%5C19453%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1572089274977.png" alt="\img"></p>
-<p>## </p>
-
+              <h2 id="5-7-信息分析和整理"><a href="#5-7-信息分析和整理" class="headerlink" title="5.7 信息分析和整理"></a>5.7 信息分析和整理</h2><p>在收集到目标主机的大量信息之后，为了方便后续实施渗透测试，用户需要讲这些信息进行整理和分析。</p>
+          
       
     </div>
     
@@ -1005,6 +935,76 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/渗透测试/">渗透测试</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a   href="/2019/10/26/10-26-5.7 信息分析和整理/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-10-26-5.3扫描端口" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/10/26/10-26-5.3扫描端口/" class="article-date">
+      <time datetime="2019-10-25T16:00:00.000Z" itemprop="datePublished">2019-10-26</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/10/26/10-26-5.3扫描端口/">渗透测试之（五）信息收集（3）</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="5-3扫描端口"><a href="#5-3扫描端口" class="headerlink" title="5.3扫描端口"></a>5.3扫描端口</h2><p>通过扫描端口，可以发现目标主机中运行的程序。然后在对这些程序进行信息收集，以获取其漏洞信息，并实施渗透测试。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/渗透测试/">渗透测试</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a   href="/2019/10/26/10-26-5.3扫描端口/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
