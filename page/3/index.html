@@ -66,7 +66,7 @@
             
         </a>
         <hgroup>
-          <h1 class="header-author"><a href="/">John Doe</a></h1>
+          <h1 class="header-author"><a href="/">Lei Xuelian</a></h1>
         </hgroup>
         
         
@@ -228,7 +228,7 @@
       <nav id="mobile-nav">
       <div class="overlay">
           <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">John Doe</a></h1>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Lei Xuelian</a></h1>
       </div>
     <div class="intrude-less">
         <header id="header" class="inner">
@@ -238,7 +238,7 @@
                 
             </a>
             <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">John Doe</a></h1>
+              <h1 class="header-author"><a href="/" title="回到主页">Lei Xuelian</a></h1>
             </hgroup>
             
             <nav class="header-menu">
@@ -272,6 +272,310 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-09-08用户与组的管理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/04/09-08用户与组的管理/" class="article-date">
+      <time datetime="2019-09-04T09:18:20.000Z" itemprop="datePublished">2019-09-04</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/09/04/09-08用户与组的管理/">用户与组的管理</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+
+<h1 id="1-用户与用户组概念"><a href="#1-用户与用户组概念" class="headerlink" title="1.用户与用户组概念"></a>1.用户与用户组概念</h1><p>Linux 是一个多用户、多任务的服务器操作系统。Linux 用户是根据角色定义的，具体分 为三种角色：</p>
+<p> 超级用户：拥有对系统的最高管理权限，默认是 root 用户。</p>
+<p> 普通用户：只能对自己目录下的文件进行访问和修改，具有登录系统的权限。 </p>
+<p>虚拟用户：也叫“伪”用户，这类用户最大的特点是不能登录系统，它们的存在主要是 方便系统管理，满足相应的系统进程对文件属主的要求。<br>主要组（主组）：每个用户有且只有一个主要组，创建用户时默认创建。</p>
+<p> 附属组（补充组）：用户可以是零个或多个附属组成员。一般用于帮助确保用户具有对 系统中文件及其他资源的访问权限</p>
+<h1 id="2、用户配置文件"><a href="#2、用户配置文件" class="headerlink" title="2、用户配置文件"></a>2、用户配置文件</h1><p>（1）用户配置文件/etc/passwd，在 passwd 配置文件中，从左到右各个字段的含义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用户名：用户登录系统时使用的用户名。</span><br><span class="line">口令：存放加密的口令，被/etc/shadow 文件保护。 </span><br><span class="line">用户标识号(UID)：系统内部用它来标识用户，每个用户的 UID 都是唯一的。 </span><br><span class="line">用户组标识号(GID)：系统内部用它来标识用户所属的组，这里的 GID 是主组 GID。 </span><br><span class="line">注释性描述：为了方便管理和记忆该用户而添加的信息。 用户主目录：也称家目录，用户登录系统后所进入的目录。</span><br><span class="line">命令解释器：指示该用户使用的 Shell，CentOS Linux 7 默认的是 bash。如果指定 Shell 为/sbin/nologin，则代表用户无法登录系统。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/passwd</span><br><span class="line">host:x:1000:1000:root:/home/host:/bin/bash</span><br><span class="line">student:x:1001:1001::/home/student:/bin/bash</span><br><span class="line">stu2:x:1002:1002::/home/stu2:/bin/bash</span><br><span class="line">stu3:x:1003:1003::/home/stu3:/bin/bash</span><br><span class="line">stu4:x:1004:1004::/home/stu4:/bin/bash</span><br><span class="line">stu5:x:1005:1005::/home/stu5:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6r3l3x5t7j30cj039dfq.jpg" alt="\img"></p>
+<p>（2）用户密码配置文件/etc/shadow</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用户名：用户账户名。 </span><br><span class="line">密码：用户的加密密码。</span><br><span class="line">最后一次修改的时间：从 1970 年 1 月 1 日起，到用户最后一次更改密码的天数。</span><br><span class="line">最小时间间隔：从 1970 年 1 月 1 日起，到用户可以更改密码的天数，(0 表示随时可以变更)。 </span><br><span class="line">最大时间间隔：从 1970 年 1 月 1 日起，到必须更改密码的天数，否则密码将过期，(99999 表示永远不 过期)。 警告时间：在密码过期之前多少天提醒用户更新，默认值是 7 天。 不活动时间：在用户密码过期之后到禁用账户的天数。</span><br><span class="line">失效时间：从 1970 年 1 月 1 日起，到账户被禁用的天数。 标志：保留位。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/shadow</span><br><span class="line">root:$6$JU.c5THlJ2kmlzRx$9H/TrK2wGfsWYUuQWc0iIuLXw4qP5Kv05nKDJ0PN73cf9E/lupRWZvijHKBinbQQrMGalsEioejlqIlpCsoW91::0:99999:7:::</span><br><span class="line">bin:*:17834:0:99999:7:::</span><br><span class="line">daemon:*:17834:0:99999:7:::</span><br><span class="line">adm:*:17834:0:99999:7:::</span><br><span class="line">lp:*:17834:0:99999:7:::</span><br><span class="line">sync:*:17834:0:99999:7:::</span><br><span class="line">shutdown:*:17834:0:99999:7:::</span><br><span class="line">halt:*:17834:0:99999:7:::</span><br><span class="line">mail:*:17834:0:99999:7:::</span><br><span class="line">...</span><br><span class="line">host:$6$FR0ZFhAfSy12p0.X$KpDrpp1xfoJvan0Dee6Lhl2HqMOTqckqHEy33F6otLnAXfZovhsqcKQDUrhAiSxYxWtSqsxKWBqqYwaJoMkLH0:18142:0:99999:7:::</span><br><span class="line">student:!!:18143:0:99999:7:::</span><br><span class="line">stu2:!!:18143:0:99999:7:::</span><br><span class="line">stu3:!!:18143:0:99999:7:::</span><br><span class="line">stu4:!!:18143:0:99999:7:::</span><br><span class="line">stu5:!!:18143:0:99999:7:::</span><br></pre></td></tr></table></figure>
+
+<h1 id="3、用户组配置文件"><a href="#3、用户组配置文件" class="headerlink" title="3、用户组配置文件"></a>3、用户组配置文件</h1><p>（1）用户组配置文件/etc/group，文件中各字段的含义从左到右分别是： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">组名：组的名称。 </span><br><span class="line">组口令：用户组的口令，用 x 表示口令是被/etc/gshadow 文件保护的。 </span><br><span class="line">组标识号(GID)：系统内部用它来标识用户组，每个用户组的 GID 都是唯一的。 </span><br><span class="line">组成员：该组的成员。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/group</span><br><span class="line">root:x:0:</span><br><span class="line">bin:x:1:</span><br><span class="line">daemon:x:2:</span><br><span class="line">sys:x:3:</span><br><span class="line">adm:x:4:</span><br><span class="line">tty:x:5:</span><br><span class="line">disk:x:6:</span><br><span class="line">...</span><br><span class="line">host:x:1000:</span><br><span class="line">student:x:1001:</span><br><span class="line">stu2:x:1002:</span><br><span class="line">stu3:x:1003:</span><br><span class="line">stu4:x:1004:</span><br><span class="line">stu5:x:1005:</span><br></pre></td></tr></table></figure>
+
+<p>（2）用户组密码配置文件/etc/gshadow，文件中各字段的含义从左到右分别是：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">组名：组的名称。 </span><br><span class="line">组口令：用户组的口令，保存已加密的口令。 </span><br><span class="line">组的管理员帐号：组的管理员帐号，管理员有权对该组添加、删除帐号。 </span><br><span class="line">组成员：该组的成员，多个用户用“，”分开</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/gshadow</span><br><span class="line">root:::</span><br><span class="line">bin:::</span><br><span class="line">daemon:::</span><br><span class="line">sys:::</span><br><span class="line">adm:::</span><br><span class="line">tty:::</span><br><span class="line">disk:::</span><br><span class="line">...</span><br><span class="line">host:!::</span><br><span class="line">student:!::</span><br><span class="line">stu2:!::</span><br><span class="line">stu3:!::</span><br><span class="line">stu4:!::</span><br><span class="line">stu5:!::</span><br><span class="line">[root@loca</span><br></pre></td></tr></table></figure>
+
+<h1 id="4、用户管理"><a href="#4、用户管理" class="headerlink" title="4、用户管理"></a>4、用户管理</h1><p>（1）用 useradd 命令创建用户 命令格式：useradd [选项] 用户名<br>选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-d 指定用户主目录</span><br><span class="line">-g 指定用户组</span><br><span class="line">-m 若主目录不存在，则创建</span><br><span class="line">-M 不创建主目录</span><br><span class="line">-s 指定登录时使用的 Shell 类型，默认为/bin/bash，如果为 /bin/nologin 就是虚拟用户</span><br><span class="line">-c 设置对该账号的注释说明文字</span><br><span class="line">-r 创建系统账号(用户 ID 小于 1000， 从 999 起按照递减的顺序创建)， 默认不创建对应的主目录</span><br><span class="line">-u 手工指定新用户的 ID 值，该值必须唯一，且大于 999。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# useradd -u 500 stu5</span><br><span class="line">useradd：用户“stu5”已存在</span><br><span class="line">[root@localhost ~]# useradd -u 500 student2</span><br><span class="line">[root@localhost ~]# cat /etc/passwd</span><br><span class="line">student2:x:500:1009::/home/student2:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>#useradd stu1 分为三步</p>
+<p> 新建一个名为 stu1 的用户 </p>
+<p>创建 stu1 的基本组为 stu1 </p>
+<p>创建主目录：/home/stu1</p>
+<p>（3）用 passwd 命令管理用户登录密码 root 用户可以为任何用户设置密码，普通用户默认情况下只能为自己设置密码。 命令格式：passwd [选项] [用户名称] 选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-l 锁定用户密码</span><br><span class="line">-u 解锁用户密码</span><br><span class="line">-S 查询用户密码状态</span><br><span class="line">-d 删除用户密码</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# passwd -S stu5</span><br><span class="line">stu5 LK 2019-09-04 0 99999 7 -1 (密码已被锁定。)</span><br><span class="line">[root@localhost ~]# passwd -u stu5</span><br><span class="line">解锁用户 stu5 的密码。</span><br><span class="line">passwd: 警告：未锁定的密码将是空的。</span><br><span class="line">passwd: 不安全的操作(使用 -f 参数强制进行该操作)</span><br><span class="line">[root@localhost ~]# passwd -u -f stu5</span><br><span class="line">解锁用户 stu5 的密码。</span><br><span class="line">passwd: 操作成功</span><br><span class="line">[root@localhost ~]# passwd -l stu5</span><br><span class="line">锁定用户 stu5 的密码 。</span><br><span class="line">passwd: 操作成功</span><br><span class="line">[root@localhost ~]# passwd -d stu5</span><br><span class="line">清除用户的密码 stu5。</span><br><span class="line">passwd: 操作成功</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
+
+<p>【举例 1】创建用户 zhangsan,指定登录类型为/bin/bash;用户 lisi，登录类型为 /sbin/nologin,并分别设置密码为：123456。并测试两个用户能否登录系统。 #useradd -s /bin/bash zhangsan #useradd -s /bin/nologin lisi </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd -s /bin/bash zhangsan</span><br><span class="line">[root@localhost ~]# useradd -s /bin/nologin lisi</span><br><span class="line">[root@localhost ~]# su zhangsan</span><br><span class="line">[zhangsan@localhost root]$ su lisi</span><br><span class="line">密码：</span><br><span class="line">12345su: 鉴定故障</span><br><span class="line">[zhangsan@localhost root]$ 123456</span><br><span class="line">bash: 123456: 未找到命令...</span><br><span class="line">[zhangsan@localhost root]$</span><br></pre></td></tr></table></figure>
+
+<p>【举例 2】创建用户 tom，并设置 tom 的真实姓名为:tom-sing,家庭电话：13911202319，公 司地址：tf5jie,公司电话：028-85699999 #useradd -c “tom-sing 13911202319 tf5jie 028-85699999” tom</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd -c &quot;tom-sing 139112022319 tf5jie 028-85699999&quot; tom</span><br><span class="line">[root@localhost ~]# cat /etc/passwd</span><br><span class="line">tom:x:1010:1010:tom-sing 139112022319 tf5jie 028-85699999:/home/tom:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>删除用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# userdel tom</span><br><span class="line">[root@localhost ~]# userdel lisi</span><br><span class="line">[root@localhost ~]# userdelstudent1</span><br><span class="line">bash: userdelstudent1: 未找到命令...</span><br><span class="line">[root@localhost ~]# userdel student1</span><br><span class="line">[root@localhost ~]# userdel zhangsan</span><br><span class="line">userdel: user zhangsan is currently used by process 38864</span><br><span class="line">[root@localhost ~]# userdel -r zhangsan</span><br><span class="line">userdel: user zhangsan is currently used by process 38864</span><br><span class="line">[root@localhost ~]# exit</span><br><span class="line">exit</span><br><span class="line">[zhangsan@localhost root]$ exit</span><br><span class="line">exit</span><br><span class="line">[root@localhost ~]# userdel zhangsan</span><br><span class="line">[root@localhost ~]# cat /etc/shadow</span><br><span class="line">student:!!:18143:0:99999:7:::</span><br><span class="line">stu2:!!:18143:0:99999:7:::</span><br><span class="line">stu3:!!:18143:0:99999:7:::</span><br><span class="line">stu4:!!:18143:0:99999:7:::</span><br><span class="line">stu5::18143:0:99999:7:::</span><br><span class="line">student2:!!:18143:0:99999:7:::</span><br><span class="line">student3:!!:18143:0:99999:7:::</span><br></pre></td></tr></table></figure>
+
+<p>【举例 3】# usermod -s /bin/nologin jack</p>
+<p>（4）用 userdel 命令删除用户 命令格式：userdel [-r] 用户名</p>
+<p> #userdel stu8 只删除用户，但不删除主目录 </p>
+<p>#userdel -r stu8 连同主目录一起删除<br>（5）用于修改用户口令有效期限的 chage 命令 命令格式：chage [选项] 用户名 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">选项 功能说明</span><br><span class="line">-m 密码可更改的最小天数。为零时代表任何时候都可以更改密码</span><br><span class="line">-W 用户密码到期前，提前收到警告信息的天数</span><br><span class="line">-M 密码保持有效的最大天数</span><br><span class="line">-E 账号到期的日期。过了这天，此账号将不可用</span><br><span class="line">-d 上一次更改的日期</span><br><span class="line">-I 停滞时期。如果一个密码已过期这些天，那么此账号将不可用</span><br><span class="line">-l 列出当前的设置。由非特权用户来确定他们的密码或账号何时过期</span><br></pre></td></tr></table></figure>
+
+<p>【举例】设置 jack 用户的密码最大有效期为 30 天，提前 9 天警告，失效时间 40 天。</p>
+<p> #chage -M 18054 -W 9 -E 18064</p>
+<p>（6）修改用户注释信息的 chfn 命令 命令格式：chfn [选项] [用户名]<br>选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-f 设置真实姓名。</span><br><span class="line">-h 设置家中的电话号码。</span><br><span class="line">-o 设置办公室的地址。</span><br><span class="line">-p 设置办公室的电话号码。</span><br></pre></td></tr></table></figure>
+
+<p>（7）修改用户 Shell 类型的 chsh 命令 命令格式：chsh [-s] [用户名]</p>
+<h1 id="5、用户组管理"><a href="#5、用户组管理" class="headerlink" title="5、用户组管理"></a>5、用户组管理</h1><p>（1）用 groupadd 命令创建用户组</p>
+<p> 命令格式：groupadd  [r]  用户组名称<br>（2）用 groupmod 命令修改用户组属性 命令格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupmod 选项 组名 选项 功能说明</span><br><span class="line">-n 修改组名</span><br><span class="line">-g 修改组标识号 GID</span><br></pre></td></tr></table></figure>
+
+<p>（4）用 groupdel 命令删除用户组</p>
+<p>​    命令格式：groupdel  组名<br>（4）用 gpasswd 命令维护组中成员 </p>
+<p>命令格式：gpasswd 选项 用户名 组名 </p>
+<p>#gpasswd stu1 为 stu1 组设置密码 选项 功能说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-a 添加用户到组。</span><br><span class="line">-d 将用户从组中删除。</span><br><span class="line">-A 设置用户为组管理员。</span><br></pre></td></tr></table></figure>
+
+<p>【举例】新建 yanyan、yuanyuan、lili 三个用户和 teacher 组将 lili 设置为 teacher 组的管理员，那么 lili 就具有向该组添加用户和移除用户的权限。也可以为该 组设置密码，其他用户就可以通过 newgrp 命令切换成该组的成员身份，否则只 有本组成员才能使用该组身份。</p>
+<p> #useradd yanyan</p>
+<p> #useradd yuanyuan </p>
+<p>#useradd lili </p>
+<p>#gpasswd -a lili teacher</p>
+<p>6、扩展知识<br>（1）查看用户信息的 id 命令 </p>
+<p>（2）输出指定用户所在组 groups 命令 #groups stu1 </p>
+<p>（3）查看当前登录用户 who am i 命令<br>（4）查看当前用户 w 命令 </p>
+<p>（5）查看登录用户 who 命令 </p>
+<p>（6）查看登录用户历史 last 命令<br>课程小结：<br>1、用户与用户组概念 超级用户 普通用户 虚拟用户 主组 附加组 </p>
+<p>2、用户与组的相关配置文件 </p>
+<p>用户配置文件：/etc/passwd /etc/shadow </p>
+<p>用户组配置文件：/etc/group /etc/gshadow </p>
+<p>3、用户与组的管理 </p>
+<p>useradd passwd usermod userdel groupadd gpasswd groupmod groupdel</p>
+<h1 id="6、补充"><a href="#6、补充" class="headerlink" title="6、补充"></a>6、补充</h1><h2 id="1、Centos7基本操作"><a href="#1、Centos7基本操作" class="headerlink" title="1、Centos7基本操作"></a>1、Centos7基本操作</h2><p><strong>Linux**</strong>系统是一个多用户多任务的操作系统**</p>
+<p><strong>开源免费的，更安全，兼容性更好</strong></p>
+<p><strong>[root@localhost ~]#</strong>   <strong>表示当前登录的用户是**</strong>root**</p>
+<p><strong>当前登录的用户名</strong></p>
+<p><strong>主机名</strong></p>
+<p><strong>当前所在的目录</strong></p>
+<p><strong>student@localhost root]$</strong>   <strong>当前登录的用户是普通用户</strong> </p>
+<p><strong>~</strong> <strong>主目录（每个用户的用户配置文件夹）</strong></p>
+<p>   <strong>root</strong> <strong>用户的主目录是**</strong>/root**</p>
+<p>   <strong>普通用户的主目录是**</strong>/home/<strong>**用户名</strong></p>
+<p><strong>pwd</strong>  <strong>查看当前所在的具体目录位置</strong></p>
+<p><strong>[student@localhost /]$ ls</strong></p>
+<p><strong>查看当前目录下的文件有哪些</strong></p>
+<p><strong>dr-xr-xr-x.</strong>   <strong>5 root root 4096 7**</strong>月**   <strong>8 2019</strong> <strong>boot</strong></p>
+<p><strong>文件的类型和权限</strong></p>
+<p>   <strong>第一个字符代表文件的类型：**</strong>d - l** </p>
+<p>   <strong>后面的字符代表文件的权限</strong></p>
+<p><strong>代表的是所有都权限</strong></p>
+<p><strong>代表的是所属组的权限</strong></p>
+<p><strong>代表的是其他用户的权限</strong></p>
+<p> <strong>r</strong> <strong>读</strong>   <strong>w</strong> <strong>写</strong>  <strong>x</strong> <strong>执行</strong>  <strong>-</strong>  <strong>没有权限</strong></p>
+<p><strong>改变文件的权限：</strong></p>
+<p><strong>字母方式：</strong> <strong>chmod</strong> </p>
+<p><strong>mkdir test</strong>   <strong>新建文件，名为</strong> <strong>test</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# chmod u-x test</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# chmod g=rwx test</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# chmod a=rx test</span><br></pre></td></tr></table></figure>
+
+<p><strong>数字方式修改：</strong></p>
+<p><strong>[root@localhost ~]# chmod 755 test</strong></p>
+<p><strong>修改所有者与属组</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**[root@localhost ~]# chown student test**</span><br><span class="line"></span><br><span class="line">**[root@localhost ~]# chown :student test**</span><br><span class="line"></span><br><span class="line">**[root@localhost ~]# chown root:root test**</span><br></pre></td></tr></table></figure>
+
+<p><strong>连接文件的数量</strong></p>
+<p><strong>文件的所有者（属主）</strong></p>
+<p><strong>文件的所属组（属组）</strong></p>
+<p><strong>文件的大小（默认单位字节）</strong></p>
+<p><strong>文件创建或修改的时间</strong></p>
+<p><strong>文件的名字</strong> </p>
+<p><strong>cd   ls  -l -a  ll  -lh</strong>  </p>
+<p><strong>mkdir</strong>  </p>
+<p><strong>touch</strong></p>
+<p><strong>rmdir</strong>  <strong>删除空文件夹</strong></p>
+<p><strong>rm</strong>  <strong>默认删除文件，不是删除目录</strong></p>
+<p><strong># rm -rf c</strong></p>
+<p><strong>mv</strong>  <strong>剪切或重命名</strong></p>
+<p><strong>cp</strong> <strong>默认是复制文件不是目录</strong> </p>
+<p><strong># cp -R /mnt/public/zz /mnt</strong></p>
+<p><strong>查看文件内容：</strong></p>
+<p>  <strong>cat</strong> </p>
+<p>  <strong>more</strong> <strong>分页显示，自动退出</strong></p>
+<p><strong>less</strong> <strong>分页显示，</strong> <strong>q</strong> <strong>退出</strong></p>
+<p>  <strong>head</strong>  <strong>查看前十行</strong>  <strong>head -3 +**</strong>路径：前三行**</p>
+<p>  <strong>tail</strong>      <strong>查看后十行</strong></p>
+<p><strong>帮助命令</strong></p>
+<p>  <strong>ls –help</strong></p>
+<p><strong>man</strong></p>
+<p><strong>4、**</strong>查找命令**</p>
+<p>  <strong>find</strong>  <strong>相当于</strong> <strong>windows</strong>  <strong>里面的搜索文件</strong> <strong>find+</strong> <strong>查找范围</strong> <strong>+</strong> <strong>查找条件</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sij3v125j30c603yglk.jpg" alt="\img"></p>
+<p><strong>查找**</strong>3M<strong>**以上的文件</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijkzxmkj30b901y746.jpg" alt="\img"></p>
+<p>  <strong>grep</strong> <strong>查找内容</strong></p>
+<p><strong>包含**</strong>root**</p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijrlaesj30c201ka9y.jpg" alt="\img"></p>
+<p>以root开头</p>
+<p><img src="https://ws1.sinaimg.cn/large/007ru3v0gy1g6sijxq6emj30bj014dfo.jpg" alt="\img"></p>
+<p>文件权限：</p>
+<p> R:读  4</p>
+<p> W:写  2</p>
+<p>X:执行  1</p>
+<p>-：无权限  0</p>
+<p>Rwx r-x r-x.</p>
+<p>属主权限u 属组权限g <strong>其他用户**</strong>0**  <strong>所有**</strong>a**</p>
+<p><strong>.**</strong>代表有没有<strong>**ACL</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd xuelian</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ls</span><br><span class="line"></span><br><span class="line">11.txt  22.txt  33.txt  44.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ll</span><br></pre></td></tr></table></figure>
+
+<p>总用量 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x. 4 root root 52 9月   4 07:50 11.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 22.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 33.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:29 44.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# chmod a+wrx 11.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ll</span><br></pre></td></tr></table></figure>
+
+<p>总用量 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drwxrwxrwx. 4 root root 52 9月   4 07:50 11.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 22.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 33.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:29 44.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# chmod 770 11.txt</span><br><span class="line"></span><br><span class="line">[root@localhost xuelian]# ll</span><br></pre></td></tr></table></figure>
+
+<p>总用量 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drwxrwx---. 4 root root 52 9月   4 07:50 11.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 22.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:28 33.txt</span><br><span class="line"></span><br><span class="line">drwxr-xr-x. 2 root root  6 9月   4 07:29 44.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-、用户与组的管理"><a href="#2-、用户与组的管理" class="headerlink" title="2**、用户与组的管理**"></a><strong>2**</strong>、用户与组的管理**</h2><p><strong>（1）用户的管理</strong></p>
+<p>useradd命令创建用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\#useradd stu1</span><br><span class="line"></span><br><span class="line">\#useradd -s /bin/nologin stu1</span><br><span class="line"></span><br><span class="line">**# usermod -s /bin/nologin stu1**</span><br></pre></td></tr></table></figure>
+
+<p><strong>-s:**</strong>指定登录类型。**</p>
+<p><strong>为用户设置密码：**</strong>passwd** </p>
+<p>   <strong>如果是**</strong>root<strong>**用户操作，那么它可以设置任何用户的密码。</strong></p>
+<p>   <strong>如果是普通用户呢？如果是一个组的管理员，它可以设置本组用户的密码</strong></p>
+<p>​                     <strong>如果是普通用户，只能设置自己的密码</strong></p>
+<p><strong>如果从**</strong>root<strong>**用户切换到普通用户，是不需要输入密码的。</strong></p>
+<p><strong>如果是普通用户切换到其他用户是需要输入密码的。</strong></p>
+<p><strong>sbit:**</strong>粘滞位权限**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">**[root@localhost xuelian]# su stu2**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost xuelian]$ cd sbit**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost sbit]$ touch 1.txt**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost sbit]$ touch 2.txt**</span><br><span class="line"></span><br><span class="line">**[stu2@localhost sbit]$ exit**</span><br><span class="line"></span><br><span class="line">**[root@localhost xuelian]# su stu3**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost xuelian]$ cd sbit**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ touch stu3.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ ll**</span><br><span class="line"></span><br><span class="line">**总用量** **0**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu2 stu2 0 9****月**   **4 19:16 1.txt**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu2 stu2 0 9****月**   **4 19:16 2.txt**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu3 stu3 0 9****月**   **4 19:17 stu3.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$**</span><br><span class="line"></span><br><span class="line"> **[stu3@localhost sbit]$ rm -rf 1.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ ll**</span><br><span class="line"></span><br><span class="line">**总用量** **0**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu2 stu2 0 9****月**   **4 19:16 2.txt**</span><br><span class="line"></span><br><span class="line">**-rw-rw-r--. 1 stu3 stu3 0 9****月**   **4 19:17 stu3.txt**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ chmod 0+t sbit/**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ chmod o+t sbit/**</span><br><span class="line"></span><br><span class="line">**chmod:** **无法访问****&quot;sbit/&quot;:** **没有那个文件或目录**</span><br><span class="line"></span><br><span class="line">**[stu3@localhost sbit]$ chmod o+t sbit**</span><br><span class="line"></span><br><span class="line">**chmod:** **无法访问****&quot;sbit&quot;:** **没有那个文件或目录**   **//****加权限必须是****ROOT****下**</span><br><span class="line"></span><br><span class="line">**[root@localhost xuelian]# chmod o+t sbit**</span><br><span class="line"></span><br><span class="line">**[root@localhost xuelian]# ll**</span><br><span class="line"></span><br><span class="line">**总用量** **0**</span><br><span class="line"></span><br><span class="line">**drwxrwx---. 4 root root 52 9****月**   **4 07:50 11.txt**</span><br><span class="line"></span><br><span class="line">**drwxr-xr-x. 2 root root  6 9****月**   **4 07:28 22.txt**</span><br><span class="line"></span><br><span class="line">**drwxr-xr-x. 2 root root  6 9****月**   **4 07:28 33.txt**</span><br><span class="line"></span><br><span class="line">**drwxr-xr-x. 2 root root  6 9****月**   **4 07:29 44.txt**</span><br><span class="line"></span><br><span class="line">**drwxrwxrwt. 2 root root 35 9****月**   **4 19:18 sbit //****多了个****t** **如果原来有****x****权限，加的就是****t,****如果没有，就是加****T**</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除用户：</strong> userdel [-r] 用户名</p>
+<p><strong>修改用户：</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**usermod -l**  **修改用户名**</span><br><span class="line"></span><br><span class="line">​          **usermod -L** **锁定用户**</span><br><span class="line"></span><br><span class="line">​           **usermod -U** **解锁用户**</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）用户组的管理</strong> </p>
+<p>新建用户组：groupadd</p>
+<p>组用户管理：gpasswd</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>添加用户到组。</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>将用户从组中删除。</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>设置用户为组管理员。</td>
+</tr>
+</tbody></table>
+<p>为用户组设置密码：gpasswd </p>
+<p>普通用户临时加入到组，并享有组的权限：newgroup</p>
+<p>人事部有两个员工（rs1 rs2),其中rs1为组rsb的管理员，rsb组的密码是：123456</p>
+<p>/mnt/rsb文件 drwxr-x— rs1 rsb</p>
+<p>现在有一个员工：zjl  想有临时权限查看rsb目录中的文件？</p>
+<p><strong>3**</strong>、特殊权限**</p>
+<p><strong>ACL:**</strong>是针对其他用户当中的个别或部份用户设置的权限**</p>
+<p><strong>setfacl -m</strong>   <strong>创建</strong></p>
+<p><strong>setfacl -x</strong>    <strong>删除一条</strong></p>
+<p><strong>stfacl -b</strong>    <strong>删除所有</strong></p>
+<p><strong>getfacl</strong>     <strong>查看</strong></p>
+<p><strong>SBIT**</strong>：<strong>**chmod  o+t</strong></p>
+<p><strong>SGID**</strong>：<strong>**chmod g+s</strong></p>
+<p><strong>4**</strong>、今日任务** </p>
+<p><strong>项目一组：</strong></p>
+<p><strong>用户组：**</strong>xm1z**</p>
+<p><strong>用户：**</strong>xm11 (<strong><strong>组管理员</strong></strong>) xm12**</p>
+<p><strong>文件：**</strong>/mnt/xm1z**</p>
+<p><strong>项目二组：</strong></p>
+<p><strong>用户组：**</strong>xm2z**</p>
+<p><strong>用户：**</strong>xm21 (<strong><strong>组管理员</strong></strong>) xm22**</p>
+<p><strong>文件：**</strong>/mnt/xm2z**</p>
+<p><strong>管理团队用户：</strong></p>
+<p><strong>用户组：**</strong>glz**</p>
+<p><strong>用户：**</strong>xmjl<strong>**（项目经理）</strong>  <strong>rsjl**</strong>（人事经理）**  <strong>xmzl**</strong>（经理助理）**</p>
+<p><strong>文件：**</strong>/mnt/wan19**</p>
+<p><strong>要求：</strong></p>
+<p><strong>每组的文件夹只允许本组的同学访问，并可以读写文件，并且建立的文件所属组为员工所在的组，但只能删除自己的文件，不能删除别人的文件。其他组的同学对本组的文件没有任何权限。其中管理团队的**</strong>xmjl<strong>**对各组文件具有读写执行的权限。</strong></p>
+<p><strong>每组的管理员可以管理本组员工的帐号。</strong></p>
+<p><strong>请每位同学按照功能实现，并将实现步骤截图整理成文档，保存为自己的名字，发给组长，由组长打包发送至班组群里。</strong></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-08-24第1篇：Window入侵排查" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1654,343 +1958,6 @@ service httpd start
 
 
   
-    <article id="post-IPv4编址方案" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/08/05/IPv4编址方案/" class="article-date">
-      <time datetime="2019-08-04T16:00:00.000Z" itemprop="datePublished">2019-08-05</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/08/05/IPv4编址方案/">IP地址介绍、VLSM、初识思科</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>第二讲 IP地址介绍及VLSM**</p>
-<h2 id="一、-IPv4-编址方案"><a href="#一、-IPv4-编址方案" class="headerlink" title="一、**IPv4**编址方案"></a><strong>一、**</strong>IPv4<strong>**编址方案</strong></h2><p>IP地址由32位二进制数组成，这些位被划分为4组，中间用“.”号隔开，每组8位，以十进制数形式表示。分为<strong>网络地址</strong>和<strong>主机地址</strong>两个部分。</p>
-<h3 id="1、-IP-地址分类"><a href="#1、-IP-地址分类" class="headerlink" title="1、**IP**地址分类"></a><strong>1、**</strong>IP<strong>**地址分类</strong></h3><h4 id="A-类网络地址范围"><a href="#A-类网络地址范围" class="headerlink" title="A**类网络地址范围**"></a><strong>A**</strong>类网络地址范围**</h4><p>​    第一个字节的第一位必须为0，第一个字节的取值为<strong>0**</strong>－127**</p>
-<p>​        即：0xxxxxxx    取值范围是：<strong>0</strong>0000000－<strong>0</strong>1111111  （0－127）</p>
-<p><strong>1.1.1.1/8</strong>   <strong>网络号：8**</strong>位   255.0.0.0**</p>
-<p>网络地址：1.0.0.0</p>
-<p>广播地址：1.255.255.255</p>
-<p>在这网络中有多少个地址呢？2^24</p>
-<p>有效地址：2^24-2</p>
-<h4 id="B-类网络地址范围"><a href="#B-类网络地址范围" class="headerlink" title="B**类网络地址范围**"></a><strong>B**</strong>类网络地址范围**</h4><p>第一个字节的第一位必须是1，且第二位必须是0，第一个字节的取值为<strong>128**</strong>－191**</p>
-<p>​       即：<strong>1</strong>0000000   取值范围是：<strong>10</strong>000000－<strong>10</strong>111111   （128－191）</p>
-<p>181.1.1.1/16   255.255.0.0</p>
-<p>网络地址：181.1.0.0</p>
-<p>广播地址：181.1.255.255</p>
-<p>有效地址：2^16-2</p>
-<h4 id="C-类网络的地址范围"><a href="#C-类网络的地址范围" class="headerlink" title="C**类网络的地址范围**"></a><strong>C**</strong>类网络的地址范围**</h4><p>​    第一个字节的前两位必须是1，且第三位必须是0，第一个字节的取值为<strong>192**</strong>－223**</p>
-<p>​       即：<strong>110</strong>00000   取值范围是：<strong>110</strong>00000－11011111   （192－223）</p>
-<p>192.168.1.1/24  255.255.255.0</p>
-<p>网络地址：192.168.1.0</p>
-<p>广播地址：192.168.1.255</p>
-<p>有效地址：2^8-2  254</p>
-<p><strong>D**</strong>类网络的地址范围：第一个字节为224–239<strong>**，用作组播地址。</strong></p>
-<p><strong>E**</strong>类网络的地址范围：第一个字节为240–255<strong>**，用于科学用途。</strong></p>
-<h3 id="2-、保留的IP地址"><a href="#2-、保留的IP地址" class="headerlink" title="2**、保留的IP地址**"></a><strong>2**</strong>、保留的<strong><strong>IP</strong></strong>地址**</h3><p>   <img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ascnwblgj30fj003064.jpg" alt="/img">   <strong>地</strong>  <strong>址</strong>                     <strong>功</strong>     <strong>能</strong></p>
-<p>网络地址全为0           表示当前网络或网段</p>
-<p>网络地址全为1           表示所有网络</p>
-<p>地址127.0.0.1            保留用于环回测试</p>
-<p>节点地址全为0           表示网络地址或指定网络中的任何主机</p>
-<p>节点地址全为1           表示指定网络中的所有节点</p>
-<p>整个IP地址全为0         思科路由器用它来指定默认路由，也可能表示任何网络</p>
-<p>整个IP地址全为1         到当前网络中所有节点的广播，有时称为“全1广播”或限定</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ascnwblgj30fj003064.jpg" alt="/img">                         广播即：255.255.255.255</p>
-<h3 id="3-、各类网络地址中网络数和主机数"><a href="#3-、各类网络地址中网络数和主机数" class="headerlink" title="3**、各类网络地址中网络数和主机数**"></a><strong>3**</strong>、各类网络地址中网络数和主机数**</h3><p>　　A 类网络地址：</p>
-<p>　　　　　　实际可用的A类网络地址数为：2^7=128</p>
-<p>​                         合法的主机数为：2 ^24－2＝16777214</p>
-<p>　　B类网络地址：</p>
-<p>　　　　　　实际可用的B类网络地址数为：2^14=16384</p>
-<p>​                        合法的主机数为：2^16-2=65534</p>
-<p>　　C类网络地址：</p>
-<p>　　　　　　实际可用的C类网络地址数为：2^21=2097152</p>
-<p>​                        合法的主机数为：2^8-2=254</p>
-<h3 id="4-、私有IP地址范围-在公网中是不能路由的，必须经过地址转换。"><a href="#4-、私有IP地址范围-在公网中是不能路由的，必须经过地址转换。" class="headerlink" title="4**、私有IP地址范围** 在公网中是不能路由的，必须经过地址转换。"></a><strong>4**</strong>、私有<strong><strong>IP</strong></strong>地址范围** <strong>在公网中是不能路由的，必须经过地址转换。</strong></h3><p>　　　A类　　　10.0.0.0~10.255.255.255</p>
-<p>​      B类      172.16.0.0~172.31.255.255</p>
-<p>​      C类      192.168.0.0~192.168.255.255</p>
-<p><strong>子网划分：将大的网络划分成若干个小网络，尽量减少广播风暴，提高网络效率。</strong></p>
-<p>C类IP地址： <strong>192.168.1</strong>.0 /24  255.255.255.0  有效地址：254个</p>
-<p><strong>请问**</strong>192.168.1.201/27<strong>**在哪个网络？网络号是多少？广播号是多少？有效地址范围是多少？</strong></p>
-<p>B类IP地址：181.1.0.0/17   255.255.128.0</p>
-<p>181.1.0.0</p>
-<p>181.1.0.1  -  181.1.127.254</p>
-<p>181.1.128.0</p>
-<h3 id="5-、如何创建子网？"><a href="#5-、如何创建子网？" class="headerlink" title="5**、如何创建子网？**"></a><strong>5**</strong>、如何创建子网？**</h3><p>   要创建子网，我们可以采用如下步骤：</p>
-<p>​     （1）确定需要的网络ID数</p>
-<p>​           ■ 每个LAN子网一个</p>
-<p>​           ■ 每条广域网连接一个        </p>
-<p>​     （2）确定每个子网所需的主机ID数</p>
-<p>​           ■每个TCP/IP主机一个</p>
-<p>​           ■每个路由器接口一个</p>
-<p>​    （3）根据上述需要，确定如下内容：</p>
-<p>​           ■一个用于整个网络的子网掩码</p>
-<p>​           ■每个物理网段的唯一子网ID</p>
-<p>​           ■每个子网的主机ID范围</p>
-<p><strong>5、**</strong>C<strong>**类网络的子网划分</strong></p>
-<p><strong>C**</strong>类网络的快速子网划分**</p>
-<p>给网络选择子网掩码后，需要计算该子网掩码提供的子网数以及每个子网的合法主机地址和广播地址。为此，你只需要回答下面5个问题：</p>
-<p><strong>（1）**</strong>选定的子网掩码将创建多少个子网？**</p>
-<p>​         <strong>192.168.1.0 /26</strong></p>
-<p><strong>11111111.11111111.11111111.11000000</strong></p>
-<p>​                          <strong>128+64=192</strong></p>
-<p>​       <strong>子网掩码值：255.255.255.192</strong></p>
-<p>​     2^2个，向主机位借位（取值为1）的位数。例：11000000，子网数为：2^2（4个）</p>
-<p><strong>（2**</strong>）每个子网可包含多少台主机？**</p>
-<p>​     2y个，y为被遮盖（取值为0）的位数。例：11000000，每个子网包含的主机数</p>
-<p>​     为：2^6－2（62个）</p>
-<p><strong>（3**</strong>）有哪些合法的子网？**</p>
-<p>​     块大小（增量）为<strong>256**</strong>－子网掩码**。如：256－192＝64，即子网掩码为192时，</p>
-<p> 块大小为64。从0开始不断增加64，直到达到子网掩码值，中间的值就是子网，即：</p>
-<p>192.168.1.0–63</p>
-<p>网络号：192.168.1.0</p>
-<p>广播号：192.168.1.63</p>
-<p>有效地址范围：192.168.1.1–192.168.1.62</p>
-<p>192.168.1.64-127</p>
-<p>网络号：192.168.1.64</p>
-<p>广播号：192.168.1.127</p>
-<p>有效地址范围：192.168.1.65-192.168.126</p>
-<p>192.168.128-191</p>
-<p>192.168.128</p>
-<p>192.168.1.192-255</p>
-<p>192.168.4.0  255.255.255.0  划分8个子网</p>
-<p><strong>11111111.11111111.11111111.11100000</strong></p>
-<p>​                          <strong>128+64+32=224</strong></p>
-<p>192.168.4.0/27   255.255.255.224</p>
-<p>2^3=8</p>
-<p>块大小：256-224=32</p>
-<p>地址范围：</p>
-<p>192.168.4.0–192.168.4.31</p>
-<p>网络号：</p>
-<p>广播号：</p>
-<p>有效地址：</p>
-<p>4.0–31</p>
-<p>192.168.4.32–192.168.4.63</p>
-<p>192.168.4.64–192.168.4.95</p>
-<p>96–127</p>
-<p>128–159</p>
-<p>160–191</p>
-<p>192–223</p>
-<p>224–255</p>
-<p>192.168.4.200请问这个地址是属于哪个网络</p>
-<p><strong>练习：</strong></p>
-<p><strong>例1</strong>：255.255.255.128 （/25）</p>
-<p>​       网络地址：192.168.10.0</p>
-<p>​       子网掩码：255.255.255.128</p>
-<p><strong>例2</strong>：255.255.255.224（/27）</p>
-<p>  网络地址：192.168.10.0</p>
-<p>  子网掩码：255.255.255.224</p>
-<p><strong>多少个子网？</strong></p>
-<p><strong>每个子网多少台主机？</strong></p>
-<p><strong>有哪些合法的子网？</strong></p>
-<p><strong>每个子网的广播地址是多少？</strong></p>
-<p><strong>每个子网包含哪些合法主机地址？</strong></p>
-<p><strong>3、**</strong>网络地址：192.168.10.33** <strong>，子网掩码：255.255.255.224**</strong>，有哪些网络？分别有哪些**</p>
-<p><strong>4**</strong>、假设主机地址为：192.168.10.174<strong><strong>，子网掩码为255.255.255.240</strong></strong>。合法的主**</p>
-<p>   <strong>机地址范围是多少呢？</strong></p>
-<p> <strong>5**</strong>、如果节点地址为：192.168.10.17<strong><strong>，子网掩码为：255.255.255.252</strong></strong>。该IP<strong>**地址属于哪个子网？该子网的广播地址是什么？</strong></p>
-<p><strong>B**</strong>类地址的子网划分**</p>
-<p><strong>举例１：172.16.0.0/16       255.255.0.0</strong></p>
-<p>​                          <strong>11111111.11111111.10000000.00000000</strong></p>
-<p><strong>划分为两个网络：2^1=2</strong></p>
-<p>　　　<strong>子网掩码是多少？255.255.128.0</strong></p>
-<p><strong>块大小是多少？256-128=128</strong></p>
-<p>　　　<strong>有哪些合法的子网？</strong></p>
-<p>​         <strong>172.16.0.0</strong></p>
-<p>​         <strong>172.16.128.0</strong></p>
-<p>　<strong>每个子网多少台主机？2^15-2=32766</strong></p>
-<p>　　　<strong>每个子网包含哪些合法主机地址？</strong></p>
-<p>​          <strong>子网                 0.0             128.0</strong></p>
-<p>​          <strong>第一个主机地址      172.16.0.1        172.16.128.1</strong></p>
-<p>​          <strong>最后一个主机地址    172.16.0.254      172.16.128.254</strong></p>
-<p>​          <strong>广播地址            172.16.0.255      172.16.128.255</strong></p>
-<p>　</p>
-<p><strong>举例2**</strong>：172.16.0.0/24**</p>
-<p>有多少个网络?</p>
-<p>子网掩码是多少？</p>
-<p>块大小是多少？</p>
-<p>练习：</p>
-<p>\1.  172.16.10.33/27属于哪个网络？该子网的广播地址是多少？</p>
-<p>\2.  172.16.66.10  255.255.192.0 属于哪个子网？该子网的广播地址是多少？</p>
-<p>\3.   172.16.50.10  255.255.224.0  属于哪个子网？该子网的广播地址是多少？</p>
-<p>\4.  172.16.45.14  255.255.255.252  属于哪个子网？该子网的广播地址是多少？ </p>
-<p>\5.  172.16.88.255/20 属于哪个子网？该子网的广播地址是多少？   </p>
-<p><strong>A**</strong>类网络的子网划分**</p>
-<p>​    A类网络的子网划分和C类网强没有什么不同，但需要处理的是24位，而B类和C类网络需要处理的分别是16位和8位。 </p>
-<p>  <strong>举例1**</strong>：**10.0.0.0/16</p>
-<p>​    多少个子网？2^8=256</p>
-<p>​    每个子网的主机数？2^16-2=65534</p>
-<p>​    有哪些合法子网？需要考虑的是第几个字节？只有第二个字节。256-255=1因此子</p>
-<p>网为10.1.0.0   10.2.0.0   10.3.0.0 …….10.255.0.0</p>
-<p>​        每个子网的广播地址是什么？</p>
-<p>​        合法的主机地址是什么？</p>
-<p>举例2：10.0.0.0/20</p>
-<p><strong>CIDR**</strong>（classless inter-domain routing,<strong>**无类域间选择）</strong></p>
-<p>   它是ISP用来将大量地址分配给客户的一种方法。</p>
-<p><strong>CIDR**</strong>值表：**</p>
-<p>255.0.0.0                /8        255.128.0.0              /9     255.192.0.0              /10</p>
-<p>255.224.0.0              /11     255.240.0.0              /12   255.248.0.0              /13</p>
-<p>255.252.0.0              /14     255.254.0.0              /15    255.255.0.0              /16    </p>
-<p>255.255.128.0            /17   255.255.192.0            /18    255.255.224.0            /19</p>
-<p>255.255.240.0           /20    255.255.248.0           /21    255.255.252.0           /22</p>
-<p>255.255.254.0           /23     255.255.255.0           /24    255.255.255.128         /25</p>
-<p>255.255.255.192         /26    255.255.255.224         /27    255.255.255.240         /28</p>
-<p>255.255.255.248         /29    255.255.255.252         /30</p>
-<h2 id="二、变长子网掩码："><a href="#二、变长子网掩码：" class="headerlink" title="二、变长子网掩码："></a><strong>二、变长子网掩码：</strong></h2><p>  <strong>使用长度不同的子网掩码将网络划分成多个子网，适用于不同类型的网络设计，称为VLSM**</strong>组网。**</p>
-<p>   <strong>分类路由选择：RIP1  IGRP**</strong>协议**</p>
-<p>   <strong>无类路由选择：RIP2</strong>　<strong>EIGRP</strong>　　<strong>OSPF**</strong>等协议**</p>
-<p><strong>有类路由</strong>：汇总以后地址是标准的A B C类地址掩码 即 255.0.0.0 255.255.0.0 255.255.255.0 (<a href="https://www.baidu.com/s?wd=有类路由&from=1012015a&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Y3rHTzm1c3uW6zuhmdm1bz0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnWRsnHn1nWnd" target="_blank" rel="noopener">有类路由</a>里 大类网络中 子网码必须一致 这样叫做有类路由 因为有类路由协议不传递子网码信息)<br> 　　<strong>无类路由</strong>：汇总以后地址是无类的比如 172.16.12.0/16 - 172.16.15.0/16 汇总以后的地址是 172.16.12.0/20 子码 不属于 A B C 3个类别(无类路由是相反的 他传递子网信息所有大类网络中可以使用不同的子网码)</p>
-<h3 id="１、典型的分类网络设计"><a href="#１、典型的分类网络设计" class="headerlink" title="１、典型的分类网络设计"></a><strong>１、典型的分类网络设计</strong></h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asdj1c06j30aq066weh.jpg" alt="/img"></p>
-<h3 id="2-、无类网络设计"><a href="#2-、无类网络设计" class="headerlink" title="2**、无类网络设计**"></a><strong>2**</strong>、无类网络设计**</h3><p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ase4rv7oj30am064aa2.jpg" alt="/img"></p>
-<h3 id="3、-变长子网掩码工作表"><a href="#3、-变长子网掩码工作表" class="headerlink" title="3、**变长子网掩码工作表**"></a><strong>3、**</strong>变长子网掩码工作表**</h3><h2 id="三、地址汇总"><a href="#三、地址汇总" class="headerlink" title="三、地址汇总"></a><strong>三、地址汇总</strong></h2><p><strong>汇总：也叫路由聚合，让路由选择协议能够用一个地址通告众多网络</strong>。<strong>旨在缩小路由器中路由选择表的规模，以节省内存，并缩短**</strong>IP<strong>**对路由选择表进行分析以找出前往远程网络的所需时间。</strong>图中说明了在互联网络的使用的汇总地址。</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asefuaq4j30fk03mweg.jpg" alt="/img"></p>
-<p><strong>举例1**</strong>：**</p>
-<p>192.168.16.0—192.168.31.0  第三个字节：块大小16   240  /20   255.255.240.0</p>
-<p>192.168.16.0/20   255.255.240.0   </p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asez68mzj30fd03v74r.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asfx80c6j30fd02rq31.jpg" alt="/img"></p>
-<p><strong>思考？</strong></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asfi30wdj30fd06i3yi.jpg" alt="/img"></p>
-<p>变化的字节在哪里？第二字节</p>
-<p><strong>块大小？  16</strong></p>
-<p>掩码值：256-16=240</p>
-<p>255.240.0.0  /12  </p>
-<p>172.0.0.0</p>
-<p>172.16.0.0  32 48 64 80 96 112 128 144 160</p>
-<p>172.144.0.0/12</p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6asgsrii1j30dw03nwer.jpg" alt="/img"></p>
-<p><img src="http://ww1.sinaimg.cn/large/007ru3v0gy1g6ash917wvj30fe03gglp.jpg" alt="/img"></p>
-<h2 id="四、-Cisco-Packet-Tracer介绍与思科设备的基本配置"><a href="#四、-Cisco-Packet-Tracer介绍与思科设备的基本配置" class="headerlink" title="四、 Cisco Packet Tracer介绍与思科设备的基本配置**"></a><strong>四、 <strong>Cisco Packet Tracer</strong></strong>介绍与思科设备的基本配置**</h2><h2 id="五、-PT-介绍及思科的基本操作命令"><a href="#五、-PT-介绍及思科的基本操作命令" class="headerlink" title="五、**PT**介绍及思科的基本操作命令"></a><strong>五、**</strong>PT<strong>**介绍及思科的基本操作命令</strong></h2><h3 id="1、PT介绍（界面、路由器、交换机、线缆、工具…-）"><a href="#1、PT介绍（界面、路由器、交换机、线缆、工具…-）" class="headerlink" title="1、PT介绍（界面、路由器、交换机、线缆、工具…..）"></a>1、PT介绍（界面、路由器、交换机、线缆、工具…..）</h3><p>双绞线：直通线、交叉线、全反线（CONSOLE线）</p>
-<p>线序标准：</p>
-<p>​        T568B：橙白 橙  绿白 蓝 蓝白 绿 棕白 棕</p>
-<p>​        T568A：绿白 绿  橙白 蓝 蓝白 橙 棕白 棕</p>
-<p>直通线：T568B-T568B    T568A-T568A</p>
-<p><strong>不同种设备</strong>相连（模拟器不支持自适应）</p>
-<p>​           交换机–路由器  路由器–集线器  交换机–PC机</p>
-<p>​    交叉线：568A–568B 同种设备相连</p>
-<p>​           交换机–交换机  路由器–路由器 交换机–集线器</p>
-<p>全反线：（CONSOLE线）</p>
-<h3 id="2、设备的连接"><a href="#2、设备的连接" class="headerlink" title="2、设备的连接"></a>2、设备的连接</h3><h3 id="3、路由器的开机过程："><a href="#3、路由器的开机过程：" class="headerlink" title="3、路由器的开机过程："></a>3、路由器的开机过程：</h3><p>开机过程：加电自检–从flash查找和装载IOS–从NVROM（非易失性                      </p>
-<p>存储器）里加载启动配置文件—是否进入配置向导–</p>
-<p>​                            直接进入配置模式</p>
-<p>配置文件：startupconfig   runningconfig</p>
-<p>启动配置文件   运行配置文件</p>
-<h3 id="4、基本命令操作："><a href="#4、基本命令操作：" class="headerlink" title="4、基本命令操作："></a>4、基本命令操作：</h3><h3 id="5、"><a href="#5、" class="headerlink" title="5、"></a>5、</h3><p>（1）、模式：</p>
-<p>​      Router&gt;用户模式</p>
-<p>​      Router&gt;enable</p>
-<p>​      Router#特权模式</p>
-<p>​      Router#configure terminal </p>
-<p>​      Router(config)#全局配置模式</p>
-<p>​      Router(config)#hostname R1  （配置路由器的名称）</p>
-<p>​      R1(config)#interface FastEthernet 0/0</p>
-<p>​      R1(config-if)#接口模式</p>
-<p>​      R1(config-if)#ip address 192.168.1.1 255.255.255.0 （配置IP地址）</p>
-<p>​      R1(config-if)#no shutdown （开启端口）</p>
-<p>​      两台路由器相连，测试连通性</p>
-<p>​       Router&gt;用户模式</p>
-<p>​       Router&gt;enable</p>
-<p>​       Router#特权模式</p>
-<p>​       Router#configure terminal </p>
-<p>​       Router(config)#全局配置模式</p>
-<p>​       Router(config)#hostname R2  （配置路由器的名称）</p>
-<p>​       R2(config)#interface FastEthernet 0/0</p>
-<p>​       R2(config-if)#接口模式</p>
-<p>​       R2(config-if)#ip address 192.168.1.2 255.255.255.0 （配置IP地址）</p>
-<p>​       R2(config-if)#no shutdown （开启端口）</p>
-<p>​       使用ping命令测试通信：如果通信用!!!表示，不通用…表示</p>
-<p>​           R1(config-if)#接口模式</p>
-<p>​           R1(config-if)#exit  退出当前模式，返回上一级模式</p>
-<p>​           R1(config)#全局配置模式</p>
-<p>​           R1(config)#exit</p>
-<p>​           R1#特权模式</p>
-<p>​           R1#ping 192.168.1.1 </p>
-<p>​        –输入end（或ctrl+c或ctrl+z）直接返回到特权模式—————–</p>
-<p>​            R1(config-if)#end</p>
-<p>​            R1#特权模式</p>
-<p>​        -——————————————</p>
-<p>   （2）命令支持简写</p>
-<p>   （3）帮助功能</p>
-<p>   （4）tab补全命令</p>
-<p>   （5）给设备配置密码：防止别人非法更改我设备的配置</p>
-<p>​       </p>
-<p>​      为特权模式配置明文密码</p>
-<p>​       R1(config)#enable password 123456   明文密码</p>
-<p>​       R1(config)#show running-config   可以查看密码</p>
-<p>​       Current configuration : 565 bytes  配置文件大小可以判断是否更改设备配置</p>
-<p>​      为特权模式配置密文密码</p>
-<p>​       R1(config)#enable secret 123456   明文密码</p>
-<p>​       R1(config)#show running-config   可以查看密码</p>
-<p>​       两个密码同时配置时，加密的密码生效。</p>
-<p>   （6）保存配置文件</p>
-<p>​       R1#copy <strong>running-config</strong> startup-config  </p>
-<p>​       或  R1#write</p>
-<p>​              </p>
-<p>   （7）查看命令</p>
-<p>​        R1#show ip interface brief  查看接口摘要信息</p>
-<p>​        R1#show running-config      查年当前的运行配置文件</p>
-<p>​        R1#show startup-config      查看启动配置文件</p>
-<p>Running-config本来和startup-config 一样 但是running-config如果不保存的话，就不会和startup-config一样了</p>
-<p>   （8）重启设备：</p>
-<p>​        R1#reload</p>
-<p>​     </p>
-<p>模式：</p>
-<p>enable (en)  configure terminal(config t)   interface fastEthernet 0/1(int f0/1)</p>
-<p>Show</p>
-<p>running-config    startup-config</p>
-<p>copy runing-config startup-config 或 write(w)</p>
-<p>Ip add 192.168.10.1 255.255.255.0</p>
-<p>no shutdown</p>
-<p>reload</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -2002,7 +1969,7 @@ service httpd start
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2019 John Doe
+                &copy; 2020 Lei Xuelian
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
